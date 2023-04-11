@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-     SALVANDO HUELLAS
+     SALVANDO HUELLAS   HOME
     </div>
   )
 }
