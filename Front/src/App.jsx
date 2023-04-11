@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/js/dist/*.js'
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 
 import './App.css'
 
