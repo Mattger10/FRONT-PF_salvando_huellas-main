@@ -3,7 +3,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import LandingPage from './components/LandingPage.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-
 import './App.css'
 
 function App() {
@@ -19,4 +18,5 @@ function App() {
   )
 }
 
-export default App;
+export default App
+
