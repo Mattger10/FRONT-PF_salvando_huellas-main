@@ -12,7 +12,7 @@ export default function LandingPage() {
   return (
     <div>
       <img src="" alt="" />
-      <h1>SALVANDO HUELLAS</h1>
+      <h1>SALVANDO HUELLAS!</h1>
       <br />
       <button>Ingresar</button>
       <br />
