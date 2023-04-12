@@ -34,6 +34,8 @@ export const LoginButton = () => {
 
 export default function LandingPage() {
 
+    const { isAuthenticated } = useAuth0();
+
   return (
     <div>
       <img src="" alt="" />
@@ -50,8 +52,13 @@ export default function LandingPage() {
       <button className={styles.button}>Ingresar como invitado</button>
       </Link>
       <br />
-      
+        {isAuthenticated ? ( 
+      <>
+        <Profile/>
+        <LogoutButton/>
+      </>
+     ) : ( <LoginButton/>
+  )}
     </div>
   );
-
 };

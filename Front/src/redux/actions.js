@@ -2,10 +2,12 @@ import axios from 'axios';
 // Action types
 
 export const ACCESS = "ACCESS";
+export const SEARCH = "SEARCH";
 
 // Actions
 
-export function access(data) {
+// Controla si el usuario está logeado o no.
+export function handleAccess(data) {
   return {
     type: ACCESS,
     payload: data,
@@ -28,6 +30,7 @@ export function getDogs() {
   }
 }
 
+
 //Traigo a los perros por su id para el detail -iri-
 export const getDetail = (id) => {
   return async function (dispatch) {
@@ -42,3 +45,12 @@ export const getDetail = (id) => {
     }
   };
 };
+
+
+export function searchDogs (text) {
+  return {
+    type: SEARCH,
+    payload: text
+  }
+}
+

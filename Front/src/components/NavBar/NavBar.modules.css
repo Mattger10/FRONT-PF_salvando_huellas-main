@@ -1,5 +1,4 @@
 .nav {
-    position: absolute;
     left: 0px;
     top: 0px;
     display: flex;
@@ -13,4 +12,7 @@
 }
 .nav button {
     margin: 10px;
+}
+#carrLogo {
+    max-width: 40px;
 }
