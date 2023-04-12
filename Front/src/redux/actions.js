@@ -12,7 +12,7 @@ export function access(data) {
   };
 }
 
-//traigo a los perros con la api
+//traigo a los perros con la api -iri-
 export function getDogs() {
   return async (dispatch) => {
     try {
@@ -27,3 +27,18 @@ export function getDogs() {
     }
   }
 }
+
+//Traigo a los perros por su id para el detail -iri-
+export const getDetail = (id) => {
+  return async function (dispatch) {
+    try {
+      const dogDetail = await axios.get(`https://api.thedogapi.com/v1/breeds/${id}`);
+      dispatch({
+        type: "GET_DETAIL",
+        payload: dogDetail.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
