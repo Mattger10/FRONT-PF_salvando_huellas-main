@@ -39,10 +39,10 @@ export default function NavBar() {
         <button>Donaciones</button>
       </Link>
       <Link to="/carrito">
-        <button>Carrito</button>
+        <img src="/img/carrito.png" id="carrLogo"/>
       </Link>
       <Link to="/account">
-        <button>Mi Cuenta</button>
+      <img src="/img/perfil.png" id="carrLogo"/>
       </Link>
     </div>
   );
