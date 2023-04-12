@@ -5,15 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import LandingPage from './components/LandingPage.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import './App.css'
+
+import "./App.css";
 
 function App() {
+
   const { isAuthenticated } = useAuth0();
+
   return (
     <BrowserRouter>
     <div className="App">
+      <NavBar />
       <Routes>
       <Route path="/" element={<LandingPage />}/>
+      <Route path="/home" element ={<Home/>}/>
       </Routes>
       {isAuthenticated ? ( 
       <>
@@ -24,7 +29,7 @@ function App() {
   )}
     </div>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;
