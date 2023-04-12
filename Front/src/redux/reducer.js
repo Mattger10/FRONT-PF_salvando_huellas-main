@@ -1,24 +1,22 @@
-import { EJEMPLOTYPE } from "./actions";
+import { ACCESS } from "./actions";
 
 const initialState = {
-    ejemplo: false
+  access: false,
 };
 
 const rootReducer = (state = initialState, action) => {
-    switch (action.type){
+  switch (action.type) {
+    case ACCESS:
+      return {
+        ...state,
+        access: action.payload,
+      };
 
-        case EJEMPLOTYPE:
-        console.log("ejemplo")
-        return {
-            ...state,
-            ejemplo: true
-        }
-
-        default:
-            return {
-                ...state
-            }
-    }
-}
+    default:
+      return {
+        ...state,
+      };
+  }
+};
 
 export default rootReducer;
