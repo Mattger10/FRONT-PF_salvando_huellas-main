@@ -1,11 +1,11 @@
-import { LoginButton, LogoutButton } from './components/LandingPage.jsx';
-import { Profile } from './components/LandingPage.jsx';
+import { LoginButton, LogoutButton } from './components/LandingPage/LandingPage.jsx';
+import { Profile } from './components/LandingPage/LandingPage.jsx';
 import { useAuth0 } from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import LandingPage from './components/LandingPage.jsx';
+import LandingPage from './components/LandingPage/LandingPage.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavBar from "./components/NavBar.jsx";
-import Home from './components/Home.jsx';
+import NavBar from "./components/NavBar/NavBar.jsx";
+import Home from './components/Home/Home.jsx';
 
 import "./App.css";
 
