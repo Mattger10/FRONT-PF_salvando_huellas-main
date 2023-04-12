@@ -1,0 +1,16 @@
+.nav {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+.nav img {
+    max-width: 200px;
+}
+.nav button {
+    margin: 10px;
+}
