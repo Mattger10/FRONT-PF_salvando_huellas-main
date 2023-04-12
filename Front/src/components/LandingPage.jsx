@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import styles from "./LandingPage.module.css";
 
 export const Profile = () => {
     const {user, isAuthenticated, isLoading } = useAuth0()
@@ -34,23 +35,22 @@ export const LoginButton = () => {
 export default function LandingPage() {
 
   return (
-    
-    
     <div>
       <img src="" alt="" />
       <h1>SALVANDO HUELLAS!</h1>
-      <br />
-      <button>Ingresar</button>
-      <br />
-      <button>Registrarse</button>
-      <br />
-      <Link to="/home">
-      <button>Ingresar como invitado</button>
-      </Link>
-      <br />
       <input type="text" placeholder="Email" />
       <br />
       <input type="password" placeholder="Contraseña" />
+      <br />
+      <button className={styles.button}>Ingresar</button>
+      <br />
+      <button className={styles.button}>Registrarse</button>
+      <br />
+      <Link to="/home">
+      <button className={styles.button}>Ingresar como invitado</button>
+      </Link>
+      <br />
+      
     </div>
   );
 
