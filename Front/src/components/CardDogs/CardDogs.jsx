@@ -1,7 +1,7 @@
 import React from "react";
 
 //Acá traigo a todas las cards de los perros -iri-
-export default function CardDogs({ image, name, age, race, sex }) {
+export default function CardDogs({ image, name, age, sex, size, post }) {
   return (
     <>
       <div>
@@ -12,8 +12,9 @@ export default function CardDogs({ image, name, age, race, sex }) {
       </div>
       <div>
         <p>{age}</p>
-        <p>{race}</p>
+        <p>{size}</p>
         <p>{sex}</p>
+        <p>{post}</p>
       </div>
     </>
   );
