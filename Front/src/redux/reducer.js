@@ -3,7 +3,11 @@ import { ACCESS, SEARCH } from "./actions";
 const initialState = {
   access: false,
   dogs: [],
+
+  dogDetail: []
+=======
   onSearchDogs: [],
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,6 +23,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogs: action.payload,
       };
+
+      
+      case "GET_DETAIL":
+        return {
+          ...state,
+          dogDetail: action.payload,
+        };
+  
+
 
     case SEARCH:
       const name = action.payload.toUpperCase();
@@ -36,6 +49,7 @@ const rootReducer = (state = initialState, action) => {
           onSearchDogs: [...state.dogs],
         };
       }
+
 
     default:
       return {
