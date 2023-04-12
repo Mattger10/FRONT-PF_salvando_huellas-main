@@ -1,12 +1,12 @@
 // Action types
 
-export const EJEMPLOTYPE = "EJEMPLOTYPE"
+export const ACCESS = "ACCESS";
 
 // Actions
 
-export function actionEjemplo(data){
-    return{
-        type: EJEMPLOTYPE,
-        payload: data
-    }
+export function access(data) {
+  return {
+    type: ACCESS,
+    payload: data,
+  };
 }
