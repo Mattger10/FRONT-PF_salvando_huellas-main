@@ -1,9 +1,13 @@
-import { ACCESS } from "./actions";
+import { ACCESS, SEARCH } from "./actions";
 
 const initialState = {
   access: false,
   dogs: [],
+
   dogDetail: []
+=======
+  onSearchDogs: [],
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,6 +23,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogs: action.payload,
       };
+
       
       case "GET_DETAIL":
         return {
@@ -26,6 +31,26 @@ const rootReducer = (state = initialState, action) => {
           dogDetail: action.payload,
         };
   
+
+
+    case SEARCH:
+      const name = action.payload.toUpperCase();
+      if (name.length) {
+        let searchResult = [...state.dogs].filter(
+          (dog) => dog.name.toUpperCase().split(name).length > 1
+        );
+        return {
+          ...state,
+          onSearchDogs: searchResult,
+        };
+      } else {
+        return {
+          ...state,
+          onSearchDogs: [...state.dogs],
+        };
+      }
+
+
     default:
       return {
         ...state,
