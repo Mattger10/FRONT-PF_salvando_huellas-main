@@ -3,6 +3,7 @@ import { ACCESS } from "./actions";
 const initialState = {
   access: false,
   dogs: [],
+  dogDetail: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -18,7 +19,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogs: action.payload,
       };
-
+      
+      case "GET_DETAIL":
+        return {
+          ...state,
+          dogDetail: action.payload,
+        };
+  
     default:
       return {
         ...state,
