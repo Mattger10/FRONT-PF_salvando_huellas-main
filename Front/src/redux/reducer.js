@@ -3,11 +3,8 @@ import { ACCESS, SEARCH } from "./actions";
 const initialState = {
   access: false,
   dogs: [],
-
-  dogDetail: []
-=======
+  dogDetail: [],
   onSearchDogs: [],
-
 };
 
 const rootReducer = (state = initialState, action) => {
