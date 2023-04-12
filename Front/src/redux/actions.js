@@ -2,9 +2,11 @@ import axios from 'axios';
 // Action types
 
 export const ACCESS = "ACCESS";
+export const SEARCH = "SEARCH";
 
 // Actions
 
+// Controla si el usuario está logeado o no.
 export function handleAccess(data) {
   return {
     type: ACCESS,
@@ -25,5 +27,13 @@ export function getDogs() {
     } catch(error) {
       console.log(error);
     }
+  }
+}
+
+// Buscar por nombre
+export function searchDogs (text) {
+  return {
+    type: SEARCH,
+    payload: text
   }
 }
