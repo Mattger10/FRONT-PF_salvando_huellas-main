@@ -4,7 +4,7 @@ export const ACCESS = "ACCESS";
 
 // Actions
 
-export function access(data) {
+export function handleAccess(data) {
   return {
     type: ACCESS,
     payload: data,
