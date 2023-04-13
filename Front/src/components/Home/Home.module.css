@@ -14,36 +14,26 @@
 }
 
 .img{
-    width: 65vh;
-    height: 22vw;
+    width: 50%;
+    height: auto;
+    max-width: 35%;
 }
-
+ 
 .iconsContainer{
-    margin-top: 3.5rem;
-    margin-left: 1rem;
-    text-align: left;
-    width: 20vw;
+    display: flex;
+    justify-content:left;
+    margin-top: 2.8rem;
+    width: 99.9%;
     border-radius: 6px;
-    background-color: #0000002a;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-}
+    background-color: #00000021;
+    padding: 0.4rem;
+} 
   
-  .iconsContainer:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  }
-  
-  .iconsContainer:hover::after {
-    opacity: 0.5;
-    transform: translateY(100%);
-  }
-
 .icons{
     display: flex;
-    gap: 1rem;
+    gap: 0.6rem;
     margin-left: 0.5rem;
-}
+}  
 
 .follow{
     margin-left: 0.5rem;
