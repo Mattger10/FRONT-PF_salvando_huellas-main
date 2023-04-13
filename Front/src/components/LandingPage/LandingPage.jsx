@@ -20,7 +20,7 @@ export default function LandingPage() {
       <div className={styles.container}>
       <div className={styles.loginContainer}>
       <div className={styles.register}>
-      <h2>Registarse</h2>
+      <h2>Registarme</h2>
       <form action="">
         <input type="text" placeholder="Nombre" className={styles.nombre}/>
         <input type="text" placeholder="Email" className={styles.correo}/>
