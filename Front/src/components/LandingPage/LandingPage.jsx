@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import GoogleLogin from "react-google-login";
+import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 
 export default function LandingPage() {
 
+  const navigate =useNavigate();
+
   const responseGoogle = (response) => {
+    navigate("/");
     console.log(response);
   }
-
-
 
   return (
     <div>
@@ -50,8 +52,7 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-      </div> {/* AGREGAR MODAL DEBAJO DE ESTA LINEA*/}
-     
+      </div> 
     </div>
   );
 };
