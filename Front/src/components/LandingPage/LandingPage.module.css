@@ -5,6 +5,14 @@
   font-family: 'Roboto', sans-serif;
 }
  
+.img {
+  z-index: 0;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 /* body{
   background: #f1f1f1;
 } */
@@ -19,6 +27,7 @@
 }
  
 .loginContainer{
+  z-index: 1;
   display: flex;
   width: 650px;
   height: auto;
@@ -69,6 +78,7 @@
  
  
 .login{
+  z-index: 1;
   background-image: linear-gradient(to bottom right, #1ab6b6, #4cac6e);
   padding: 40px;
 }

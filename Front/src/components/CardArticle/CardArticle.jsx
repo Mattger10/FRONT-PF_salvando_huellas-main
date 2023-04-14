@@ -25,7 +25,7 @@ export default function CardArticle ({name, price, image, stock}) {
         <p>{name}</p>
         <p>$ {price}</p>
         <p>{stock} disponibles</p>
-        <button onClick={handleAdd}>Agregar al carrito</button>
+        <button className="button"onClick={handleAdd}>Agregar al carrito</button>
         <select onChange={handleStockSelect}>
             {stockOptions.map((num, ind) => {
                 return <option key={ind}>{num}</option>

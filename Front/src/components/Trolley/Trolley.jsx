@@ -25,7 +25,7 @@ export default function Trolley() {
                         <img className={style.img} src={item.article.image} alt={'foto de ' + item.article.name} />
                         <p>{item.article.name}</p>
                         <p>$ {item.article.price}</p>
-                        <button>eliminar</button>
+                        <button className={style.button}>eliminar</button>
                     </div>
                 ))}
             </div>
