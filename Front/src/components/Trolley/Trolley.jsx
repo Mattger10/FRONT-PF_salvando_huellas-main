@@ -1,11 +1,19 @@
 import React from "react";
 import style from "./Trolley.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteCarrito } from "../../redux/actions";
 
 export default function Trolley() {
 
+    const dispatch = useDispatch()
     const allArticle = useSelector((state) => state.carrito);
+
+    //boton para eliminar elementos del carrito
+    const handleDelete = (item) => {
+        dispatch(deleteCarrito(item.article.name));
+    };
+
 
     return (
         <div className={style.container} >
@@ -25,7 +33,7 @@ export default function Trolley() {
                         <img className={style.img} src={item.article.image} alt={'foto de ' + item.article.name} />
                         <p>{item.article.name}</p>
                         <p>$ {item.article.price}</p>
-                        <button className={style.button}>eliminar</button>
+                        <button  onClick={() => handleDelete(item)} className={style.button}>eliminar</button>
                     </div>
                 ))}
             </div>

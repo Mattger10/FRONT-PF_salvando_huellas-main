@@ -4,6 +4,7 @@ import axios from 'axios';
 export const ACCESS = "ACCESS";
 export const SEARCH = "SEARCH";
 export const ADD_CARR = "ADD_CARR";
+export const DELETE_CARR = "DELETE_CARR";
 
 // Actions
 
@@ -63,3 +64,10 @@ export function addCarrito (article, cant){
   }
 }
 
+//eliminar del carrito
+export function deleteCarrito (name){
+  return {
+   type: DELETE_CARR,
+   payload: name
+  }
+}
