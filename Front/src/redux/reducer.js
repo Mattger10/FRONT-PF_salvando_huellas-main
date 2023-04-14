@@ -1,4 +1,4 @@
-import { ACCESS, SEARCH, ADD_CARR } from "./actions";
+import { ACCESS, SEARCH, ADD_CARR, DELETE_CARR } from "./actions";
 
 const initialState = {
   access: false,
@@ -31,13 +31,13 @@ const rootReducer = (state = initialState, action) => {
         dogs: action.payload,
       };
 
-      
-      case "GET_DETAIL":
-        return {
-          ...state,
-          dogDetail: action.payload,
-        };
-  
+
+    case "GET_DETAIL":
+      return {
+        ...state,
+        dogDetail: action.payload,
+      };
+
 
 
     case SEARCH:
@@ -61,23 +61,33 @@ const rootReducer = (state = initialState, action) => {
       let article = action.payload.article
       let cantidad = action.payload.cant
       state.carrito.forEach(elem => {
-        if (elem.article.name === article.name){
+        if (elem.article.name === article.name) {
           return {
             ...state,
-            carrito: [...[...state.carrito].filter(art => art.article.name !== name),{article, cantidad}] // Si el articulo ya estaba, lo actualiza
+            carrito: [...[...state.carrito].filter(art => art.article.name !== name), { article, cantidad }] // Si el articulo ya estaba, lo actualiza
           }
         }
       })
       return {
         ...state,
-        carrito: [...state.carrito, {article, cantidad}]
+        carrito: [...state.carrito, { article, cantidad }]
       }
 
+      case DELETE_CARR:
+    const newCarrito = state.carrito.filter(item => item.article.name !== action.payload);
+    return {
+      ...state,
+      carrito: newCarrito
+    }
+    
     default:
       return {
         ...state,
       };
   }
+
+
+
 };
 
 export default rootReducer;
