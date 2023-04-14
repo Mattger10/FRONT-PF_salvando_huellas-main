@@ -99,11 +99,13 @@ function FormularioAdopcion() {
       <div>
         <label htmlFor="telefono">Teléfono:</label>
         <input
-          type="text"
+          type="tel"
           id="telefono"
           value={telefono}
           onChange={(e) => setTelefono(e.target.value)}
           required
+          pattern="^[0-9]{3}-?[0-9]{7}$"
+          placeholder="Ej: 11-1234567"
         />
       </div>
       
