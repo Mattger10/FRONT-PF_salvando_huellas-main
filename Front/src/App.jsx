@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar/NavBar.jsx";
 import Home from "./components/Home/Home.jsx";
 import Donation from "./components/Donations/Donations.jsx";
 import Shop from "./components/Shop/Shop.jsx";
+import Form from  "./components/FormAdoption/Form.jsx"
 
 import "./App.css";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/adopt" element={<Form />} />
       </Routes>
     </div>
   );
