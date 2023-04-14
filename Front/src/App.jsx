@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Home from './components/Home/Home.jsx';
 import Donation from './components/Donations/Donations.jsx';
-
+import Dogs from './components/Dogs/Dogs.jsx';
 import "./App.css";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
       <Route path="/donar" element={<Donation/>}/>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/home" element ={<Home/>}/>
+      <Route path="/dogs" element ={<Dogs/>}/>
       </Routes>
     </div>
     </BrowserRouter>

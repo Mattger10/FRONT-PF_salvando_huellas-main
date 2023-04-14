@@ -18,7 +18,7 @@ export function handleAccess(data) {
 export function getDogs() {
   return async (dispatch) => {
     try {
-      let dog = await axios("https://api.thedogapi.com/v1/breeds");
+      let dog = await axios("http://localhost:3001/dogs");
       return dispatch({
 //uso la comilla simple para no exportar y hacerlo mas simple
         type: 'GET_DOGS',
@@ -35,7 +35,7 @@ export function getDogs() {
 export const getDetail = (id) => {
   return async function (dispatch) {
     try {
-      const dogDetail = await axios.get(`https://api.thedogapi.com/v1/breeds/${id}`);
+      const dogDetail = await axios.get(`http://localhost:3001/dogs/${id}`);
       dispatch({
         type: "GET_DETAIL",
         payload: dogDetail.data,
