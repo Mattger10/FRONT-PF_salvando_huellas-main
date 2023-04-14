@@ -1,11 +1,21 @@
-import { ACCESS, SEARCH } from "./actions";
+import { ACCESS, SEARCH, ADD_CARR } from "./actions";
 
 const initialState = {
   access: false,
   dogs: [],
   dogDetail: [],
   onSearchDogs: [],
+  carrito: []
 };
+/* ESTRUCTURA DEL CARRITO
+ Array que contiene objetos: 
+ [
+  {article: {name, image, stock, price}, cantidad: numero},
+  {article: {name, image, stock, price}, cantidad: numero}
+]
+article es el artículo en sí con sus datos originales
+cantidad es la cantidad que el comprador eligió agregar al carrito
+*/
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -47,6 +57,21 @@ const rootReducer = (state = initialState, action) => {
         };
       }
 
+    case ADD_CARR:
+      let article = action.payload.article
+      let cantidad = action.payload.cant
+      state.carrito.forEach(elem => {
+        if (elem.article.name === article.name){
+          return {
+            ...state,
+            carrito: [...[...state.carrito].filter(art => art.article.name !== name),{article, cantidad}] // Si el articulo ya estaba, lo actualiza
+          }
+        }
+      })
+      return {
+        ...state,
+        carrito: [...state.carrito, {article, cantidad}]
+      }
 
     default:
       return {
