@@ -1,20 +1,31 @@
 import React from "react";
-
+import styles from "../CardDogs/CardDogs.module.css";
 //Acá traigo a todas las cards de los perros -iri-
-export default function CardDogs({ image, name, age, sex, size, post }) {
+export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, historyD }) {
   return (
     <>
+    <div className={styles.container}>
       <div>
-        <h3>{name}</h3>
+        <h3>{nameD}</h3>
       </div>
       <div>
-    <img src={image} alt="img" />
+    <img src={photoD} alt="img" />
       </div>
       <div>
-        <p>{age}</p>
-        <p>{size}</p>
-        <p>{sex}</p>
-        <p>{post}</p>
+        <div>
+        <h4>Age:</h4>
+        <p>{ageD}</p>
+        </div>
+        <div>
+        <h4>Size:</h4>
+        <p>{sizeD}</p>
+        </div>
+        <div>
+        <h4>Sex:</h4>
+        <p>{sexD}</p>
+        </div>
+        <p>{historyD}</p>
+      </div>
       </div>
     </>
   );

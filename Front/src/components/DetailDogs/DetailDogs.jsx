@@ -22,18 +22,18 @@ export default function Detail() {
 
       {Object.keys(dogDeits).length > 0 ? (
         <div>
-          <h4>{dogDeits.name}</h4>
+          <h4>{dogDeits.nameD}</h4>
           <div />
           <div>
-            <img src={dogDeits.image} alt={dogDeits.name} />
+            <img src={dogDeits.photoD} alt={dogDeits.name} />
           </div>
           <div>
-            <span>Nombre: {dogDeits.name}</span>
-            <span>Age: {dogDeits.age}</span>
-            <span>Size: {dogDeits.size}</span>
-            <span>Sex: {dogDeits.sex}</span>
-            <span>Description: {dogDeits.description}</span>
-            <span>References: {dogDeits.references}</span>
+            <span>Name: {dogDeits.nameD}</span>
+            <span>Age: {dogDeits.ageD}</span>
+            <span>Size: {dogDeits.sizeD}</span>
+            <span>Sex: {dogDeits.sexD}</span>
+            <span>Description: {dogDeits.descriptionD}</span>
+            <span>References: {dogDeits.referencesD}</span>
           </div>
         </div>
       ) : (
