@@ -20,13 +20,19 @@ export default function NavBar() {
         <button>PetShop</button>
       </Link>
 
-      <button
+      {/* <button
         onClick={() => {
           if (access) {
             navigate("/adopt");
           } else {
             navigate("/");
           }
+        }}
+      > */}
+
+      <button
+        onClick={() => {
+          navigate("/adopt");
         }}
       >
         Adopta Ahora!
@@ -39,10 +45,10 @@ export default function NavBar() {
         <button>Donaciones</button>
       </Link>
       <Link to="/carrito">
-        <img src="/img/carrito.png" id="carrLogo"/>
+        <img src="/img/carrito.png" id="carrLogo" />
       </Link>
       <Link to="/account">
-      <img src="/img/perfil.png" id="carrLogo"/>
+        <img src="/img/perfil.png" id="carrLogo" />
       </Link>
     </div>
   );
