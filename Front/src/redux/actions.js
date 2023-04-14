@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const ACCESS = "ACCESS";
 export const SEARCH = "SEARCH";
+export const ADD_CARR = "ADD_CARR";
 
 // Actions
 
@@ -51,6 +52,14 @@ export function searchDogs (text) {
   return {
     type: SEARCH,
     payload: text
+  }
+}
+
+// Añadir al carrito
+export function addCarrito (article, cant){
+  return {
+    type: ADD_CARR,
+    payload: {article, cant}
   }
 }
 

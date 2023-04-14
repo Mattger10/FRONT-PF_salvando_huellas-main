@@ -1,0 +1,8 @@
+.cardArticle {
+    border: 1px solid black;
+    background-color: azure;
+}
+
+.artImage {
+    max-width: 150px;
+}
