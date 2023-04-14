@@ -1,8 +1,18 @@
 .container{
     display: flex;
     justify-content: center;
+    width: 100vw;
+    height: 85vh;
+}
+
+.carritoVacio{
+margin-top: 5rem;
+background-color: rgba(9, 10, 10, 0.151);
+border-radius: 10px;
+height:min-content;
 }
 
 .img{
     max-width: 150px;
 }
+
