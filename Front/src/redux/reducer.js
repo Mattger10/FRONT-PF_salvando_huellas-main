@@ -1,4 +1,4 @@
-import { ACCESS, SEARCH, ADD_CARR, DELETE_CARR } from "./actions";
+import { ACCESS, SEARCH, ADD_CARR, DELETE_CARR, CHANGE_CANTIDAD } from "./actions";
 
 const initialState = {
   access: false,
@@ -79,6 +79,24 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       carrito: newCarrito
     }
+
+    case CHANGE_CANTIDAD:
+      let itemPosition
+      let newCantidad
+      let updatedCarr = [...state.carrito]
+      for (let i = 0; i < updatedCarr.length; i++) {
+        if (updatedCarr[i].article.name === action.payload.name){
+          itemPosition = i
+          newCantidad = Number(updatedCarr[i].cantidad) + Number(action.payload.num)
+          if(updatedCarr[i].article.stock >= newCantidad && newCantidad > 0){
+            updatedCarr[itemPosition].cantidad = newCantidad || (action.payload.num === 1 ? Number(updatedCarr[itemPosition].article.stock) : 1)
+          }
+        }
+      }
+      return {
+        ...state,
+        carrito: updatedCarr
+      }
     
     default:
       return {
