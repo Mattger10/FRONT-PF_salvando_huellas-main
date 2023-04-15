@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Trolley.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteCarrito } from "../../redux/actions";
+import { deleteCarrito, changeCantidad } from "../../redux/actions";
 
 export default function Trolley() {
   const dispatch = useDispatch();
@@ -13,26 +13,13 @@ export default function Trolley() {
     dispatch(deleteCarrito(item.article.name));
   };
 
-  //agregra articulos del carrito
-  function add(name) {
-    var quantityElement = document.getElementById(name);
-    if (quantityElement) {
-      var quantity = parseInt(quantityElement.innerHTML);
-      quantity++;
-      quantityElement.innerHTML = quantity.toString();
-    }
-  }
-
-  //restar articulos del carrito 
-  function subtract(name) {
-    var quantityElement = document.getElementById(name);
-    if (quantityElement) {
-      var quantity = parseInt(quantityElement.innerHTML);
-      if (quantity > 1) {
-        quantity--;
-        quantityElement.innerHTML = quantity.toString();
-      }
-    }
+  //calcular el precio total de todos los artículos
+  function getTotal() {
+    let total = 0;
+    allArticle.forEach((item) => {
+      total += item.article.price * item.cantidad;
+    });
+    return total;
   }
 
   return (
@@ -57,15 +44,22 @@ export default function Trolley() {
             <p>{item.article.name}</p>
             <p>$ {item.article.price}</p>
             <div>
-              <button onClick={() => add(item.article.name)}>+</button>
-              <span id={item.article.name}>1</span>
-              <button onClick={() => subtract(item.article.name)}>-</button>
+              <button
+                onClick={() => dispatch(changeCantidad(-1, item.article.name))}
+              >
+                -
+              </button>
+              <span>{item.cantidad}</span>
+              <button
+                onClick={() => dispatch(changeCantidad(1, item.article.name))}
+              >
+                +
+              </button>
             </div>
 
-            <button
-              onClick={() => handleDelete(item)}
-              className={style.button}
-            >
+            <p>Total: ${item.article.price * item.cantidad}</p>
+
+            <button onClick={() => handleDelete(item)} className={style.button}>
               eliminar
             </button>
           </div>
@@ -74,6 +68,7 @@ export default function Trolley() {
 
       {allArticle.length !== 0 && (
         <div className={style.Comprar}>
+          <p>Total: ${getTotal()}</p>
           <button>Finalizar Compra</button>
         </div>
       )}

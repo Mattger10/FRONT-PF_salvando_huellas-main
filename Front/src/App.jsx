@@ -9,6 +9,8 @@ import Form from "./components/FormAdoption/Form.jsx";
 import Shop from "./components/Shop/Shop.jsx";
 import Trolley from "./components/Trolley/Trolley.jsx";
 import Account from "./components/Account/Account.jsx";
+import History from "./components/History/History.jsx";
+
 
 import "./App.css";
 
@@ -31,6 +33,7 @@ function App() {
         <Route path="/donar" element={<Donation />} />
         <Route path="/carrito" element={<Trolley />} />
         <Route path="/account" element={<Account />}/>
+        <Route path="/about" element={<History/>} />
       </Routes>
     </div>
   );
