@@ -5,6 +5,7 @@ export const ACCESS = "ACCESS";
 export const SEARCH = "SEARCH";
 export const ADD_CARR = "ADD_CARR";
 export const DELETE_CARR = "DELETE_CARR";
+export const CHANGE_CANTIDAD = "CHANGE_CANTIDAD";
 
 // Actions
 
@@ -69,5 +70,12 @@ export function deleteCarrito (name){
   return {
    type: DELETE_CARR,
    payload: name
+  }
+}
+
+export function changeCantidad (num, name){
+  return {
+    type: CHANGE_CANTIDAD,
+    payload: {num, name}
   }
 }
