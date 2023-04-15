@@ -60,6 +60,7 @@ function FormularioAdopcion() {
         <label htmlFor="apellido">Apellido:</label>
         <input
           type="text"
+          placeholder="Ingresar apellido"
           id="apellido"
           value={apellido}
           onChange={(e) => setApellido(e.target.value)}
@@ -70,6 +71,7 @@ function FormularioAdopcion() {
         <label htmlFor="email">Email:</label>
         <input
           type="email"
+          placeholder="Ingresar dirección de email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -80,6 +82,7 @@ function FormularioAdopcion() {
         <label htmlFor="dni">DNI:</label>
         <input
           type="text"
+          placeholder="Ingrese su número de DNI"
           id="dni"
           value={dni}
           onChange={(e) => setDni(e.target.value)}
@@ -90,6 +93,7 @@ function FormularioAdopcion() {
         <label htmlFor="domicilio">Domicilio:</label>
         <input
           type="text"
+          placeholder="Ingrese su domicilio"
           id="domicilio"
           value={domicilio}
           onChange={(e) => setDomicilio(e.target.value)}
