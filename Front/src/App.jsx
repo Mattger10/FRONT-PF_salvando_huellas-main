@@ -8,9 +8,7 @@ import Home from "./components/Home/Home.jsx";
 import Form from  "./components/FormAdoption/Form.jsx"
 import Shop from "./components/Shop/Shop.jsx";
 import Trolley from "./components/Trolley/Trolley.jsx";
-
-
-
+import History from "./components/History/History.jsx";
 
 import "./App.css";
 
@@ -30,6 +28,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/adopt" element={<Form />} />
+        <Route path="/about" element={<History/>} />
 
       </Routes>
     </div>
