@@ -43,6 +43,8 @@ export default function Trolley() {
             />
             <p>{item.article.name}</p>
             <p>$ {item.article.price}</p>
+            <p>{item.article.stock} disponibles </p>
+
             <div>
               <button
                 onClick={() => dispatch(changeCantidad(-1, item.article.name))}

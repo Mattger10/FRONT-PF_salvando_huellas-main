@@ -73,6 +73,7 @@ export function deleteCarrito (name){
   }
 }
 
+//actualizar carrito
 export function changeCantidad (num, name){
   return {
     type: CHANGE_CANTIDAD,

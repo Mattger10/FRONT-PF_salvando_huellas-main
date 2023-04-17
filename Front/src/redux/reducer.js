@@ -74,7 +74,7 @@ const rootReducer = (state = initialState, action) => {
       }
 
       case DELETE_CARR:
-    const newCarrito = state.carrito.filter(item => item.article.name !== action.payload);
+    const newCarrito = state.carrito.filter(item => item.article.name !== action.payload); //payload ya tiene el nombre del articulo
     return {
       ...state,
       carrito: newCarrito
