@@ -24,7 +24,7 @@ export default function CardArticle ({name, price, image, stock}) {
         <img src={image} alt={'foto de ' + name} className='artImage'/>
         <p>{name}</p>
         <p>$ {price}</p>
-        <p>{stock} disponibles</p>
+        {stock > 1 ? <p>{stock} disponibles</p> : <p>Último disponible!</p>}
         <button className="button"onClick={handleAdd}>Agregar al carrito</button>
         <select onChange={handleStockSelect}>
             {stockOptions.map((num, ind) => {

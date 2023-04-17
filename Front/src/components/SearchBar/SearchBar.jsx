@@ -1,16 +1,12 @@
 import "./SearchBar.modules.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchDogs } from "../../redux/actions";
+import { searchArticles } from "../../redux/actions";
 
-// DUDAS CONSULTAR A VALENTIN
 export default function SearchBar() {
   const dispatch = useDispatch();
   const search = (name) => {
-    // Función que busca en la base de datos
-    // Guarda el resultado en un state global, de donde
-    // se toman los perros guardados para mostrarlos en "onSearchDogs" del reducer.
-    dispatch(searchDogs(name))
+    dispatch(searchArticles(name));
   };
 
   const [text, setText] = useState("");
@@ -27,7 +23,7 @@ export default function SearchBar() {
         value={text}
         onChange={handleInputChange}
         type="search"
-        placeholder=" Buscar por nombre..."
+        placeholder=" Buscar artículo..."
         className="searchBar"
       />
     </div>
