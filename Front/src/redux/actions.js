@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 // Action types
 
 export const ACCESS = "ACCESS";
@@ -6,6 +6,7 @@ export const SEARCH = "SEARCH";
 export const ADD_CARR = "ADD_CARR";
 export const DELETE_CARR = "DELETE_CARR";
 export const CHANGE_CANTIDAD = "CHANGE_CANTIDAD";
+export const GET_ARTICLES = "GET_ARTICLES";
 
 // Actions
 
@@ -23,16 +24,15 @@ export function getDogs() {
     try {
       let dog = await axios("http://localhost:3001/dogs");
       return dispatch({
-//uso la comilla simple para no exportar y hacerlo mas simple
-        type: 'GET_DOGS',
-        payload: dog.data
-      })
-    } catch(error) {
+        //uso la comilla simple para no exportar y hacerlo mas simple
+        type: "GET_DOGS",
+        payload: dog.data,
+      });
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
-
 
 //Traigo a los perros por su id para el detail -iri-
 export const getDetail = (id) => {
@@ -49,34 +49,39 @@ export const getDetail = (id) => {
   };
 };
 
+export function getAllArticles(){
+  return {
+    type: GET_ARTICLES,
+  }
+}
 
-export function searchDogs (text) {
+export function searchArticles(text) {
   return {
     type: SEARCH,
-    payload: text
-  }
+    payload: text,
+  };
 }
 
 // Añadir al carrito
-export function addCarrito (article, cant){
+export function addCarrito(article, cant) {
   return {
     type: ADD_CARR,
-    payload: {article, cant}
-  }
+    payload: { article, cant },
+  };
 }
 
 //eliminar del carrito
-export function deleteCarrito (name){
+export function deleteCarrito(name) {
   return {
-   type: DELETE_CARR,
-   payload: name
-  }
+    type: DELETE_CARR,
+    payload: name,
+  };
 }
 
 //actualizar carrito
-export function changeCantidad (num, name){
+export function changeCantidad(num, name) {
   return {
     type: CHANGE_CANTIDAD,
-    payload: {num, name}
-  }
+    payload: { num, name },
+  };
 }
