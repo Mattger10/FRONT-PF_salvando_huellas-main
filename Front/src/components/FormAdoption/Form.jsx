@@ -8,7 +8,7 @@ function FormularioAdopcion() {
   const [dni, setDni] = useState("");
   const [domicilio, setDomicilio] = useState("");
   const [telefono, setTelefono] = useState("");
-  const [tieneNiños, setTieneNiños] = useState ("");
+  const [tieneNiños, setTieneNiños] = useState ();
   const [razonAdopcion, setRazonAdopcion] = useState("");
 
   const handleSubmit = (e) => {
@@ -33,7 +33,7 @@ function FormularioAdopcion() {
     setDni("");
     setDomicilio("");
     setTelefono("");
-    setTieneNiños(false);
+    setTieneNiños();
     setRazonAdopcion("");
   };
 
@@ -119,8 +119,9 @@ function FormularioAdopcion() {
           <input
             type="checkbox"
             name="tieneNiños"
+            defaultValue={false}
             value="si"
-            checked={tieneNiños}
+            checked={!!tieneNiños}
             onChange={handleTieneNiñosChange}
           />
           Sí
@@ -129,8 +130,9 @@ function FormularioAdopcion() {
           <input
             type="checkbox"
             name="tieneNiños"
+            defaultValue={false}
             value="no"
-            checked={!tieneNiños}
+            checked={tieneNiños === false}
             onChange={handleTieneNiñosChange}
           />
           No

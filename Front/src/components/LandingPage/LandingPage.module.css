@@ -137,3 +137,28 @@
     transform: translateX(-50%) rotate(90deg);
   }
 }
+
+.showPasswordButton {
+  position: absolute;
+  top: 48%;
+  right: 1rem;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #aaa;
+}
+
+.showPasswordButton2 {
+  position: absolute;
+  top: 60%;
+  right: 1rem;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #aaa;
+}
+
