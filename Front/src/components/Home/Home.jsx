@@ -10,8 +10,8 @@ export default function Home() {
       <div className={style.img_Container}>
         {/*-------------------------------------------------------------------*/}
 
-        <div class={style.slideshowContainer}>
-          <div class={style.slideshow}>
+        <div className={style.slideshowContainer}>
+          <div className={style.slideshow}>
             <img src="/img/home-dogs1.png" alt="Image 1" />
             <img src="/img/home-dogs2.png" alt="Image 2" />
             <img src="/img/home-dogs3.png" alt="Image 3" />
@@ -25,9 +25,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/*-------------------------------------------------------------------*/}
-
-        {/* <img className={style.img} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMHzZqXN5Oyq8D68x_x7jMVftbrCqI_aTIIA&usqp=CAU" alt="refugio" /> */}
       </div>
 
       <div className={style.iconsContainer}>
