@@ -50,8 +50,12 @@ export const getDetail = (id) => {
 };
 
 export function getAllArticles(){
-  return {
-    type: GET_ARTICLES,
+  return async function (dispatch) {
+    let getArticles = await axios.get("http://localhost:3001/articles")
+    dispatch({
+      type: GET_ARTICLES,
+      payload: getArticles.data
+    })
   }
 }
 

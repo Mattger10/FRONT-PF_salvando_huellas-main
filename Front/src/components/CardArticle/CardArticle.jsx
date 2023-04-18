@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { addCarrito } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
-export default function CardArticle ({name, price, image, stock}) {
+export default function CardArticle ({nameA, priceA, photoA, stockA}) {
 
     const [cantidad, setCantidad] = useState(1)
     const dispatch = useDispatch()
 
     let stockOptions = []
-    for (let i = 0; i < stock; i++) {
+    for (let i = 0; i < stockA; i++) {
         stockOptions.push(i+1)
     }
 
@@ -17,14 +17,14 @@ export default function CardArticle ({name, price, image, stock}) {
         setCantidad(e.target.value)
     }
     const handleAdd = (e)=>{
-        dispatch(addCarrito({name, price, image, stock}, cantidad))
+        dispatch(addCarrito({nameA, priceA, photoA, stockA}, cantidad))
     }
 
     return <div className='cardArticle'>
-        <img src={image} alt={'foto de ' + name} className='artImage'/>
-        <p>{name}</p>
-        <p>$ {price}</p>
-        {stock > 1 ? <p>{stock} disponibles</p> : <p>Último disponible!</p>}
+        <img src={photoA} alt={'foto de ' + nameA} className='artImage'/>
+        <p>{nameA}</p>
+        <p>$ {priceA}</p>
+        {stockA > 1 ? <p>{stockA} disponibles</p> : <p>Último disponible!</p>}
         <button className="button"onClick={handleAdd}>Agregar al carrito</button>
         <select onChange={handleStockSelect}>
             {stockOptions.map((num, ind) => {
