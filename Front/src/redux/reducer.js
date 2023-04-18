@@ -15,6 +15,7 @@ const initialState = {
   allArticles: [],
   onSearchArticles: [],
   carrito: [],
+  posts: [],
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -45,6 +46,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogDetail: action.payload,
       };
+
+      case 'SAVE_POSTS':
+        return { 
+          ...state, posts: action.payload 
+        };
+      
     case GET_ARTICLES:
       
       // let getArticles = {
@@ -138,6 +145,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         carrito: updatedCarr,
       };
+
+
 
     default:
       return {

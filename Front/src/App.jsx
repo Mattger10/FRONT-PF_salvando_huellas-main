@@ -10,9 +10,10 @@ import Shop from "./components/Shop/Shop.jsx";
 import Trolley from "./components/Trolley/Trolley.jsx";
 import Account from "./components/Account/Account.jsx";
 import History from "./components/History/History.jsx";
-
+import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
 
 import "./App.css";
+
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/adopt" element={<Form />} />
         <Route path="/dogs" element={<Dogs />} />
+        <Route path="/dogs/:id" element={<DetailDogs />} />
         <Route path="/donar" element={<Donation />} />
         <Route path="/carrito" element={<Trolley />} />
         <Route path="/account" element={<Account />}/>

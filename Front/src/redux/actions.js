@@ -89,3 +89,14 @@ export function changeCantidad(num, name) {
     payload: { num, name },
   };
 }
+
+//traigo a los post
+export const getPosts = () => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:3001/posts');
+    const posts = response.data;
+    dispatch({ type: 'SET_POSTS', payload: posts });
+  } catch (error) {
+    console.error(error);
+  }
+};

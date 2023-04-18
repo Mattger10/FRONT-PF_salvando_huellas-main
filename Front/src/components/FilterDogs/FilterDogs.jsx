@@ -35,12 +35,19 @@ export default function FilterDogs() {
         <option value="grande">Grande</option>
       </select>
 
-      <input
-        type="number"
-        value={ageFilter}
-        onChange={handleAgeFilterChange}
-        placeholder="Edad"
-      />
+      <div>
+        <select
+          id="ageFilter"
+          value={ageFilter}
+          onChange={handleAgeFilterChange}
+        >
+          <option value="">Todas las edades</option>
+          <option value="cachorro">Cachorro</option>
+          <option value="adulto-joven">Adulto joven</option>
+          <option value="adulto">Adulto</option>
+          <option value="viejito">Viejito</option>
+        </select>
+      </div>
 
       <div>
         <label>
@@ -71,8 +78,6 @@ export default function FilterDogs() {
           Todos
         </label>
       </div>
-
-
     </div>
   );
-};
+}
