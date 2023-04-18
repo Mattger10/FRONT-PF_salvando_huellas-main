@@ -10,14 +10,14 @@ export default function Trolley() {
 
   //boton para eliminar elementos del carrito
   const handleDelete = (item) => {
-    dispatch(deleteCarrito(item.article.name));
+    dispatch(deleteCarrito(item.article.nameA));
   };
 
   //calcular el precio total de todos los artículos
   function getTotal() {
     let total = 0;
     allArticle.forEach((item) => {
-      total += item.article.price * item.cantidad;
+      total += item.article.priceA * item.cantidad;
     });
     return total;
   }
@@ -38,28 +38,28 @@ export default function Trolley() {
           <div className={style.carritoLleno} key={index}>
             <img
               className={style.img}
-              src={item.article.image}
-              alt={"foto de " + item.article.name}
+              src={item.article.photoA}
+              alt={"foto de " + item.article.nameA}
             />
-            <p>{item.article.name}</p>
-            <p>$ {item.article.price}</p>
-            <p>{item.article.stock} disponibles </p>
+            <p>{item.article.nameA}</p>
+            <p>$ {item.article.priceA}</p>
+            <p>{item.article.stockA} disponibles </p>
 
             <div>
               <button
-                onClick={() => dispatch(changeCantidad(-1, item.article.name))}
+                onClick={() => dispatch(changeCantidad(-1, item.article.nameA))}
               >
                 -
               </button>
               <span>{item.cantidad}</span>
               <button
-                onClick={() => dispatch(changeCantidad(1, item.article.name))}
+                onClick={() => dispatch(changeCantidad(1, item.article.nameA))}
               >
                 +
               </button>
             </div>
 
-            <p>Total: ${item.article.price * item.cantidad}</p>
+            <p>Total: ${item.article.priceA * item.cantidad}</p>
 
             <button onClick={() => handleDelete(item)} className={style.button}>
               eliminar

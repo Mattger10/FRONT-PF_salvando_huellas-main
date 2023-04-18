@@ -1,6 +1,6 @@
 import "./Shop.modules.css";
 import CardArticle from "../CardArticle/CardArticle";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllArticles } from "../../redux/actions";
@@ -11,24 +11,25 @@ export default function Shop() {
   const allArticles = useSelector((state) => state.allArticles);
 
   const dispatch = useDispatch()
+  // console.log(allArticles)
   const showArticles = !onSearchArticles.length ? (allArticles.map((art, index) => {
     return (
       <CardArticle
         key={index}
-        name={art.name}
-        price={art.price}
-        image={art.image}
-        stock={art.stock}
+        nameA={art.nameA}
+        priceA={art.priceA}
+        photoA={art.photoA}
+        stockA={art.stockA}
       />
     );
   })): (!(typeof onSearchArticles === "string") ? onSearchArticles.map((art, index) => {
     return (
       <CardArticle
         key={index}
-        name={art.name}
-        price={art.price}
-        image={art.image}
-        stock={art.stock}
+        nameA={art.nameA}
+        priceA={art.priceA}
+        photoA={art.photoA}
+        stockA={art.stockA}
       />
     );
   }) : onSearchArticles);

@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   ACCESS,
   SEARCH,
@@ -6,7 +7,6 @@ import {
   CHANGE_CANTIDAD,
   GET_ARTICLES,
 } from "./actions";
-import axios from "axios";
 
 const initialState = {
   access: false,
@@ -45,24 +45,32 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogDetail: action.payload,
       };
-    case GET_ARTICLES: 
-      // let getArticles = axios.get("")
-      let getArticles = {data: [
-        {name: 'Collar', price: 200, stock: 20, image: "https://www.hipermania.com.ar/wp-content/uploads/2021/06/30x45-colores.jpg"},
-        {name: 'Pechera', price: 300, stock: 10, image: "https://d28hi93gr697ol.cloudfront.net/071e89ac-46a5-8ab3/img/Producto/1273/04-1614011179-6321262b8c1d8.jpeg"},
-    
-    ]} //HARDCODEADO HASTA QUE TENGAMOS BACK
+    case GET_ARTICLES:
+      
+      // let getArticles = {
+      //   data: [
+      //     {
+      //       id_Article: 1,
+      //       nameA: "Article A",
+      //       priceA: 546.4,
+      //       descriptionA: "Color blue",
+      //       photoA:
+      //         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_uRkWh3G_5orgl61GZ6M_s5rgQk8hrI6XBCJAs-NXXZcShgk6b-CbvAkvFK36uMY-ydI&usqp=CAU",
+      //       stockA: 20,
+      //     },
+      //   ],
+      // };
       return {
         ...state,
-        allArticles: getArticles.data
-      }
+        allArticles: action.payload,
+      };
     case SEARCH:
       const name = action.payload.toUpperCase();
       if (name.length) {
         let searchResult = [...state.allArticles].filter(
-          (article) => article.name.toUpperCase().split(name).length > 1
+          (article) => article.nameA.toUpperCase().split(name).length > 1
         );
-        if(searchResult.length){
+        if (searchResult.length) {
           return {
             ...state,
             onSearchArticles: searchResult,
@@ -70,8 +78,8 @@ const rootReducer = (state = initialState, action) => {
         } else {
           return {
             ...state,
-            onSearchArticles: "No se encontró " + action.payload
-          }
+            onSearchArticles: "No se encontró " + action.payload,
+          };
         }
       } else {
         return {
@@ -84,11 +92,11 @@ const rootReducer = (state = initialState, action) => {
       let article = action.payload.article;
       let cantidad = action.payload.cant;
       state.carrito.forEach((elem) => {
-        if (elem.article.name === article.name) {
+        if (elem.article.nameA === article.nameA) {
           return {
             ...state,
             carrito: [
-              ...[...state.carrito].filter((art) => art.article.name !== name),
+              ...[...state.carrito].filter((art) => art.article.nameA !== name),
               { article, cantidad },
             ], // Si el articulo ya estaba, lo actualiza
           };
@@ -101,7 +109,7 @@ const rootReducer = (state = initialState, action) => {
 
     case DELETE_CARR:
       const newCarrito = state.carrito.filter(
-        (item) => item.article.name !== action.payload
+        (item) => item.article.nameA !== action.payload
       ); //payload ya tiene el nombre del articulo
       return {
         ...state,
@@ -113,15 +121,15 @@ const rootReducer = (state = initialState, action) => {
       let newCantidad;
       let updatedCarr = [...state.carrito];
       for (let i = 0; i < updatedCarr.length; i++) {
-        if (updatedCarr[i].article.name === action.payload.name) {
+        if (updatedCarr[i].article.nameA === action.payload.name) {
           itemPosition = i;
           newCantidad =
             Number(updatedCarr[i].cantidad) + Number(action.payload.num);
-          if (updatedCarr[i].article.stock >= newCantidad && newCantidad > 0) {
+          if (updatedCarr[i].article.stockA >= newCantidad && newCantidad > 0) {
             updatedCarr[itemPosition].cantidad =
               newCantidad ||
               (action.payload.num === 1
-                ? Number(updatedCarr[itemPosition].article.stock)
+                ? Number(updatedCarr[itemPosition].article.stockA)
                 : 1);
           }
         }
