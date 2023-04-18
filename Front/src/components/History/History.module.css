@@ -6,11 +6,25 @@
 
 .title{
     font-size: 52px;
+    margin-top: 3rem;
 }
 
 .text{
-    font-size: 26px;
+    font-size: 32px;
     text-align: left;
     margin-left: 0.5rem;
     margin-top: 2.5rem;
 }
+
+.img{
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    box-shadow: 12px 12px 8px #888;
+    border: solid rgba(0, 0, 0, 0.781);
+    border-radius: 18px;
+    max-width: 30%;
+    height: auto;
+   
+}
+
+
