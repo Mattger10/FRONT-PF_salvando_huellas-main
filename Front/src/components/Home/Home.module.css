@@ -1,116 +1,132 @@
-.container{
-    width: 100vw;
-    height: 85vh;
+.container {
+  width: 100vw;
+  height: 85vh;
 }
 
-.title{
-    text-align: center;
-    font-size: 52px;
+.title {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 52px;
 }
 
-.img_Container{
-    display: flex;
-    text-align: center;   
-    margin-top: 6rem;
-    justify-content: center;
+.img_Container {
+  display: flex;
+  text-align: center;
+  margin-top: 6rem;
+  justify-content: center;
 }
 
-.img{
-    width: 50%;
-    height: auto;
-    max-width: 35%;
+.img {
+  width: 50%;
+  height: auto;
+  max-width: 35%;
 }
- 
-.iconsContainer{
-    display: flex;
-    justify-content:left;
-    margin-top: 2.8rem;
-    width: 99.9%;
-    border-radius: 6px;
-    background-color: #00000021;
-    padding: 0.4rem;
-} 
-  
-.icons{
-    display: flex;
-    gap: 0.6rem;
-    margin-left: 0.5rem;
-}  
 
-.follow{
-    margin-left: 0.5rem;
+.iconsContainer {
+  display: flex;
+  justify-content: left;
+  margin-top: 2.8rem;
+  width: 99.9%;
+  border-radius: 6px;
+  background-color: #00000021;
+  padding: 0.4rem;
+}
+
+.icons {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: 0.5rem;
+}
+
+.follow {
+  margin-left: 0.5rem;
 }
 
 /* CSS code */
 .slideshowContainer {
-    width: 80%;
-    overflow: hidden;
-    position: relative;
+  width: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slideshow {
+  display: flex;
+  justify-content: center;
+  animation: slide 15s infinite;
+}
+
+.slideshow img {
+  box-shadow: 10px 40px 20px 1px;
+  border: solid rgba(0, 0, 0, 0.781);
+  border-radius: 10px;
+  max-width: 30%;
+  height: auto;
+  opacity: 1;
+  /* Initial opacity set to 0.5 for all images */
+  margin: 0 10px;
+  transform-origin: center center;
+}
+
+.slideshow img.center {
+  max-width: 50%;
+  /* Adjust the size of the center image as desired */
+  opacity: 1;
+  /* Center image has opacity set to 1 */
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(110%);
+
   }
-  
-  .slideshow {
-    display: flex;
-    justify-content: center;
-    animation: slide 15s infinite;
+
+  10% {
+    transform: translateX(80%);
+
   }
-  
-  .slideshow img {
-    max-width: 30%;
-    height: auto;
-    opacity: 1; /* Initial opacity set to 0.5 for all images */
-    margin: 0 10px;
-    transform-origin: center center;
+
+  20% {
+    transform: translateX(50%);
+
   }
-  
-  .slideshow img.center {
-    max-width: 50%; /* Adjust the size of the center image as desired */
-    opacity: 1; /* Center image has opacity set to 1 */
-  } 
-  
-  @keyframes slide {
-    0% {
-      transform: translateX(110%);
-      
-    }
-    10% {
-      transform: translateX(80%);
-     
-    }
-    20% {
-      transform: translateX(50%);
-     
-    }
-    30% {
-      transform: translateX(20%);
-     
-    }
-    40% {
-      transform: translateX(-10%);
-     
-    }
-    50% {
-      transform: translateX(-40%);
-     
-    }
-    60% {
-      transform: translateX(-70%);
-     
-    }
-    70% {
-      transform: translateX(-100%);
-     
-    }
-    80% {
-      transform: translateX(-110%);
-      
-    }
-    90% {
-      transform: translateX(-110%);
-      
-    }
-    100% {
-      transform: translateX(110%);
-      
-    }
+
+  30% {
+    transform: translateX(20%);
+
   }
-  
+
+  40% {
+    transform: translateX(-10%);
+
+  }
+
+  50% {
+    transform: translateX(-40%);
+
+  }
+
+  60% {
+    transform: translateX(-70%);
+
+  }
+
+  70% {
+    transform: translateX(-100%);
+
+  }
+
+  80% {
+    transform: translateX(-110%);
+
+  }
+
+  90% {
+    transform: translateX(-110%);
+
+  }
+
+  100% {
+    transform: translateX(110%);
+
+  }
+}
