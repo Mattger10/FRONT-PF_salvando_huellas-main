@@ -1,18 +1,27 @@
-import React from 'react';
+// PaginationDogs.jsx
+import React from "react";
 
-export default function PaginationDogs({DogPerPage, dogsData, paging}) {
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(dogsData/DogPerPage); i++) {
-        pageNumbers.push(i);
+
+const PaginationDogs = ({ currentPage, paging, totalPages }) => {
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      paging(currentPage - 1);
     }
+  };
 
-    return (
-        <div>
-        {pageNumbers?.map((number) => (
-            <button key={number} onClick={() => paging(number)}>
-                    {number}
-            </button>
-            ))}
-        </div>
-    );
-}
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      paging(currentPage + 1);
+    }
+  };
+
+  return (
+    <div >
+      <button onClick={handlePrev} disabled={currentPage === 1}>Anterior</button>
+      <span>{currentPage} de {totalPages}</span>
+      <button onClick={handleNext} disabled={currentPage === totalPages}>Siguiente</button>
+    </div>
+  );
+};
+
+export default PaginationDogs;
