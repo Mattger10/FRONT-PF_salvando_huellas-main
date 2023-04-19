@@ -13,8 +13,17 @@ import History from "./components/History/History.jsx";
 import DetailsArticle from "./components/DetailArticle/DetailArticle.jsx";
 import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
 
+import { initMercadoPago } from "@mercadopago/sdk-react";
 
 import "./App.css";
+
+initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
+
+import AdminArticles from "./components/AdminArticles/AdminArticles.jsx";
+import EditArticle from "./components/EditArticle/EditArticle.jsx";
+import "./App.css";
+import AdminDogs from "./components/AdminDogs/AdminDogs.jsx";
+import CreateDog from "./components/CreateDogForm/CreateDogForm.jsx";
 
 
 function App() {
@@ -36,9 +45,13 @@ function App() {
         <Route path="/dogs/:id" element={<DetailDogs />} />
         <Route path="/donar" element={<Donation />} />
         <Route path="/carrito" element={<Trolley />} />
-        <Route path="/account" element={<Account />}/>
-        <Route path="/about" element={<History/>} />
         <Route path="/shop/DetailArticle/:id" element={<DetailsArticle/>} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/about" element={<History />} />
+        <Route path="/admin/articles/:id" element={<EditArticle />} />
+        <Route path="/admin/articles" element={<AdminArticles />} />
+        <Route path="/admin/dogs/create" element={<CreateDog />} />
+        <Route path="/admin/dogs" element={<AdminDogs />} />
       </Routes>
     </div>
   );

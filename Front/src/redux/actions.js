@@ -97,7 +97,7 @@ export function detailArticle(id){
   let getArticles = await axios.get(`http://localhost:3001/articles/${id}`)
   dispatch({
     type: DETAIL_ARTICLE,
-    payload:getArticles.data,
+    payload: getArticles.data,
   })}
 }
 

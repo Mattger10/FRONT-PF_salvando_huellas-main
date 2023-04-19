@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { Link, Navigate, Routes, Route, useNavigate } from "react-router-dom";
+
 import styles from "./LandingPage.module.css";
 import image from "../../assets/Fondolanding.webp";
 import { useAuth0 } from "@auth0/auth0-react";
