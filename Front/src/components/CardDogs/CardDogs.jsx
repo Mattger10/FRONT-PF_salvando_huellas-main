@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../CardDogs/CardDogs.module.css";
 import { useLocation } from "react-router-dom";
 //Acá traigo a todas las cards de los perros -iri-
-export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, postD }) {
+export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, postD, handleEdit, handleDelete }) { //Funciones handle vienen de AdminDogs
 
   // --------------------------valentin-------------------------
   const location = useLocation() // RENDERIZO DISTINTA LA CARD SI ESTAMOS EN ADMIN -- Valentin
@@ -30,8 +30,8 @@ export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, postD }) {
             <p>{sexD === "true" ? "Macho" : sexD === "false" ? "Hembra" : ""}</p>
           </div>
           <div>
-            <button>EDITAR</button>
-            <button>ELIMINAR</button>
+            <button onClick={handleEdit}>EDITAR</button>
+            <button onClick={handleDelete}>ELIMINAR</button>
           </div>
         </div>
       </div>
