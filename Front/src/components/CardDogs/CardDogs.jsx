@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../CardDogs/CardDogs.module.css";
 //Acá traigo a todas las cards de los perros -iri-
-export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, postD }) {
+export default function CardDogs({  photoD, nameD, ageD, sexD, sizeD }) {
   return (
     <>
       <div className={styles.container}>
@@ -22,17 +22,7 @@ export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, postD }) {
           </div>
           <div>
             <h4>Sex:</h4>
-            <p>{sexD === "true" ? "Macho" : sexD === "false" ? "Hembra" : ""}</p>
-          </div>
-          <div>
-            <h4>Posts:</h4>
-            {postD.map((posts) => (
-              <div key={posts.id_Post}>
-                <h4>{posts.titleP}</h4>
-                <p>{posts.commentP}</p>
-                <p>{posts.category}</p>
-              </div>
-            ))}
+            <p>{sexD}</p>
           </div>
         </div>
       </div>

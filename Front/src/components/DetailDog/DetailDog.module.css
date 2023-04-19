@@ -1,0 +1,47 @@
+.detalleBackground{
+    min-height: 100vh;
+    min-height: 100vh;
+    height: 90%;
+    width: 95%;
+   
+}
+.Detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgba(68, 32, 32, 0.541);
+    padding: 30px;
+    background-color: #f17108;
+    width: 50%;
+    margin: 0 auto;
+    margin-right: 260px;
+  }
+  
+  .stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(0, 0, 0);
+    background-color: rgb(238, 201, 121);
+    margin-top: 20px;
+  }
+  .stats span {
+    margin-bottom: 10px;
+    font-size: 18px;
+   
+  }
+  .imagen {
+    width: 300px;
+    height: 250px;
+  }
+  .adoptame{
+    text-decoration: none;
+    color: black;
+  }
+
+  .containAdop {
+    text-align: center;
+    margin-right: 0px;
+    margin-left: 120px;
+  }

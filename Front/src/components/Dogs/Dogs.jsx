@@ -1,19 +1,19 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs, getPosts } from "../../redux/actions";
+import { getDogs } from "../../redux/actions";
 import CardDogs from "../CardDogs/CardDogs.jsx";
 import PaginationDogs from '../PaginationDogs/PaginationDogs.jsx';
 import styles from '../Dogs/Dogs.module.css';
 import perrito from "../../assets/perroTriste.webp"
 import FilterDogs from "../FilterDogs/FilterDogs";
-
+import { Link } from "react-router-dom";
 
 const Dogs = () => {
   const dispatch = useDispatch();
   //para manipular los states
   const allDog = useSelector((state) => state.dogs);
-  const posts = useSelector((state) => state.posts);
+
 
   // Creamos un state con la pagina actual y otro que haga set
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,9 +32,6 @@ const Dogs = () => {
   useEffect(() => {
     console.log("Fetching dogs...");
     dispatch(getDogs());
-    console.log("Fetching post...");
-    dispatch(getPosts());
-    console.log(posts);
   }, [dispatch]);
 
  
@@ -48,19 +45,17 @@ const Dogs = () => {
             <img className={styles.image} src={perrito} alt="No puppies :(" ></img>
         ) : (
           currentDog.map((c) => {
-            console.log('id:', c.id_Post);
             return (
               <div key={c.id}>
+                <Link className={styles.name} to={"/dogs/" + c.id_Dog}>
                 <CardDogs
                   nameD={c.nameD}
                   photoD={c.photoD}
                   sexD={c.sexD}
                   ageD={c.ageD}
                   sizeD={c.sizeD}
-                  
-                  postD={posts.filter(post => post.id_Post === c.id)}
-
                 />
+                </Link>
               </div>
             );
           })
