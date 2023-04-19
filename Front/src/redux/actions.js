@@ -106,7 +106,6 @@ export const getPosts = () => async (dispatch) => {
   try {
     const response = await axios.get('http://localhost:3001/posts');
     const posts = response.data;
-    console.log(posts); // <--- Aquí puedes hacer el console.log
     dispatch({ type: 'SET_POSTS', payload: posts });
   } catch (error) {
     console.error(error);

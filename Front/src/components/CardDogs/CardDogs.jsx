@@ -39,5 +39,5 @@ export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, handleEdit,
     </>
     )
   }
-
+}
 

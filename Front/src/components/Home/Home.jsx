@@ -1,7 +1,11 @@
 import React from "react";
 import style from "./Home.module.css";
+import { Link } from "react-router-dom";
+import Post from "../Post/Post";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const posts = useSelector((state) => state.posts);
   return (
     //contiene ademas del titulo imagenes que se mostraran automaticamente y las redes sociales para ir
     <div className={style.container}>
@@ -24,9 +28,11 @@ export default function Home() {
             <img src="/img/home-dogs10.png" alt="Image 10" />
           </div>
         </div>
-
       </div>
-
+      <div>
+        <Post posts={posts} />
+      </div>
+      <Link to="/posts">Ver posts</Link>
       <div className={style.iconsContainer}>
         <div>
           <h5 className={style.follow}>siguenos en redes sociales:</h5>
