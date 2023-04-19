@@ -14,6 +14,7 @@ const Dogs = () => {
   //para manipular los states
   const allDog = useSelector((state) => state.dogs);
   const posts = useSelector((state) => state.posts);
+
   // Creamos un state con la pagina actual y otro que haga set
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -31,7 +32,9 @@ const Dogs = () => {
   useEffect(() => {
     console.log("Fetching dogs...");
     dispatch(getDogs());
+    console.log("Fetching post...");
     dispatch(getPosts());
+    console.log(posts);
   }, [dispatch]);
 
  
@@ -45,21 +48,24 @@ const Dogs = () => {
             <img className={styles.image} src={perrito} alt="No puppies :(" ></img>
         ) : (
           currentDog.map((c) => {
-                return (
-                    <div>
-                    <div key={c.id}>
-                        <CardDogs
-                        nameD={c.nameD}
-                        photoD={c.photoD}
-                        sexD={c.sexD}
-                        ageD={c.ageD}
-                        sizeD={c.sizeD}
-                        postD={posts.filter(post => post.id_Dog === c.id)}
-                        />
-                    </div>
-                </div>
-                );
-            })
+            console.log('id:', c.id_Post);
+            return (
+              <div key={c.id}>
+                <CardDogs
+                  nameD={c.nameD}
+                  photoD={c.photoD}
+                  sexD={c.sexD}
+                  ageD={c.ageD}
+                  sizeD={c.sizeD}
+                  
+                  postD={posts.filter(post => post.id_Post === c.id)}
+
+                />
+              </div>
+            );
+          })
+          
+          
         )}
    
    <div>

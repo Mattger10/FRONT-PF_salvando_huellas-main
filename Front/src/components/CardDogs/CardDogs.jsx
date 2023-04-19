@@ -26,11 +26,11 @@ export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, postD }) {
           </div>
           <div>
             <h4>Posts:</h4>
-            {postD.map((post) => (
-              <div key={post.id_Post}>
-                <h5>{post.titleP}</h5>
-                <p>{post.commentP}</p>
-                <p>{post.category}</p>
+            {postD.map((posts) => (
+              <div key={posts.id_Post}>
+                <h4>{posts.titleP}</h4>
+                <p>{posts.commentP}</p>
+                <p>{posts.category}</p>
               </div>
             ))}
           </div>
