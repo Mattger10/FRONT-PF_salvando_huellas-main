@@ -1,6 +1,7 @@
 .cardArticle {
     border: 1px solid black;
     background-color: azure;
+    width: 180px;
 }
 
 .artImage {
