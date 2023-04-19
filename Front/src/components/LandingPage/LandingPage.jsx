@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link, Navigate, Routes, Route, useNavigate } from "react-router-dom";
-import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
 import styles from "./LandingPage.module.css";
 import image from "../../assets/Fondolanding.webp";
 

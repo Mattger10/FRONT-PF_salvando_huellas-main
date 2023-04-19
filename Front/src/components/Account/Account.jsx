@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import GoogleLogin from "react-google-login";
 import styles from "./Account.module.css";
 
 const Account = () => {
