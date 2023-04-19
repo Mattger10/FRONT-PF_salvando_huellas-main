@@ -11,9 +11,9 @@ import Trolley from "./components/Trolley/Trolley.jsx";
 import Account from "./components/Account/Account.jsx";
 import History from "./components/History/History.jsx";
 import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
-
+import AdminArticles from "./components/AdminArticles/AdminArticles.jsx";
 import "./App.css";
-
+import EditArticle from "./components/EditArticle/EditArticle.jsx";
 
 function App() {
   const location = useLocation();
@@ -34,8 +34,10 @@ function App() {
         <Route path="/dogs/:id" element={<DetailDogs />} />
         <Route path="/donar" element={<Donation />} />
         <Route path="/carrito" element={<Trolley />} />
-        <Route path="/account" element={<Account />}/>
-        <Route path="/about" element={<History/>} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/about" element={<History />} />
+        <Route path="/admin/articles/:id" element={<EditArticle />} />
+        <Route path="/admin/articles" element={<AdminArticles />} />
       </Routes>
     </div>
   );

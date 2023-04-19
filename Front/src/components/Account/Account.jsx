@@ -66,6 +66,13 @@ const Account = () => {
     });
   };
 
+  // Ir a funciones de administrador
+  const goAdminArticles = ()=>{
+    navigate('/admin/articles')
+  }
+  const goAdminDogs = ()=>{
+
+  }
   return (
     <div className={styles.darkMode}>
     <div className={styles.container}>
@@ -86,6 +93,12 @@ const Account = () => {
       {/*Acá se debería mostrar la lista de donaciones del usuario*/}
       <h2>Mis favoritos</h2>
       {/*Acá se debería mostrar la lista de favoritos del usuario*/}
+    </div>
+
+    <div> {/* Pendiente renderizado condicional, sólo para admins */}
+    <h2>Opciones de Administrador</h2>
+    <button onClick={goAdminArticles}>Gestionar Artículos</button>
+    <button onClick={goAdminDogs}>Gestionar Perritos</button>
     </div>
     </div>
   );
