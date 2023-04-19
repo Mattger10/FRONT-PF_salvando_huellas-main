@@ -6,6 +6,7 @@ import {
   DELETE_CARR,
   CHANGE_CANTIDAD,
   GET_ARTICLES,
+  DETAIL_ARTICLE,
 } from "./actions";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   allArticles: [],
   onSearchArticles: [],
   carrito: [],
+  detailArticle: {},
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -138,6 +140,14 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         carrito: updatedCarr,
       };
+
+      case DETAIL_ARTICLE:  
+      return{
+        ...state,
+        detailArticle:action.payload,
+      }
+          
+        
 
     default:
       return {

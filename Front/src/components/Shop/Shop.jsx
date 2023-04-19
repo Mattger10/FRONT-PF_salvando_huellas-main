@@ -15,6 +15,7 @@ export default function Shop() {
   const showArticles = !onSearchArticles.length ? (allArticles.map((art, index) => {
     return (
       <CardArticle
+        id ={art.id_Article}
         key={index}
         nameA={art.nameA}
         priceA={art.priceA}
@@ -25,6 +26,7 @@ export default function Shop() {
   })): (!(typeof onSearchArticles === "string") ? onSearchArticles.map((art, index) => {
     return (
       <CardArticle
+        id ={art.id_Article}
         key={index}
         nameA={art.nameA}
         priceA={art.priceA}
