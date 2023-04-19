@@ -91,6 +91,7 @@ export function changeCantidad(num, name) {
   };
 }
 
+
 export function detailArticle(id){
   return async function(dispatch){
   let getArticles = await axios.get(`http://localhost:3001/articles/${id}`)
@@ -99,3 +100,37 @@ export function detailArticle(id){
     payload:getArticles.data,
   })}
 }
+
+//traigo a los post
+export const getPosts = () => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:3001/posts');
+    const posts = response.data;
+    console.log(posts); // <--- Aquí puedes hacer el console.log
+    dispatch({ type: 'SET_POSTS', payload: posts });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//filtro para Dogs 
+export const fetchDogs = (age, size, sex) => async (dispatch) => {
+  try {
+    const response = await fetch(`http://localhost:3001/dogs?age=${age}&size=${size}&sex=${sex}`);
+    const data = await response.json();
+    dispatch({
+      type: 'FETCH_DOGS_SUCCESS',
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: 'FETCH_DOGS_FAILURE',
+      error: error.message
+    });
+  }
+};
+
+export const resetFilters = () => ({
+  type: 'RESET_FILTERS'
+});
+

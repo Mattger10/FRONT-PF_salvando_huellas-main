@@ -17,6 +17,11 @@ const initialState = {
   onSearchArticles: [],
   carrito: [],
   detailArticle: {},
+  posts: [],
+  loading: false,
+  error: null,
+  filteredDogs: [],
+
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -47,8 +52,47 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogDetail: action.payload,
       };
-    case GET_ARTICLES:
+
+    case "SAVE_POSTS":
+      console.log(action.payload); // Agregar este console.log para ver la información que está recibiendo
+      return {
+        ...state,
+        posts: action.payload,
+      };
+
+    case "RESET_FILTERS":
+      return {
+        ...state,
+       
+        filters: {
+          age: "",
+          size: "",
+          sex: "",
+        },
+        filteredDogs: state.dogs
+      };
       
+    case "FETCH_DOGS_SUCCESS":
+      return {
+        ...state,
+        dogs: action.payload,
+        loading: false,
+        error: null,
+      };
+    case "FETCH_DOGS_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "FETCH_DOGS_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+
+    case GET_ARTICLES:
       // let getArticles = {
       //   data: [
       //     {

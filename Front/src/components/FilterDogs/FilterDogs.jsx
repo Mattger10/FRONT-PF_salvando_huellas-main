@@ -1,78 +1,59 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchDogs } from '../../redux/actions';
 
-export default function FilterDogs() {
-  // Estado para el filtro de tamaño
-  const [sizeFilter, setSizeFilter] = useState("");
+const FilterDogs = ({ setCurrentPage }) => {
+  const dispatch = useDispatch();
+  const [filters, setFilters] = useState({ age: '', size: '', sex: '' });
 
-  // Estado para el filtro de edad
-  const [ageFilter, setAgeFilter] = useState("");
-
-  // Estado para el filtro de sexo
-  const [sexFilter, setSexFilter] = useState("");
-
-  // Manejador de eventos para el cambio en el filtro de tamaño
-  const handleSizeFilterChange = (e) => {
-    setSizeFilter(e.target.value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    let newValue = value;
+    if (name === "sex") {
+      newValue = value === "true" ? "Male" : "Female";
+    }
+    setFilters((prevState) => ({ ...prevState, [name]: newValue }));
   };
 
-  // Manejador de eventos para el cambio en el filtro de edad
-  const handleAgeFilterChange = (e) => {
-    setAgeFilter(e.target.value);
-  };
-
-  // Manejador de eventos para el cambio en el filtro de sexo
-  const handleSexFilterChange = (e) => {
-    setSexFilter(e.target.value);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(fetchDogs(filters.age, filters.size, filters.sex));
+    setCurrentPage(1);
   };
 
   return (
     <div>
-      {/* Elementos de interfaz de usuario para los filtros */}
-      <select value={sizeFilter} onChange={handleSizeFilterChange}>
-        <option value="">Todos los tamaños</option>
-        <option value="pequeño">Pequeño</option>
-        <option value="mediano">Mediano</option>
-        <option value="grande">Grande</option>
-      </select>
-
-      <input
-        type="number"
-        value={ageFilter}
-        onChange={handleAgeFilterChange}
-        placeholder="Edad"
-      />
-
-      <div>
+      <form onSubmit={handleSubmit}>
         <label>
-          <input
-            type="radio"
-            value="macho"
-            checked={sexFilter === "macho"}
-            onChange={handleSexFilterChange}
-          />
-          Macho
+          Age:
+          <select name="age" value={filters.age} onChange={handleChange}>
+            <option value="">Any</option>
+            <option value="puppy">Puppy</option>
+            <option value="adult">Adult</option>
+            <option value="old">Old</option>
+          </select>
         </label>
         <label>
-          <input
-            type="radio"
-            value="hembra"
-            checked={sexFilter === "hembra"}
-            onChange={handleSexFilterChange}
-          />
-          Hembra
+          Size:
+          <select name="size" value={filters.size} onChange={handleChange}>
+            <option value="">Any</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
         </label>
         <label>
-          <input
-            type="radio"
-            value=""
-            checked={!sexFilter}
-            onChange={handleSexFilterChange}
-          />
-          Todos
+          Sex:
+          <select name="sex" value={filters.sex} onChange={handleChange}>
+            <option value="">Any</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </label>
-      </div>
-
-
+        <button type="submit">Filter</button>
+      </form>
     </div>
   );
 };
+
+export default FilterDogs;
