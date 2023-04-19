@@ -13,17 +13,19 @@ const Account = () => {
     // Cargar el SDK de autenticación de Google
     if (typeof window.gapi !== "undefined") {
       window.gapi.load("auth2", () => {
-        window.gapi.auth2.init({
-          client_id:
-            "939538432679-s6j6vrk6uqc5u50didh0kalqelssrog2.apps.googleusercontent.com",
-        }).then((authInstance) => {
-          setAuth(authInstance);
-        });
+        window.gapi.auth2
+          .init({
+            client_id:
+              "939538432679-s6j6vrk6uqc5u50didh0kalqelssrog2.apps.googleusercontent.com",
+          })
+          .then((authInstance) => {
+            setAuth(authInstance);
+          });
       });
     }
 
     // Cargar el SDK de Facebook
-    window.fbAsyncInit = function() {
+    window.fbAsyncInit = function () {
       FB.init({
         appId: "1031031684537225",
         cookie: true,
@@ -31,7 +33,7 @@ const Account = () => {
         version: "v12.0",
       });
     };
-    (function(d, s, id) {
+    (function (d, s, id) {
       var js,
         fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
@@ -60,33 +62,48 @@ const Account = () => {
   };
 
   const logoutFacebook = () => {
-    FB.logout(function(response) {
+    FB.logout(function (response) {
       console.log("User signed out from Facebook");
       navigate("/");
     });
   };
 
+  // Ir a funciones de administrador
+  const goAdminArticles = () => {
+    navigate("/admin/articles");
+  };
+  const goAdminDogs = () => {
+    navigate("/admin/dogs");
+  };
   return (
     <div className={styles.darkMode}>
-    <div className={styles.container}>
-      <h1>Perfil de usuario</h1>
-      <button onClick={toggleDarkMode}>
-        {darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-      </button>
-      <button onClick={toggleEditingProfile}>
-        {editingProfile ? "Cancelar edición" : "Editar perfil"}
-      </button>
-      <button onClick={logoutGoogle} className={styles.logoutButton}>
-        Cerrar sesión de Google
-      </button>
-      <button onClick={logoutFacebook} className={styles.logoutButton}>
-        Cerrar sesión de Facebook
-      </button>
-      <h2>Mis donaciones</h2>
-      {/*Acá se debería mostrar la lista de donaciones del usuario*/}
-      <h2>Mis favoritos</h2>
-      {/*Acá se debería mostrar la lista de favoritos del usuario*/}
-    </div>
+      <div className={styles.container}>
+        <h1>Perfil de usuario</h1>
+        <button onClick={toggleDarkMode}>
+          {darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+        </button>
+        <button onClick={toggleEditingProfile}>
+          {editingProfile ? "Cancelar edición" : "Editar perfil"}
+        </button>
+        <button onClick={logoutGoogle} className={styles.logoutButton}>
+          Cerrar sesión de Google
+        </button>
+        <button onClick={logoutFacebook} className={styles.logoutButton}>
+          Cerrar sesión de Facebook
+        </button>
+        <h2>Mis donaciones</h2>
+        {/*Acá se debería mostrar la lista de donaciones del usuario*/}
+        <h2>Mis favoritos</h2>
+        {/*Acá se debería mostrar la lista de favoritos del usuario*/}
+      </div>
+
+      <div>
+        {" "}
+        {/* Pendiente renderizado condicional, sólo para admins */}
+        <h2>Opciones de Administrador</h2>
+        <button onClick={goAdminArticles}>Gestionar Artículos</button>
+        <button onClick={goAdminDogs}>Gestionar Perritos</button>
+      </div>
     </div>
   );
 };

@@ -12,10 +12,10 @@ import Account from "./components/Account/Account.jsx";
 import History from "./components/History/History.jsx";
 import DetailsArticle from "./components/DetailArticle/DetailArticle.jsx";
 import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
-
-
+import AdminArticles from "./components/AdminArticles/AdminArticles.jsx";
+import EditArticle from "./components/EditArticle/EditArticle.jsx";
 import "./App.css";
-
+import AdminDogs from "./components/AdminDogs/AdminDogs.jsx";
 
 function App() {
   const location = useLocation();
@@ -36,9 +36,12 @@ function App() {
         <Route path="/dogs/:id" element={<DetailDogs />} />
         <Route path="/donar" element={<Donation />} />
         <Route path="/carrito" element={<Trolley />} />
-        <Route path="/account" element={<Account />}/>
-        <Route path="/about" element={<History/>} />
         <Route path="/shop/DetailArticle/:id" element={<DetailsArticle/>} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/about" element={<History />} />
+        <Route path="/admin/articles/:id" element={<EditArticle />} />
+        <Route path="/admin/articles" element={<AdminArticles />} />
+        <Route path="/admin/dogs" element={<AdminDogs />} />
       </Routes>
     </div>
   );
