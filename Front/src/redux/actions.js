@@ -7,6 +7,7 @@ export const ADD_CARR = "ADD_CARR";
 export const DELETE_CARR = "DELETE_CARR";
 export const CHANGE_CANTIDAD = "CHANGE_CANTIDAD";
 export const GET_ARTICLES = "GET_ARTICLES";
+export const DETAIL_ARTICLE = "DETAIL_ARTICLE"
 
 // Actions
 
@@ -88,6 +89,16 @@ export function changeCantidad(num, name) {
     type: CHANGE_CANTIDAD,
     payload: { num, name },
   };
+}
+
+
+export function detailArticle(id){
+  return async function(dispatch){
+  let getArticles = await axios.get(`http://localhost:3001/articles/${id}`)
+  dispatch({
+    type: DETAIL_ARTICLE,
+    payload: getArticles.data,
+  })}
 }
 
 //traigo a los post

@@ -119,7 +119,6 @@ function FormularioAdopcion() {
           <input
             type="checkbox"
             name="tieneNiños"
-            defaultValue={false}
             value="si"
             checked={!!tieneNiños}
             onChange={handleTieneNiñosChange}
@@ -130,7 +129,6 @@ function FormularioAdopcion() {
           <input
             type="checkbox"
             name="tieneNiños"
-            defaultValue={false}
             value="no"
             checked={tieneNiños === false}
             onChange={handleTieneNiñosChange}
