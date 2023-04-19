@@ -48,6 +48,13 @@ export default function Donation() {
         mejorar la vida de los perritos en adopción.
       </h5>
       {renderCheckoutButton(preferenceId)}
+      <div>
+
+        <Wallet
+          initialization={{ preferenceId: preferenceId }}
+          onReady={handleOnReady}
+        />
+      </div>
     </div>
   );
 }
