@@ -79,12 +79,12 @@
  
 .login{
   z-index: 1;
-  background-image: linear-gradient(to bottom right, #1ab6b6, #4cac6e);
+  background-image: linear-gradient(to bottom right, #fbd69d, #ffffff);
   padding: 40px;
 }
  
 .login h2{
-  color: #fff;
+  color: #797979;
   margin-bottom: 45px;
 }
  
@@ -96,7 +96,7 @@
  
 .login button{
   width: 100%;
-  margin: 15px 0px;
+  margin: 30px 0px;
   padding: 10px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, .2);
   cursor: pointer;
@@ -104,13 +104,13 @@
 }
  
 .login .fb{
-  background: #3b5999;
+  background: #f17108;
   border-style: none;
   color: #fff;
 }
  
 .login .google{
-  background: #55acef;
+  background: #f17108;
   border-style: none;
   color: #fff;
 }
@@ -140,7 +140,7 @@
 
 .showPasswordButton {
   position: absolute;
-  top: 48%;
+  top: 54%;
   right: 1rem;
   transform: translateY(-50%);
   background-color: transparent;
@@ -152,7 +152,7 @@
 
 .showPasswordButton2 {
   position: absolute;
-  top: 60%;
+  top: 68%;
   right: 1rem;
   transform: translateY(-50%);
   background-color: transparent;
