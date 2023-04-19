@@ -186,6 +186,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
       case DETAIL_ARTICLE:  
+      
       return{
         ...state,
         detailArticle:action.payload,
