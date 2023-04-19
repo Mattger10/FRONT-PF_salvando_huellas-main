@@ -11,4 +11,10 @@
   justify-items: center; /* Centra las tarjetas horizontalmente en el contenedor */
   margin-top: 50px; 
   background: #f17108;
+  
+}
+
+.name {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }

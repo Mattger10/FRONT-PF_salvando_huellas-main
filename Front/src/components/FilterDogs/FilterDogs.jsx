@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchDogs } from '../../redux/actions';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchDogs } from "../../redux/actions";
 
 const FilterDogs = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
-  const [filters, setFilters] = useState({ age: '', size: '', sex: '' });
+  const [filters, setFilters] = useState({ age: "", size: "", sex: "" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    let newValue = value;
-    if (name === "sex") {
-      newValue = value === "true" ? "Male" : "Female";
-    }
-    setFilters((prevState) => ({ ...prevState, [name]: newValue }));
+    setFilters({ ...filters, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Filters: ", filters);
     dispatch(fetchDogs(filters.age, filters.size, filters.sex));
     setCurrentPage(1);
   };
@@ -28,9 +25,9 @@ const FilterDogs = ({ setCurrentPage }) => {
           Age:
           <select name="age" value={filters.age} onChange={handleChange}>
             <option value="">Any</option>
-            <option value="puppy">Puppy</option>
-            <option value="adult">Adult</option>
-            <option value="old">Old</option>
+            <option value="Puppy">Puppy</option>
+            <option value="Adult">Adult</option>
+            <option value="Old">Old</option>
           </select>
         </label>
         <label>
@@ -46,10 +43,11 @@ const FilterDogs = ({ setCurrentPage }) => {
           Sex:
           <select name="sex" value={filters.sex} onChange={handleChange}>
             <option value="">Any</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select>
         </label>
+
         <button type="submit">Filter</button>
       </form>
     </div>

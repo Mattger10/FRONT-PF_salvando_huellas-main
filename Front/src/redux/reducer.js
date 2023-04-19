@@ -60,18 +60,7 @@ const rootReducer = (state = initialState, action) => {
         posts: action.payload,
       };
 
-    case "RESET_FILTERS":
-      return {
-        ...state,
-       
-        filters: {
-          age: "",
-          size: "",
-          sex: "",
-        },
-        filteredDogs: state.dogs
-      };
-      
+  
     case "FETCH_DOGS_SUCCESS":
       return {
         ...state,

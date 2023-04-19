@@ -130,7 +130,4 @@ export const fetchDogs = (age, size, sex) => async (dispatch) => {
   }
 };
 
-export const resetFilters = () => ({
-  type: 'RESET_FILTERS'
-});
 
