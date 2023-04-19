@@ -53,8 +53,7 @@ const rootReducer = (state = initialState, action) => {
         dogDetail: action.payload,
       };
 
-    case "SAVE_POSTS":
-      console.log(action.payload); // Agregar este console.log para ver la información que está recibiendo
+    case "SET_POSTS":
       return {
         ...state,
         posts: action.payload,
