@@ -10,7 +10,9 @@ import Shop from "./components/Shop/Shop.jsx";
 import Trolley from "./components/Trolley/Trolley.jsx";
 import Account from "./components/Account/Account.jsx";
 import History from "./components/History/History.jsx";
+import DetailsArticle from "./components/DetailArticle/DetailArticle.jsx";
 import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
+
 
 import "./App.css";
 
@@ -36,6 +38,7 @@ function App() {
         <Route path="/carrito" element={<Trolley />} />
         <Route path="/account" element={<Account />}/>
         <Route path="/about" element={<History/>} />
+        <Route path="/shop/DetailArticle/:id" element={<DetailsArticle/>} />
       </Routes>
     </div>
   );
