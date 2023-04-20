@@ -1,0 +1,32 @@
+.filters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+  
+  select {
+    margin-top: 5px;
+    padding: 5px;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fe5535;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #d43535;
+  }
+  

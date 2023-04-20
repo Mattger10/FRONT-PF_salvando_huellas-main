@@ -25,8 +25,6 @@ export default function DetailDogs() {
             <img className={styles.imagen}
               src={DogDeits.photoD}
               alt={DogDeits.nameD}
-              width="200"
-              height="150"
             />
             <div className={styles.stats}>
               <span>Age: {DogDeits.ageD}</span>

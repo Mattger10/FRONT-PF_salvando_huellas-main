@@ -40,10 +40,12 @@ export default function Shop() {
     dispatch(getAllArticles())
   }, []);
   return (
+    <div className={styles.containerGeneral}>
     <div className={styles.shop}>
-      <h1>TIENDA</h1>
+      {/* <h1>TIENDA</h1> */}
       <SearchBar/>
       <div className={styles.articles}>{showArticles}</div>
+    </div>
     </div>
   );
 }
