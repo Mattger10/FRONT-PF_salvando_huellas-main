@@ -56,13 +56,12 @@
 }
 
 .slideshow img {
-  box-shadow: 10px 40px 20px 1px;
+  box-shadow:   5px 5px 5px ;
   border: solid rgba(0, 0, 0, 0.781);
   border-radius: 10px;
   max-width: 30%;
   height: auto;
   opacity: 1;
-  /* Initial opacity set to 0.5 for all images */
   margin: 0 10px;
   transform-origin: center center;
 }
