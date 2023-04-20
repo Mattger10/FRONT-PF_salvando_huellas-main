@@ -1,12 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Trolley.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCarrito, changeCantidad } from "../../redux/actions";
+import axios from "axios";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+
 
 export default function Trolley() {
   const dispatch = useDispatch();
   const allArticle = useSelector((state) => state.carrito);
+
+  initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
+  const [isReady, setIsReady] = useState(true);
+  const [preferenceId, setPreferenceId] = useState(null);
+  const [price, setPrice] = useState(100)
+
+  const handlePrice = (e) => {
+    setPrice(Number(e.target.value));
+  }
+
+  const handleOnReady = () => {
+    setIsReady(true);
+  };
+
+  const fetchPreferenceId = async () => {
+    const response = await axios.post("http://localhost:3001/payment/purchases", { articles:price });
+    setPreferenceId(response.data.preferenceId);
+  };
+
+  useEffect(() => {
+    fetchPreferenceId();
+  }, [price]);
 
   //boton para eliminar elementos del carrito
   const handleDelete = (item) => {
@@ -72,8 +97,23 @@ export default function Trolley() {
         <div className={style.Comprar}>
           <p>Total: ${getTotal()}</p>
           <button>Finalizar Compra</button>
+
         </div>
       )}
+
+      {isReady && preferenceId ? (
+        <div>
+          <input value={price} onChange={handlePrice} type="number" />
+
+          <Wallet
+            initialization={{ preferenceId: preferenceId }}
+            onReady={handleOnReady}
+          />
+        </div>
+      ) : (
+        <div>Cargando...</div>
+      )}
+
     </div>
   );
 }
