@@ -1,5 +1,5 @@
 .container {
-  width: 150%;
+  width: 90%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -10,6 +10,8 @@
   border-radius: 10px;
   transition: all .3s;
   float: center;
+  margin-left: 11rem;
+  border: 3px solid #bb9715;
 }
 
 .container:hover {

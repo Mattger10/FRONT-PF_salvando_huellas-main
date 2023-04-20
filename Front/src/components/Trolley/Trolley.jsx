@@ -6,7 +6,6 @@ import { deleteCarrito, changeCantidad } from "../../redux/actions";
 import axios from "axios";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
-
 export default function Trolley() {
   const dispatch = useDispatch();
   const allArticle = useSelector((state) => state.carrito);
@@ -14,18 +13,21 @@ export default function Trolley() {
   initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
   const [isReady, setIsReady] = useState(true);
   const [preferenceId, setPreferenceId] = useState(null);
-  const [price, setPrice] = useState(100)
+  const [price, setPrice] = useState(100);
 
   const handlePrice = (e) => {
     setPrice(Number(e.target.value));
-  }
+  };
 
   const handleOnReady = () => {
     setIsReady(true);
   };
 
   const fetchPreferenceId = async () => {
-    const response = await axios.post("http://localhost:3001/payment/purchases", { articles:price });
+    const response = await axios.post(
+      "http://localhost:3001/payment/purchases",
+      { articles: price }
+    );
     setPreferenceId(response.data.preferenceId);
   };
 
@@ -46,6 +48,12 @@ export default function Trolley() {
     });
     return total;
   }
+
+  const [isOpen, setIsOpen] = useState(false); // nuevo estado isOpen
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className={style.container}>
@@ -97,7 +105,6 @@ export default function Trolley() {
         <div className={style.Comprar}>
           <p>Total: ${getTotal()}</p>
           <button>Finalizar Compra</button>
-
         </div>
       )}
 
@@ -113,7 +120,6 @@ export default function Trolley() {
       ) : (
         <div>Cargando...</div>
       )}
-
     </div>
   );
 }
