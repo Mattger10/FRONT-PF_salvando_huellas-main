@@ -1,5 +1,6 @@
 // PaginationDogs.jsx
 import React from "react";
+import styles from "./PaginationDogs.module.css";
 
 
 const PaginationDogs = ({ currentPage, paging, totalPages }) => {
@@ -16,10 +17,10 @@ const PaginationDogs = ({ currentPage, paging, totalPages }) => {
   };
 
   return (
-    <div >
-      <button onClick={handlePrev} disabled={currentPage === 1}>Anterior</button>
-      <span>{currentPage} de {totalPages}</span>
-      <button onClick={handleNext} disabled={currentPage === totalPages}>Siguiente</button>
+    <div className={styles.container}>
+      <button className={styles.button} onClick={handlePrev} disabled={currentPage === 1}>Anterior</button>
+      <span className={styles.span}>{currentPage} de {totalPages}</span>
+      <button className={styles.button} onClick={handleNext} disabled={currentPage === totalPages}>Siguiente</button>
     </div>
   );
 };

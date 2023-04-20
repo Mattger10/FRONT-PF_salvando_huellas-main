@@ -24,7 +24,7 @@ export default function AdminDogs() {
   const showDogs = allDogs.map((dog, index) => {
     return (
       <div key={index}>
-        <CardDogs
+        <CardDogs 
           id={dog.id_Dog}
           nameD={dog.nameD}
           sexD={dog.sexD}

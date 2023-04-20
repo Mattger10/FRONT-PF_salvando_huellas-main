@@ -62,9 +62,9 @@ if (location.pathname === "/admin/articles") {
         <Link to={`/shop/DetailArticle/${id}`}>
         <div onClick={detail} >
         <img src={photoA} alt={'foto de ' + nameA} className={styles.artImage}/>
-        <p className={styles.title}>{nameA}</p>
         </div>
         </Link>
+        <p className={styles.title}>{nameA}</p>
         <p>$ {priceA}</p>
         {stockA > 1 ? <p>{stockA} disponibles</p> : <p>Último disponible!</p>}
       <select className={styles.select}onChange={handleStockSelect}>

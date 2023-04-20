@@ -1,5 +1,5 @@
 .cardArticle {
-  width: 115%;
+  width: 120%;
   height: 400px;
   margin-top: 10%;
   align-items: center;
@@ -20,6 +20,7 @@
   font-weight: bold;
   margin: 5px 0;
 }
+
 
 .price {
   color: var(--primary-color);
