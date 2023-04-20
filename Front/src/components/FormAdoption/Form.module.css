@@ -1,6 +1,7 @@
 .container {
   max-width: 600px;
   margin: 0 auto;
+  margin-top: 1%;
 }
 
 .formulario {
@@ -35,12 +36,12 @@
   padding: 0.50rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #f17108;
+  background-color: #fe5535;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #bb6202;
+  background-color: #d43535;
 }

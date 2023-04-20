@@ -67,9 +67,10 @@
 }
  
 .register .submit{
+  margin-left: 25%;
   width: auto;
   padding: 10px;
-  background: #f17108;
+  background: #d43535;
   color: #fff;
   font-size: 12px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, .2);
@@ -79,7 +80,7 @@
  
 .login{
   z-index: 1;
-  background-image: linear-gradient(to bottom right, #fbd69d, #ffffff);
+  background-image: linear-gradient(to bottom right, #fae243, #fae243);
   padding: 40px;
 }
  
@@ -104,13 +105,13 @@
 }
  
 .login .fb{
-  background: #f17108;
+  background: #d43535;
   border-style: none;
   color: #fff;
 }
  
 .login .google{
-  background: #f17108;
+  background: #d43535;
   border-style: none;
   color: #fff;
 }

@@ -1,4 +1,4 @@
-import "./NavBar.modules.css";
+import styles from "./NavBar.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -7,19 +7,30 @@ import { useSelector } from "react-redux";
 export default function NavBar() {
   const navigate = useNavigate();
   const access = useSelector((state) => state.access);
-  const location = useLocation()
+  const location = useLocation();
 
   return (
-    <div className="nav">
+    <div className={styles.nav}>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      />
+      <link rel="stylesheet" href="icons.module.css"></link>
       <Link to="/home">
-        <img className="img" src="/img/logo.jpeg" />
+        <img className={styles.img} src="/img/logo.png" />
       </Link>
       <Link to="/about">
-        <button className={location.pathname === '/about' ? 'selectedButton' : 'normalButton'}>Conócenos</button>
+        <button
+          className={
+            location.pathname === "/about"
+              ? styles.selectedButton
+              : styles.normalButton
+          }
+        >
+          CONOCENOS
+        </button>
       </Link>
-      <Link to="/shop">
-        <button className={location.pathname === '/shop' ? 'selectedButton' : 'normalButton'}>PetShop</button>
-      </Link>
+     
 
       {/* <button
         onClick={() => {
@@ -31,27 +42,73 @@ export default function NavBar() {
         }}
       > */}
 
-      <button className={location.pathname === '/adopt' ? 'selectedButton' : 'normalButton'}
+      <button
+        className={
+          location.pathname === "/adopt"
+            ? styles.selectedButton
+            : styles.normalButton
+        }
         onClick={() => {
           navigate("/adopt");
-        }
-        
-      }
+        }}
       >
-        Adopta Ahora!
+        ¿QUERÉS ADOPTAR?
       </button>
 
       <Link to="/dogs">
-        <button className={location.pathname === '/dogs' ? 'selectedButton' : 'normalButton'}>Perros</button>
+        <button
+          className={
+            location.pathname === "/dogs"
+              ? styles.selectedButton
+              : styles.normalButton
+          }
+        >
+          PERROS
+        </button>
+      </Link>
+      <Link to="/posts">
+        <button
+          className={
+            location.pathname === "/posts"
+              ? styles.selectedButton
+              : styles.normalButton
+          }
+        >
+          POSTEOS
+        </button>
+        </Link>
+        <Link to="/shop">
+        <button
+          className={
+            location.pathname === "/shop"
+              ? styles.selectedButton
+              : styles.normalButton
+          }
+        >
+          TIENDA
+        </button>
       </Link>
       <Link to="/donar">
-        <button className={location.pathname === '/donar' ? 'selectedButton' : 'normalButton'}>Donaciones</button>
+        <button
+          className={
+            location.pathname === "/donar"
+              ? styles.selectedButton
+              : styles.normalButton
+          }
+        >
+          DONACIONES
+        </button>
       </Link>
       <Link to="/carrito">
-        <img src="/img/carrito.png" id="carrLogo" />
+        <div className={styles.cartIcon}>
+          <i className="fa fa-shopping-cart"></i>
+          <span className={styles.itemCount}>0</span>
+        </div>
       </Link>
       <Link to="/account">
-        <img src="/img/perfil.png" id="carrLogo" />
+        <div className={styles.userIcon}>
+          <i className="fa fa-user"></i>
+        </div>
       </Link>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchDogs } from "../../redux/actions";
+import styles from "./FilterDogs.module.css"
 
 const FilterDogs = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
@@ -19,36 +20,36 @@ const FilterDogs = ({ setCurrentPage }) => {
   };
 
   return (
-    <div>
+    <div className={styles.filters}>
       <form onSubmit={handleSubmit}>
         <label>
-          Age:
+          Edad:
           <select name="age" value={filters.age} onChange={handleChange}>
-            <option value="">Any</option>
-            <option value="Puppy">Puppy</option>
-            <option value="Adult">Adult</option>
-            <option value="Old">Old</option>
+            <option value="">Cualquiera</option>
+            <option value="Puppy">Cachorro</option>
+            <option value="Adult">Adulto</option>
+            <option value="Old">Viejito</option>
           </select>
         </label>
         <label>
-          Size:
+          Tamaño:
           <select name="size" value={filters.size} onChange={handleChange}>
-            <option value="">Any</option>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
+            <option value="">Cualquiera</option>
+            <option value="Small">Pequeño</option>
+            <option value="Medium">Mediano</option>
+            <option value="Large">Grande</option>
           </select>
         </label>
         <label>
-          Sex:
+          Sexo:
           <select name="sex" value={filters.sex} onChange={handleChange}>
-            <option value="">Any</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="">Cualquiera</option>
+            <option value="Male">Macho</option>
+            <option value="Female">Hembra</option>
           </select>
         </label>
 
-        <button type="submit">Filter</button>
+        <button type="submit">Filtrar</button>
       </form>
     </div>
   );

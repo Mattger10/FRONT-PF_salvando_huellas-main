@@ -1,3 +1,9 @@
+.containerGeneral {
+  background: url('../../Assets/paw.svg');
+  background-repeat: no-repeat;
+  background-size: 19%;
+}
+
 .article {
   width: 200px;
   cursor: pointer;
