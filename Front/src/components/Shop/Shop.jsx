@@ -1,4 +1,4 @@
-import "./Shop.modules.css";
+import styles from "./Shop.module.css";
 import CardArticle from "../CardArticle/CardArticle";
 import { useEffect} from "react";
 import SearchBar from "../SearchBar/SearchBar";
@@ -25,7 +25,7 @@ export default function Shop() {
     );
   })): (!(typeof onSearchArticles === "string") ? onSearchArticles.map((art, index) => {
     return (
-      <CardArticle
+      <CardArticle 
         id ={art.id_Article}
         key={index}
         nameA={art.nameA}
@@ -40,10 +40,10 @@ export default function Shop() {
     dispatch(getAllArticles())
   }, []);
   return (
-    <div className="shop">
+    <div className={styles.shop}>
       <h1>TIENDA</h1>
-      <SearchBar />
-      <div>{showArticles}</div>
+      <SearchBar/>
+      <div className={styles.articles}>{showArticles}</div>
     </div>
   );
 }
