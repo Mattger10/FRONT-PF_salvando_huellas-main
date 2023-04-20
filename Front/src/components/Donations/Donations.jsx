@@ -1,37 +1,32 @@
-import React, { useContext, useState } from "react";
 import style from "./Donation.module.css";
-import { Context } from "./context";
-import classnames from "classnames";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
-initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
+
 
 export default function Donation() {
-  const { preferenceId, orderData } = useContext(Context);
-  const [isReady, setIsReady] = useState(false);
-  const paymentClass = classnames("payment-form dark", {
-    "payment-form--hidden": !isReady,
-  });
+  initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
+  const [isReady, setIsReady] = useState(true);
+  const [preferenceId, setPreferenceId] = useState(null);
+  const [price, setPrice] = useState(100)
+
+  const handlePrice= (e)=> {
+    setPrice(Number(e.target.value));
+  }
 
   const handleOnReady = () => {
     setIsReady(true);
   };
 
-  const renderCheckoutButton = (preferenceId) => {
-    if (!preferenceId) return null;
-
-    return (
-      <div>
-
-        <Wallet
-          initialization={{ preferenceId: preferenceId }}
-          onReady={handleOnReady}
-        />
-      </div>
-    );
+  const fetchPreferenceId = async () => {
+    const response = await axios.post("http://localhost:3001/payment/donations", { unit_price:price});
+    setPreferenceId(response.data.preferenceId);
   };
 
-  console.log(preferenceId); // check preferenceId value
+  useEffect(() => {
+    fetchPreferenceId();
+  }, [price]);
 
   return (
     <div>
@@ -47,14 +42,19 @@ export default function Donation() {
         Donar es una manera fácil y efectiva de contribuir a la sociedad y
         mejorar la vida de los perritos en adopción.
       </h5>
-      {renderCheckoutButton(preferenceId)}
-      <div>
+      {isReady && preferenceId ? (
+        <div>
+          <input value={price} onChange={handlePrice} type="number" />
 
-        <Wallet
-          initialization={{ preferenceId: preferenceId }}
-          onReady={handleOnReady}
-        />
-      </div>
+          <Wallet
+            initialization={{ preferenceId: preferenceId }}
+            onReady={handleOnReady}
+          />
+        </div>
+      ) : (
+        <div>Cargando...</div>
+      )}
     </div>
   );
+  
 }

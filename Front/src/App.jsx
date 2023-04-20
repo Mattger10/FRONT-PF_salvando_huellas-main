@@ -25,6 +25,7 @@ import EditArticle from "./components/EditArticle/EditArticle.jsx";
 import "./App.css";
 import AdminDogs from "./components/AdminDogs/AdminDogs.jsx";
 import CreateDog from "./components/CreateDogForm/CreateDogForm.jsx";
+import CreateArticle from "./components/CreateArticleForm/CreateArticleForm.jsx"
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/about" element={<History />} />
         <Route path="/admin/articles/:id" element={<EditArticle />} />
+        <Route path="/admin/articles/create" element={<CreateArticle />} />
         <Route path="/admin/articles" element={<AdminArticles />} />
         <Route path="/admin/dogs/create" element={<CreateDog />} />
         <Route path="/admin/dogs" element={<AdminDogs />} />

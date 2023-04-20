@@ -12,7 +12,7 @@ export default function NavBar() {
   return (
     <div className="nav">
       <Link to="/home">
-        <img src="/img/logo.jpeg" />
+        <img className="img" src="/img/logo.jpeg" />
       </Link>
       <Link to="/about">
         <button className={location.pathname === '/about' ? 'selectedButton' : 'normalButton'}>Conócenos</button>
