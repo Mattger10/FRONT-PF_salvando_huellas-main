@@ -10,7 +10,7 @@ export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, handleEdit,
   if(location.pathname === "/admin/dogs"){
     return (
       <>
-      <div className={styles.container}>
+      <div>
         <div>
           <h3>{nameD}</h3>
         </div>
@@ -43,26 +43,14 @@ export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, handleEdit,
   return (
     <>
     <div className={styles.container}>
-      <div>
-        <h3>{nameD}</h3>
-      </div>
-      <div>
-        <img src={photoD} alt="img" />
-      </div>
-      <div>
-        <div>
-          <h4>Age:</h4>
+          <h3 className={styles.h3}>{nameD}</h3>
+          <img className={styles.img} src={photoD} alt="img" />
+          <h4>Edad:</h4>
           <p>{ageD}</p>
-        </div>
-        <div>
-          <h4>Size:</h4>
+          <h4>Tamaño:</h4>
           <p>{sizeD}</p>
-        </div>
-        <div>
-          <h4>Sex:</h4>
+          <h4>Sexo:</h4>
           <p>{sexD}</p>
-        </div>
-      </div>
     </div>
   </>
   )
