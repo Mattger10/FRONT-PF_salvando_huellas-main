@@ -12,8 +12,6 @@ export default function Home() {
       <h1 className={style.title}>SALVANDO HUELLAS!</h1>
 
       <div className={style.img_Container}>
-        {/*-------------------------------------------------------------------*/}
-
         <div className={style.slideshowContainer}>
           <div className={style.slideshow}>
             <img className={style.sliderImg} src="/img/home-dogs1.png" alt="Image 1" />
