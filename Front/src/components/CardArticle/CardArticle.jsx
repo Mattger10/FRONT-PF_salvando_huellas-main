@@ -4,7 +4,8 @@ import { addCarrito } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { detailArticle } from '../../redux/actions';
+import { detailArticle, getAllArticles } from '../../redux/actions';
+import axios from 'axios';
 
 export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
   
@@ -32,12 +33,11 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
 
   // FUNCIONES DE ADMINISTRADOR
   const handleEdit = () => {
-    // dispatch(detailArticle(id))
     navigate('/admin/articles/'+id)
-    
   }
-  const handleDelete = () => {
- // axios.delete
+  const handleDelete = async () => {
+ await axios.delete("http://localhost:3001/articles/delete/"+id)
+ dispatch(getAllArticles())
   }
 
 // ASÍ SE MUESTRAN EN ADMINISTRADOR

@@ -2,9 +2,10 @@ import "./AdminDogs.modules.css";
 
 import CardDogs from "../CardDogs/CardDogs";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getDogs } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function AdminDogs() {
   const dispatch = useDispatch();
@@ -13,8 +14,9 @@ export default function AdminDogs() {
   const handleEdit = (e) => {
 
   };
-  const handleDelete = (e) => {
-
+  const handleDelete = async (id) => {
+    await axios.delete("http://localhost:3001/dogs/delete/"+id)
+    dispatch(getDogs());
   };
   const handleAddDog = (e) => {
     navigate('/admin/dogs/create')
@@ -41,6 +43,7 @@ export default function AdminDogs() {
   }, []);
   return (
     <div>
+      <button onClick={()=>{navigate('/account')}}>Volver</button>
       <h2>Gestionar Perros</h2>
       <button onClick={handleAddDog}>Agregar un perro</button>
       <div className="dogListAdmin">{showDogs}</div>
