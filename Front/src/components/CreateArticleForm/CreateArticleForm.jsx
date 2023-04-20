@@ -24,7 +24,7 @@ export default function CreateArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/articles/create/", inputData);
+      const response = await axios.post("http://localhost:3001/articles/register/", {...inputData, activeA: true});
       setMessage(response.data)
     } catch (error) {
       console.error(error);

@@ -8,10 +8,10 @@ export default function CreateDog() {
   const [inputData, setInput] = useState({
     nameD: "",
     historyD: "",
-    sexD: "",
-    sizeD: "",
+    sexD: "male",
+    sizeD: "small",
     photoD: "",
-    ageD: ""
+    ageD: "puppy"
   });
   const [message, setMessage] = useState("")
 
@@ -68,8 +68,8 @@ export default function CreateDog() {
             onChange={handleInput}
             placeholder="Selecciona su sexo..."
           >
-            <option>Macho</option>
-            <option>Hembra</option>
+            <option value={"male"}>Macho</option>
+            <option value={"female"}>Hembra</option>
           </select>
         </label>
         <label>
@@ -81,9 +81,9 @@ export default function CreateDog() {
             onChange={handleInput}
             placeholder="Selecciona el tamaño"
           >
-            <option>Pequeño</option>
-            <option>Mediano</option>
-            <option>Grande</option>
+            <option value={"small"}>Pequeño</option>
+            <option value={"medium"}>Mediano</option>
+            <option value={"large"}>Grande</option>
           </select>
         </label>
         <label>
@@ -95,8 +95,8 @@ export default function CreateDog() {
             onChange={handleInput}
             placeholder="Selecciona edad"
           >
-            <option>Cachorro</option>
-            <option>Adulto</option>
+            <option value={"adult"}>Cachorro</option>
+            <option value={"puppy"}>Adulto</option>
           </select>
         </label>
         <label>
