@@ -2,6 +2,7 @@ import styles from "./SearchBar.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchArticles } from "../../redux/actions";
+import React from "react";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function SearchBar() {
         value={text}
         onChange={handleInputChange}
         type="search"
-        placeholder=" Buscar artículo..."
+        placeholder=" Buscar artículo"
         className={styles.input}
       />
       </div>

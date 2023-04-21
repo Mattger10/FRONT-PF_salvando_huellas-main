@@ -4,6 +4,7 @@ import { useEffect} from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllArticles } from "../../redux/actions";
+import React from "react";
 
 export default function Shop() {
 
