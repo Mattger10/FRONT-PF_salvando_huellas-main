@@ -11,6 +11,7 @@ export default function NavBar() {
   const location = useLocation();
 
   return (
+    <div className={styles.container}>
     <div className={styles.nav}>
       <link
         rel="stylesheet"
@@ -111,6 +112,7 @@ export default function NavBar() {
           <i className="fa fa-user"></i>
         </div>
       </Link>
+    </div>
     </div>
   );
 }

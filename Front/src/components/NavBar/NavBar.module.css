@@ -6,7 +6,12 @@
     height: 100px;
     width: 100%;
 }
-
+@media screen and (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    height: auto;
+  }
+}
 .nav img {
     border-radius: 5px;
     max-width: 100%;

@@ -1,15 +1,15 @@
 .image {
-    max-width: 300px;
+    max-width: 300%;
   /* margin-left: 500px; */
 }
 
 .CardDogs {
   display: grid;
   grid-template-columns: repeat(5, 2fr);
-  grid-gap: 10px;
+  grid-gap: 1%;
   justify-content: center;
   justify-items: center; /* Centra las tarjetas horizontalmente en el contenedor */
-  margin-top: 50px; 
+  margin-top: 1%; 
   
 }
 
