@@ -31,7 +31,7 @@ export default function LandingPage() {
       <div className={styles.container}>
         <div className={styles.loginContainer}>
           <div className={styles.register}>
-            <h2>Registrarme</h2>
+            <h2>Registrarme!</h2>
             <form action="" onSubmit={handleSubmit}>
               <input
                 type="text"
