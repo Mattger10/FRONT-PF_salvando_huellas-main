@@ -24,7 +24,7 @@ export default function CreateDog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/dogs/register", inputData);
+      const response = await axios.post("/dogs/register", inputData);
       setMessage(response.data)
     } catch (error) {
       console.error(error);

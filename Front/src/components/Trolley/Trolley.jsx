@@ -30,7 +30,7 @@ export default function Trolley() {
   });
 
   const fetchPreferenceId = async () => {
-    const response = await axios.post("http://localhost:3001/payment/purchases", {articles: Article});
+    const response = await axios.post("/payment/purchases", {articles: Article});
     setPreferenceId(response.data.preferenceId);
   };
 

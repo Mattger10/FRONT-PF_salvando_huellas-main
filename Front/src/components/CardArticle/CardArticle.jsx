@@ -36,7 +36,7 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
     navigate('/admin/articles/'+id)
   }
   const handleDelete = async () => {
- await axios.delete("http://localhost:3001/articles/delete/"+id)
+ await axios.delete("/articles/delete/"+id)
  dispatch(getAllArticles())
   }
 

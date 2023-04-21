@@ -20,7 +20,7 @@ export default function Donation() {
   };
 
   const fetchPreferenceId = async () => {
-    const response = await axios.post("http://localhost:3001/payment/donations", { unit_price:price});
+    const response = await axios.post("/payment/donations", { unit_price:price});
     setPreferenceId(response.data.preferenceId);
   };
 

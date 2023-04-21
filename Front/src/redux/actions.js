@@ -23,7 +23,7 @@ export function handleAccess(data) {
 export function getDogs() {
   return async (dispatch) => {
     try {
-      let dog = await axios("http://localhost:3001/dogs");
+      let dog = await axios("/dogs");
       return dispatch({
         //uso la comilla simple para no exportar y hacerlo mas simple
         type: "GET_DOGS",
@@ -39,7 +39,7 @@ export function getDogs() {
 export const getDetail = (id) => {
   return async function (dispatch) {
     try {
-      const dogDetail = await axios.get(`http://localhost:3001/dogs/${id}`);
+      const dogDetail = await axios.get(`/dogs/${id}`);
       dispatch({
         type: "GET_DETAIL",
         payload: dogDetail.data,
@@ -52,7 +52,7 @@ export const getDetail = (id) => {
 
 export function getAllArticles(){
   return async function (dispatch) {
-    let getArticles = await axios.get("http://localhost:3001/articles")
+    let getArticles = await axios.get("/articles")
     dispatch({
       type: GET_ARTICLES,
       payload: getArticles.data
@@ -94,7 +94,7 @@ export function changeCantidad(num, name) {
 
 export function detailArticle(id){
   return async function(dispatch){
-  let getArticles = await axios.get(`http://localhost:3001/articles/${id}`)
+  let getArticles = await axios.get(`/articles/${id}`)
   dispatch({
     type: DETAIL_ARTICLE,
     payload: getArticles.data,
@@ -104,7 +104,7 @@ export function detailArticle(id){
 //traigo a los post
 export const getPosts = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:3001/posts');
+    const response = await axios.get('/posts');
     const posts = response.data;
     dispatch({ type: 'SET_POSTS', payload: posts });
   } catch (error) {
@@ -115,7 +115,7 @@ export const getPosts = () => async (dispatch) => {
 //filtro para Dogs 
 export const fetchDogs = (age, size, sex) => async (dispatch) => {
   try {
-    const response = await fetch(`http://localhost:3001/dogs?age=${age}&size=${size}&sex=${sex}`);
+    const response = await fetch(`/dogs?age=${age}&size=${size}&sex=${sex}`);
     const data = await response.json();
     dispatch({
       type: 'FETCH_DOGS_SUCCESS',

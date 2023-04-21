@@ -24,7 +24,7 @@ export default function EditArticle() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        "http://localhost:3001/articles/update/" + Number(id),
+        "/articles/update/" + Number(id),
         {...inputData, activeA: true}
       );
       setMessage(response.data);
