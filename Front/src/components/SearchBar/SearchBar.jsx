@@ -25,7 +25,7 @@ export default function SearchBar() {
         value={text}
         onChange={handleInputChange}
         type="search"
-        placeholder=" Buscar artículo"
+        placeholder=" Buscar artículo..."
         className={styles.input}
       />
       </div>
