@@ -11,6 +11,7 @@ import axios from "axios";
 axios.defaults.baseURL = "https://pfsalvandohuellas-production.up.railway.app/"
 // Para trabajar local descomentar:
 // axios.defaults.baseURL = "http://localhost:3001/" 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
