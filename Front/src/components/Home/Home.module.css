@@ -36,92 +36,31 @@
 .icons {
   display: flex;
   gap: 0.6rem;
-  margin-left: 0.5rem;
+  justify-content: center;
 }
 
 .follow {
-  margin-left: 0.5rem;
+  text-align: center;
 }
 
-/* CSS code */
-.slideshowContainer {
-  width: 80%;
-  overflow: hidden;
-  position: relative;
-}
+
 
 .slideshow {
   display: flex;
-  height: 20rem;
+  height: 18rem;
   gap: 1rem;
 }
 
-.slideshow > div {
-flex: 1;
-border-radius: 1rem;
-background-position: center;
+.sliderImg {
+  flex: 1;
+  border-radius: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  transition: all 0.8s cubic-bezier(.25, .4, .45, 1.4);
 }
 
-.slideshow img.center {
-  max-width: 50%;
-  /* Adjust the size of the center image as desired */
-  opacity: 1;
-  /* Center image has opacity set to 1 */
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(110%);
-
-  }
-
-  10% {
-    transform: translateX(80%);
-
-  }
-
-  20% {
-    transform: translateX(50%);
-
-  }
-
-  30% {
-    transform: translateX(20%);
-
-  }
-
-  40% {
-    transform: translateX(-10%);
-
-  }
-
-  50% {
-    transform: translateX(-40%);
-
-  }
-
-  60% {
-    transform: translateX(-70%);
-
-  }
-
-  70% {
-    transform: translateX(-100%);
-
-  }
-
-  80% {
-    transform: translateX(-110%);
-
-  }
-
-  90% {
-    transform: translateX(-110%);
-
-  }
-
-  100% {
-    transform: translateX(110%);
-
-  }
+.sliderImg:hover {
+  flex: 5;
+  transform: scale(1.1);
 }
