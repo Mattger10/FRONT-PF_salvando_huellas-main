@@ -96,7 +96,7 @@ export default function NavBar() {
               : styles.normalButton
           }
         >
-          DONACIONES
+          DONACIONES!
         </button>
       </Link>
       <Link to="/carrito">
