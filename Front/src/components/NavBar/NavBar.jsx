@@ -1,6 +1,7 @@
 import styles from "./NavBar.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import React from "react";
 
 // La NavBar se puede convertir en un menú desplegable desde el costado, por ahora está fija arriba
 
