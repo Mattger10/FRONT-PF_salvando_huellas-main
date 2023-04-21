@@ -1,0 +1,7 @@
+.message{
+    border: 1px solid black;
+    display: flex;
+}
+.hide{
+    display: none;
+}

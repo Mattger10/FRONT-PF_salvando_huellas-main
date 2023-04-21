@@ -1,0 +1,127 @@
+.container {
+  width: 98.9vw;
+  height: 85.8vh;
+  background-color: #fff29a;
+  overflow: hidden;
+  }
+
+
+.title {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 52px;
+}
+
+.img_Container {
+  display: flex;
+  text-align: center;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.img {
+  width: 50%;
+  height: auto;
+  max-width: 35%;
+}
+
+.iconsContainer {
+ position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color: #fae243;
+  padding: 0.4rem;
+}
+
+.icons {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: 0.5rem;
+}
+
+.follow {
+  margin-left: 0.5rem;
+}
+
+/* CSS code */
+.slideshowContainer {
+  width: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slideshow {
+  display: flex;
+  height: 20rem;
+  gap: 1rem;
+}
+
+.slideshow > div {
+flex: 1;
+border-radius: 1rem;
+background-position: center;
+}
+
+.slideshow img.center {
+  max-width: 50%;
+  /* Adjust the size of the center image as desired */
+  opacity: 1;
+  /* Center image has opacity set to 1 */
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(110%);
+
+  }
+
+  10% {
+    transform: translateX(80%);
+
+  }
+
+  20% {
+    transform: translateX(50%);
+
+  }
+
+  30% {
+    transform: translateX(20%);
+
+  }
+
+  40% {
+    transform: translateX(-10%);
+
+  }
+
+  50% {
+    transform: translateX(-40%);
+
+  }
+
+  60% {
+    transform: translateX(-70%);
+
+  }
+
+  70% {
+    transform: translateX(-100%);
+
+  }
+
+  80% {
+    transform: translateX(-110%);
+
+  }
+
+  90% {
+    transform: translateX(-110%);
+
+  }
+
+  100% {
+    transform: translateX(110%);
+
+  }
+}

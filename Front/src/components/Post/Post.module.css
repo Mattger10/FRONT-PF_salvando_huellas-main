@@ -1,0 +1,25 @@
+.containt {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+     height: auto;
+    opacity: 1;
+    margin: 70px;
+    margin-left: 70px;
+}
+
+.posts {
+    border: 1px solid rgba(0, 0, 0, 0.781);
+    border-radius: 5px;
+    max-width: 30%;
+    height: auto;
+    opacity: 1;
+    max-width: 90%;
+    margin-left: 30px;
+    margin: 20px;
+  }
+  
+  .imgPost {
+    max-width: 100%;
+  height: auto;
+  }

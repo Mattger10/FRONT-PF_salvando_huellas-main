@@ -1,0 +1,36 @@
+.container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: #fae243;
+  border-radius: 10px;
+  transition: all .3s;
+  float: center;
+  margin-left: 11rem;
+  border: 3px solid #bb9715;
+}
+
+.container:hover {
+    transform: scale(1.1);
+}
+
+.img {
+  width: 250px;
+  border-radius: 100%;
+  cursor: pointer;
+  padding: 15px;
+  margin: 0 auto;
+  transition: all .3s;
+  float: center;
+}
+
+.h3 {
+  font-size: 35px;
+  margin: 5px 0;
+}
+  
+ 
