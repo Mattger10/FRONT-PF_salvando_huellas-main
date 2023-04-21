@@ -15,7 +15,7 @@ export default function AdminDogs() {
 
   };
   const handleDelete = async (id) => {
-    await axios.delete("http://localhost:3001/dogs/delete/"+id)
+    await axios.delete("/dogs/delete/"+id)
     dispatch(getDogs());
   };
   const handleAddDog = (e) => {
