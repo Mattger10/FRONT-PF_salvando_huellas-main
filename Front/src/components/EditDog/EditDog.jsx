@@ -1,17 +1,16 @@
-import "./EditArticle.modules.css";
+import "./EditDog.modules.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { detailArticle } from "../../redux/actions";
+import { editDog } from "../../redux/actions";
 import axios from "axios";
 import React from 'react';
 
-// RESOLVER PROBLEMA DE ASINCRONISMO CON EL REDUCER
-export default function EditArticle() {
+export default function EditDog () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const detail = useSelector((state) => state.detailArticle);
+  const dog = useSelector((state) => state.editDog);
   const [inputData, setInput] = useState({});
   const [message, setMessage] = useState("");
 
@@ -25,7 +24,7 @@ export default function EditArticle() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        "/articles/update/" + id,
+        "/dogs/update/" + Number(id),
         inputData
       );
       setMessage(response.data);
@@ -35,67 +34,85 @@ export default function EditArticle() {
   };
 
   useEffect(() => {
-    dispatch(detailArticle(id));
-    setInput(detail);
+    dispatch(editDog(id));
+    setInput(dog);
     return setInput({});
   }, [id]);
   return (
     <div>
       <button
         onClick={() => {
-          navigate("/admin/articles");
+          navigate("/admin/dogs");
         }}
       >
         Volver
       </button>
-      <h2>Editar Artículo</h2>
+      <h2>Editar Perros</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Nombre:
           <input
             type="text"
-            value={inputData.nameA || detail.nameA}
-            name="nameA"
+            value={inputData.nameD || dog.nameD}
+            name="nameD"
             onChange={handleInput}
           ></input>
         </label>
         <label>
-          Descripción:
+          Historia:
           <textarea
             type="text"
-            value={inputData.descriptionA || detail.descriptionA}
-            name="descriptionA"
+            value={inputData.historyD || dog.historyD}
+            name="historyD"
             onChange={handleInput}
           ></textarea>
         </label>
         <label>
-          Precio:
-          <input
-            type="number"
-            value={inputData.priceA || detail.priceA}
-            name="priceA"
+          Sexo:
+          <select
+            value={inputData.sexD || dog.sexD}
+            name="sexD"
             onChange={handleInput}
-          ></input>
+          >
+            <option value={"male"}>Macho</option>
+            <option value={"female"}>Hembra</option>
+          </select>
         </label>
         <label>
-          Stock disponible:
-          <input
-            type="number"
-            value={inputData.stockA || detail.stockA}
-            name="stockA"
+          Tamaño:
+          <select
+            value={inputData.sizeD || dog.sizeD}
+            name="sizeD"
             onChange={handleInput}
-          ></input>
+          >
+            <option value={"Small"}>Pequeño</option>
+            <option value={"Medium"}>Mediano</option>
+            <option value={"Large"}>Grande</option>
+          </select>
+        </label>
+        
+        <label>
+        Edad:
+        <select
+        value={inputData.ageD || dog.ageD}
+        name="ageD"
+        onChange={handleInput}
+        >
+        <option value={"Puppy"}>Cachorro</option>
+        <option value={"Adult"}>Adulto</option>
+        <option value={"Old"}>Viejito</option>
+        </select>
         </label>
         <label>
           Imagen URL:
           <input
             type="url"
-            value={inputData.photoA || detail.photoA}
-            name="photoA"
+            value={inputData.photoD || dog.photoD}
+            name="photoD"
             onChange={handleInput}
           ></input>
         </label>
-        <img src={inputData.photoA || detail.photoA}></img>
+        <img src={inputData.photoA || dog.photoA}></img>
         <button type="submit">APLICAR CAMBIOS</button>
       </form>
       <div className={message.length ? "message" : "hide"}>
