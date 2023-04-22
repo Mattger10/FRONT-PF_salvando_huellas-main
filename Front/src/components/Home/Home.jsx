@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Home.module.css";
 import { Link } from "react-router-dom";
-import Post from "../Post/Post";
 import { useSelector } from "react-redux";
 
 export default function Home() {
@@ -11,7 +10,7 @@ export default function Home() {
     <div className={style.container}>
       <h1 className={style.title}>SALVANDO HUELLAS!</h1>
 
-      <div className={style.img_Container}>
+      <div className={style.imgContainer}>
         <div className={style.slideshowContainer}>
           <div className={style.slideshow}>
             <img className={style.sliderImg} src="/img/home-dogs1.png" alt="Image 1" />
