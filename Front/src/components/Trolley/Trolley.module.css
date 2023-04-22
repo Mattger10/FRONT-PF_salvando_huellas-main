@@ -3,13 +3,20 @@
     justify-content: center;
 }
 
-.carritoVacio{
-margin-top: 5rem;
-border: 1px solid black;
-padding: 20px;
-border-radius: 10px;
-height:min-content;
-}
+.containerCarritoVacio {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 110%;
+    margin-top: 5%;
+    margin-left: 30%;
+  }
+  
+  .carritoVacio {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+  }
 
 .containerCarritoLleno {
   width: 50%;
@@ -19,6 +26,7 @@ height:min-content;
   gap: 10px;
   grid-gap: 50px;
   margin-top: 1%;
+  margin-left: 14%;
 }
 
 .carritoLleno{
@@ -33,9 +41,7 @@ height:min-content;
     border-radius: 10px;
 }
 
-.Comprar{
-    margin-left: 20rem;
-}
+
 
 .img{
     width: 200px;
@@ -66,7 +72,7 @@ height:min-content;
     cursor: pointer;
 }
 
-.button {
+.buttonEliminar {
     margin-top: 2%;
     padding: 0.50rem;
     border: 1px solid black;
@@ -106,18 +112,18 @@ height:min-content;
     margin-top: 5%;
 }
 
-.pagar {
-   display: flex;
-   justify-content: flex-end;
-   margin-right: 5%;
+.Comprar{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .total {
- font-size: 40px;
+ font-size: 30px;
  display: flex;
  justify-content: flex-end;
- margin-right: 5%;
- margin-top: -25%;
+ margin-right: -85%;
+ margin-top: 20%;
+
 }
 
 .buttonPagar {
@@ -128,22 +134,70 @@ height:min-content;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
-    width: 200px;
-}
-
-/* .hide2 {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    height: 10%;
+    margin-top: 40%;
+    margin-right: -50%;
     
 }
 
-.hide {
+.hide2 {
     display: flex;
     justify-content: center;
-    padding: 4%;
-    border: 4px solid black;
-    background-color: #ffba0c;
+}
+
+.mercadopago {
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; 
+  padding: 4%;
+  
+  width: 30%;
+  height: 30%;
+}
+
+.hide{
+  display: none;
+}
+
+.hide2 {
+    border: 1px solid black;
+    background-color: #fae243ed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
     width: 30%;
-    height: 100%;
-} */
+    position: fixed;
+    top: 30%;
+    left: 35%;
+}
+
+.buttonX {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    transform: translate(50%, -50%);
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    background-color: #fe5735;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 6%;
+    height: 12%;
+}
+
+
+
+
+
+
+
+  
+
 
