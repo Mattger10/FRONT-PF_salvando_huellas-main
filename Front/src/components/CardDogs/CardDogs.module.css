@@ -7,10 +7,10 @@
   flex-direction: column;
   text-align: center;
   background: #fae243;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: all .3s;
   float: center;
-  margin-left: 11rem;
+  margin-left: 8rem;
   border: 3px solid #bb9715;
 }
 

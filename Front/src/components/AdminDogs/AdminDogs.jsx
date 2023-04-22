@@ -1,5 +1,5 @@
 import "./AdminDogs.modules.css";
-
+import React from 'react';
 import CardDogs from "../CardDogs/CardDogs";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ export default function AdminDogs() {
 
   };
   const handleDelete = async (id) => {
-    await axios.delete("http://localhost:3001/dogs/delete/"+id)
+    await axios.delete("/dogs/delete/"+id)
     dispatch(getDogs());
   };
   const handleAddDog = (e) => {

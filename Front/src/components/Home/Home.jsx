@@ -9,20 +9,12 @@ export default function Home() {
       <h1 className={style.title}>SALVANDO HUELLAS!</h1>
 
       <div className={style.img_Container}>
-        {/*-------------------------------------------------------------------*/}
-
         <div className={style.slideshowContainer}>
           <div className={style.slideshow}>
             <img className={style.sliderImg} src="/img/home-dogs1.png" alt="Image 1" />
             <img className={style.sliderImg} src="/img/home-dogs2.png" alt="Image 2" />
             <img className={style.sliderImg} src="/img/home-dogs3.png" alt="Image 3" />
             <img className={style.sliderImg} src="/img/home-dogs4.png" alt="Image 4" />
-            <img className={style.sliderImg} src="/img/home-dogs5.png" alt="Image 5" />
-            <img className={style.sliderImg} src="/img/home-dogs6.png" alt="Image 6" />
-            <img className={style.sliderImg} src="/img/home-dogs7.png" alt="Image 7" />
-            <img className={style.sliderImg} src="/img/home-dogs8.png" alt="Image 8" />
-            <img className={style.sliderImg} src="/img/home-dogs9.png" alt="Image 9" />
-            <img className={style.sliderImg} src="/img/home-dogs10.png" alt="Image 10" />
           </div>
         </div>
       </div>

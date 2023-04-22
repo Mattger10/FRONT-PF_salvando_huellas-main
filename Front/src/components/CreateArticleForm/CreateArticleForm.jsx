@@ -2,6 +2,7 @@ import "./CreateArticleForm.modules.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import React from 'react';
 
 export default function CreateArticle() {
 
@@ -24,7 +25,7 @@ export default function CreateArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/articles/create/", inputData);
+      const response = await axios.post("/articles/register/", {...inputData, activeA: true});
       setMessage(response.data)
     } catch (error) {
       console.error(error);

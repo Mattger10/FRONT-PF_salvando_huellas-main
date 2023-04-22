@@ -13,27 +13,33 @@ export default function Trolley() {
   initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
   const [isReady, setIsReady] = useState(true);
   const [preferenceId, setPreferenceId] = useState(null);
-  const [price, setPrice] = useState(100);
 
-  const handlePrice = (e) => {
-    setPrice(Number(e.target.value));
-  };
 
   const handleOnReady = () => {
     setIsReady(true);
   };
 
-  const fetchPreferenceId = async () => {
-    const response = await axios.post(
-      "http://localhost:3001/payment/purchases",
-      { articles: price }
+  //crear nueva contsante con las propiedades y pasarla ala funcion
+    const Article = allArticle.map((art) => {
+    return ({
+      title: art.article.nameA,
+      unit_price: art.article.priceA,
+      quantity: Number(art.cantidad),
+    }
     );
+  });
+
+  const fetchPreferenceId = async () => {
+    const response = await axios.post("/payment/purchases", {articles: Article});
     setPreferenceId(response.data.preferenceId);
   };
 
   useEffect(() => {
-    fetchPreferenceId();
-  }, [price]);
+    if(allArticle.length){
+      fetchPreferenceId()
+    };
+    console.log(allArticle)
+  }, [allArticle]);
 
   //boton para eliminar elementos del carrito
   const handleDelete = (item) => {
@@ -104,20 +110,19 @@ export default function Trolley() {
       {allArticle.length !== 0 && (
         <div className={style.Comprar}>
           <p>Total: ${getTotal()}</p>
-          <button>Finalizar Compra</button>
+
         </div>
       )}
 
-      {isReady && preferenceId ? (
+      {isReady && preferenceId && allArticle.length ? (
         <div>
-          <input value={price} onChange={handlePrice} type="number" />
-
           <Wallet
             initialization={{ preferenceId: preferenceId }}
             onReady={handleOnReady}
           />
         </div>
       ) : (
+         allArticle.length &&
         <div>Cargando...</div>
       )}
     </div>

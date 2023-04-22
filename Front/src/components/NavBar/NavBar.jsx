@@ -1,6 +1,7 @@
 import styles from "./NavBar.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import React from "react";
 
 // La NavBar se puede convertir en un menú desplegable desde el costado, por ahora está fija arriba
 
@@ -10,6 +11,7 @@ export default function NavBar() {
   const location = useLocation();
 
   return (
+    <div className={styles.container}>
     <div className={styles.nav}>
       <link
         rel="stylesheet"
@@ -96,7 +98,7 @@ export default function NavBar() {
               : styles.normalButton
           }
         >
-          DONACIONES
+          DONACIONES!
         </button>
       </Link>
       <Link to="/carrito">
@@ -110,6 +112,7 @@ export default function NavBar() {
           <i className="fa fa-user"></i>
         </div>
       </Link>
+    </div>
     </div>
   );
 }

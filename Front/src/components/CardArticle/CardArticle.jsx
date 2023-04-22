@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { detailArticle, getAllArticles } from '../../redux/actions';
 import axios from 'axios';
+import React from 'react';
 
 export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
   
@@ -36,7 +37,7 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
     navigate('/admin/articles/'+id)
   }
   const handleDelete = async () => {
- await axios.delete("http://localhost:3001/articles/delete/"+id)
+ await axios.delete("/articles/delete/"+id)
  dispatch(getAllArticles())
   }
 

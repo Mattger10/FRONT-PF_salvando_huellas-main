@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {
   ACCESS,
   SEARCH,
@@ -135,19 +135,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_ARTICLES:
-      // let getArticles = {
-      //   data: [
-      //     {
-      //       id_Article: 1,
-      //       nameA: "Article A",
-      //       priceA: 546.4,
-      //       descriptionA: "Color blue",
-      //       photoA:
-      //         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_uRkWh3G_5orgl61GZ6M_s5rgQk8hrI6XBCJAs-NXXZcShgk6b-CbvAkvFK36uMY-ydI&usqp=CAU",
-      //       stockA: 20,
-      //     },
-      //   ],
-      // };
+     
       return {
         ...state,
         allArticles: action.payload,

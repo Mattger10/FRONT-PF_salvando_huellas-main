@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllArticles } from "../../redux/actions";
 import FilterShop from "../FilterShop/FilterShop";
 import PaginationDogs from "../PaginationDogs/PaginationDogs";
+import React from "react";
+
 
 export default function Shop() {
   const onSearchArticles = useSelector((state) => state.onSearchArticles);

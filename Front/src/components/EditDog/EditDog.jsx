@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { detailArticle } from "../../redux/actions";
 import axios from "axios";
+import React from 'react';
 
 // RESOLVER PROBLEMA DE ASINCRONISMO CON EL REDUCER
 export default function EditArticle() {
@@ -24,7 +25,7 @@ export default function EditArticle() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        "http://localhost:3001/articles/update/" + id,
+        "/articles/update/" + id,
         inputData
       );
       setMessage(response.data);

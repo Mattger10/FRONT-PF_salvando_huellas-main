@@ -13,7 +13,7 @@ import History from "./components/History/History.jsx";
 import DetailsArticle from "./components/DetailArticle/DetailArticle.jsx";
 import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
 import Post from "./components/Post/Post.jsx";
-
+import React from "react";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
 import "./App.css";
