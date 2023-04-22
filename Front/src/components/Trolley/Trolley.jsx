@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from "./Trolley.module.css";
+import styles from "./Trolley.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCarrito, changeCantidad } from "../../redux/actions";
@@ -9,36 +9,36 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 export default function Trolley() {
   const dispatch = useDispatch();
   const allArticle = useSelector((state) => state.carrito);
-  const [showPay, setShowPay] = useState(false)
+  const [showPay, setShowPay] = useState(false);
 
   initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
   const [isReady, setIsReady] = useState(true);
   const [preferenceId, setPreferenceId] = useState(null);
-
 
   const handleOnReady = () => {
     setIsReady(true);
   };
 
   //crear nueva contsante con las propiedades y pasarla ala funcion
-    const Article = allArticle.map((art) => {
-    return ({
+  const Article = allArticle.map((art) => {
+    return {
       title: art.article.nameA,
       unit_price: art.article.priceA,
       quantity: Number(art.cantidad),
-    }
-    );
+    };
   });
 
   const fetchPreferenceId = async () => {
-    const response = await axios.post("/payment/purchases", {articles: Article});
+    const response = await axios.post("/payment/purchases", {
+      articles: Article,
+    });
     setPreferenceId(response.data.preferenceId);
   };
 
   useEffect(() => {
-    if(allArticle.length){
-      fetchPreferenceId()
-    };
+    if (allArticle.length) {
+      fetchPreferenceId();
+    }
   }, [allArticle]);
 
   //boton para eliminar elementos del carrito
@@ -55,80 +55,108 @@ export default function Trolley() {
     return total;
   }
 
- 
-
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       {allArticle.length === 0 && (
-        <div className={style.carritoVacio}>
-          <h4>Tu carrito está vacío ¿No sabés qué comprar?</h4>
-          <Link to="/shop">
-            <button className={style.buttonElegir}>Elegir productos</button>
-          </Link>
+        <div className={styles.containerCarritoVacio}>
+          <div className={styles.carritoVacio}>
+            <h4 className={styles.h4}>
+              Tu carrito está vacío ¿No sabés qué comprar?
+            </h4>
+            <div className={styles.containerButton1}>
+              <Link to="/shop">
+                <button className={styles.buttonElegir}>
+                  Elegir productos
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       )}
 
-      <div>
+      <div className={styles.containerCarritoLleno}>
         {allArticle.map((item, index) => (
-          <div className={style.carritoLleno} key={index}>
+          <div className={styles.carritoLleno} key={index}>
             <img
-              className={style.img}
+              className={styles.img}
               src={item.article.photoA}
               alt={"foto de " + item.article.nameA}
             />
             <p>{item.article.nameA}</p>
             <p>$ {item.article.priceA}</p>
             <p>{item.article.stockA} disponibles </p>
+            <p>Total: ${item.article.priceA * item.cantidad}</p>
 
-            <div>
+            <div className={styles.containerButtonsmasymenos}>
               <button
+                className={styles.buttonmasymenos}
                 onClick={() => dispatch(changeCantidad(-1, item.article.nameA))}
               >
                 -
               </button>
-              <span>{item.cantidad}</span>
+              <span className={styles.span}>{item.cantidad}</span>
               <button
+                className={styles.buttonmasymenos}
                 onClick={() => dispatch(changeCantidad(1, item.article.nameA))}
               >
                 +
               </button>
             </div>
 
-            <p>Total: ${item.article.priceA * item.cantidad}</p>
-
-            <button onClick={() => handleDelete(item)} className={style.button}>
+            <button
+              onClick={() => handleDelete(item)}
+              className={styles.buttonEliminar}
+            >
               eliminar
             </button>
           </div>
         ))}
       </div>
 
-      {allArticle.length !== 0 && (
-        <div className={style.Comprar}>
-          <p>Total: ${getTotal()}</p>
+      <div className={styles.Comprar}>
+        {allArticle.length !== 0 && (
+          <p className={styles.total}>Total: ${getTotal()}</p>
+        )}
 
+        {allArticle.length ? (
+          <button
+            className={styles.buttonPagar}
+            onClick={() => {
+              setShowPay(true);
+            }}
+          >
+            Pagar
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
+
+      <div>
+        <div className={showPay ? "" : styles.hide}>
+          {isReady && preferenceId && allArticle.length ? (
+            <div className={styles.hide2}>
+              <h3>Pagar con Mercado Pago</h3>
+              <Wallet
+                initialization={{ preferenceId: preferenceId }}
+                onReady={handleOnReady}
+              />
+              <button
+                className={styles.buttonX}
+                onClick={() => {
+                  setShowPay(false);
+                }}
+              >
+                X
+              </button>
+            </div>
+          ) : allArticle.length ? (
+            <div>Cargando...</div>
+          ) : (
+            "Agrega artículos a tu carrito!"
+          )}
         </div>
-      )}
-
-        {allArticle.length ? <button onClick={()=>{setShowPay(true)}}>Ir a pagar</button> : ""}
-
-        <div className={showPay ? "" : style.hide}>
-
-      {isReady && preferenceId && allArticle.length ? (
-        <div>
-          <h3>Pagar con Mercado Pago</h3>
-          <Wallet
-            initialization={{ preferenceId: preferenceId }}
-            onReady={handleOnReady}
-          />
-        </div>
-      ) : (
-         allArticle.length ?
-        <div>Cargando...</div> : "Agrega artículos a tu carrito!"
-      )}
-      <button onClick={()=>{setShowPay(false)}}>Aceptar</button>
-
-        </div>
+      </div>
     </div>
   );
 }
