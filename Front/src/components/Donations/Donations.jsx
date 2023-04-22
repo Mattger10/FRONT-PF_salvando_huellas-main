@@ -14,7 +14,7 @@ export default function Donation() {
     let newPrice = Number(e.target.value);
     if (newPrice > 0) {
       setPrice(newPrice);
-    }
+    } else setPrice(1)
   };
 
   const handleOnReady = () => {
