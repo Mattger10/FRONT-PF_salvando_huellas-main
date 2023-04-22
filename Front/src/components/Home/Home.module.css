@@ -1,6 +1,6 @@
 .container {
-  width: 98.9vw;
-  height: 85.8vh;
+  width: 99vw;
+  height: 100vh;
   background-color: #fff29a;
   overflow: hidden;
   }
@@ -12,7 +12,7 @@
   font-size: 52px;
 }
 
-.img_Container {
+.imgContainer {
   display: flex;
   text-align: center;
   margin-top: 2rem;

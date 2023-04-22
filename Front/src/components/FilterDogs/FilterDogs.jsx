@@ -10,6 +10,7 @@ const FilterDogs = ({ setCurrentPage }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFilters({ ...filters, [name]: value });
+    console.log(`Changed ${name} to ${value}`);
   };
 
   const handleSubmit = (event) => {

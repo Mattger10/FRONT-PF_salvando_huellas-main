@@ -115,12 +115,19 @@ export const getPosts = () => async (dispatch) => {
 //filtro para Dogs 
 export const fetchDogs = (age, size, sex) => async (dispatch) => {
   try {
+    const response = await axios.get(`/dogs`, {
+      params: {
+        age: age,
+        size: size,
+        sex: sex
+      }
+    });
 
     const response = await axios(`http://localhost:3001/dogs?age=${age}&size=${size}&sex=${sex}`);
     const data = await response.json();
     dispatch({
       type: 'FETCH_DOGS_SUCCESS',
-      payload: data
+      payload: response.data
     });
   } catch (error) {
     dispatch({
@@ -129,6 +136,7 @@ export const fetchDogs = (age, size, sex) => async (dispatch) => {
     });
   }
 };
+
 
 //traigo opiniones
 export const getOpinions = () => {
