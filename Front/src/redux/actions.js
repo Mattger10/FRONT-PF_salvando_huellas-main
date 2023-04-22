@@ -123,8 +123,8 @@ export const fetchDogs = (age, size, sex) => async (dispatch) => {
       }
     });
 
-    const response = await axios(`http://localhost:3001/dogs?age=${age}&size=${size}&sex=${sex}`);
-    const data = await response.json();
+    const resp = await axios(`/dogs?age=${age}&size=${size}&sex=${sex}`);
+    const data = await resp.json();
     dispatch({
       type: 'FETCH_DOGS_SUCCESS',
       payload: response.data
@@ -144,7 +144,7 @@ export const getOpinions = () => {
     dispatch({ type: 'GET_OPINIONS_REQUEST' });
 
     try {
-      const response = await axios('http://localhost:3001/opinions');
+      const response = await axios('/opinions');
       const data = await response.json();
       dispatch({ type: 'GET_OPINIONS_SUCCESS', payload: data });
     } catch (error) {
@@ -156,7 +156,7 @@ export const getOpinions = () => {
 //filtros para shop
 export const fetchArticlesDesc = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:3001/articles/desc');
+    const response = await axios.get('/articles/desc');
     dispatch({
       type: 'ARTICLES_DESC_SUCCESS',
       payload: response.data,
@@ -171,7 +171,7 @@ export const fetchArticlesDesc = () => async (dispatch) => {
 
 export const ArticlesPriceAsc = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:3001/articles/priceasc');
+    const response = await axios.get('/articles/priceasc');
     dispatch({
       type: 'ARTICLES_PRICE_ASC_SUCCESS',
       payload: response.data,
@@ -186,7 +186,7 @@ export const ArticlesPriceAsc = () => async (dispatch) => {
 
 export const ArticlesPriceDesc = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:3001/articles/pricedesc');
+    const response = await axios.get('/articles/pricedesc');
     dispatch({
       type: 'ARTICLES_PRICE_DESC_SUCCESS',
       payload: response.data,
