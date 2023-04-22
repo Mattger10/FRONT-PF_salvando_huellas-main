@@ -43,4 +43,8 @@ margin-top: 4rem;
     font-size: 1rem;
     cursor: pointer;
   }
+  
+.hide{
+    display: none;
+}
 
