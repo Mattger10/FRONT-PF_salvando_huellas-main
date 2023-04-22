@@ -63,6 +63,7 @@ export default function Shop() {
 
   return (
     <div className={styles.containerGeneral}>
+      <div className={styles.huella}>
       <FilterShop setCurrentPage={setCurrentPage} currentArticle={currentArticle}/>
       <div className={styles.shop}>
         <SearchBar />
@@ -72,6 +73,7 @@ export default function Shop() {
           paging={paging}
           totalPages={totalPages}
         />
+      </div>
       </div>
     </div>
   );

@@ -1,0 +1,39 @@
+.filters {
+    margin: 2%;
+    margin-left: 5%;
+  }
+
+  .formRow {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .label {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-size: 20px;
+  }
+
+  .select {
+    margin-top: 0%;
+    padding: 0.5%;
+    width: 12%;
+  }
+
+  .buttonFilter {
+    margin-top: 1%;
+    width: 12%;
+    height: 5%;
+    padding: 5px;
+    background-color: #fe5535;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .buttonFilter:hover {
+    background-color: #d43535;
+  }

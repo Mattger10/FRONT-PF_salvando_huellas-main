@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchArticlesDesc, ArticlesPriceAsc, ArticlesPriceDesc, getAllArticles } from '../../redux/actions';
+import styles from "./FilterShop.module.css";
 
 const FilterShop = ({ setCurrentPage }) => {
     const dispatch = useDispatch();
@@ -27,26 +28,26 @@ const FilterShop = ({ setCurrentPage }) => {
     };
      
     return (
-      <div>
-        <form onSubmit={handleChange}>
-          <label htmlFor="filter-select">Filtrar por:</label>
-          <select id="filter-select" value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
+      <div className={styles.filters}>
+        <form className={styles.formRow} onSubmit={handleChange}>
+          <label className={styles.label} htmlFor="filter-select">Filtrar por:</label>
+          <select className={styles.select} id="filter-select" value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
             <option value="default" disabled>
               Elige una opción
             </option>
             <option value="">Todos</option>
-            <option value="name-desc">Nombre (Descendiente)</option>
+            <option value="name-desc">Nombre (Descendente)</option>
           </select>
-          <label htmlFor="filter-select2">Filtrar por precio:</label>
-          <select id="filter-select2" value={sortOption2} onChange={(event) => setSortOption2(event.target.value)}>
+          <label className={styles.label} htmlFor="filter-select2">Filtrar por precio:</label>
+          <select className={styles.select} id="filter-select2" value={sortOption2} onChange={(event) => setSortOption2(event.target.value)}>
             <option value="default" disabled>
               Elige una opción
             </option>
             <option value=''>Todos</option>
-            <option value="price-asc">Precio (Ascendiente)</option>
-            <option value="price-desc">Precio (Descendiente)</option>
+            <option value="price-asc">Precio (Ascendente)</option>
+            <option value="price-desc">Precio (Descendente)</option>
           </select>
-          <button type="submit">Filtrar</button>
+          <button className={styles.buttonFilter} type="submit">Filtrar</button>
         </form>
       </div>
     );
