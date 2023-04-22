@@ -21,7 +21,8 @@ const initialState = {
   loading: false,
   error: null,
   filteredDogs: [],
-
+  opinions: [],
+  filteredArticles: [],
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -58,8 +59,61 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
+//traigo a los articulos filtrados
+      case 'ARTICLES_DESC_SUCCESS':
+        return {
+          ...state,
+          allArticles: action.payload,
+          filteredArticles: action.payload,
+        };
+      case 'ARTICLES_DESC_FAILURE':
+        return {
+          ...state,
+          error: action.error,
+        };
+      case 'ARTICLES_PRICE_ASC_SUCCESS':
+        return {
+          ...state,
+          allArticles: action.payload,
+          filteredArticles: action.payload,
+        };
+      case 'ARTICLES_PRICE_ASC_FAILURE':
+        return {
+          ...state,
+          error: action.error,
+        };
+      case 'ARTICLES_PRICE_DESC_SUCCESS':
+        return {
+          ...state,
+          allArticles: action.payload,
+          filteredArticles: action.payload,
+        };
+      case 'ARTICLES_PRICE_DESC_FAILURE':
+        return {
+          ...state,
+          error: action.error,
+        };      
 
-  
+    //uso success y failure para manejar el estado en caso de exito o fallo en las solis
+    case "FETCH_OPINIONS_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        opinions: action.payload,
+      };
+    case "FETCH_OPINIONS_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        opinions: action.payload,
+      };
+    case "FETCH_OPINIONS_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     case "FETCH_DOGS_SUCCESS":
       return {
         ...state,
@@ -173,14 +227,11 @@ const rootReducer = (state = initialState, action) => {
         carrito: updatedCarr,
       };
 
-      case DETAIL_ARTICLE:  
-      
-      return{
+    case DETAIL_ARTICLE:
+      return {
         ...state,
-        detailArticle:action.payload,
-      }
-          
-        
+        detailArticle: action.payload,
+      };
 
     default:
       return {
