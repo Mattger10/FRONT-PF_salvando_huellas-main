@@ -8,6 +8,7 @@ import React from "react";
 export default function NavBar() {
   const navigate = useNavigate();
   const access = useSelector((state) => state.access);
+  const carrito = useSelector((state) => state.carrito);
   const location = useLocation();
 
   return (
@@ -103,7 +104,7 @@ export default function NavBar() {
       <Link to="/carrito">
         <div className={styles.cartIcon}>
           <i className="fa fa-shopping-cart"></i>
-          <span className={styles.itemCount}>0</span>
+          <span className={styles.itemCount}>{carrito.length}</span>
         </div>
       </Link>
       <Link to="/account">
