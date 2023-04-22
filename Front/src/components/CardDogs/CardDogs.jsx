@@ -31,7 +31,7 @@ export default function CardDogs({ photoD, nameD, ageD, sexD, sizeD, handleEdit,
             <p>{sexD}</p>
           </div>
           <div>
-            <button onClick={handleEdit}>EDITAR</button>
+            <button onClick={()=>{handleEdit(id)}}>EDITAR</button>
             <button onClick={()=>{handleDelete(id)}}>ELIMINAR</button>
           </div>
         </div>

@@ -6,7 +6,6 @@ import { detailArticle } from "../../redux/actions";
 import axios from "axios";
 import React from 'react';
 
-// RESOLVER PROBLEMA DE ASINCRONISMO CON EL REDUCER
 export default function EditArticle() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

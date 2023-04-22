@@ -7,6 +7,7 @@ import {
   CHANGE_CANTIDAD,
   GET_ARTICLES,
   DETAIL_ARTICLE,
+  EDIT_DOG,
 } from "./actions";
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
   filteredDogs: [],
   opinions: [],
   filteredArticles: [],
+  editDog: {}
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -220,6 +222,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detailArticle: action.payload,
       };
+
+    case EDIT_DOG:
+      return {
+        ...state,
+        editDog: action.payload
+      }
 
     default:
       return {
