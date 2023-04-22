@@ -9,6 +9,7 @@ export default function Home() {
     <div className={styles.container}>
       <h1 className={styles.title}>SALVANDO HUELLAS!</h1>
 
+
       <div className={styles.body}>
         <div className={styles.kodfunGaleri}>
           <div style={{ backgroundImage: "url('img/home-dogs1.png')" }}></div>
@@ -25,6 +26,32 @@ export default function Home() {
           <h5 className={styles.follow}>
             Seguinos en nuestras redes sociales:
           </h5>
+
+    <div className={styles.body}>
+      <div className={styles.kodfunGaleri}>
+        <div style={{backgroundImage: "url('img/home-dogs1.png')"}}></div>
+        <div style={{backgroundImage: "url('/img/home-dogs2.png')"}}></div>
+        <div style={{backgroundImage: "url('/img/home-dogs3.png')"}}></div>
+        <div style={{backgroundImage: "url('/img/home-dogs4.png')"}}></div>
+        <div style={{backgroundImage: "url('/img/home-dogs5.png')"}}></div>
+        <div style={{backgroundImage: "url('/img/home-dogs6.png')"}}></div>
+      </div>
+      </div>
+
+      {/* <div>
+        <div>
+          <div className={styles.galeri}>
+            <img className={styles.img} src="/img/home-dogs1.png" alt="Image 1" />
+            <img className={styles.img} src="/img/home-dogs2.png" alt="Image 2" />
+            <img className={styles.img} src="/img/home-dogs3.png" alt="Image 3" />
+            <img className={styles.img} src="/img/home-dogs4.png" alt="Image 4" />
+          </div>
+        </div>
+      </div>
+      <div className={style.iconsContainer}>
+        <div>
+          <h5 className={styles.follow}>Seguinos en nuestras redes sociales:</h5>
+
 
           <div className={styles.icons}>
             {" "}
@@ -55,8 +82,5 @@ export default function Home() {
               />
             </a>
           </div>
-        </div>
-      </div>
-    </div>
   );
 }

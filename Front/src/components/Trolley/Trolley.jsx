@@ -9,6 +9,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 export default function Trolley() {
   const dispatch = useDispatch();
   const allArticle = useSelector((state) => state.carrito);
+  const [showPay, setShowPay] = useState(false)
 
   initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
   const [isReady, setIsReady] = useState(true);
@@ -38,7 +39,6 @@ export default function Trolley() {
     if(allArticle.length){
       fetchPreferenceId()
     };
-    console.log(allArticle)
   }, [allArticle]);
 
   //boton para eliminar elementos del carrito
@@ -55,11 +55,7 @@ export default function Trolley() {
     return total;
   }
 
-  const [isOpen, setIsOpen] = useState(false); // nuevo estado isOpen
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+ 
 
   return (
     <div className={style.container}>
@@ -114,17 +110,25 @@ export default function Trolley() {
         </div>
       )}
 
+        {allArticle.length ? <button onClick={()=>{setShowPay(true)}}>Ir a pagar</button> : ""}
+
+        <div className={showPay ? "" : style.hide}>
+
       {isReady && preferenceId && allArticle.length ? (
         <div>
+          <h3>Pagar con Mercado Pago</h3>
           <Wallet
             initialization={{ preferenceId: preferenceId }}
             onReady={handleOnReady}
           />
         </div>
       ) : (
-         allArticle.length &&
-        <div>Cargando...</div>
+         allArticle.length ?
+        <div>Cargando...</div> : "Agrega artículos a tu carrito!"
       )}
+      <button onClick={()=>{setShowPay(false)}}>Aceptar</button>
+
+        </div>
     </div>
   );
 }
