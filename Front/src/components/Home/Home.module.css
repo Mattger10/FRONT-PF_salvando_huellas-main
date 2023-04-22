@@ -1,6 +1,6 @@
 .container {
-  width: 98.9vw;
-  height: 85.8vh;
+  width: 99.9vw;
+  height: 89vh;
   background-color: #fff29a;
   overflow: hidden;
   }
@@ -10,19 +10,6 @@
   margin-top: 3rem;
   text-align: center;
   font-size: 52px;
-}
-
-.img_Container {
-  display: flex;
-  text-align: center;
-  margin-top: 2rem;
-  justify-content: center;
-}
-
-.img {
-  width: 50%;
-  height: auto;
-  max-width: 35%;
 }
 
 .iconsContainer {
@@ -43,24 +30,28 @@
   text-align: center;
 }
 
-
-
-.slideshow {
+.kodfunGaleri {
   display: flex;
-  height: 18rem;
+  margin-top: 10%;
+  height: 20rem;
   gap: 1rem;
 }
 
-.sliderImg {
+.kodfunGaleri > div {
   flex: 1;
   border-radius: 1rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto 100%;
-  transition: all 0.8s cubic-bezier(.25, .4, .45, 1.4);
+  transition: all 0.8s cubic-bezier(0.25, 0.4, 0.45, 1.4);
 }
 
-.sliderImg:hover {
-  flex: 5;
-  transform: scale(1.1);
+
+.kodfunGaleri > div:hover {
+  flex: 4;
+}
+
+.body {
+  max-width: 900px;
+  margin: 1rem auto;
 }
