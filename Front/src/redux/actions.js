@@ -122,6 +122,9 @@ export const fetchDogs = (age, size, sex) => async (dispatch) => {
         sex: sex
       }
     });
+
+    const response = await axios(`http://localhost:3001/dogs?age=${age}&size=${size}&sex=${sex}`);
+    const data = await response.json();
     dispatch({
       type: 'FETCH_DOGS_SUCCESS',
       payload: response.data
@@ -130,6 +133,68 @@ export const fetchDogs = (age, size, sex) => async (dispatch) => {
     dispatch({
       type: 'FETCH_DOGS_FAILURE',
       error: error.message
+    });
+  }
+};
+
+
+//traigo opiniones
+export const getOpinions = () => {
+  return async dispatch => {
+    dispatch({ type: 'GET_OPINIONS_REQUEST' });
+
+    try {
+      const response = await axios('http://localhost:3001/opinions');
+      const data = await response.json();
+      dispatch({ type: 'GET_OPINIONS_SUCCESS', payload: data });
+    } catch (error) {
+      dispatch({ type: 'GET_OPINIONS_FAILURE', payload: error.message });
+    }
+  };
+};
+
+//filtros para shop
+export const fetchArticlesDesc = () => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:3001/articles/desc');
+    dispatch({
+      type: 'ARTICLES_DESC_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'ARTICLES_DESC_FAILURE',
+      error: error.message,
+    });
+  }
+};
+
+export const ArticlesPriceAsc = () => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:3001/articles/priceasc');
+    dispatch({
+      type: 'ARTICLES_PRICE_ASC_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'ARTICLES_PRICE_ASC_FAILURE',
+      error: error.message,
+    });
+  }
+};
+
+export const ArticlesPriceDesc = () => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:3001/articles/pricedesc');
+    dispatch({
+      type: 'ARTICLES_PRICE_DESC_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'ARTICLES_PRICE_DESC_FAILURE',
+      error: error.message,
     });
   }
 };
