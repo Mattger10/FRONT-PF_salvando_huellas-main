@@ -46,8 +46,8 @@ const FilterDogs = ({ setCurrentPage }) => {
             Sexo:
             <select className={styles.select} name="sex" value={filters.sex} onChange={handleChange}>
               <option value="">Cualquiera</option>
-              <option value="Male">Macho</option>
-              <option value="Female">Hembra</option>
+              <option value="male">Macho</option>
+              <option value="female">Hembra</option>
             </select>
           </label>
           <button className={styles.buttonFilter} type="submit">
