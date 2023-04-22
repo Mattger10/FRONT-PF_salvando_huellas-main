@@ -11,8 +11,8 @@ export default function AdminDogs() {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
   const navigate = useNavigate()
-  const handleEdit = (e) => {
-
+  const handleEdit = (id) => {
+    navigate("/admin/dogs/"+id)
   };
   const handleDelete = async (id) => {
     await axios.delete("/dogs/delete/"+id)

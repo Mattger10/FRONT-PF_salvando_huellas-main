@@ -15,6 +15,7 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
+    const [selectedStock, setSelectedStock] = useState(1)
 
     const detail = ()=>{   
       dispatch(detailArticle(nameA))
@@ -26,7 +27,11 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
     }
 
   const handleStockSelect = (e) => {
-    setCantidad(e.target.value);
+    let actualCant = Number(e.target.value)
+    console.log(actualCant)
+    if(actualCant > 0 && actualCant <= stockA){
+      setCantidad(actualCant);
+    }
   };
   const handleAdd = (e) => {
     dispatch(addCarrito({ nameA, priceA, photoA, stockA }, cantidad));
@@ -68,11 +73,9 @@ if (location.pathname === "/admin/articles") {
         <p className={styles.title}>{nameA}</p>
         <p>$ {priceA}</p>
         {stockA > 1 ? <p>{stockA} disponibles</p> : <p>Último disponible!</p>}
-      <select className={styles.select}onChange={handleStockSelect}>
-        {stockOptions.map((num, ind) => {
-          return <option key={ind}>{num}</option>;
-        })}
-      </select>
+      <button onClick={handleStockSelect} value={cantidad-1}>-</button>
+      <p>{cantidad}</p>
+      <button onClick={handleStockSelect} value={cantidad+1}>+</button>
         <button className={styles.button}onClick={handleAdd}>Agregar al carrito</button>
     </div>
     

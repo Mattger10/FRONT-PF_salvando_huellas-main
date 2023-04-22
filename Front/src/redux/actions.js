@@ -8,6 +8,7 @@ export const DELETE_CARR = "DELETE_CARR";
 export const CHANGE_CANTIDAD = "CHANGE_CANTIDAD";
 export const GET_ARTICLES = "GET_ARTICLES";
 export const DETAIL_ARTICLE = "DETAIL_ARTICLE"
+export const EDIT_DOG = "EDIT_DOG"
 
 // Actions
 
@@ -190,3 +191,13 @@ export const ArticlesPriceDesc = () => async (dispatch) => {
   }
 };
 
+// Editar perro
+export function editDog (id){
+ return async function (dispatch){
+  const response = await axios.get('/dogs/'+id)
+  dispatch({
+    type: EDIT_DOG,
+    payload: response.data
+  })
+ }
+}
