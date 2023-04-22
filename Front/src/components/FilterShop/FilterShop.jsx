@@ -30,7 +30,7 @@ const FilterShop = ({ setCurrentPage }) => {
     return (
       <div className={styles.filters}>
         <form className={styles.formRow} onSubmit={handleChange}>
-          <label className={styles.label} htmlFor="filter-select">Filtrar por:</label>
+          <label className={styles.label} htmlFor="filter-select">Ordenar por:</label>
           <select className={styles.select} id="filter-select" value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
             <option value="default" disabled>
               Elige una opción
@@ -38,7 +38,7 @@ const FilterShop = ({ setCurrentPage }) => {
             <option value="">Todos</option>
             <option value="name-desc">Nombre (Descendente)</option>
           </select>
-          <label className={styles.label} htmlFor="filter-select2">Filtrar por precio:</label>
+          <label className={styles.label} htmlFor="filter-select2">Ordenar por precio:</label>
           <select className={styles.select} id="filter-select2" value={sortOption2} onChange={(event) => setSortOption2(event.target.value)}>
             <option value="default" disabled>
               Elige una opción
@@ -47,7 +47,7 @@ const FilterShop = ({ setCurrentPage }) => {
             <option value="price-asc">Precio (Ascendente)</option>
             <option value="price-desc">Precio (Descendente)</option>
           </select>
-          <button className={styles.buttonFilter} type="submit">Filtrar</button>
+          <button className={styles.buttonFilter} type="submit">Ordenar</button>
         </form>
       </div>
     );
