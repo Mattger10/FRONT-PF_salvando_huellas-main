@@ -1,7 +1,7 @@
 import styles from './CardArticle.module.css';
 import { useState } from 'react';
 import { addCarrito } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { detailArticle, getAllArticles } from '../../redux/actions';
@@ -20,7 +20,7 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
 
     const detail = ()=>{   
       dispatch(detailArticle(nameA))
-          
+        
    }
     let stockOptions = []
     for (let i = 0; i < stockA; i++) {
@@ -92,6 +92,7 @@ if (location.pathname === "/admin/articles") {
       <p>{cantidad}</p>
       <button onClick={handleStockSelect} value={cantidad+1}>+</button>
         <button className={styles.button}onClick={handleAdd}>Agregar al carrito</button>
+       
     </div>
     
 }
