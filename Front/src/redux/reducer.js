@@ -16,7 +16,7 @@ const initialState = {
   dogDetail: [],
   allArticles: [],
   onSearchArticles: [],
-  carrito: [],
+  carrito: 0,
   detailArticle: {},
   posts: [],
   loading: false,
@@ -167,54 +167,22 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case ADD_CARR:
-      let article = action.payload.article;
-      let cantidad = action.payload.cant;
-      state.carrito.forEach((elem) => {
-        if (elem.article.nameA === article.nameA) {
-          return {
-            ...state,
-            carrito: [
-              ...[...state.carrito].filter((art) => art.article.nameA !== name),
-              { article, cantidad },
-            ], // Si el articulo ya estaba, lo actualiza
-          };
-        }
-      });
+      console.log("addcarrito")
       return {
         ...state,
-        carrito: [...state.carrito, { article, cantidad }],
+        carrito: state.carrito + 1
       };
 
     case DELETE_CARR:
-      const newCarrito = state.carrito.filter(
-        (item) => item.article.nameA !== action.payload
-      ); //payload ya tiene el nombre del articulo
       return {
         ...state,
-        carrito: newCarrito,
+        carrito: state.carrito - 1
       };
 
     case CHANGE_CANTIDAD:
-      let itemPosition;
-      let newCantidad;
-      let updatedCarr = [...state.carrito];
-      for (let i = 0; i < updatedCarr.length; i++) {
-        if (updatedCarr[i].article.nameA === action.payload.name) {
-          itemPosition = i;
-          newCantidad =
-            Number(updatedCarr[i].cantidad) + Number(action.payload.num);
-          if (updatedCarr[i].article.stockA >= newCantidad && newCantidad > 0) {
-            updatedCarr[itemPosition].cantidad =
-              newCantidad ||
-              (action.payload.num === 1
-                ? Number(updatedCarr[itemPosition].article.stockA)
-                : 1);
-          }
-        }
-      }
       return {
         ...state,
-        carrito: updatedCarr,
+        carrito: action.payload,
       };
 
     case DETAIL_ARTICLE:

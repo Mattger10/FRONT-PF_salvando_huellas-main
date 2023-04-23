@@ -1,9 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function Home() {
+
+  useEffect(()=>{ //creo carrito vacío en localStorage, si aun no existe
+    const carrito = window.localStorage.getItem('carrito')
+    if (!carrito){
+      window.localStorage.setItem('carrito', JSON.stringify([]))
+    }
+  },[])
+  
   return (
     //contiene ademas del titulo imagenes que se mostraran automaticamente y las redes sociales para ir
     <div className={styles.container}>
