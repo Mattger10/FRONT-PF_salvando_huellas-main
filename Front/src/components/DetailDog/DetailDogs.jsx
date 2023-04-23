@@ -44,7 +44,7 @@ export default function DetailDogs() {
                 <span>Age: {DogDeits.ageD}</span>
                 <span>Sex: {DogDeits.sexD}</span>
                 <span>Size: {DogDeits.sizeD}</span>
-                <span>History: {DogDeits.historyD}</span>
+                <span>Historia: {DogDeits.historyD}</span>
                 <span>References: {DogDeits.referencesD}</span>
                 <Link className={styles.adoptame} to="/dogs">
                   <button className={styles.button}>Atrás</button>
