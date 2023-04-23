@@ -38,26 +38,32 @@ const Dogs = () => {
       <div>
         <FilterDogs setCurrentPage={setCurrentPage} currentDog={currentDog} />
       </div>
-      <div className={styles.CardDogs}>
-        {currentDog.length === 0 ? (
-          <img className={styles.image} src={perrito} alt="No puppies :("></img>
-        ) : (
-          currentDog.map((c) => {
-            return (
-              <div key={c.id}>
-                <Link className={styles.name} to={"/dogs/" + c.id_Dog}>
-                  <CardDogs
-                    nameD={c.nameD}
-                    photoD={c.photoD}
-                    sexD={c.sexD}
-                    ageD={c.ageD}
-                    sizeD={c.sizeD}
-                  />
-                </Link>
-              </div>
-            );
-          })
-        )}
+      <div className={styles.containerCards}>
+        <div className={styles.CardDogs}>
+          {currentDog.length === 0 ? (
+            <img
+              className={styles.image}
+              src={perrito}
+              alt="No puppies :("
+            ></img>
+          ) : (
+            currentDog.map((c) => {
+              return (
+                <div key={c.id}>
+                  <Link className={styles.name} to={"/dogs/" + c.id_Dog}>
+                    <CardDogs
+                      nameD={c.nameD}
+                      photoD={c.photoD}
+                      sexD={c.sexD}
+                      ageD={c.ageD}
+                      sizeD={c.sizeD}
+                    />
+                  </Link>
+                </div>
+              );
+            })
+          )}
+        </div>
       </div>
       <div>
         <PaginationDogs

@@ -15,14 +15,62 @@ export default function DetailDogs() {
     dispatch(getReferences());
   }, [dispatch, id]);
 
+  console.log("dogDeits", DogDeits);
+
+  return (
+    <div className={styles.containerAll}>
+      <div className={styles.huella}>
+      <div className={styles.container}>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap"
+          rel="stylesheet"
+        ></link>
+        <div className={styles.cardContainer}>
+          {Object.keys(DogDeits).length > 0 ? (
+
+
   return (
     <div className={styles.detalleBackground}>
       <div>
         {Object.keys(DogDeits).length > 0 ? (
           <div className={styles.Detail}>
+
             <div>
-              <h4>{DogDeits.nameD}</h4>
+              <div className={styles.header}>
+                <Link className={styles.adoptame} to="/adopt">
+                  <a href="">
+                    <img
+                      className={styles.imagen}
+                      src={DogDeits.photoD}
+                      alt={DogDeits.nameD}
+                    />
+                  </a>
+                </Link>
+                <h2>{DogDeits.nameD}</h2>
+              </div>
+
+              <div className={styles.description}>
+                <span>Age: {DogDeits.ageD}</span>
+                <span>Sex: {DogDeits.sexD}</span>
+                <span>Size: {DogDeits.sizeD}</span>
+                <span>History: {DogDeits.historyD}</span>
+                <span>References: {DogDeits.referencesD}</span>
+                <Link className={styles.adoptame} to="/dogs">
+                  <button className={styles.button}>Atrás</button>
+                </Link>
+                <Link className={styles.adoptame} to="/adopt">
+                  <button className={styles.button}>Adóptame</button>
+                </Link>
+              </div>
             </div>
+
+          ) : (
+            <div>
+              {/* va a ir un logo/gif de carga y quizas se cambie el "Cargando" */}
+              <p>Cargando</p>
+
             <img
               className={styles.imagen}
               src={DogDeits.photoD}
@@ -41,21 +89,21 @@ export default function DetailDogs() {
                   ))}
                 </ul>
               </div>
+
             </div>
-          </div>
-        ) : (
-          <div>
-            {/* va a ir un logo/gif de carga y quizas se cambie el "Cargando" */}
-            <p>Cargando</p>
-          </div>
-        )}
+          )}
+        </div>
+        <div className={styles.containAdop}></div>
       </div>
+
+
       <div className={styles.containAdop}>
         <button>
           <Link className={styles.adoptame} to="/adopt">
             Adóptame
           </Link>
         </button>
+
       </div>
     </div>
   );
