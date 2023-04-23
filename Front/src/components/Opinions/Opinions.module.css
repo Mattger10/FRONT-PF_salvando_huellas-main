@@ -1,0 +1,22 @@
+.ratinglabel {
+    font-weight: bold;
+    margin-right: 10px;
+    
+  }
+  
+  .ratingvalue {
+    font-weight: bold;
+  
+  }
+  
+  .ratingcount {
+    margin-right: 10px;
+
+  }
+  
+  .ratingstars {
+    color: green;
+    font-size: 20px;
+    
+  }
+  

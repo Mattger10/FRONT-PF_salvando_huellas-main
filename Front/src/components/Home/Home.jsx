@@ -1,7 +1,5 @@
 import React, {useEffect} from "react";
 import styles from "./Home.module.css";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 export default function Home() {
 

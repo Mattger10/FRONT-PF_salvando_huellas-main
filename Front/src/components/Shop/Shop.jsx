@@ -16,7 +16,7 @@ export default function Shop() {
   const dispatch = useDispatch();
 //paginado
   const [currentPage, setCurrentPage] = useState(1);
-  const [articlesPerPage, setArticlesPerPage] = useState(10);
+  const [articlesPerPage, setArticlesPerPage] = useState(8);
   const indexLastArticle = currentPage * articlesPerPage;
   const indexFirstArticle = indexLastArticle - articlesPerPage;
   const currentArticle = allArticles.slice(indexFirstArticle, indexLastArticle);

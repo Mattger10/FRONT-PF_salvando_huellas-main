@@ -1,26 +1,26 @@
 .image {
-    max-width: 300%;
-  /* margin-left: 500px; */
+  max-width: 300%;
+/* margin-left: 500px; */
 }
 
 .containerCards{
-  display: flex;
- flex-wrap: wrap;
-  justify-content: center;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
 }
 .CardDogs {
-  display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  gap: 20px;
+display: grid;
+grid-template-columns: repeat(4, 2fr);
+gap: 20px;
 }
 
 @media screen and (max-width: 1600px) {
-  .CardDogs {
-    grid-template-columns: repeat(4, 2fr);
-  }
+.CardDogs {
+  grid-template-columns: repeat(4, 2fr);
+}
 }
 
 .name {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
+text-decoration: none;
+color: rgb(0, 0, 0);
 }

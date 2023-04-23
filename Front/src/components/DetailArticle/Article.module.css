@@ -1,6 +1,8 @@
-.detailsArticle{
+.detailsArticle {
     display: flex;
     justify-content: center;
-    width: 100vw;
-    height: 85vh;
-}
+    width: 50vw;
+    height: 60vh;
+    margin: 0 auto;
+  }
+  
