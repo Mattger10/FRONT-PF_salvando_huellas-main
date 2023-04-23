@@ -69,26 +69,24 @@ export function searchArticles(text) {
 }
 
 // Añadir al carrito
-export function addCarrito(article, cant) {
+export function addCarrito() {
   return {
     type: ADD_CARR,
-    payload: { article, cant },
   };
 }
 
 //eliminar del carrito
-export function deleteCarrito(name) {
+export function deleteCarrito() {
   return {
     type: DELETE_CARR,
-    payload: name,
   };
 }
 
-//actualizar carrito
-export function changeCantidad(num, name) {
+// actualizar carrito
+export function changeCantidad(num) {
   return {
     type: CHANGE_CANTIDAD,
-    payload: { num, name },
+    payload: num,
   };
 }
 

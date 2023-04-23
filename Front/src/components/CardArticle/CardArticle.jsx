@@ -16,6 +16,7 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
     const navigate = useNavigate()
     const location = useLocation()
     const [selectedStock, setSelectedStock] = useState(1)
+    
 
     const detail = ()=>{   
       dispatch(detailArticle(nameA))
@@ -34,7 +35,20 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
     }
   };
   const handleAdd = (e) => {
-    dispatch(addCarrito({ nameA, priceA, photoA, stockA }, cantidad));
+    dispatch(addCarrito());
+
+    const carritoStorage = window.localStorage.getItem('carrito')
+    if (carritoStorage){
+      console.log(JSON.parse(carritoStorage))
+      const articleStorage = JSON.parse(carritoStorage).forEach(artic => {
+        if (artic.article.nameA === nameA){
+          return true
+        }
+      });
+      if (!articleStorage){
+        window.localStorage.setItem('carrito', JSON.stringify([...JSON.parse(carritoStorage), {article: {nameA, priceA, photoA, stockA}, cantidad}]))
+      } 
+    } else window.localStorage.setItem('carrito', JSON.stringify([{article: {nameA, priceA, photoA, stockA}, cantidad}]))
   };
 
   // FUNCIONES DE ADMINISTRADOR
@@ -45,6 +59,7 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
  await axios.delete("/articles/delete/"+id)
  dispatch(getAllArticles())
   }
+
 
 // ASÍ SE MUESTRAN EN ADMINISTRADOR
 if (location.pathname === "/admin/articles") {
