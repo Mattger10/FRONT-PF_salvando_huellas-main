@@ -79,6 +79,5 @@ export default function DetailDogs() {
       </div>
 
       </div>
-    </div>
   );
 }
