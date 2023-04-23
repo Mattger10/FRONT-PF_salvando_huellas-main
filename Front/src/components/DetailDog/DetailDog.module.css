@@ -11,7 +11,7 @@
     align-items: center;
     border: 2px solid rgba(68, 32, 32, 0.541);
     padding: 30px;
-    background-color: #f17108;
+    background-color: #fae243;
     width: 50%;
     margin: 0 auto;
     margin-right: 260px;
@@ -22,8 +22,8 @@
     flex-direction: column;
     align-items: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: rgb(0, 0, 0);
-    background-color: rgb(238, 201, 121);
+    color: rgb(255, 255, 255);
+    background-color: rgb(87, 52, 29);
     margin-top: 20px;
   }
   .stats span {
