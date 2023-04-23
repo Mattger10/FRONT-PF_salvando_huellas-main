@@ -1,0 +1,33 @@
+
+
+.wallet {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.title {
+    font-family: Cat paw;
+    font-size: 70px;
+    color: black;
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.containerh5 {
+    display: flex;
+    justify-content: center;
+}
+
+.h5 {
+    max-width: 40%;
+    font-size: 1.2rem;
+    text-align: justify;
+    margin-bottom: 20px;
+    border: 1px solid black; 
+    padding: 10px;
+}
+.hide {
+    display: none;
+}

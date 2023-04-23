@@ -1,46 +1,203 @@
 .container{
     display: flex;
     justify-content: center;
-    width: 100vw;
-    height: 85vh;
 }
 
-.carritoVacio{
-margin-top: 5rem;
-background-color: rgba(9, 10, 10, 0.151);
-border-radius: 10px;
-height:min-content;
+.containerCarritoVacio {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 110%;
+    margin-top: 5%;
+    margin-left: 30%;
+  }
+  
+  .carritoVacio {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+.containerCarritoLleno {
+  width: 50%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  grid-gap: 50px;
+  margin-top: 1%;
+  margin-left: 14%;
 }
 
 .carritoLleno{
-background-color: rgba(128, 128, 128, 0.603);
-border-radius: 1rem;
-margin-left: 30rem;
-margin-top: 4rem;
+    width: 120%;
+    height: 460px;
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background: rgba(206, 201, 201, 0.144);
+    border-radius: 10px;
 }
 
-.Comprar{
-    margin-left: 20rem;
-}
+
 
 .img{
-    max-width: 150px;
-    border: solid 1px;
-    border-radius: 1rem;
+    width: 200px;
+    cursor: pointer;
+    padding: 15px;
+    margin: 0 auto;
+    transition: all .3s;
+    float: center;
+}
+
+.img:hover {
+    transform: scale(1.1);
+  }
+
+.containerButton1 {
+    display: flex;
+    justify-content: center;
 }
 
 .buttonElegir{
-    margin-left: 12rem;
-}
-
-.button {
     margin-left: 2rem;
     padding: 0.50rem;
     border: none;
     border-radius: 0.25rem;
-    background-color: #f17108;
+    background-color: #fe5535;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
+}
+
+.buttonEliminar {
+    margin-top: 2%;
+    padding: 0.50rem;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    background-color: #fe5535;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 200px;
   }
+
+.h4 {
+    font-size: 30px;
+}
+
+.containerButtonsmasymenos {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonmasymenos {
+    margin-top: 2%;
+    margin-left: 10%;
+    padding: 2%;
+    border: 1px solid black;
+    border-radius: 100%;
+    background-color: #fe5535;
+    color: #fff;
+    font-size: 110%;
+    cursor: pointer;
+    width: 15%;
+}
+
+.span {
+    font-size: 100%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.Comprar{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total {
+ font-size: 30px;
+ display: flex;
+ justify-content: flex-end;
+ margin-right: -85%;
+ margin-top: 20%;
+
+}
+
+.buttonPagar {
+    padding: 0.50rem;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    background-color: #fe5735;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    height: 10%;
+    margin-top: 40%;
+    margin-right: -50%;
+    
+}
+
+.hide2 {
+    display: flex;
+    justify-content: center;
+}
+
+.mercadopago {
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; 
+  padding: 4%;
+  
+  width: 30%;
+  height: 30%;
+}
+
+.hide{
+  display: none;
+}
+
+.hide2 {
+    border: 1px solid black;
+    background-color: #fae243ed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 30%;
+    position: fixed;
+    top: 30%;
+    left: 35%;
+}
+
+.buttonX {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    transform: translate(50%, -50%);
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    background-color: #fe5735;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 6%;
+    height: 12%;
+}
+
+
+
+
+
+
+
+  
+
 

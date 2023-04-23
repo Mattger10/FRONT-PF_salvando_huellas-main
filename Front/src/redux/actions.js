@@ -8,6 +8,7 @@ export const DELETE_CARR = "DELETE_CARR";
 export const CHANGE_CANTIDAD = "CHANGE_CANTIDAD";
 export const GET_ARTICLES = "GET_ARTICLES";
 export const DETAIL_ARTICLE = "DETAIL_ARTICLE"
+export const EDIT_DOG = "EDIT_DOG"
 
 // Actions
 
@@ -68,26 +69,24 @@ export function searchArticles(text) {
 }
 
 // Añadir al carrito
-export function addCarrito(article, cant) {
+export function addCarrito() {
   return {
     type: ADD_CARR,
-    payload: { article, cant },
   };
 }
 
 //eliminar del carrito
-export function deleteCarrito(name) {
+export function deleteCarrito() {
   return {
     type: DELETE_CARR,
-    payload: name,
   };
 }
 
-//actualizar carrito
-export function changeCantidad(num, name) {
+// actualizar carrito
+export function changeCantidad(num) {
   return {
     type: CHANGE_CANTIDAD,
-    payload: { num, name },
+    payload: num,
   };
 }
 
@@ -115,11 +114,10 @@ export const getPosts = () => async (dispatch) => {
 //filtro para Dogs 
 export const fetchDogs = (age, size, sex) => async (dispatch) => {
   try {
-    const response = await fetch(`/dogs?age=${age}&size=${size}&sex=${sex}`);
-    const data = await response.json();
+    const response = await axios.get(`/dogs?age=${age}&size=${size}&sex=${sex}`);
     dispatch({
       type: 'FETCH_DOGS_SUCCESS',
-      payload: data
+      payload: response.data
     });
   } catch (error) {
     dispatch({
@@ -130,3 +128,74 @@ export const fetchDogs = (age, size, sex) => async (dispatch) => {
 };
 
 
+//traigo opiniones
+export const getOpinions = () => {
+  return async dispatch => {
+    dispatch({ type: 'GET_OPINIONS_REQUEST' });
+
+    try {
+      const response = await axios('/opinions');
+      const data = await response.json();
+      dispatch({ type: 'GET_OPINIONS_SUCCESS', payload: data });
+    } catch (error) {
+      dispatch({ type: 'GET_OPINIONS_FAILURE', payload: error.message });
+    }
+  };
+};
+
+//filtros para shop
+export const fetchArticlesDesc = () => async (dispatch) => {
+  try {
+    const response = await axios.get('/articles/desc');
+    dispatch({
+      type: 'ARTICLES_DESC_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'ARTICLES_DESC_FAILURE',
+      error: error.message,
+    });
+  }
+};
+
+export const ArticlesPriceAsc = () => async (dispatch) => {
+  try {
+    const response = await axios.get('/articles/priceasc');
+    dispatch({
+      type: 'ARTICLES_PRICE_ASC_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'ARTICLES_PRICE_ASC_FAILURE',
+      error: error.message,
+    });
+  }
+};
+
+export const ArticlesPriceDesc = () => async (dispatch) => {
+  try {
+    const response = await axios.get('/articles/pricedesc');
+    dispatch({
+      type: 'ARTICLES_PRICE_DESC_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'ARTICLES_PRICE_DESC_FAILURE',
+      error: error.message,
+    });
+  }
+};
+
+// Editar perro
+export function editDog (id){
+ return async function (dispatch){
+  const response = await axios.get('/dogs/'+id)
+  dispatch({
+    type: EDIT_DOG,
+    payload: response.data
+  })
+ }
+}

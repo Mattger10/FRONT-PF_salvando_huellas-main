@@ -7,6 +7,7 @@ import {
   CHANGE_CANTIDAD,
   GET_ARTICLES,
   DETAIL_ARTICLE,
+  EDIT_DOG,
 } from "./actions";
 
 const initialState = {
@@ -15,13 +16,15 @@ const initialState = {
   dogDetail: [],
   allArticles: [],
   onSearchArticles: [],
-  carrito: [],
+  carrito: 0,
   detailArticle: {},
   posts: [],
   loading: false,
   error: null,
   filteredDogs: [],
-
+  opinions: [],
+  filteredArticles: [],
+  editDog: {}
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -58,8 +61,61 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
+//traigo a los articulos filtrados
+      case 'ARTICLES_DESC_SUCCESS':
+        return {
+          ...state,
+          allArticles: action.payload,
+          filteredArticles: action.payload,
+        };
+      case 'ARTICLES_DESC_FAILURE':
+        return {
+          ...state,
+          error: action.error,
+        };
+      case 'ARTICLES_PRICE_ASC_SUCCESS':
+        return {
+          ...state,
+          allArticles: action.payload,
+          filteredArticles: action.payload,
+        };
+      case 'ARTICLES_PRICE_ASC_FAILURE':
+        return {
+          ...state,
+          error: action.error,
+        };
+      case 'ARTICLES_PRICE_DESC_SUCCESS':
+        return {
+          ...state,
+          allArticles: action.payload,
+          filteredArticles: action.payload,
+        };
+      case 'ARTICLES_PRICE_DESC_FAILURE':
+        return {
+          ...state,
+          error: action.error,
+        };      
 
-  
+    //uso success y failure para manejar el estado en caso de exito o fallo en las solis
+    case "FETCH_OPINIONS_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        opinions: action.payload,
+      };
+    case "FETCH_OPINIONS_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        opinions: action.payload,
+      };
+    case "FETCH_OPINIONS_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     case "FETCH_DOGS_SUCCESS":
       return {
         ...state,
@@ -111,64 +167,35 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case ADD_CARR:
-      let article = action.payload.article;
-      let cantidad = action.payload.cant;
-      state.carrito.forEach((elem) => {
-        if (elem.article.nameA === article.nameA) {
-          return {
-            ...state,
-            carrito: [
-              ...[...state.carrito].filter((art) => art.article.nameA !== name),
-              { article, cantidad },
-            ], // Si el articulo ya estaba, lo actualiza
-          };
-        }
-      });
+      console.log("addcarrito")
       return {
         ...state,
-        carrito: [...state.carrito, { article, cantidad }],
+        carrito: state.carrito + 1
       };
 
     case DELETE_CARR:
-      const newCarrito = state.carrito.filter(
-        (item) => item.article.nameA !== action.payload
-      ); //payload ya tiene el nombre del articulo
       return {
         ...state,
-        carrito: newCarrito,
+        carrito: state.carrito - 1
       };
 
     case CHANGE_CANTIDAD:
-      let itemPosition;
-      let newCantidad;
-      let updatedCarr = [...state.carrito];
-      for (let i = 0; i < updatedCarr.length; i++) {
-        if (updatedCarr[i].article.nameA === action.payload.name) {
-          itemPosition = i;
-          newCantidad =
-            Number(updatedCarr[i].cantidad) + Number(action.payload.num);
-          if (updatedCarr[i].article.stockA >= newCantidad && newCantidad > 0) {
-            updatedCarr[itemPosition].cantidad =
-              newCantidad ||
-              (action.payload.num === 1
-                ? Number(updatedCarr[itemPosition].article.stockA)
-                : 1);
-          }
-        }
-      }
       return {
         ...state,
-        carrito: updatedCarr,
+        carrito: action.payload,
       };
 
-      case DETAIL_ARTICLE:  
-      
-      return{
+    case DETAIL_ARTICLE:
+      return {
         ...state,
-        detailArticle:action.payload,
+        detailArticle: action.payload,
+      };
+
+    case EDIT_DOG:
+      return {
+        ...state,
+        editDog: action.payload
       }
-          
-        
 
     default:
       return {

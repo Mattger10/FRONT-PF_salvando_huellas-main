@@ -10,7 +10,6 @@ export default function LandingPage() {
   const { loginWithRedirect } = useAuth0()
 
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (event) => {
@@ -58,21 +57,8 @@ export default function LandingPage() {
                   className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
                 ></i>
               </button>
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Confirmar contraseña"
-                className={styles.repassword}
-                value={confirmPassword}
-                onChange={(event) => setConfirmPassword(event.target.value)}
-              />
-              <button
-                className={styles.showPasswordButton2}
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <i
-                  className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
-                ></i>
-              </button>
+              
+              
               <input
                 type="submit"
                 className={styles.submit}
