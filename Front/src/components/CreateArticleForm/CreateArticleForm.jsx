@@ -91,7 +91,7 @@ export default function CreateArticle() {
           ></input>
         </label>
         <img src={inputData.photoA}></img>
-        <button type="submit">AÑADIR ARTÍCULO</button>
+        <button type="submit">AÑADIR ARTÍCULO:</button>
       </form>
       <div className={message.length ? "message" : "hide"}>
         <h3>{message}</h3>
