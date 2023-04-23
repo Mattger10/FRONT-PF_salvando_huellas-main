@@ -33,7 +33,7 @@ export default function CardDogs({
               <p>{ageD}</p>
             </div>
             <div>
-              <h4>Size:</h4>
+              <h4>Tamaño:</h4>
               <p>{sizeD}</p>
             </div>
             <div>
