@@ -113,8 +113,8 @@ function FormularioAdopcion() {
         />
       </div>
       
-      <div>
-        <label>
+      <div className={styles.check} >
+        <label className={styles.check1}>
           ¿Tienes niños en casa?
           <input
             type="checkbox"
@@ -122,6 +122,7 @@ function FormularioAdopcion() {
             value="si"
             checked={!!tieneNiños}
             onChange={handleTieneNiñosChange}
+            
           />
           Sí
         </label>

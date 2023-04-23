@@ -5,11 +5,12 @@
 }
 
 .formulario {
+  background-color: #bb9715b4;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 3px solid #FAE243;
   border-radius: 0.5rem;
 }
 
@@ -21,27 +22,64 @@
 .formulario input[type="tel"],
 .formulario input[type="email"],
 .formulario textarea {
-  width: 100%;
+  width: 95%;
   padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
+  border: 1px solid #bb9715d8;
+  border-radius: 0.40rem;
   font-size: 1rem;
 }
+.formulario input:hover{
+  background-color: #e9e3bba9;
+  border: 1px solid;
+}
 
-.formulario input[type="checkbox"] {
-  margin-right: 0.5rem;
+ .check {
+  width: 100%;
+  text-align: left;
+} 
+
+input[type="checkbox"] {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px; /* Agregar margen derecho para separar los checkboxes */
+
+  -webkit-appearance: none;
+  outline: none;
+  transition: 0.5s;
+}
+
+input[type="checkbox"]:before {
+  content: "";
+  position: absolute;
+  top: 50%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%); /* Centrar con transform */
+  width: 15px;
+  height: 15px;
+  border: 4px solid #262626;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+input:checked[type="checkbox"]:before {
+  border-left: none;
+  border-top: none;
+  width: 10px;
+  border-color: rgb(24, 196, 24);
+  transform: translate(-50%, -50%) rotate(45deg); /* Centrar y rotar */
 }
 
 .button {
   padding: 0.50rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #fe5535;
+  background-color: #BB9715;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #d43535;
+  background-color: #8b6f08;
 }
