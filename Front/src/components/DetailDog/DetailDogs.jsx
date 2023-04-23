@@ -1,21 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getDetail } from "../../redux/actions";
+import { getDetail, getReferences } from "../../redux/actions";
 import styles from "../DetailDog/DetailDog.module.css";
 
 export default function DetailDogs() {
   const dispatch = useDispatch();
   const DogDeits = useSelector((state) => state.dogDetail);
+  const references = useSelector((state) => state.references);
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getDetail(id));
+    dispatch(getReferences());
   }, [dispatch, id]);
-
-
-  console.log("dogDeits", DogDeits);
-
 
   return (
     <div className={styles.containerAll}>
