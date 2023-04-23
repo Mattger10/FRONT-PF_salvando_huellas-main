@@ -1,7 +1,5 @@
 import React, {useEffect} from "react";
 import styles from "./Home.module.css";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 export default function Home() {
 
@@ -15,6 +13,7 @@ export default function Home() {
   return (
     //contiene ademas del titulo imagenes que se mostraran automaticamente y las redes sociales para ir
     <div className={styles.container}>
+      <div className={styles.huella}/>
       <h1 className={styles.title}>SALVANDO HUELLAS!</h1>
       <div className={styles.body}>
         <div className={styles.kodfunGaleri}>
@@ -69,6 +68,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
       </div>
     
   );

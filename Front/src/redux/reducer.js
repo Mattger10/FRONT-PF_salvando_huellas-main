@@ -24,7 +24,8 @@ const initialState = {
   filteredDogs: [],
   opinions: [],
   filteredArticles: [],
-  editDog: {}
+  editDog: {},
+  references: [],
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -61,6 +62,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
+      case 'GET_REFERENCES':
+        return{
+          ...state,
+          references: action.payload,
+        };
 //traigo a los articulos filtrados
       case 'ARTICLES_DESC_SUCCESS':
         return {
@@ -97,23 +103,19 @@ const rootReducer = (state = initialState, action) => {
         };      
 
     //uso success y failure para manejar el estado en caso de exito o fallo en las solis
-    case "FETCH_OPINIONS_REQUEST":
+    case 'GET_OPINIONS_SUCCESS':
       return {
         ...state,
-        loading: true,
         opinions: action.payload,
+        loading: false,
+        error: null
       };
-    case "FETCH_OPINIONS_SUCCESS":
+    case 'GET_OPINIONS_FAILURE':
       return {
         ...state,
+        opinions: [],
         loading: false,
-        opinions: action.payload,
-      };
-    case "FETCH_OPINIONS_FAILURE":
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
+        error: action.payload
       };
 
     case "FETCH_DOGS_SUCCESS":
