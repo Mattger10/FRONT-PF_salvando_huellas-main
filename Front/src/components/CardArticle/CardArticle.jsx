@@ -15,8 +15,7 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const [selectedStock, setSelectedStock] = useState(1)
-    
+    const [message, setMessage] = useState("")
 
     const detail = ()=>{   
       dispatch(detailArticle(nameA))
@@ -29,26 +28,32 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
 
   const handleStockSelect = (e) => {
     let actualCant = Number(e.target.value)
-    console.log(actualCant)
     if(actualCant > 0 && actualCant <= stockA){
       setCantidad(actualCant);
     }
   };
   const handleAdd = (e) => {
-    dispatch(addCarrito());
-
+    let repeated = false
     const carritoStorage = window.localStorage.getItem('carrito')
     if (carritoStorage){
-      console.log(JSON.parse(carritoStorage))
-      const articleStorage = JSON.parse(carritoStorage).forEach(artic => {
+      JSON.parse(carritoStorage).forEach(artic => {
         if (artic.article.nameA === nameA){
-          return true
+          repeated = true
         }
-      });
-      if (!articleStorage){
+      }
+      );
+      if (!repeated){
+        dispatch(addCarrito());
         window.localStorage.setItem('carrito', JSON.stringify([...JSON.parse(carritoStorage), {article: {nameA, priceA, photoA, stockA}, cantidad}]))
-      } 
-    } else window.localStorage.setItem('carrito', JSON.stringify([{article: {nameA, priceA, photoA, stockA}, cantidad}]))
+        setMessage("Se añadió al carrito")
+        setTimeout(()=>{setMessage("")}, 2000)
+      } else {
+        setMessage("Ya agregaste este artículo")
+        setTimeout(()=>{setMessage("")}, 2000)
+      }
+    } else {
+      window.localStorage.setItem('carrito', JSON.stringify([{article: {nameA, priceA, photoA, stockA}, cantidad}]))
+    }
   };
 
   // FUNCIONES DE ADMINISTRADOR
@@ -92,7 +97,7 @@ if (location.pathname === "/admin/articles") {
       <p>{cantidad}</p>
       <button onClick={handleStockSelect} value={cantidad+1}>+</button>
         <button className={styles.button}onClick={handleAdd}>Agregar al carrito</button>
-       
+        {message.length ? <p>{message}</p> : ""}
     </div>
     
 }

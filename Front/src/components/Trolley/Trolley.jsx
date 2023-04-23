@@ -13,6 +13,7 @@ export default function Trolley() {
   initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
   const [isReady, setIsReady] = useState(true);
   const [preferenceId, setPreferenceId] = useState(null);
+  const [articleMessage, setArticleMessage] = useState({message: "", name: ""})
 
   const handleOnReady = () => {
     setIsReady(true);
@@ -42,12 +43,16 @@ export default function Trolley() {
 
   //boton para eliminar elementos del carrito
   const handleDelete = (item) => {
-    dispatch(deleteCarrito());
-    const aux = [...allArticleStorage].filter(
-      (art) => art.article.nameA !== item.article.nameA
-    );
-    window.localStorage.setItem("carrito", JSON.stringify(aux));
-    setAllArticleStorage(aux);
+    setArticleMessage({message: "Artículo eliminado", name: item.article.nameA})
+    setTimeout(()=>{
+      setArticleMessage({message: "", name: ""})
+      dispatch(deleteCarrito());
+      const aux = [...allArticleStorage].filter(
+        (art) => art.article.nameA !== item.article.nameA
+      );
+      window.localStorage.setItem("carrito", JSON.stringify(aux));
+      setAllArticleStorage(aux);
+    }, 1000)
   };
 
   //calcular el precio total de todos los artículos
@@ -143,8 +148,9 @@ export default function Trolley() {
               onClick={() => handleDelete(item)}
               className={styles.buttonEliminar}
             >
-              eliminar
+              Eliminar
             </button>
+            {articleMessage.message.length ? ((articleMessage.name === item.article.nameA) && <span>Artículo eliminado</span>) : ""}
           </div>
         ))}
       </div>
