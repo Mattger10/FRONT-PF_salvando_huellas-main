@@ -29,8 +29,10 @@ export default function Donation() {
   };
 
   useEffect(() => {
-    fetchPreferenceId();
-  }, [price]);
+    if(showPay){
+      fetchPreferenceId();
+    }
+  }, [price, showPay]);
 
   return (
     <div className={styles.container}>
@@ -48,7 +50,7 @@ export default function Donation() {
           a la sociedad y mejorar la vida de los perritos en adopción.
         </h5>
       </div>
-      {isReady && preferenceId ? (
+      
         <div>
           <h4>¿Cuánto quieres donar?</h4>
           <input
@@ -73,15 +75,17 @@ export default function Donation() {
               X
             </button>
             <h4>Donar con Mercado Pago</h4>
+            {isReady && preferenceId ? (
             <Wallet
               initialization={{ preferenceId: preferenceId }}
               onReady={handleOnReady}
             />
+            ) : (
+              <span>Cargando...</span>
+            )}
           </div>
         </div>
-      ) : (
-        <div>Cargando...</div>
-      )}
+      
     </div>
   );
 }

@@ -8,11 +8,8 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 export default function Trolley() {
   const dispatch = useDispatch();
-  // const allArticle = useSelector((state) => state.carrito);
   const [showPay, setShowPay] = useState(false);
-  
-  const [allArticleStorage, setAllArticleStorage] = useState([])
-  // const allArticleStorage = JSON.parse(window.localStorage.getItem('carrito'))
+  const [allArticleStorage, setAllArticleStorage] = useState([]);
   initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
   const [isReady, setIsReady] = useState(true);
   const [preferenceId, setPreferenceId] = useState(null);
@@ -38,17 +35,19 @@ export default function Trolley() {
   };
 
   useEffect(() => {
-    if (allArticleStorage.length) {
+    if (allArticleStorage.length && showPay) {
       fetchPreferenceId();
     }
-  }, [allArticleStorage]);
+  }, [allArticleStorage, showPay]);
 
   //boton para eliminar elementos del carrito
   const handleDelete = (item) => {
     dispatch(deleteCarrito());
-    const aux = [...allArticleStorage].filter(art=>art.article.nameA !== item.article.nameA)
-    window.localStorage.setItem('carrito', JSON.stringify(aux))
-    setAllArticleStorage(aux)
+    const aux = [...allArticleStorage].filter(
+      (art) => art.article.nameA !== item.article.nameA
+    );
+    window.localStorage.setItem("carrito", JSON.stringify(aux));
+    setAllArticleStorage(aux);
   };
 
   //calcular el precio total de todos los artículos
@@ -60,32 +59,34 @@ export default function Trolley() {
     return total;
   }
 
-  useEffect(()=>{ // Si no se creó el storage, lo creo
-    if(!window.localStorage.getItem('carrito')){
-      window.localStorage.setItem('carrito', JSON.stringify([]))
+  useEffect(() => {
+    // Si no se creó el storage, lo creo
+    if (!window.localStorage.getItem("carrito")) {
+      window.localStorage.setItem("carrito", JSON.stringify([]));
     }
-  },[])
-  useEffect(()=>{
-    const aux = JSON.parse(window.localStorage.getItem('carrito'))
-    setAllArticleStorage(aux)
-  },[])
+  }, []);
+  useEffect(() => {
+    const aux = JSON.parse(window.localStorage.getItem("carrito"));
+    setAllArticleStorage(aux);
+  }, []);
 
-  const handleCarritoStorage = (item, num)=>{ //actualizar cantidades en el carrito
-    let carritoStorage = JSON.parse(window.localStorage.getItem('carrito'))
+  const handleCarritoStorage = (item, num) => {
+    //actualizar cantidades en el carrito
+    let carritoStorage = JSON.parse(window.localStorage.getItem("carrito"));
     for (let i = 0; i < carritoStorage.length; i++) {
-      if (carritoStorage[i].article.nameA === item.article.nameA){
-          carritoStorage[i].cantidad += num
-          if (carritoStorage[i].cantidad < 1){
-            carritoStorage[i].cantidad = 1
-          }
-          if (carritoStorage[i].cantidad > item.article.stockA){
-            carritoStorage[i].cantidad = item.article.stockA
-          }
+      if (carritoStorage[i].article.nameA === item.article.nameA) {
+        carritoStorage[i].cantidad += num;
+        if (carritoStorage[i].cantidad < 1) {
+          carritoStorage[i].cantidad = 1;
+        }
+        if (carritoStorage[i].cantidad > item.article.stockA) {
+          carritoStorage[i].cantidad = item.article.stockA;
+        }
       }
     }
-    window.localStorage.setItem('carrito', JSON.stringify(carritoStorage))
-    setAllArticleStorage(carritoStorage)
-  }
+    window.localStorage.setItem("carrito", JSON.stringify(carritoStorage));
+    setAllArticleStorage(carritoStorage);
+  };
   return (
     <div className={styles.container}>
       {allArticleStorage.length === 0 && (
@@ -122,8 +123,7 @@ export default function Trolley() {
               <button
                 className={styles.buttonmasymenos}
                 onClick={() => {
-                  // dispatch(changeCantidad(-1, item.article.nameA))
-                  handleCarritoStorage(item, -1)
+                  handleCarritoStorage(item, -1);
                 }}
               >
                 -
@@ -132,8 +132,7 @@ export default function Trolley() {
               <button
                 className={styles.buttonmasymenos}
                 onClick={() => {
-                  // dispatch(changeCantidad(1, item.article.nameA))
-                  handleCarritoStorage(item, 1)
+                  handleCarritoStorage(item, 1);
                 }}
               >
                 +
@@ -171,13 +170,18 @@ export default function Trolley() {
 
       <div>
         <div className={showPay ? "" : styles.hide}>
-          {isReady && preferenceId && allArticleStorage.length ? (
+          {allArticleStorage.length ? (
             <div className={styles.hide2}>
               <h3>Pagar con Mercado Pago</h3>
-              <Wallet
-                initialization={{ preferenceId: preferenceId }}
-                onReady={handleOnReady}
-              />
+              {isReady && preferenceId ? (
+                <Wallet
+                  initialization={{ preferenceId: preferenceId }}
+                  onReady={handleOnReady}
+                />
+              ) : (
+                <span>Cargando...</span>
+              )}
+
               <button
                 className={styles.buttonX}
                 onClick={() => {
@@ -187,10 +191,8 @@ export default function Trolley() {
                 X
               </button>
             </div>
-          ) : allArticleStorage.length ? (
-            <div>Cargando...</div>
           ) : (
-            "Agrega artículos a tu carrito!"
+            ""
           )}
         </div>
       </div>
