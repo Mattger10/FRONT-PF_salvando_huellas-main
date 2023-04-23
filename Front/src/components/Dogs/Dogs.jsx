@@ -29,7 +29,7 @@ const Dogs = () => {
   };
 
   useEffect(() => {
-    console.log("Fetching dogs...");
+    
     dispatch(getDogs());
   }, [dispatch]);
 
