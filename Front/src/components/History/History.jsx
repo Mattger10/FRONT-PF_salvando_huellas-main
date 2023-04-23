@@ -5,7 +5,7 @@ export default function History() {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title} >¡SALVANDO HUELLAS!</h1>
+            <h1 className={styles.title} >SALVANDO HUELLAS!</h1>
             <h5 className={styles.text} >
                 Hace más de 20 años nos encontramos un grupo de personas en nuestra ciudad y alrededores,
                 trabajando cada uno por su lado en la misma causa, tratar de aliviar y ayudar a los animales necesitados en situación de calle y de barrios carenciados,

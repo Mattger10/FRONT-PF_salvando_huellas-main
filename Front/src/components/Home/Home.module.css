@@ -18,19 +18,17 @@
     pointer-events: none;
   }
   
+
 .title {
-  font-family: Cat paw;
-  font-size: 70px;
-  color: black;
-  margin: 3rem;
-  display: flex;
-  justify-content: center;
+  margin-top: 1%;
+  text-align: center;
+  font-size: 52px;
 }
 
 .iconsContainer {
   display: flex;
   justify-content: center;
-  position: fixed;
+ position: fixed;
   bottom: 0;
   width: 100vw;
   background-color: #fae243;
