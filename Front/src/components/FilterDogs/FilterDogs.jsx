@@ -10,12 +10,12 @@ const FilterDogs = ({ setCurrentPage }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFilters({ ...filters, [name]: value });
-    console.log(`Changed ${name} to ${value}`);
+   
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Filters: ", filters);
+   
     dispatch(fetchDogs(filters.age, filters.size, filters.sex));
     setCurrentPage(1);
   };
