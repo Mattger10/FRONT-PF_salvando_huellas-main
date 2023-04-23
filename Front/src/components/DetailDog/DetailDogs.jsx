@@ -50,7 +50,7 @@ export default function DetailDogs() {
                   <button className={styles.button}>Atrás</button>
                 </Link>
                 <Link className={styles.adoptame} to="/adopt">
-                  <button className={styles.button}>Adóptame</button>
+                  <button className={styles.button}>Adóptame!</button>
                 </Link>
               </div>
               <div>
