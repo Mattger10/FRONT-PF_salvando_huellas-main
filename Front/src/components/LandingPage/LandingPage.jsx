@@ -33,11 +33,13 @@ export default function LandingPage() {
           addressU: "random street 1",
           reasonU: "Reason",
         });
+        
         setRegisterMessage("Usuario creado correctamente");
         setTimeout(() => {
           setRegisterMessage("");
         }, 2000);
       } catch (error) {
+        console.log(error.message)
         setErrors({ ...errors, axios: error.message });
         setTimeout(() => {
           setErrors({});
@@ -51,14 +53,16 @@ export default function LandingPage() {
       // mostrar mensaje de error
     }
   };
+  
   const handleLogin = async (event) => {
     event.preventDefault();
     if (!Object.keys(errors).length) {
       try {
-        await axios.post("/users/login", {
+        const response = await axios.post("/users/login", {
           emailU: email,
           passwordU: password,
         });
+        console.log(response.data)
         navigate("/home");
       } catch (error) {
         setErrors({ ...errors, axios: error.message });
