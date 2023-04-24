@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from "./Article.module.css";
+import styles from "./Article.module.css";
 import { addCarrito } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -54,30 +54,30 @@ export default function DetailsArticle() {
 
   return (
     <div>
-      <div className={style.detailsArticle}>
-        <div className={style.detailsLeft}>
+      <div className={styles.detailsArticle}>
+        <div className={styles.detailsLeft}>
           <img
-            className={style.img}
+            className={styles.img}
             src={detail.photoA}
             alt={"foto de " + detail.nameA}
           />
         </div>
 
-        <div className={style.detailsRight}>
+        <div className={styles.detailsRight}>
           <p>{detail.nameA}</p>
-          <p className={style.price}>$ {detail.priceA}</p>
-          <p className={style.description}>{detail.descriptionA}</p>
+          <p className={styles.price}>$ {detail.priceA}</p>
+          <p className={styles.description}>{detail.descriptionA}</p>
           {detail.stockA > 1 ? (
             <p>{detail.stockA} disponibles</p>
           ) : (
             <p>Último disponible!</p>
           )}
-          <select onChange={handleStockSelect}>
+          <select onChange={handleStockSelect} className={styles.stockSelect}>
             {stockOptions.map((num, ind) => {
               return <option key={ind}>{num}</option>;
             })}
           </select>
-          <button className={style.button} onClick={handleAdd}>
+          <button className={styles.button} onClick={handleAdd}>
             Agregar al carrito
           </button>
           {message.length ? <p>{message}</p>: ""}

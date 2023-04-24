@@ -48,3 +48,23 @@
 .button:hover {
   background-color: #d43535;
 }
+
+@media (max-width: 1366px) { 
+  .buttonFilter {
+    margin-top: 2.9%;
+    width: 4%;
+    height: 5%;
+    padding: 4px;
+    background-color: #fe5535;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  .buttonFilter:hover {
+    background-color: #d43535;
+  }
+}
+  

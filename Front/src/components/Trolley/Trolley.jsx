@@ -13,7 +13,10 @@ export default function Trolley() {
   initMercadoPago("TEST-99c0a5cc-1346-4b33-9653-d582c80c7732");
   const [isReady, setIsReady] = useState(true);
   const [preferenceId, setPreferenceId] = useState(null);
-  const [articleMessage, setArticleMessage] = useState({message: "", name: ""})
+  const [articleMessage, setArticleMessage] = useState({
+    message: "",
+    name: "",
+  });
 
   const handleOnReady = () => {
     setIsReady(true);
@@ -43,16 +46,19 @@ export default function Trolley() {
 
   //boton para eliminar elementos del carrito
   const handleDelete = (item) => {
-    setArticleMessage({message: "Artículo eliminado", name: item.article.nameA})
-    setTimeout(()=>{
-      setArticleMessage({message: "", name: ""})
+    setArticleMessage({
+      message: "Artículo eliminado",
+      name: item.article.nameA,
+    });
+    setTimeout(() => {
+      setArticleMessage({ message: "", name: "" });
       dispatch(deleteCarrito());
       const aux = [...allArticleStorage].filter(
         (art) => art.article.nameA !== item.article.nameA
       );
       window.localStorage.setItem("carrito", JSON.stringify(aux));
       setAllArticleStorage(aux);
-    }, 1000)
+    }, 1000);
   };
 
   //calcular el precio total de todos los artículos
@@ -106,6 +112,7 @@ export default function Trolley() {
                   Elegir productos
                 </button>
               </Link>
+              <p className={styles.huella}></p>
             </div>
           </div>
         </div>
@@ -126,7 +133,7 @@ export default function Trolley() {
 
             <div className={styles.containerButtonsmasymenos}>
               <button
-                className={styles.buttonmasymenos}
+                className={styles.buttonMenos}
                 onClick={() => {
                   handleCarritoStorage(item, -1);
                 }}
@@ -135,7 +142,7 @@ export default function Trolley() {
               </button>
               <span className={styles.span}>{item.cantidad}</span>
               <button
-                className={styles.buttonmasymenos}
+                className={styles.buttonMas}
                 onClick={() => {
                   handleCarritoStorage(item, 1);
                 }}
@@ -150,7 +157,11 @@ export default function Trolley() {
             >
               Eliminar
             </button>
-            {articleMessage.message.length ? ((articleMessage.name === item.article.nameA) && <span>Artículo eliminado</span>) : ""}
+            {articleMessage.message.length
+              ? articleMessage.name === item.article.nameA && (
+                  <span className={styles.span2}>Artículo eliminado</span>
+                )
+              : ""}
           </div>
         ))}
       </div>

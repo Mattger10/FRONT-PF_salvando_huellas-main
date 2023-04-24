@@ -1,6 +1,7 @@
 .container{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .containerCarritoVacio {
@@ -11,10 +12,23 @@
     margin-top: 5%;
     margin-left: 30%;
   }
+
+  .huella {
+    position: fixed;
+    top: 35%;
+    left: 64%;
+    z-index: 1;
+    width: 30%;
+    height: 50%;
+    background: url('../../assets/huellasperro.svg');
+    background-repeat: no-repeat;
+    background-size: 10%;
+    pointer-events: none;
+  }
   
   .carritoVacio {
-    border: 1px solid black;
-    padding: 20px;
+    border: 1px solid #ccc;
+    padding: 100px;
     border-radius: 10px;
   }
 
@@ -75,7 +89,7 @@
 .buttonEliminar {
     margin-top: 2%;
     padding: 0.50rem;
-    border: 1px solid black;
+    border: 1px solid #cccccc;
     border-radius: 0.25rem;
     background-color: #fe5535;
     color: #fff;
@@ -84,33 +98,55 @@
     width: 200px;
   }
 
+  .buttonEliminar:hover {
+    background-color: #d43535;
+  }
+
 .h4 {
     font-size: 30px;
 }
 
 .containerButtonsmasymenos {
     display: flex;
-    justify-content: center;
-}
-
-.buttonmasymenos {
-    margin-top: 2%;
-    margin-left: 10%;
-    padding: 2%;
-    border: 1px solid black;
-    border-radius: 100%;
-    background-color: #fe5535;
-    color: #fff;
-    font-size: 110%;
+    align-items: center;
+  }
+  
+  .buttonMenos,
+  .buttonMas {
+    display: inline-block;
+    background-color: #fe5735;
+    border: 1px solid #cccccc;
+    color: #ffffff;
     cursor: pointer;
-    width: 15%;
-}
+    font-size: 16px;
+    margin: 0;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    margin-left: 12.8%;
+  }
+  
+  .buttonMenos:hover,
+  .buttonMas:hover {
+    background-color: #d43535;
+  }
+  
+  .span {
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 25%;
+    
+  }
 
-.span {
-    font-size: 100%;
-    margin-left: 10%;
-    margin-top: 5%;
-}
+  .span2 {
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 25%;
+  }
+
 
 .Comprar{
     display: flex;
@@ -130,7 +166,7 @@
 
 .buttonPagar {
     padding: 0.50rem;
-    border: 1px solid black;
+    border: 1px solid #cccccc;
     border-radius: 0.25rem;
     background-color: #fe5735;
     color: #fff;
@@ -183,7 +219,7 @@
     right: 5%;
     transform: translate(50%, -50%);
     padding: 1%;
-    border: 1px solid black;
+    border: 1px solid #cccccc;
     border-radius: 0.25rem;
     background-color: #fe5735;
     color: #fff;
@@ -193,7 +229,30 @@
     height: 12%;
 }
 
-
+@media (max-width: 1366px) {
+  .total {
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -70%;
+    margin-top: -120%;
+   
+   }
+   
+   .buttonPagar {
+       padding: 0.50rem;
+       border: 1px solid #cccccc;
+       border-radius: 0.25rem;
+       background-color: #fe5735;
+       color: #fff;
+       font-size: 1rem;
+       cursor: pointer;
+       width: 80%;
+       height: 10%;
+       margin-top: -100%;
+       margin-right: -90%;
+   }
+}
 
 
 

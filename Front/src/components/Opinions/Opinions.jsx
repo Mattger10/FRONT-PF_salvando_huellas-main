@@ -55,8 +55,8 @@ const Opinions = () => {
   });
 
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.resumen}>
         <h2>Resumen de clasificaciones</h2>
         <ul>
           <li>
@@ -121,7 +121,7 @@ const Opinions = () => {
         </ul>
       </div>
 
-      <div>
+      <div className={styles.clasificaciones}>
         <h2>Clasificaciones y opiniones</h2>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
