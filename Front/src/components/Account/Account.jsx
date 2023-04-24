@@ -9,7 +9,7 @@ const Account = () => {
 
   const userLocal = JSON.parse(window.localStorage.getItem('user')) || {}
 
-  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+ 
 
   const navigate = useNavigate();
 
@@ -137,8 +137,7 @@ const Account = () => {
 
         <button className={styles.button}
 
-        <button
-          className={styles.button}
+        
 
           onClick={() => {
             window.localStorage.setItem("carrito", JSON.stringify([]));
