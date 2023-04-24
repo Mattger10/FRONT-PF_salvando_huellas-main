@@ -22,7 +22,7 @@
 .formulario input[type="tel"],
 .formulario input[type="email"],
 .formulario textarea {
-  width: 95%;
+  width: 100%;
   padding: 0.5rem;
   border: 1px solid #bb9715d8;
   border-radius: 0.40rem;
@@ -31,6 +31,14 @@
 .formulario input:hover{
   background-color: #e9e3bba9;
   border: 1px solid;
+}
+
+.formulario select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #bb9715d8;
+  border-radius: 0.40rem;
+  font-size: 1rem;
 }
 
  .check {
@@ -82,4 +90,39 @@ input:checked[type="checkbox"]:before {
 
 .button:hover {
   background-color: #8b6f08;
+}
+
+/* INICIO DE SESIÓN OBLIGATORIO */ 
+
+.containerObligatorio {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.titleObligatorio {
+  font-size: 50px;
+  margin-bottom: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.subtitleObligatorio {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.buttonObligatorio {
+  background-color: #fe5535;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.buttonObligatorio:hover {
+  background-color: #d43535;
 }

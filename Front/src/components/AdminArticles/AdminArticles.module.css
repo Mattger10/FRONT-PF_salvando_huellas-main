@@ -16,9 +16,10 @@
 }
 
 .h2 {
-    font-size: 40px;
+    font-size: 50px;
     margin-top: -5%;
     margin-bottom: 5%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .containerButtons {
@@ -40,7 +41,7 @@
   .button {
     margin-top: 2%;
       padding: 0.50rem;
-      border: 1px solid black;
+      border: 1px solid #cccccc;
       border-radius: 0.25rem;
       background-color: #fe5535;
       color: #fff;

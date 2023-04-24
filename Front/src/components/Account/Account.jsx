@@ -6,7 +6,7 @@ import styles from "./Account.module.css";
 const Account = () => {
   const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
-  const userLocal = JSON.parse(window.localStorage.getItem('user'))
+  const userLocal = JSON.parse(window.localStorage.getItem('user')) || {}
   const navigate = useNavigate();
 
   const toggleEditingProfile = () => {
@@ -112,18 +112,13 @@ const Account = () => {
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
-        <button
-
-          onClick={() => logout({ returnTo: "/" })}
-          className={styles.button}
-
+        <button className={styles.button}
           onClick={() => {
             window.localStorage.setItem('carrito', JSON.stringify([]))
             window.localStorage.setItem('user', JSON.stringify({}))
             logout({ returnTo: "/" })
           }}
-          className={styles.boton}
-
+          
         >
           Cerrar sesión
         </button>

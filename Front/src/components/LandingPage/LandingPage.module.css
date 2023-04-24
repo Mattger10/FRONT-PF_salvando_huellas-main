@@ -144,8 +144,8 @@
 
 .showPasswordButton {
   position: absolute;
-  top: 63%;
-  right: 1rem;
+  top: 54%;
+  right: 3rem;
   transform: translateY(-50%);
   background-color: transparent;
   border: none;
