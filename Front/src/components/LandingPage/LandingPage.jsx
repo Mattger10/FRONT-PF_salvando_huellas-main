@@ -63,6 +63,7 @@ export default function LandingPage() {
           passwordU: password,
         });
         console.log(response.data)
+        window.localStorage.setItem('user', JSON.stringify(response.data))
         navigate("/home");
       } catch (error) {
         setErrors({ ...errors, axios: error.message });

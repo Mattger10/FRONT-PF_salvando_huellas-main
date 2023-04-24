@@ -6,7 +6,7 @@ import styles from "./Account.module.css";
 const Account = () => {
   const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
-
+  const userLocal = JSON.parse(window.localStorage.getItem('user'))
   const navigate = useNavigate();
 
   const toggleEditingProfile = () => {
@@ -70,12 +70,19 @@ const Account = () => {
       <div className={styles.perfil}>
         <div className={styles.portada}>
         {isAuthenticated && (<div className={styles.avatar}>
-            <img className={styles.img} src={user.picture} alt={user.name} />
+            <img className={styles.img} src={user.picture } alt={user.name} />
             <button className={styles.botonAvatar} type="button" onClick={handleImageUpload}>
               <i className="far fa-image"></i>
             </button>
           </div>
         )}
+        {userLocal.nameU ? (<div className={styles.avatar}>
+            <img className={styles.img} src={"" } alt={userLocal.nameU} />
+            <button className={styles.botonAvatar} type="button" onClick={handleImageUpload}>
+              <i className="far fa-image"></i>
+            </button>
+          </div>
+        ) : ""}
         </div>
       </div>
       <div className={styles.perfilBody}>
@@ -84,6 +91,10 @@ const Account = () => {
           <p className={styles.texto}>Email: {user.email}</p>
         </div>
       )}
+      {userLocal.nameU ? (<div className={styles.perfilBio}>
+          <h3 className={styles.titulo}>{userLocal.nameU + " " + userLocal.lastNameU}</h3>
+          <p className={styles.texto}>Email: {userLocal.emailU}</p>
+        </div>) : ""}
         <div className={styles.perfilUsuarioFooter}>
           <ul className={styles.listaDatos}>
             <li> Mis donaciones:</li>
@@ -102,7 +113,11 @@ const Account = () => {
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button>
         <button
-          onClick={() => logout({ returnTo: "/" })}
+          onClick={() => {
+            window.localStorage.setItem('carrito', JSON.stringify([]))
+            window.localStorage.setItem('user', JSON.stringify({}))
+            logout({ returnTo: "/" })
+          }}
           className={styles.boton}
         >
           Cerrar sesión
