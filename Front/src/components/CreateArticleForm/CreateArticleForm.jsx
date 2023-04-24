@@ -1,4 +1,4 @@
-import "./CreateArticleForm.modules.css";
+import styles from "./CreateArticleForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -36,66 +36,75 @@ export default function CreateArticle() {
 
   }, []);
   return (
-    <div>
-      <button onClick={()=>{navigate('/admin/articles')}}>Volver</button>
-      <h2>Crear artículo en la tienda</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className={styles.container}>
+      <h2 className={styles.h2}>CREAR ARTÍCULO EN LA TIENDA</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.label}>
           Nombre:
-          <input
+          <input className={styles.input}
             type="text"
             value={inputData.nameA}
             name="nameA"
             onChange={handleInput}
             placeholder="Ingresa un nombre..."
+            required
           ></input>
         </label>
-        <label>
-          Descripción:
-          <textarea
-            type="text"
-            value={inputData.descriptionA}
-            name="descriptionA"
-            onChange={handleInput}
-            placeholder="Ingresa una descripción..."
-          ></textarea>
-        </label>
-        <label>
+        <label className={styles.label}>
           Precio:
-          <input
+          <input className={styles.input}
             type="number"
             value={inputData.priceA}
             name="priceA"
             onChange={handleInput}
             placeholder="Ingresa un precio..."
+            required
           ></input>
         </label>
-        <label>
+        <label className={styles.label}>
           Stock disponible:
-          <input
+          <input className={styles.input}
             type="number"
             value={inputData.stockA}
             name="stockA"
             onChange={handleInput}
             placeholder="Ingresa el stock..."
+            required
           ></input>
         </label>
-        <label>
+        <label className={styles.label}>
+          Descripción:
+          <textarea className={styles.textarea}
+            type="text"
+            value={inputData.descriptionA}
+            name="descriptionA"
+            onChange={handleInput}
+            placeholder="Ingresa una descripción..."
+            required
+          ></textarea>
+        </label>
+        <label className={styles.label}>
           Imagen URL:
-          <input
+          <input className={styles.input}
             type="url"
             value={inputData.photoA}
             name="photoA"
             onChange={handleInput}
             placeholder="Pega aquí la URL..."
+            required
           ></input>
         </label>
-        <img src={inputData.photoA}></img>
-        <button type="submit">AÑADIR ARTÍCULO:</button>
+        <img className={styles.img} src={inputData.photoA}></img>
+        <div className={styles.containerButton}>
+        <button className={styles.button} onClick={()=>{navigate('/admin/articles')}}>VOLVER</button>
+        <button className={styles.button} type="submit">AÑADIR ARTÍCULO</button>
+        </div>
       </form>
-      <div className={message.length ? "message" : "hide"}>
+      <div className={styles.containerMessage}>
+      <div className={message.length ? styles.message : "hide"}>
         <h3>{message}</h3>
-        <button onClick={()=>{setMessage("")}}>Aceptar</button>
+        <button className={styles.button} onClick={()=>{setMessage("")}}>Aceptar</button>
+      </div>
       </div>
     </div>
   );
