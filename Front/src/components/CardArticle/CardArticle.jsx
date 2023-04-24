@@ -76,6 +76,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
     dispatch(getAllArticles());
   };
 
+
   // ASÍ SE MUESTRAN EN ADMINISTRADOR
   if (location.pathname === "/admin/articles") {
     return (
