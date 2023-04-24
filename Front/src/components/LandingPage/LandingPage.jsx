@@ -22,6 +22,14 @@ export default function LandingPage() {
     if (!Object.keys(errors).length) {
       // enviar formulario
       try {
+        const allUsers = await axios.get('/users')
+        if (allUsers){
+          allUsers.data.forEach(u => {
+            if (u.emailU.toLowerCase() === email.toLowerCase()){
+              throw new Error('Ya existe un usuario con ese email')
+            }
+          })
+        }
         console.log({name: name.split(" ")[0],lastname: name.split(" ")[1], email, password})
         await axios.post("/users/register", {
           nameU: name.split(" ")[0],
@@ -62,7 +70,6 @@ export default function LandingPage() {
           emailU: email,
           passwordU: password,
         });
-        console.log(response.data)
         window.localStorage.setItem('user', JSON.stringify(response.data))
         navigate("/home");
       } catch (error) {
