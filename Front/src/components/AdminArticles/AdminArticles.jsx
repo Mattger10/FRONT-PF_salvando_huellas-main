@@ -1,14 +1,14 @@
-import "./AdminArticles.modules.css";
+import styles from "./AdminArticles.module.css";
 import CardArticle from "../CardArticle/CardArticle";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllArticles } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import React from 'react';
+import React from "react";
 
 export default function AdminArticles() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const articles = useSelector((state) => state.allArticles);
   const showArticles = articles.map((art, index) => {
     return (
@@ -26,12 +26,31 @@ export default function AdminArticles() {
   useEffect(() => {
     dispatch(getAllArticles());
   }, []);
+
   return (
-    <div>
-      <button onClick={()=>{navigate('/account')}}>Volver</button>
-      <h2>Gestionar Artículos</h2>
-      <button onClick={()=>{navigate('/admin/articles/create')}}>Añadir un nuevo artículo</button>
-      <div className="artListAdmin">{showArticles}</div>
+    <div className={styles.containerAll}>
+      <div className={styles.containerButtons}>
+        <button
+          className={styles.button}
+          onClick={() => {
+            navigate("/account");
+          }}
+        >
+          Volver
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => {
+            navigate("/admin/articles/create");
+          }}
+        >
+          Añadir un nuevo artículo
+        </button>
+      </div>
+      <div className={styles.container}>
+        <h2 className={styles.h2}>GESTIONAR ARTÍCULOS</h2>
+        <div className={styles.artListAdmin}>{showArticles}</div>
+      </div>
     </div>
   );
 }

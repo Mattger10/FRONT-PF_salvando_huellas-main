@@ -1,3 +1,15 @@
+.cardArticle2 {
+  width: 90%;
+  height: 390px;
+  margin-top: -4%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: rgba(206, 201, 201, 0.144);
+  border-radius: 10px;
+}
+
 .cardArticle {
   width: 120%;
   height: 400px;
@@ -64,3 +76,38 @@
     width: 200px;
     
   }
+
+  .buttonEditar {
+    margin-top: 2%;
+      padding: 0.50rem;
+      border: 1px solid black;
+      border-radius: 0.25rem;
+      background-color: #fe5535;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 100px;
+      margin-right: 5%;
+    }
+  
+    .buttonEditar:hover {
+      background-color: #d43535;
+    }
+
+    .buttonEliminar {
+      margin-top: 2%;
+        padding: 0.50rem;
+        border: 1px solid black;
+        border-radius: 0.25rem;
+        background-color: #fe5535;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 100px;
+      }
+    
+      .buttonEliminar:hover {
+        background-color: #d43535;
+      }
+    
+  
