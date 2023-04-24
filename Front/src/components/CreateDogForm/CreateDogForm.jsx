@@ -115,7 +115,7 @@ export default function CreateDog() {
         </label>
         <img className={styles.img} src={inputData.photoD}></img>
         <div className={styles.containerButton}>
-        <button
+          <button
             className={styles.button}
             onClick={() => {
               navigate("/admin/dogs");
@@ -126,9 +126,24 @@ export default function CreateDog() {
           <button className={styles.button} type="submit">
             AÑADIR PERRO
           </button>
-         
         </div>
       </form>
+
+
+      {message.length ? (
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("");
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+
       <div className={styles.containerMessage}>
         <div className={message.length ? styles.message : "hide"}>
           <h3>{message}</h3>
@@ -140,8 +155,9 @@ export default function CreateDog() {
           >
             Aceptar
           </button>
+
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }

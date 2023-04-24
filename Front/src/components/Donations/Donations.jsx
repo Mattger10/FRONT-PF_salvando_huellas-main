@@ -14,7 +14,7 @@ export default function Donation() {
     let newPrice = Number(e.target.value);
     if (newPrice > 0) {
       setPrice(newPrice);
-    } else setPrice(1)
+    } else setPrice()
   };
 
   const handleOnReady = () => {
@@ -51,30 +51,26 @@ export default function Donation() {
         </h5>
       </div>
       
-        <div>
-          <h4>¿Cuánto quieres donar?</h4>
+        <div className={styles.donacion}>
+          <h4 className={styles.h4}>¿Cuánto quieres donar?</h4>
           <input
             className={styles.input}
             value={price}
             onChange={handlePrice}
-            type="number"
+            placeholder="Ingrese monto..."
+            type="text"
           />
-          <button
+          <button className={styles.button}
             onClick={() => {
               setShowPay(true);
             }}
           >
             Ir a donar
           </button>
-          <div className={showPay ? styles.wallet : styles.hide}>
-            <button
-              onClick={() => {
-                setShowPay(false);
-              }}
-            >
-              X
-            </button>
-            <h4>Donar con Mercado Pago</h4>
+
+          <div className={showPay ? "" : styles.hide}>
+          <div className={styles.hide2}>
+            <h4 className={styles.h4}>Donar con Mercado Pago</h4>
             {isReady && preferenceId ? (
             <Wallet
               initialization={{ preferenceId: preferenceId }}
@@ -83,6 +79,14 @@ export default function Donation() {
             ) : (
               <span>Cargando...</span>
             )}
+            <button className={styles.buttonX}
+              onClick={() => {
+                setShowPay(false);
+              }}
+            >
+              X
+            </button>
+            </div>
           </div>
         </div>
       

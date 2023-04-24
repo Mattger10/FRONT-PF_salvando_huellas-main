@@ -80,7 +80,7 @@
   .buttonEditar {
     margin-top: 2%;
       padding: 0.50rem;
-      border: 1px solid black;
+      border: 1px solid #cccccc;
       border-radius: 0.25rem;
       background-color: #fe5535;
       color: #fff;
