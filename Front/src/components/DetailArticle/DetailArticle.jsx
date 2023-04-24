@@ -10,6 +10,7 @@ export default function DetailsArticle() {
   const detail = useSelector((state) => state.detailArticle);
   const [cantidad, setCantidad] = useState(1);
   const dispatch = useDispatch();
+  const [message, setMessage] = useState("")
 
   const { id } = useParams();
 
@@ -23,18 +24,27 @@ export default function DetailsArticle() {
   };
 
   const handleAdd = (e) => {
-    dispatch(
-      addCarrito(
-        {
-          nameA: detail.nameA,
-          priceA: detail.priceA,
-          photoA: detail.photoA,
-          stockA: detail.stockA,
-          descriptionA: detail.descriptionA,
-        },
-        cantidad
-      )
-    );
+    let repeated = false
+    const carritoStorage = window.localStorage.getItem('carrito')
+    if (carritoStorage){
+      JSON.parse(carritoStorage).forEach(artic => {
+        if (artic.article.nameA === detail.nameA){
+          repeated = true
+        }
+      }
+      );
+      if (!repeated){
+        dispatch(addCarrito());
+        window.localStorage.setItem('carrito', JSON.stringify([...JSON.parse(carritoStorage), {article: {nameA: detail.nameA, priceA: detail.priceA, photoA: detail.photoA, stockA: detail.stockA}, cantidad}]))
+        setMessage("Se añadió al carrito")
+        setTimeout(()=>{setMessage("")}, 2000)
+      } else {
+        setMessage("Ya agregaste este artículo")
+        setTimeout(()=>{setMessage("")}, 2000)
+      }
+    } else {
+      window.localStorage.setItem('carrito', JSON.stringify([{article: {nameA, priceA, photoA, stockA}, cantidad}]))
+    }
   };
 
   useEffect(() => {
@@ -70,6 +80,7 @@ export default function DetailsArticle() {
           <button className={style.button} onClick={handleAdd}>
             Agregar al carrito
           </button>
+          {message.length ? <p>{message}</p>: ""}
         </div>
       </div>
       <div>
