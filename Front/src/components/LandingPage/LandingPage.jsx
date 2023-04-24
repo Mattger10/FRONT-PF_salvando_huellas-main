@@ -22,6 +22,14 @@ export default function LandingPage() {
     if (!Object.keys(errors).length) {
       // enviar formulario
       try {
+        const allUsers = await axios.get('/users')
+        if (allUsers){
+          allUsers.data.forEach(u => {
+            if (u.emailU.toLowerCase() === email.toLowerCase()){
+              throw new Error('Ya existe un usuario con ese email')
+            }
+          })
+        }
         console.log({name: name.split(" ")[0],lastname: name.split(" ")[1], email, password})
         await axios.post("/users/register", {
           nameU: name.split(" ")[0],
@@ -33,11 +41,13 @@ export default function LandingPage() {
           addressU: "random street 1",
           reasonU: "Reason",
         });
+        
         setRegisterMessage("Usuario creado correctamente");
         setTimeout(() => {
           setRegisterMessage("");
         }, 2000);
       } catch (error) {
+        console.log(error.message)
         setErrors({ ...errors, axios: error.message });
         setTimeout(() => {
           setErrors({});
@@ -51,14 +61,16 @@ export default function LandingPage() {
       // mostrar mensaje de error
     }
   };
+  
   const handleLogin = async (event) => {
     event.preventDefault();
     if (!Object.keys(errors).length) {
       try {
-        await axios.post("/users/login", {
+        const response = await axios.post("/users/login", {
           emailU: email,
           passwordU: password,
         });
+        window.localStorage.setItem('user', JSON.stringify(response.data))
         navigate("/home");
       } catch (error) {
         setErrors({ ...errors, axios: error.message });
