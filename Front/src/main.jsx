@@ -10,7 +10,7 @@ import axios from "axios";
 
 //Para el deploy descomentar:
 
-axios.defaults.baseURL = "https://pfsalvandohuellas-production.up.railway.app/"
+axios.defaults.baseURL = "https://pfsalvandohuellas-production.up.railway.app"
 
 // Para trabajar local descomentar:
 
