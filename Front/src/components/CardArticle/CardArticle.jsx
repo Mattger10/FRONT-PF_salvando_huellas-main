@@ -63,15 +63,16 @@ export default function CardArticle ({nameA, priceA, photoA, stockA, id}) {
 
 // ASÍ SE MUESTRAN EN ADMINISTRADOR
 if (location.pathname === "/admin/articles") {
-  return <div className="cardArticle">
+
+  return <div className={styles.cardArticle2}>
       <img src={photoA} alt={"foto de " + nameA} className={styles.artImage} />
       <p>{nameA}</p>
         <p>$ {priceA}</p>
         {stockA > 1 ? <p>{stockA} disponibles</p> : <p>Último disponible!</p>}
-        <button className={styles.button} onClick={handleEdit}>
+        <button className={styles.buttonEditar} onClick={handleEdit}>
           Editar
         </button>
-        <button className={styles.button} onClick={handleDelete}>
+        <button className={styles.buttonEliminar} onClick={handleDelete}>
           Eliminar
         </button>
       </div>
