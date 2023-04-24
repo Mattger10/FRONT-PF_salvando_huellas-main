@@ -92,18 +92,18 @@ const Account = () => {
             <li>Mis favoritos:</li>
           </ul>
         </div>
-        <button onClick={goAdminArticles} className={styles.boton}>
+        <button onClick={goAdminArticles} className={styles.button}>
           Gestionar Artículos
         </button>
-        <button onClick={goAdminDogs} className={styles.boton}>
+        <button onClick={goAdminDogs} className={styles.button}>
           Gestionar Perritos
         </button>
-        <button className={styles.boton} onClick={toggleEditingProfile}>
+        {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
-        </button>
+        </button> */}
         <button
           onClick={() => logout({ returnTo: "/" })}
-          className={styles.boton}
+          className={styles.button}
         >
           Cerrar sesión
         </button>
