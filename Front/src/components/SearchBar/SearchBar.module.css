@@ -45,3 +45,10 @@
     height: 1rem;
    }
    
+   @media (max-width: 1366px) {
+    .searchBar {
+      margin-top: -17%;
+      display: flex;
+      justify-content: center;
+    }
+    }

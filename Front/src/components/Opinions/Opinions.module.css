@@ -1,22 +1,43 @@
-.ratinglabel {
-    font-weight: bold;
-    margin-right: 10px;
-    
-  }
-  
-  .ratingvalue {
-    font-weight: bold;
-  
-  }
-  
-  .ratingcount {
-    margin-right: 10px;
+.container {
+  display: grid;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 50%;
+  border: 1px solid #ccc;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
 
-  }
-  
-  .ratingstars {
-    color: green;
-    font-size: 20px;
-    
-  }
+.resumen {
+  align-self: end;
+  justify-self: end;
+}
+
+.clasificaciones {
+  align-self: start;
+  justify-self: start;
+  margin-top: -22.9%;
+  margin-right: 5% ;
+}
+
+.ratinglabel {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.ratingvalue {
+  font-weight: bold;
+}
+
+.ratingcount {
+  margin-right: 10px;
+}
+
+.ratingstars {
+  color: green;
+  font-size: 20px;
+}
+
   
