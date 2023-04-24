@@ -6,7 +6,11 @@ import styles from "./Account.module.css";
 const Account = () => {
   const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
+
   const userLocal = JSON.parse(window.localStorage.getItem('user')) || {}
+
+  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+
   const navigate = useNavigate();
 
   const toggleEditingProfile = () => {
@@ -30,15 +34,15 @@ const Account = () => {
   };
 
   const handleImageUpload = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
     input.onchange = async (event) => {
       const file = event.target.files[0];
       const formData = new FormData();
-      formData.append('avatar', file);
-      const response = await fetch('/api/upload-avatar', {
-        method: 'POST',
+      formData.append("avatar", file);
+      const response = await fetch("/api/upload-avatar", {
+        method: "POST",
         body: formData,
         headers: {
           Authorization: `Bearer ${auth}`,
@@ -47,12 +51,11 @@ const Account = () => {
       if (response.ok) {
         // actualiza la imagen del avatar
       } else {
-        console.error('Error al cargar la imagen del avatar');
+        console.error("Error al cargar la imagen del avatar");
       }
     };
     input.click();
   };
-  
 
   return (
     <div className={styles.container}>
@@ -69,32 +72,51 @@ const Account = () => {
       />
       <div className={styles.perfil}>
         <div className={styles.portada}>
-        {isAuthenticated && (<div className={styles.avatar}>
-            <img className={styles.img} src={user.picture } alt={user.name} />
-            <button className={styles.botonAvatar} type="button" onClick={handleImageUpload}>
-              <i className="far fa-image"></i>
-            </button>
-          </div>
-        )}
-        {userLocal.nameU ? (<div className={styles.avatar}>
-            <img className={styles.img} src={"" } alt={userLocal.nameU} />
-            <button className={styles.botonAvatar} type="button" onClick={handleImageUpload}>
-              <i className="far fa-image"></i>
-            </button>
-          </div>
-        ) : ""}
+          {isAuthenticated && (
+            <div className={styles.avatar}>
+              <img className={styles.img} src={user.picture} alt={user.name} />
+              <button
+                className={styles.botonAvatar}
+                type="button"
+                onClick={handleImageUpload}
+              >
+                <i className="far fa-image"></i>
+              </button>
+            </div>
+          )}
+          {userLocal.nameU ? (
+            <div className={styles.avatar}>
+              <img className={styles.img} src={""} alt={userLocal.nameU} />
+              <button
+                className={styles.botonAvatar}
+                type="button"
+                onClick={handleImageUpload}
+              >
+                <i className="far fa-image"></i>
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className={styles.perfilBody}>
-      {isAuthenticated && (<div className={styles.perfilBio}>
-          <h3 className={styles.titulo}>{user.name}</h3>
-          <p className={styles.texto}>Email: {user.email}</p>
-        </div>
-      )}
-      {userLocal.nameU ? (<div className={styles.perfilBio}>
-          <h3 className={styles.titulo}>{userLocal.nameU + " " + userLocal.lastNameU}</h3>
-          <p className={styles.texto}>Email: {userLocal.emailU}</p>
-        </div>) : ""}
+        {isAuthenticated && (
+          <div className={styles.perfilBio}>
+            <h3 className={styles.titulo}>{user.name}</h3>
+            <p className={styles.texto}>Email: {user.email}</p>
+          </div>
+        )}
+        {userLocal.nameU ? (
+          <div className={styles.perfilBio}>
+            <h3 className={styles.titulo}>
+              {userLocal.nameU + " " + userLocal.lastNameU}
+            </h3>
+            <p className={styles.texto}>Email: {userLocal.emailU}</p>
+          </div>
+        ) : (
+          ""
+        )}
         <div className={styles.perfilUsuarioFooter}>
           <ul className={styles.listaDatos}>
             <li> Mis donaciones:</li>
@@ -112,13 +134,21 @@ const Account = () => {
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
+
         <button className={styles.button}
+
+        <button
+          className={styles.button}
+
           onClick={() => {
-            window.localStorage.setItem('carrito', JSON.stringify([]))
-            window.localStorage.setItem('user', JSON.stringify({}))
-            logout({ returnTo: "/" })
+            window.localStorage.setItem("carrito", JSON.stringify([]));
+            window.localStorage.setItem("user", JSON.stringify({}));
+            logout({ returnTo: "/" });
           }}
+
           
+
+
         >
           Cerrar sesión
         </button>

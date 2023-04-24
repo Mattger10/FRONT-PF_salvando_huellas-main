@@ -129,6 +129,7 @@ export default function CreateDog() {
         </div>
       </form>
 
+
       {message.length ? (
         <div className={styles.containerMessage}>
           <div className={styles.message}>
@@ -142,6 +143,19 @@ export default function CreateDog() {
               Aceptar
             </button>
           </div>
+
+      <div className={styles.containerMessage}>
+        <div className={message.length ? styles.message : "hide"}>
+          <h3>{message}</h3>
+          <button
+            className={styles.button}
+            onClick={() => {
+              setMessage("");
+            }}
+          >
+            Aceptar
+          </button>
+
         </div>
       ) : null}
     </div>
