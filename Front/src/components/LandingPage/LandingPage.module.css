@@ -118,6 +118,12 @@
   border-style: none;
   color: #fff;
 }
+.changeForm{
+  cursor: pointer;
+}
+.changeForm:hover{
+  color: gray;
+}
  
 @media only screen and (max-width: 540px){
   .login-container{

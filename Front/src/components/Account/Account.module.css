@@ -122,15 +122,18 @@
     vertical-align: middle;
   }
 
-  .boton {
-    position: relative;
-    top: 2rem;
-    left: 2rem;
-    border: 0;
-    border-radius: 8px;
-    padding: 12px 25px;
-    background-color: rgba(0, 0, 0, .5);
-    color: #fff;
-    cursor: pointer;
-    margin-right: 1rem;
-  }
+  .button {
+    margin-top: 2%;
+      padding: 0.50rem;
+      border: 1px solid #cccccc;
+      border-radius: 0.25rem;
+      background-color: #fe5535;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 250px;
+    }
+  
+    .button:hover {
+      background-color: #d43535;
+    }
