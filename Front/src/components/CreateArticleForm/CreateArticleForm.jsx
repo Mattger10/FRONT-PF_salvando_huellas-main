@@ -2,19 +2,18 @@ import styles from "./CreateArticleForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import React from 'react';
+import React from "react";
 
 export default function CreateArticle() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [inputData, setInput] = useState({
     nameA: "",
     descriptionA: "",
     stockA: "",
     photoA: "",
-    priceA: ""
+    priceA: "",
   });
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
   const handleInput = (e) => {
     setInput({
@@ -25,23 +24,25 @@ export default function CreateArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/articles/register/", {...inputData, activeA: true});
-      setMessage(response.data)
+      const response = await axios.post("/articles/register/", {
+        ...inputData,
+        activeA: true,
+      });
+      setMessage(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>CREAR ARTÍCULO EN LA TIENDA</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
           Nombre:
-          <input className={styles.input}
+          <input
+            className={styles.input}
             type="text"
             value={inputData.nameA}
             name="nameA"
@@ -52,7 +53,8 @@ export default function CreateArticle() {
         </label>
         <label className={styles.label}>
           Precio:
-          <input className={styles.input}
+          <input
+            className={styles.input}
             type="number"
             value={inputData.priceA}
             name="priceA"
@@ -63,7 +65,8 @@ export default function CreateArticle() {
         </label>
         <label className={styles.label}>
           Stock disponible:
-          <input className={styles.input}
+          <input
+            className={styles.input}
             type="number"
             value={inputData.stockA}
             name="stockA"
@@ -74,7 +77,8 @@ export default function CreateArticle() {
         </label>
         <label className={styles.label}>
           Descripción:
-          <textarea className={styles.textarea}
+          <textarea
+            className={styles.textarea}
             type="text"
             value={inputData.descriptionA}
             name="descriptionA"
@@ -85,7 +89,8 @@ export default function CreateArticle() {
         </label>
         <label className={styles.label}>
           Imagen URL:
-          <input className={styles.input}
+          <input
+            className={styles.input}
             type="url"
             value={inputData.photoA}
             name="photoA"
@@ -96,16 +101,34 @@ export default function CreateArticle() {
         </label>
         <img className={styles.img} src={inputData.photoA}></img>
         <div className={styles.containerButton}>
-        <button className={styles.button} onClick={()=>{navigate('/admin/articles')}}>VOLVER</button>
-        <button className={styles.button} type="submit">AÑADIR ARTÍCULO</button>
+          <button
+            className={styles.button}
+            onClick={() => {
+              navigate("/admin/articles");
+            }}
+          >
+            VOLVER
+          </button>
+          <button className={styles.button} type="submit">
+            AÑADIR ARTÍCULO
+          </button>
         </div>
       </form>
-      <div className={styles.containerMessage}>
-      <div className={message.length ? styles.message : "hide"}>
-        <h3>{message}</h3>
-        <button className={styles.button} onClick={()=>{setMessage("")}}>Aceptar</button>
-      </div>
-      </div>
+      {message.length ? (
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("");
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
