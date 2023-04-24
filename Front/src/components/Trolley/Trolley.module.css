@@ -115,6 +115,8 @@
 .Comprar{
     display: flex;
     justify-content: flex-end;
+    max-width: 100%;
+    height: 1%;
 }
 
 .total {
@@ -138,7 +140,6 @@
     height: 10%;
     margin-top: 40%;
     margin-right: -50%;
-    
 }
 
 .hide2 {
