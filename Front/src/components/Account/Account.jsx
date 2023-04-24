@@ -9,7 +9,7 @@ const Account = () => {
 
   const userLocal = JSON.parse(window.localStorage.getItem('user')) || {}
 
- 
+
 
   const navigate = useNavigate();
 

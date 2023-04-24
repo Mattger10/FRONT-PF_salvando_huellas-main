@@ -129,22 +129,21 @@ export default function CreateDog() {
         </div>
       </form>
 
-
       {message.length ? (
-  <div className={styles.containerMessage}>
-    <div className={styles.message}>
-      <h3>{message}</h3>
-      <button
-        className={styles.button}
-        onClick={() => {
-          setMessage("");
-        }}
-      >
-        Aceptar
-      </button>
-    </div>
-  </div>
-) : null}
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("");
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
