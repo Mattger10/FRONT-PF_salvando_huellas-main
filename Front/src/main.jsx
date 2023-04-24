@@ -7,6 +7,7 @@ import store from "./redux/store";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import axios from "axios";
+
 //Para el deploy descomentar:
 
 axios.defaults.baseURL = "https://pfsalvandohuellas-production.up.railway.app/"
@@ -14,6 +15,7 @@ axios.defaults.baseURL = "https://pfsalvandohuellas-production.up.railway.app/"
 // Para trabajar local descomentar:
 
 // axios.defaults.baseURL = "http://localhost:3001/" 
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
