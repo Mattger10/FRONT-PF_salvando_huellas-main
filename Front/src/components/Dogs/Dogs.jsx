@@ -41,7 +41,7 @@ const Dogs = () => {
       <div className={styles.containerCards}>
         <div className={styles.CardDogs}>
           {currentDog.length === 0 ? (
-            <img
+            <img 
               className={styles.image}
               src={perrito}
               alt="No puppies :("

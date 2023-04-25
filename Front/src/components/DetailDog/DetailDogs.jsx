@@ -45,7 +45,15 @@ export default function DetailDogs() {
                 <span>Edad: {DogDeits.ageD}</span>
                 <span>Sexo: {DogDeits.sexD}</span>
                 <span>Tamaño: {DogDeits.sizeD}</span>
-                <span>Historia: {DogDeits.historyD}</span>
+                <span >Historia: {DogDeits.historyD}</span>
+                <span>
+                Referencias:
+                <ul>
+                  {references.map((references) => (
+                    <li key={references.id}>{references.textR}</li>
+                  ))}
+                </ul>
+              </span>
                 <Link className={styles.adoptame} to="/dogs">
                   <button className={styles.button}>Atrás</button>
                 </Link>
@@ -54,14 +62,7 @@ export default function DetailDogs() {
                 </Link>
               </div>
 
-              <div>
-                Referencias:
-                <ul>
-                  {references.map((references) => (
-                    <li key={references.id}>{references.textR}</li>
-                  ))}
-                </ul>
-              </div>
+             
 
             </div>
           ) : (
