@@ -19,36 +19,29 @@ export default function CardDogs({
   const location = useLocation(); // RENDERIZO DISTINTA LA CARD SI ESTAMOS EN ADMIN -- Valentin
   if (location.pathname === "/admin/dogs") {
     return (
-      <>
-        <div>
-          <div>
-            <h3>{nameD}</h3>
-          </div>
-          <div>
-            <img src={photoD} alt="img" />
-          </div>
-          <div>
-            <div>
+      <div className={styles.containerAll}>
+      <div className={styles.containerAdmin}>
+        <div className={styles.cardAdmin}>
+          <img className={styles.cardImgAdmin} src={photoD} alt="img" />
+          <p className={styles.textTitleAdmin}>{nameD}</p>
+          <div className={styles.cardInfoAdmin}>
+            <div className={styles.textBodyAdmin}>
               <h4>Edad:</h4>
               <p>{ageD}</p>
-            </div>
-            <div>
               <h4>Tamaño:</h4>
               <p>{sizeD}</p>
-            </div>
-            <div>
               <h4>Sex:</h4>
               <p>{sexD}</p>
             </div>
             <div>
-              <button
+              <button className={styles.button}
                 onClick={() => {
                   handleEdit(id);
                 }}
               >
                 EDITAR
               </button>
-              <button
+              <button className={styles.button}
                 onClick={() => {
                   handleDelete(id);
                 }}
@@ -58,7 +51,49 @@ export default function CardDogs({
             </div>
           </div>
         </div>
-      </>
+      </div>
+      </div>
+
+      //   <>
+      //     <div>
+      //       <div>
+      //         <h3>{nameD}</h3>
+      //       </div>
+      //       <div>
+      //         <img src={photoD} alt="img" />
+      //       </div>
+      //       <div>
+      //         <div>
+      //           <h4>Edad:</h4>
+      //           <p>{ageD}</p>
+      //         </div>
+      //         <div>
+      //           <h4>Tamaño:</h4>
+      //           <p>{sizeD}</p>
+      //         </div>
+      //         <div>
+      //           <h4>Sex:</h4>
+      //           <p>{sexD}</p>
+      //         </div>
+      //         <div>
+      //           <button
+      //             onClick={() => {
+      //               handleEdit(id);
+      //             }}
+      //           >
+      //             EDITAR
+      //           </button>
+      //           <button
+      //             onClick={() => {
+      //               handleDelete(id);
+      //             }}
+      //           >
+      //             ELIMINAR
+      //           </button>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </>
     );
   }
 
@@ -77,7 +112,7 @@ export default function CardDogs({
     // </>
 
     <div className={styles.cardContainer}>
-      <div className={styles.huella}/>
+      <div className={styles.huella} />
       <div className={styles.card}>
         <div className={styles.card__inner}>
           <div

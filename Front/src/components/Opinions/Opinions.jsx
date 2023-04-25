@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOpinions } from "../../redux/actions";
 import styles from "../Opinions/Opinions.module.css";
+import { useParams } from "react-router-dom";
 
 const Opinions = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,10 @@ const Opinions = () => {
 
   const loading = useSelector((state) => state.opinions.loading);
   const error = useSelector((state) => state.opinions.error);
+  const {id} = useParams()
 
   useEffect(() => {
     dispatch(getOpinions())
-     
   }, [dispatch]);
 
   const ratings = {
@@ -33,8 +34,10 @@ const Opinions = () => {
 
   // Calcular la suma total y la cantidad de cada calificación
   opinionsList.forEach((opinion) => {
-    ratings[opinion.qualificationO].count++;
-    ratings[opinion.qualificationO].sum += opinion.qualificationO;
+    if(opinion.articleId === Number(id)){
+      ratings[opinion.qualificationO].count++;
+      ratings[opinion.qualificationO].sum += opinion.qualificationO;
+    }
   });
 
   const starsCount = {
@@ -55,8 +58,8 @@ const Opinions = () => {
   });
 
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.resumen}>
         <h2>Resumen de clasificaciones</h2>
         <ul>
           <li>
@@ -121,15 +124,15 @@ const Opinions = () => {
         </ul>
       </div>
 
-      <div>
+      <div className={styles.clasificaciones}>
         <h2>Clasificaciones y opiniones</h2>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
-        {opinionsList.map((opinion) => (
+        {opinionsList.map((opinion) => (opinion.articleId === Number(id) ?
           <div key={opinion.id_Opinion}>
             <p>{opinion.commentO}</p>
             <p>{getStarsFromQualification(opinion.qualificationO)}</p>
-          </div>
+          </div> : ""
         ))}
       </div>
     </div>

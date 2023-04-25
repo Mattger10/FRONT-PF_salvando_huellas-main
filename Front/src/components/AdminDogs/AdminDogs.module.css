@@ -1,0 +1,51 @@
+.dogListAdmin{
+  display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 50px;
+    width: 100%;
+    justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 5%;
+  margin-top: -4.2%;
+  width: 70%;
+  box-shadow:1px 1px 4px 2px rgba(0, 0, 0, .2) ;
+}
+
+.h2{
+  font-size: 40px;
+    margin-top: -5%;
+    margin-bottom: 5%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.containerButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 85%;
+  margin-top: 1%;
+}
+
+.button {
+  margin-top: 2%;
+    padding: 0.50rem;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    background-color: #fe5535;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 200px;
+  }
+
+  .button:hover {
+    background-color: #d43535;
+  }

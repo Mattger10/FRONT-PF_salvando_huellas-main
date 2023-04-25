@@ -1,20 +1,20 @@
-import "./CreateDogForm.modules.css";
+import styles from "./CreateDogForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import React from 'react';
+import React from "react";
 
 export default function CreateDog() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [inputData, setInput] = useState({
     nameD: "",
     historyD: "",
     sexD: "male",
     sizeD: "small",
     photoD: "",
-    ageD: "puppy"
+    ageD: "puppy",
   });
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
   const handleInput = (e) => {
     setInput({
@@ -26,23 +26,21 @@ export default function CreateDog() {
     e.preventDefault();
     try {
       const response = await axios.post("/dogs/register", inputData);
-      setMessage(response.data)
+      setMessage(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
   return (
-    <div>
-      <button onClick={()=>{navigate('/admin/dogs')}}>Volver</button>
-      <h2>Añade un perro al refugio</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className={styles.container}>
+      <h2 className={styles.h2}>AÑADE UN PERRO AL REFUGIO</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.label}>
           Nombre:
           <input
+            className={styles.input}
             type="text"
             value={inputData.nameD}
             name="nameD"
@@ -50,19 +48,10 @@ export default function CreateDog() {
             placeholder="Ingresa un nombre..."
           ></input>
         </label>
-        <label>
-          Historia:
-          <textarea
-            type="text"
-            value={inputData.historyD}
-            name="historyD"
-            onChange={handleInput}
-            placeholder="Escribe su historia..."
-          ></textarea>
-        </label>
-        <label>
+        <label className={styles.label}>
           Sexo:
           <select
+            className={styles.input}
             type="text"
             value={inputData.sexD}
             name="sexD"
@@ -73,9 +62,10 @@ export default function CreateDog() {
             <option value={"female"}>Hembra</option>
           </select>
         </label>
-        <label>
+        <label className={styles.label}>
           Tamaño:
           <select
+            className={styles.input}
             type="text"
             value={inputData.sizeD}
             name="sizeD"
@@ -87,9 +77,10 @@ export default function CreateDog() {
             <option value={"large"}>Grande</option>
           </select>
         </label>
-        <label>
+        <label className={styles.label}>
           Edad:
           <select
+            className={styles.input}
             type="text"
             value={inputData.ageD}
             name="ageD"
@@ -100,9 +91,21 @@ export default function CreateDog() {
             <option value={"puppy"}>Adulto</option>
           </select>
         </label>
-        <label>
+        <label className={styles.label}>
+          Historia:
+          <textarea
+            className={styles.textarea}
+            type="text"
+            value={inputData.historyD}
+            name="historyD"
+            onChange={handleInput}
+            placeholder="Escribe su historia..."
+          ></textarea>
+        </label>
+        <label className={styles.label}>
           Imagen URL:
           <input
+            className={styles.input}
             type="url"
             value={inputData.photoD}
             name="photoD"
@@ -110,13 +113,37 @@ export default function CreateDog() {
             placeholder="Pega aquí la URL..."
           ></input>
         </label>
-        <img src={inputData.photoD}></img>
-        <button type="submit">Añadir Perro</button>
+        <img className={styles.img} src={inputData.photoD}></img>
+        <div className={styles.containerButton}>
+          <button
+            className={styles.button}
+            onClick={() => {
+              navigate("/admin/dogs");
+            }}
+          >
+            VOLVER
+          </button>
+          <button className={styles.button} type="submit">
+            AÑADIR PERRO
+          </button>
+        </div>
       </form>
-      <div className={message.length ? "message" : "hide"}>
-        <h3>{message}</h3>
-        <button onClick={()=>{setMessage("")}}>Aceptar</button>
-      </div>
+
+      {message.length ? (
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("");
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

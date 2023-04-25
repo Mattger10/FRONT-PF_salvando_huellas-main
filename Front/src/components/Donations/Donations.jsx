@@ -14,7 +14,7 @@ export default function Donation() {
     let newPrice = Number(e.target.value);
     if (newPrice > 0) {
       setPrice(newPrice);
-    } else setPrice(1)
+    } else setPrice()
   };
 
   const handleOnReady = () => {
@@ -29,8 +29,10 @@ export default function Donation() {
   };
 
   useEffect(() => {
-    fetchPreferenceId();
-  }, [price]);
+    if(showPay){
+      fetchPreferenceId();
+    }
+  }, [price, showPay]);
 
   return (
     <div className={styles.container}>
@@ -48,40 +50,46 @@ export default function Donation() {
           a la sociedad y mejorar la vida de los perritos en adopción.
         </h5>
       </div>
-      {isReady && preferenceId ? (
-        <div>
-          <h4>¿Cuánto quieres donar?</h4>
+      
+        <div className={styles.donacion}>
+          <h4 className={styles.h4}>¿Cuánto quieres donar?</h4>
           <input
             className={styles.input}
             value={price}
             onChange={handlePrice}
-            type="number"
+            placeholder="Ingrese monto..."
+            type="text"
           />
-          <button
+          <button className={styles.button}
             onClick={() => {
               setShowPay(true);
             }}
           >
             Ir a donar
           </button>
-          <div className={showPay ? styles.wallet : styles.hide}>
-            <button
+
+          <div className={showPay ? "" : styles.hide}>
+          <div className={styles.hide2}>
+            <h4 className={styles.h4}>Donar con Mercado Pago</h4>
+            {isReady && preferenceId ? (
+            <Wallet
+              initialization={{ preferenceId: preferenceId }}
+              onReady={handleOnReady}
+            />
+            ) : (
+              <span>Cargando...</span>
+            )}
+            <button className={styles.buttonX}
               onClick={() => {
                 setShowPay(false);
               }}
             >
               X
             </button>
-            <h4>Donar con Mercado Pago</h4>
-            <Wallet
-              initialization={{ preferenceId: preferenceId }}
-              onReady={handleOnReady}
-            />
+            </div>
           </div>
         </div>
-      ) : (
-        <div>Cargando...</div>
-      )}
+      
     </div>
   );
 }
