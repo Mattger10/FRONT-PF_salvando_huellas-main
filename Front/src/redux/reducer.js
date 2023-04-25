@@ -1,4 +1,3 @@
-
 import {
   ACCESS,
   SEARCH,
@@ -25,7 +24,7 @@ const initialState = {
   opinions: [],
   filteredArticles: [],
   editDog: {},
-  references: [],
+  // references: {},
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -62,60 +61,55 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
-      case 'GET_REFERENCES':
-        return{
-          ...state,
-          references: action.payload,
-        };
-//traigo a los articulos filtrados
-      case 'ARTICLES_DESC_SUCCESS':
-        return {
-          ...state,
-          allArticles: action.payload,
-          filteredArticles: action.payload,
-        };
-      case 'ARTICLES_DESC_FAILURE':
-        return {
-          ...state,
-          error: action.error,
-        };
-      case 'ARTICLES_PRICE_ASC_SUCCESS':
-        return {
-          ...state,
-          allArticles: action.payload,
-          filteredArticles: action.payload,
-        };
-      case 'ARTICLES_PRICE_ASC_FAILURE':
-        return {
-          ...state,
-          error: action.error,
-        };
-      case 'ARTICLES_PRICE_DESC_SUCCESS':
-        return {
-          ...state,
-          allArticles: action.payload,
-          filteredArticles: action.payload,
-        };
-      case 'ARTICLES_PRICE_DESC_FAILURE':
-        return {
-          ...state,
-          error: action.error,
-        };      
+    //traigo a los articulos filtrados
+    case "ARTICLES_DESC_SUCCESS":
+      return {
+        ...state,
+        allArticles: action.payload,
+        filteredArticles: action.payload,
+      };
+    case "ARTICLES_DESC_FAILURE":
+      return {
+        ...state,
+        error: action.error,
+      };
+    case "ARTICLES_PRICE_ASC_SUCCESS":
+      return {
+        ...state,
+        allArticles: action.payload,
+        filteredArticles: action.payload,
+      };
+    case "ARTICLES_PRICE_ASC_FAILURE":
+      return {
+        ...state,
+        error: action.error,
+      };
+    case "ARTICLES_PRICE_DESC_SUCCESS":
+      return {
+        ...state,
+        allArticles: action.payload,
+        filteredArticles: action.payload,
+      };
+    case "ARTICLES_PRICE_DESC_FAILURE":
+      return {
+        ...state,
+        error: action.error,
+      };
 
     //uso success y failure para manejar el estado en caso de exito o fallo en las solis
-    case 'GET_OPINIONS_SUCCESS':
+    case "GET_OPINIONS_SUCCESS":
       return {
         ...state,
         opinions: action.payload,
         loading: false,
-        error: null
+        error: null,
       };
-    case 'GET_OPINIONS_FAILURE':
+    case "GET_OPINIONS_FAILURE":
       return {
         ...state,
         opinions: [],
         loading: false,
-        error: action.payload
+        error: action.payload,
       };
 
     case "FETCH_DOGS_SUCCESS":
@@ -139,7 +133,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_ARTICLES:
-     
       return {
         ...state,
         allArticles: action.payload,
@@ -169,16 +162,16 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case ADD_CARR:
-      console.log("addcarrito")
+      console.log("addcarrito");
       return {
         ...state,
-        carrito: state.carrito + 1
+        carrito: state.carrito + 1,
       };
 
     case DELETE_CARR:
       return {
         ...state,
-        carrito: state.carrito - 1
+        carrito: state.carrito - 1,
       };
 
     case CHANGE_CANTIDAD:
@@ -196,8 +189,8 @@ const rootReducer = (state = initialState, action) => {
     case EDIT_DOG:
       return {
         ...state,
-        editDog: action.payload
-      }
+        editDog: action.payload,
+      };
 
     default:
       return {
