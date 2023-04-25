@@ -150,7 +150,7 @@ export default function DetailsArticle() {
           <textarea placeholder="Escribe tu opinión..." onChange={handleOpinionChange} value={opinionInfo.text} name="text"/>
           </label>
           <button type="submit">
-            Enviar
+            Enviar!
           </button>
         </form>
       </div> : ""}
