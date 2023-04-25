@@ -190,5 +190,116 @@
   margin-right: 0; /* Elimina el espacio del último botón */
 }
 
+
+
+
+
+
+
+
+
+
+
+.card {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.img {
+  position: absolute;
+  width: 220px;
+  height: 320px;
+  border-radius: 15px;
+  cursor: pointer;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card::before,
+.card::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #fae243a3;
+  transition: all 0.5s;
+}
+
+/* .card::before {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border-radius: 15px 0 100% 0;
+} */
+
+.card::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100%  0 15px;
+}
+
+.card:hover::before,
+.card:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.card:hover .card2 {
+  opacity: 1;
+  visibility: visible;
+}
+.card2 {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   
- 
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.1s;
+}
+
+
+.containerData {
+  padding: 10px;
+  
+  margin-left: -40%;
+}
+
+.h4 {
+  border-radius: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.p {
+  font-size: 18px;
+  margin-top: -24%;
+  margin-left: 80%;
+}
+
+.h2 {
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  margin-top: -50%;
+  font-weight: bold;
+  font-size: 35px;
+  color: #fe5535;
+}
+

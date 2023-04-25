@@ -1,6 +1,11 @@
 .image {
-  max-width: 300%;
-/* margin-left: 500px; */
+  display: flex;
+  justify-content: center;
+  margin-top: 40%;
+  margin-bottom: 40%;
+  margin-left: 220%;
+  max-width: 200px;
+  
 }
 
 .containerCards{
@@ -10,7 +15,7 @@ justify-content: center;
 }
 .CardDogs {
 display: grid;
-grid-template-columns: repeat(4, 2fr);
+grid-template-columns: repeat(5, 2fr);
 gap: 20px;
 }
 
