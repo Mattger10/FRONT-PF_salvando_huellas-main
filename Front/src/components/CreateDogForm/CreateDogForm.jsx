@@ -14,6 +14,8 @@ export default function CreateDog() {
     photoD: "",
     ageD: "puppy",
   });
+  const [selectedRefs, setSelectedRefs] = useState([])
+  const [references, setReferences] = useState([]);
   const [message, setMessage] = useState("");
 
   const handleInput = (e) => {
@@ -25,14 +27,34 @@ export default function CreateDog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/dogs/register", inputData);
+      const response = await axios.post("/dogs/register", {...inputData, references: selectedRefs});
       setMessage(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {}, []);
+  const getRefers = async ()=>{
+    const response = await axios.get('/references')
+    const {allReferences} = response.data
+    const result = allReferences.map(ref => ref.textR)
+    setReferences(result)
+  }
+  useEffect(() => {
+    getRefers()
+  }, []);
+
+    const handleReferencesSelect = (e) => {
+      if(e.target.value !== ""){
+        setSelectedRefs([...selectedRefs, e.target.value])
+        setReferences(references.filter(ref => ref !== e.target.value))
+      }
+    }
+    const handleReferencesRemove = (e)=>{
+      setReferences([...references, e.target.value])
+      setSelectedRefs([...selectedRefs].filter(ref => ref !== e.target.value))
+    }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>AÑADE UN PERRO AL REFUGIO</h2>
@@ -101,6 +123,14 @@ export default function CreateDog() {
             onChange={handleInput}
             placeholder="Escribe su historia..."
           ></textarea>
+        </label>
+        <label>
+          Referencias:
+          <select onChange={handleReferencesSelect} value={""}>
+          <option value=""  >Elegir</option>
+            {references.map((ref, index) => <option key={index}>{ref}</option>)}
+          </select>
+          {selectedRefs.map((ref, index) => <button type="button" key={index} value={ref} onClick={handleReferencesRemove} >{ref}</button>)}
         </label>
         <label className={styles.label}>
           Imagen URL:

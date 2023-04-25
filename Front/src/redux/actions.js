@@ -201,14 +201,3 @@ export function editDog(id) {
     });
   };
 }
-
-// tarigo referencias para el DetailDogs
-export function getReferences() {
-  return async function (dispatch) {
-    const response = await axios.get("/references");
-    dispatch({
-      type: "GET_REFERENCES",
-      payload: response.data,
-    });
-  };
-}
