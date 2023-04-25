@@ -13,6 +13,8 @@ export default function EditDog() {
   const dog = useSelector((state) => state.editDog);
   const [inputData, setInput] = useState({});
   const [message, setMessage] = useState("");
+  const [selectedRefs, setSelectedRefs] = useState([])
+  const [references, setReferences] = useState([]);
 
   const handleInput = (e) => {
     setInput({
@@ -23,7 +25,7 @@ export default function EditDog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put("/dogs/update/" + Number(id), inputData);
+      const response = await axios.put("/dogs/update/" + Number(id), {...inputData, references: selectedRefs});
       setMessage(response.data);
     } catch (error) {
       console.error(error);
@@ -35,6 +37,26 @@ export default function EditDog() {
     setInput(dog);
     return setInput({});
   }, [id]);
+
+  const getRefers = async ()=>{
+    const response = await axios.get('/references')
+    const {allReferences} = response.data
+    const result = allReferences.map(ref => ref.textR)
+    setReferences(result)
+  }
+  useEffect(() => {
+    getRefers()
+  }, []);
+  const handleReferencesSelect = (e) => {
+    if(e.target.value !== ""){
+      setSelectedRefs([...selectedRefs, e.target.value])
+      setReferences(references.filter(ref => ref !== e.target.value))
+    }
+  }
+  const handleReferencesRemove = (e)=>{
+    setReferences([...references, e.target.value])
+    setSelectedRefs([...selectedRefs].filter(ref => ref !== e.target.value))
+  }
 
   return (
     <div className={styles.container}>
@@ -99,6 +121,14 @@ export default function EditDog() {
             onChange={handleInput}
           ></textarea>
         </label>
+        <label>
+          Referencias:
+          <select onChange={handleReferencesSelect} value={""}>
+          <option value=""  >Elegir</option>
+            {references.map((ref, index) => <option key={index}>{ref}</option>)}
+          </select>
+          {selectedRefs.map((ref, index) => <button type="button" key={index} value={ref} onClick={handleReferencesRemove} >{ref}</button>)}
+        </label>
         <label className={styles.label}>
           Imagen URL:
           <input
@@ -109,7 +139,7 @@ export default function EditDog() {
             onChange={handleInput}
           ></input>
         </label>
-        <img className={styles.img} src={inputData.photoA || dog.photoA}></img>
+        <img className={styles.img} src={inputData.photoD || dog.photoD}></img>
         <div className={styles.containerButton}>
           <button
             className={styles.button}

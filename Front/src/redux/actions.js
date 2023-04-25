@@ -203,6 +203,7 @@ export function editDog(id) {
   };
 }
 
+
 // tarigo referencias para el DetailDogs
 export function getReferences() {
   return async function (dispatch) {
@@ -241,14 +242,3 @@ export const uploadImage = (formData) => {
 
 
 
-
-
-  // export const uploadImage = () => async (dispatch) => {
-  //   try {
-  //     const response = await axios.post("/images/uploadImages");
-  //     const posts = response.data;
-  //     dispatch({ type: "UPLOAD_IMAGE", payload: posts });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };

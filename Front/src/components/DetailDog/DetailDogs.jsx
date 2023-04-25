@@ -1,20 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getDetail, getReferences } from "../../redux/actions";
+import { getDetail } from "../../redux/actions";
 import styles from "../DetailDog/DetailDog.module.css";
+import axios from "axios";
 
 export default function DetailDogs() {
   const dispatch = useDispatch();
   const DogDeits = useSelector((state) => state.dogDetail);
-  const references = useSelector((state) => state.references);
+  const [references, setReferences] = useState([]);
+  const [dogsRefsRelation, setDogsRefsRelation] = useState([]);
   const { id } = useParams();
+
+  const bringReferences = async () => {
+    const resp = await axios.get("/references");
+    const { allReferences, allDogsReferences } = resp.data;
+    setReferences(allReferences);
+    setDogsRefsRelation(allDogsReferences);
+  };
 
   useEffect(() => {
     dispatch(getDetail(id));
-    dispatch(getReferences());
+    bringReferences();
   }, [dispatch, id]);
 
+  const showReferences = dogsRefsRelation.map((relation, index) => {
+    if (relation.dogIdDog === Number(id)) {
+      let result;
+      references.forEach((reference) => {
+        if (reference.id_Reference === relation.referenceIdReference) {
+          result = <li key={index}>{reference.textR}</li>;
+        }
+      });
+      return result;
+    }
+  });
   return (
     <div className={styles.containerAll}>
       <div className={styles.huella} />
@@ -61,8 +81,10 @@ export default function DetailDogs() {
                   <button className={styles.button}>Adóptame!</button>
                 </Link>
               </div>
-
-             
+              <div>
+                Referencias:
+                <ul>{showReferences}</ul>
+              </div>
 
             </div>
           ) : (
@@ -73,10 +95,8 @@ export default function DetailDogs() {
           )}
         </div>
 
-
         <div className={styles.containAdop}></div>
       </div>
-
-      </div>
+    </div>
   );
 }
