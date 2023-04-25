@@ -107,7 +107,7 @@ const Account = () => {
             <p className={styles.texto}>Email: {user.email}</p>
           </div>
         )}
-        {userLocal.nameU ? (
+        {userLocal.nameU && !isAuthenticated ? (
           <div className={styles.perfilBio}>
             <h3 className={styles.titulo}>
               {userLocal.nameU + " " + userLocal.lastNameU}
@@ -142,6 +142,7 @@ const Account = () => {
           onClick={() => {
             window.localStorage.setItem("carrito", JSON.stringify([]));
             window.localStorage.setItem("user", JSON.stringify({}));
+            window.localStorage.removeItem("token");
             logout({ returnTo: "/" });
           }}
 
@@ -149,7 +150,7 @@ const Account = () => {
 
 
         >
-          Cerrar sesión
+          {isAuthenticated || userLocal.nameU ? "Cerrar sesión" : "Iniciar Sesion"}
         </button>
       </div>
     </div>

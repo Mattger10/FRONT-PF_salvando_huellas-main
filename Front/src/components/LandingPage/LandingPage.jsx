@@ -55,6 +55,7 @@ export default function LandingPage() {
         setRegisterMessage("Error al crear usuario");
         setTimeout(() => {
           setRegisterMessage("");
+          setErrors({})
         }, 2000);
       }
     } else {
@@ -70,13 +71,17 @@ export default function LandingPage() {
           emailU: email,
           passwordU: password,
         });
-        window.localStorage.setItem('user', JSON.stringify(response.data))
+        console.log(response.data)
+        window.localStorage.setItem('user', JSON.stringify(response.data.user))
+        window.localStorage.setItem('token', response.data.token)
         navigate("/home");
       } catch (error) {
+        console.error(error)
         setErrors({ ...errors, axios: error.message });
         setRegisterMessage("Credenciales incorrectas");
         setTimeout(() => {
           setRegisterMessage("");
+          setErrors({})
         }, 2000);
       }
     }
@@ -125,6 +130,7 @@ export default function LandingPage() {
                 <button
                   className={styles.showPasswordButton}
                   onClick={() => setShowPassword(!showPassword)}
+                  type="button"
                 >
                   <i
                     className={`fas ${
@@ -172,6 +178,7 @@ export default function LandingPage() {
                 <button
                   className={styles.showPasswordButton}
                   onClick={() => setShowPassword(!showPassword)}
+                  type="button"
                 >
                   <i
                     className={`fas ${
