@@ -47,9 +47,9 @@ const Dogs = () => {
               alt="No puppies :("
             ></img>
           ) : (
-            currentDog.map((c) => {
+            currentDog.map((c, index) => {
               return (
-                <div key={c.id}>
+                <div key={index}>
                   <Link className={styles.name} to={"/dogs/" + c.id_Dog}>
                     <CardDogs
                       nameD={c.nameD}

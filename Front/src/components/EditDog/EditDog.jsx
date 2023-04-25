@@ -109,7 +109,7 @@ export default function EditDog() {
             onChange={handleInput}
           ></input>
         </label>
-        <img className={styles.img} src={inputData.photoA || dog.photoA}></img>
+        <img className={styles.img} src={inputData.photoD || dog.photoD}></img>
         <div className={styles.containerButton}>
           <button
             className={styles.button}

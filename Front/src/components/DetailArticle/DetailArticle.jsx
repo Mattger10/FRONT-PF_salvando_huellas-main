@@ -19,8 +19,8 @@ export default function DetailsArticle() {
   // Opinion form info:
   const [opinionInfo, setOpinionInfo] = useState({
     stars: 0,
-    text: ""
-  })
+    text: "",
+  });
 
   const { id } = useParams();
 
@@ -78,29 +78,37 @@ export default function DetailsArticle() {
       );
     }
   };
-  
-  const handleOpinionSubmit = (e)=>{
-    e.preventDefault()
-    console.log(opinionInfo.stars/20)
-    axios.post('/opinions/register/'+id, {
-      commentO: opinionInfo.text,
-      qualificationO: (Math.round(opinionInfo.stars / 20)|| 1)
-    })
-  }
 
-  const handleOpinionChange = (e)=>{
+  const handleOpinionSubmit = (e) => {
+    e.preventDefault();
+    const userToken = window.localStorage.getItem("token");
+    const config = {headers: {authorization: userToken}}
+    axios
+      .post(
+        "/opinions/register/" + id,
+        {
+          commentO: opinionInfo.text,
+          qualificationO: Math.round(opinionInfo.stars / 20) || 1,
+        },
+        config
+      )
+      .then((res) => console.log(res.data))
+      .catch(error => console.log(error.message))
+  };
+
+  const handleOpinionChange = (e) => {
     setOpinionInfo({
       ...opinionInfo,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
   useEffect(() => {
     dispatch(detailArticle(id));
     dispatch(getOpinions());
   }, []);
 
   useEffect(() => {
-    const item = JSON.parse(window.localStorage.getItem('user'))
+    const item = JSON.parse(window.localStorage.getItem("user"));
     if (!item.nameU) {
       setIsLogged(false);
     }
@@ -140,20 +148,34 @@ export default function DetailsArticle() {
       <div>
         <Opinions />
       </div>
-      {isLogged || isAuthenticated ? <div>
-        <h3>Deja tu opinión sobre este artículo</h3>
-        <form onSubmit={handleOpinionSubmit}>
-          <label>Calificación: 
-            <input type='range' onChange={handleOpinionChange} value={opinionInfo.stars} name="stars"/>
-          </label>
-          <label>Comentario
-          <textarea placeholder="Escribe tu opinión..." onChange={handleOpinionChange} value={opinionInfo.text} name="text"/>
-          </label>
-          <button type="submit">
-            Enviar!
-          </button>
-        </form>
-      </div> : ""}
+      {isLogged || isAuthenticated ? (
+        <div>
+          <h3>Deja tu opinión sobre este artículo</h3>
+          <form onSubmit={handleOpinionSubmit}>
+            <label>
+              Calificación:
+              <input
+                type="range"
+                onChange={handleOpinionChange}
+                value={opinionInfo.stars}
+                name="stars"
+              />
+            </label>
+            <label>
+              Comentario
+              <textarea
+                placeholder="Escribe tu opinión..."
+                onChange={handleOpinionChange}
+                value={opinionInfo.text}
+                name="text"
+              />
+            </label>
+            <button type="submit">Enviar!</button>
+          </form>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
