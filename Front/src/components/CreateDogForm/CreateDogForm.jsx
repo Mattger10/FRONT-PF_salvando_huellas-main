@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
+import { uploadFile } from "../../firebase/config";
 
 export default function CreateDog() {
   const navigate = useNavigate();
@@ -14,9 +15,10 @@ export default function CreateDog() {
     photoD: "",
     ageD: "puppy",
   });
-  const [selectedRefs, setSelectedRefs] = useState([])
+  const [selectedRefs, setSelectedRefs] = useState([]);
   const [references, setReferences] = useState([]);
   const [message, setMessage] = useState("");
+  const [file, setFile] = useState(null);
 
   const handleInput = (e) => {
     setInput({
@@ -27,33 +29,38 @@ export default function CreateDog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/dogs/register", {...inputData, references: selectedRefs});
+      const result = await uploadFile(file);
+      const response = await axios.post("/dogs/register", {
+        ...inputData,
+        photoD: result,
+        references: selectedRefs,
+      });
       setMessage(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getRefers = async ()=>{
-    const response = await axios.get('/references')
-    const {allReferences} = response.data
-    const result = allReferences.map(ref => ref.textR)
-    setReferences(result)
-  }
+  const getRefers = async () => {
+    const response = await axios.get("/references");
+    const { allReferences } = response.data;
+    const result = allReferences.map((ref) => ref.textR);
+    setReferences(result);
+  };
   useEffect(() => {
-    getRefers()
+    getRefers();
   }, []);
 
-    const handleReferencesSelect = (e) => {
-      if(e.target.value !== ""){
-        setSelectedRefs([...selectedRefs, e.target.value])
-        setReferences(references.filter(ref => ref !== e.target.value))
-      }
+  const handleReferencesSelect = (e) => {
+    if (e.target.value !== "") {
+      setSelectedRefs([...selectedRefs, e.target.value]);
+      setReferences(references.filter((ref) => ref !== e.target.value));
     }
-    const handleReferencesRemove = (e)=>{
-      setReferences([...references, e.target.value])
-      setSelectedRefs([...selectedRefs].filter(ref => ref !== e.target.value))
-    }
+  };
+  const handleReferencesRemove = (e) => {
+    setReferences([...references, e.target.value]);
+    setSelectedRefs([...selectedRefs].filter((ref) => ref !== e.target.value));
+  };
 
   return (
     <div className={styles.container}>
@@ -126,24 +133,42 @@ export default function CreateDog() {
         </label>
         <label>
           Referencias:
-          <select onChange={handleReferencesSelect} value={""}>
-          <option value=""  >Elegir</option>
-            {references.map((ref, index) => <option key={index}>{ref}</option>)}
+          <select
+            className={styles.input}
+            onChange={handleReferencesSelect}
+            value={""}
+          >
+            <option value="">Elegir</option>
+            {references.map((ref, index) => (
+              <option key={index}>{ref}</option>
+            ))}
           </select>
-          {selectedRefs.map((ref, index) => <button type="button" key={index} value={ref} onClick={handleReferencesRemove} >{ref}</button>)}
+          {selectedRefs.map((ref, index) => (
+            <button
+              type="button"
+              key={index}
+              value={ref}
+              onClick={handleReferencesRemove}
+            >
+              {ref}
+            </button>
+          ))}
         </label>
         <label className={styles.label}>
-          Imagen URL:
+          Subir imagen
           <input
             className={styles.input}
-            type="url"
-            value={inputData.photoD}
-            name="photoD"
-            onChange={handleInput}
-            placeholder="Pega aquí la URL..."
+            type="file"
+            name=""
+            id=""
+            onChange={(e) => setFile(e.target.files[0])}
           ></input>
+          <img
+            className={styles.img}
+            src={file ? URL.createObjectURL(file) : ""}
+          />
         </label>
-        <img className={styles.img} src={inputData.photoD}></img>
+
         <div className={styles.containerButton}>
           <button
             className={styles.button}

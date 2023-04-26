@@ -9,7 +9,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyB_K-gUJnSUPbl7Q7hlZrkkagWNFpLVQw8",
   authDomain: "salvandohuellas.firebaseapp.com",
   projectId: "salvandohuellas",
-  storageBucket: "salvandohuellas.appspot.com",
+  storageBucket: "salvandohuellas.appspot.com", 
   messagingSenderId: "732917070624",
   appId: "1:732917070624:web:5fb76af4dc81ffc705b545",
   measurementId: "G-MQJ12X8H70"

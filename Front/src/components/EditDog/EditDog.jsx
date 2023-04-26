@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { editDog } from "../../redux/actions";
 import axios from "axios";
 import React from "react";
+import { uploadFile } from "../../firebase/config";
 
 export default function EditDog() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function EditDog() {
   const [message, setMessage] = useState("");
   const [selectedRefs, setSelectedRefs] = useState([])
   const [references, setReferences] = useState([]);
+  const [file, setFile] = useState(null);
 
   const handleInput = (e) => {
     setInput({
@@ -25,7 +27,8 @@ export default function EditDog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put("/dogs/update/" + Number(id), {...inputData, references: selectedRefs});
+      const result = await uploadFile(file);
+      const response = await axios.put("/dogs/update/" + Number(id), {...inputData, photoD: result, references: selectedRefs});
       setMessage(response.data);
     } catch (error) {
       console.error(error);
@@ -111,6 +114,14 @@ export default function EditDog() {
             <option value={"Old"}>Viejito</option>
           </select>
         </label>
+        <label className={styles.label} >
+          Referencias:
+          <select className={styles.input} onChange={handleReferencesSelect} value={""}>
+          <option value=""  >Elegir</option>
+            {references.map((ref, index) => <option key={index}>{ref}</option>)}
+          </select>
+          {selectedRefs.map((ref, index) => <button type="button" key={index} value={ref} onClick={handleReferencesRemove} >{ref}</button>)}
+        </label>
         <label className={styles.label}>
           Historia:
           <textarea
@@ -121,25 +132,21 @@ export default function EditDog() {
             onChange={handleInput}
           ></textarea>
         </label>
-        <label>
-          Referencias:
-          <select onChange={handleReferencesSelect} value={""}>
-          <option value=""  >Elegir</option>
-            {references.map((ref, index) => <option key={index}>{ref}</option>)}
-          </select>
-          {selectedRefs.map((ref, index) => <button type="button" key={index} value={ref} onClick={handleReferencesRemove} >{ref}</button>)}
-        </label>
         <label className={styles.label}>
-          Imagen URL:
+          Subir imagen
           <input
             className={styles.input}
-            type="url"
-            value={inputData.photoD || dog.photoD}
-            name="photoD"
-            onChange={handleInput}
+            type="file"
+            name=""
+            id=""
+            onChange={(e) => setFile(e.target.files[0])}
           ></input>
+          <img
+            className={styles.img}
+            src={file ? URL.createObjectURL(file) : ""}
+          />
         </label>
-        <img className={styles.img} src={inputData.photoD || dog.photoD}></img>
+        
         <div className={styles.containerButton}>
           <button
             className={styles.button}

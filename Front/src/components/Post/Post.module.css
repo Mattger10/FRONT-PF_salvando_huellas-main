@@ -23,3 +23,15 @@
     max-width: 100%;
   height: auto;
   }
+
+  .button {
+    background-color: #fe5535;
+    width: 50%;
+    height: 10%;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  }

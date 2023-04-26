@@ -81,10 +81,6 @@ export default function DetailDogs() {
                   <button className={styles.button}>Adóptame!</button>
                 </Link>
               </div>
-              <div>
-                Referencias:
-                <ul>{showReferences}</ul>
-              </div>
 
             </div>
           ) : (
