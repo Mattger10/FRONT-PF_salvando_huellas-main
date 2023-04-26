@@ -41,6 +41,15 @@ export default function AdminDogs() {
   useEffect(() => {
     dispatch(getDogs());
   }, []);
+
+  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+  if (!userLocal.isAdminU) {
+    return (
+      <div>
+        <h2>ACCESS DENIED</h2>
+      </div>
+    );
+  }
   return (
     <div>
       <div className={styles.containerButtons}>

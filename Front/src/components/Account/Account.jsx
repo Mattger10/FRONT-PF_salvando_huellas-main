@@ -6,7 +6,7 @@ import styles from "./Account.module.css";
 const Account = () => {
   const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
-  const userLocal = JSON.parse(window.localStorage.getItem('user')) || {}
+  const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
   const navigate = useNavigate();
   const toggleEditingProfile = () => {
     setEditingProfile(!editingProfile);
@@ -49,8 +49,6 @@ const Account = () => {
     };
     input.click();
   };
-
-
 
   return (
     <div className={styles.container}>
@@ -120,32 +118,32 @@ const Account = () => {
             <li>Mis favoritos:</li>
           </ul>
         </div>
-        <button onClick={goAdminArticles} className={styles.button}>
-          Gestionar Artículos
-        </button>
-        <button onClick={goAdminDogs} className={styles.button}>
-          Gestionar Perritos
-        </button>
+        {userLocal.isAdminU && (
+          <button onClick={goAdminArticles} className={styles.button}>
+            Gestionar Artículos
+          </button>
+        )}
+        {userLocal.isAdminU && (
+          <button onClick={goAdminDogs} className={styles.button}>
+            Gestionar Perritos
+          </button>
+        )}
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
 
-        <button className={styles.button}
-
-        
-
+        <button
+          className={styles.button}
           onClick={() => {
             window.localStorage.setItem("carrito", JSON.stringify([]));
             window.localStorage.setItem("user", JSON.stringify({}));
             window.localStorage.removeItem("token");
             logout({ returnTo: "/" });
           }}
-
-          
-
-
         >
-          {isAuthenticated || userLocal.nameU ? "Cerrar sesión" : "Iniciar Sesion"}
+          {isAuthenticated || userLocal.nameU
+            ? "Cerrar sesión"
+            : "Iniciar Sesion"}
         </button>
       </div>
     </div>

@@ -41,6 +41,14 @@ export default function CreateArticle() {
 
   useEffect(() => {}, []);
 
+  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+  if (!userLocal.isAdminU) {
+    return (
+      <div>
+        <h2>ACCESS DENIED</h2>
+      </div>
+    );
+  }
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>CREAR ARTÍCULO EN LA TIENDA</h2>
