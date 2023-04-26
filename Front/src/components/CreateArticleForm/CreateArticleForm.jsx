@@ -16,7 +16,6 @@ export default function CreateArticle() {
   });
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
 
   const handleInput = (e) => {
     setInput({
