@@ -57,7 +57,7 @@
   .button {
     margin-top: 2rem;
     padding: 0.5rem 1rem;
-    background-color: #fe5535;
+    background-color: #d3a80b;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -69,7 +69,7 @@
   }
   
   .button:hover {
-    background-color: #d43535;
+    background-color: #8b6f08;
   }
  
   .message {
