@@ -9,6 +9,7 @@ export const CHANGE_CANTIDAD = "CHANGE_CANTIDAD";
 export const GET_ARTICLES = "GET_ARTICLES";
 export const DETAIL_ARTICLE = "DETAIL_ARTICLE";
 export const EDIT_DOG = "EDIT_DOG";
+export const UPLOAD_IMAGE = "UPLOAD_IMAGE";
 
 // Actions
 
@@ -202,6 +203,7 @@ export function editDog(id) {
   };
 }
 
+
 // tarigo referencias para el DetailDogs
 export function getReferences() {
   return async function (dispatch) {
@@ -212,3 +214,31 @@ export function getReferences() {
     });
   };
 }
+
+
+// PARA CLOUDINARY
+
+export const uploadImage = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("images/uploadImages", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      dispatch({
+        type: "UPLOAD_IMAGE_SUCCESS",
+        payload: { urlImage: response.data.urlImage },
+      });
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: "UPLOAD_IMAGE_FAILURE",
+        payload: { message: "Failed to upload image" },
+      });
+    }
+  };
+};
+
+
+

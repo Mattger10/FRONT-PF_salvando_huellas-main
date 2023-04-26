@@ -41,15 +41,15 @@ const Dogs = () => {
       <div className={styles.containerCards}>
         <div className={styles.CardDogs}>
           {currentDog.length === 0 ? (
-            <img
+            <img 
               className={styles.image}
               src={perrito}
               alt="No puppies :("
             ></img>
           ) : (
-            currentDog.map((c) => {
+            currentDog.map((c, index) => {
               return (
-                <div key={c.id}>
+                <div key={index}>
                   <Link className={styles.name} to={"/dogs/" + c.id_Dog}>
                     <CardDogs
                       nameD={c.nameD}

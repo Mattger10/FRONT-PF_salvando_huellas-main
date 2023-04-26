@@ -6,17 +6,11 @@ import styles from "./Account.module.css";
 const Account = () => {
   const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
-
   const userLocal = JSON.parse(window.localStorage.getItem('user')) || {}
-
-
-
   const navigate = useNavigate();
-
   const toggleEditingProfile = () => {
     setEditingProfile(!editingProfile);
   };
-
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
@@ -24,7 +18,6 @@ const Account = () => {
       return <div>Cargando...</div>;
     }
   }
-
   // Ir a funciones de administrador
   const goAdminArticles = () => {
     navigate("/admin/articles");
@@ -56,6 +49,8 @@ const Account = () => {
     };
     input.click();
   };
+
+
 
   return (
     <div className={styles.container}>
@@ -107,7 +102,7 @@ const Account = () => {
             <p className={styles.texto}>Email: {user.email}</p>
           </div>
         )}
-        {userLocal.nameU ? (
+        {userLocal.nameU && !isAuthenticated ? (
           <div className={styles.perfilBio}>
             <h3 className={styles.titulo}>
               {userLocal.nameU + " " + userLocal.lastNameU}
@@ -142,6 +137,7 @@ const Account = () => {
           onClick={() => {
             window.localStorage.setItem("carrito", JSON.stringify([]));
             window.localStorage.setItem("user", JSON.stringify({}));
+            window.localStorage.removeItem("token");
             logout({ returnTo: "/" });
           }}
 
@@ -149,7 +145,7 @@ const Account = () => {
 
 
         >
-          Cerrar sesión
+          {isAuthenticated || userLocal.nameU ? "Cerrar sesión" : "Iniciar Sesion"}
         </button>
       </div>
     </div>

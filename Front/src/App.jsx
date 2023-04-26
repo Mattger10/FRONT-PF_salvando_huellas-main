@@ -13,6 +13,7 @@ import History from "./components/History/History.jsx";
 import DetailsArticle from "./components/DetailArticle/DetailArticle.jsx";
 import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
 import Post from "./components/Post/Post.jsx";
+import PostForm from "./components/Post/PostForm.jsx"
 import React from "react";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
@@ -58,6 +59,7 @@ function App() {
         <Route path="/admin/dogs/create" element={<CreateDog />} />
         <Route path="/admin/dogs" element={<AdminDogs />} />
         <Route path="/posts" element={<Post />} />
+        <Route path="/posts/createpost" element={<PostForm />} />
       </Routes>
     </div>
   );

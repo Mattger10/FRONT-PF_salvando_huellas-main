@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import React from "react";
+import { uploadFile } from "../../firebase/config";
 
 export default function CreateArticle() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function CreateArticle() {
     priceA: "",
   });
   const [message, setMessage] = useState("");
+  const [file, setFile] = useState(null);
 
   const handleInput = (e) => {
     setInput({
@@ -21,12 +23,15 @@ export default function CreateArticle() {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const result = await uploadFile(file);
       const response = await axios.post("/articles/register/", {
         ...inputData,
         activeA: true,
+        photoA: result,
       });
       setMessage(response.data);
     } catch (error) {
@@ -35,6 +40,7 @@ export default function CreateArticle() {
   };
 
   useEffect(() => {}, []);
+
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>CREAR ARTÍCULO EN LA TIENDA</h2>
@@ -44,7 +50,6 @@ export default function CreateArticle() {
           <input
             className={styles.input}
             type="text"
-            value={inputData.nameA}
             name="nameA"
             onChange={handleInput}
             placeholder="Ingresa un nombre..."
@@ -88,18 +93,19 @@ export default function CreateArticle() {
           ></textarea>
         </label>
         <label className={styles.label}>
-          Imagen URL:
+          Subir imagen
           <input
             className={styles.input}
-            type="url"
-            value={inputData.photoA}
-            name="photoA"
-            onChange={handleInput}
-            placeholder="Pega aquí la URL..."
-            required
+            type="file"
+            name=""
+            id=""
+            onChange={(e) => setFile(e.target.files[0])}
           ></input>
+          <img
+            className={styles.img}
+            src={file ? URL.createObjectURL(file) : ""}
+          />
         </label>
-        <img className={styles.img} src={inputData.photoA}></img>
         <div className={styles.containerButton}>
           <button
             className={styles.button}

@@ -44,7 +44,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
           "carrito",
           JSON.stringify([
             ...JSON.parse(carritoStorage),
-            { article: { nameA, priceA, photoA, stockA }, cantidad },
+            { article: { nameA, priceA, photoA, stockA, id }, cantidad },
           ])
         );
         setMessage("Se añadió al carrito");
@@ -61,7 +61,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
       window.localStorage.setItem(
         "carrito",
         JSON.stringify([
-          { article: { nameA, priceA, photoA, stockA }, cantidad },
+          { article: { nameA, priceA, photoA, stockA, id }, cantidad },
         ])
       );
     }

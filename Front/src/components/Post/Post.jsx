@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { getPosts } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../Post/Post.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Post() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPosts());
@@ -13,10 +15,11 @@ export default function Post() {
 
   return (
     <div className={styles.containt}>
+      
       {posts.map((post) => (
         <div className={styles.posts}> 
         <div key={post.id}>
-          <h1>{post.title}</h1>
+          <h1>{post.titleP}</h1>
           <div>
             <h4>Posteo:</h4>
             <p>{post.id_Post}</p>
@@ -33,6 +36,8 @@ export default function Post() {
         </div>
         </div>
       ))}
+      <button onClick={() => {
+             navigate("/posts/createpost") }} className={styles.button}>Crear Posteo</button>
     </div>
   );
 }
