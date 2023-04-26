@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { getDetail } from "../../redux/actions";
 import styles from "../DetailDog/DetailDog.module.css";
 import axios from "axios";
+import translateData from "../../utils/translateData";
 
 export default function DetailDogs() {
   const dispatch = useDispatch();
@@ -62,9 +63,9 @@ export default function DetailDogs() {
               </div>
 
               <div className={styles.description}>
-                <span>Edad: {DogDeits.ageD}</span>
-                <span>Sexo: {DogDeits.sexD}</span>
-                <span>Tamaño: {DogDeits.sizeD}</span>
+                <span>Edad: {translateData(DogDeits.ageD)}</span>
+                <span>Sexo: {translateData(DogDeits.sexD)}</span>
+                <span>Tamaño: {translateData(DogDeits.sizeD)}</span>
                 <span >Historia: {DogDeits.historyD}</span>
                 <span>
                 Referencias:
