@@ -27,6 +27,15 @@ export default function AdminArticles() {
     dispatch(getAllArticles());
   }, []);
 
+  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+  if (!userLocal.isAdminU) {
+    return (
+      <div>
+        <h2>ACCESS DENIED</h2>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.containerAll}>
       <div className={styles.containerButtons}>
