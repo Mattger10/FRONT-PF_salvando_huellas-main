@@ -56,7 +56,7 @@ const userLocal = JSON.parse(window.localStorage.getItem("user"));
 if (!userLocal?.nameU && !isAuthenticated) {
 setIsLogged(false);
 }
-}, []);
+}, [isAuthenticated]);
 
 useEffect(()=>{
 axios.get('/dogs').then(res => {
