@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff29a;
 }
 
 .containerCarritoVacio {
@@ -38,7 +39,7 @@
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  grid-gap: 50px;
+  grid-gap: 60px;
   margin-top: 1%;
   margin-left: 14%;
 }
@@ -51,13 +52,21 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    background: rgba(206, 201, 201, 0.144);
-    border-radius: 10px;
+    background: #61B4DA;
+    border-radius: 1rem;
+    border: #212121 0.2rem solid;
+    transition: all 0.4s ease-in;
+    box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
 }
 
-
+.carritoLleno:hover {
+  transform: translateY(-1.5rem);
+  border: #f2295bf0 0.2em solid;
+  border-radius: 2.5rem 0 2.5rem 0;
+ }
 
 .img{
+    border-radius: 1.5rem;
     width: 200px;
     cursor: pointer;
     padding: 15px;
@@ -79,7 +88,7 @@
     margin-left: 2rem;
     padding: 0.50rem;
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 1rem;
     background-color: #fe5535;
     color: #fff;
     font-size: 1rem;
@@ -89,13 +98,13 @@
 .buttonEliminar {
     margin-top: 2%;
     padding: 0.50rem;
-    border: 1px solid #cccccc;
-    border-radius: 0.25rem;
+    border: 1px solid blue;
+    border-radius: 0.5rem;
     background-color: #fe5535;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
-    width: 200px;
+    width: 198px;
   }
 
   .buttonEliminar:hover {
@@ -115,7 +124,7 @@
   .buttonMas {
     display: inline-block;
     background-color: #fe5735;
-    border: 1px solid #cccccc;
+    border: 1px solid blue;
     color: #ffffff;
     cursor: pointer;
     font-size: 16px;
@@ -253,11 +262,3 @@
        margin-right: -90%;
    }
 }
-
-
-
-
-
-  
-
-
