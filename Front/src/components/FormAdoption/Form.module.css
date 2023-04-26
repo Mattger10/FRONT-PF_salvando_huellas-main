@@ -6,7 +6,6 @@
 
 .formulario {
   background-image: url('https://imgs.search.brave.com/drWOHp3OC13SHr2f9HhC7I3-otMDtkRWdCwyB0aSKZk/rs:fit:1024:1024:1/g:ce/aHR0cHM6Ly9zdDIu/ZGVwb3NpdHBob3Rv/cy5jb20vMzI2ODU0/MS81NDYxL3YvOTUw/L2RlcG9zaXRwaG90/b3NfNTQ2MTcxODEt/c3RvY2staWxsdXN0/cmF0aW9uLWRvZy1w/YXctZm9vdHByaW50/LXNlYW1sZXNzLXBh/dHRlcm4uanBn');
-  background-repeat: repeat;
   background-color: rgba(42, 97, 122, 0.6);
   display: flex;
   flex-direction: column;

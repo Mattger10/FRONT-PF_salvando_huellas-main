@@ -66,7 +66,7 @@ export default function DetailDogs() {
                 <span>Sexo: {DogDeits.sexD}</span>
                 <span>Tamaño: {DogDeits.sizeD}</span>
                 <span >Historia: {DogDeits.historyD}</span>
-                <span>
+                <span className={styles.reference} >
                 Referencias:
                 <ul>
                   {references.map((references) => (
