@@ -74,7 +74,7 @@ const FormularioPost = () => {
           </label>
         </div>
       </div>
-      <button type="submit">Publicar</button>
+      <button className={styles.button} type="submit">Publicar</button>
     </form>
     {message.length ? (
         <div className={styles.containerMessage}>
