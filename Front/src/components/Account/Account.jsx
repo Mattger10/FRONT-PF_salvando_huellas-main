@@ -122,12 +122,12 @@ const Account = () => {
           <button onClick={goAdminArticles} className={styles.button}>
             Gestionar Artículos
           </button>
-        )}
+        )} 
         {userLocal.isAdminU && (
           <button onClick={goAdminDogs} className={styles.button}>
             Gestionar Perritos
           </button>
-        )}
+         )} 
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}

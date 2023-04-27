@@ -1,11 +1,11 @@
-
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #fff29a;
     justify-content: center;
     align-items: center;
+    width: 100;
+    height: 52rem;
+    background-color: #fff29a;
   }
 
   .h2 {
@@ -15,7 +15,6 @@
   .form {
     background-image: linear-gradient(to bottom right, #f8dc6de3, #e4a83a);
     display: flex;
-    justify-content: center;
     flex-direction: column;
     width: 30%;
     margin-top: 0.5rem;
@@ -27,6 +26,7 @@
   .label {
     display: block;
     margin-top: 1rem;
+    
   }
   
   .input {
@@ -36,7 +36,6 @@
     border-radius: 0.40rem;
     font-size: 1rem;
   }
-
   .input:hover{
     background-color: #e9e3bba9;
     border: 1px solid;
@@ -56,17 +55,13 @@
   }
   
   .button {
-    margin-top: 2rem;
-    padding: 0.5rem 1rem;
-    background-color: #d3a80b;
-    color: #fff;
+    padding: 0.50rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.25rem;
+    background-color: #BB9715;
+    color: #fff;
+    font-size: 1rem;
     cursor: pointer;
-    width: 40%;
-    margin-right: 5%;
-    margin-left: 4%;
-    font-size: 14px;
   }
   
   .button:hover {
