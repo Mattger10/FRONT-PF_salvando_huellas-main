@@ -240,5 +240,21 @@ export const uploadImage = (formData) => {
   };
 };
 
+const createPost = async (titleP, commentP, category, userId) => {
+  try {
+    const response = await axios.post('/posts/register', {
+      titleP,
+      commentP,
+      category,
+      userId
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export default createPost;
+
 
 

@@ -137,3 +137,38 @@
     .button:hover {
       background-color: #d43535;
     }
+
+    .titleObligatorio {
+      color:  #fe5535;
+      font-size: 50px;
+      margin-bottom: 10px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    
+    .subtitleObligatorio {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .containerObligatorio {
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px auto;
+      max-width: 400px;
+    }
+    
+
+    .buttonObligatorio {
+      background-color: #fe5535;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    
+    .buttonObligatorio:hover {
+      background-color: #d43535;
+    }
