@@ -4,6 +4,8 @@
     flex-direction: column;
     align-items: center;
     background-color: #fff29a;
+    justify-content: center;
+    align-items: center;
   }
 
   .h2 {
@@ -11,16 +13,15 @@
   }
   
   .form {
-    background-image: url('https://imgs.search.brave.com/drWOHp3OC13SHr2f9HhC7I3-otMDtkRWdCwyB0aSKZk/rs:fit:1024:1024:1/g:ce/aHR0cHM6Ly9zdDIu/ZGVwb3NpdHBob3Rv/cy5jb20vMzI2ODU0/MS81NDYxL3YvOTUw/L2RlcG9zaXRwaG90/b3NfNTQ2MTcxODEt/c3RvY2staWxsdXN0/cmF0aW9uLWRvZy1w/YXctZm9vdHByaW50/LXNlYW1sZXNzLXBh/dHRlcm4uanBn');
-    background-repeat: repeat;
-    background-color: rgba(42, 97, 122, 0.6);
+    background-image: linear-gradient(to bottom right, #f8dc6de3, #e4a83a);
     display: flex;
+    justify-content: center;
     flex-direction: column;
     width: 30%;
     margin-top: 0.5rem;
     padding: 2rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 3px solid #d4eb04;
+    border-radius: 0.5rem;
   }
   
   .label {

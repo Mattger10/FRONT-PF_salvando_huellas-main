@@ -1,8 +1,8 @@
 .container {
   display: grid;
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 50%;
+  margin: 1% auto;
+  padding: 5%;
+  max-width: 80%;
   border: 1px solid #ccc;
   align-items: center;
   justify-content: center;
@@ -11,20 +11,21 @@
 }
 
 .resumen {
-  align-self: end;
-  justify-self: end;
+  align-self: start;
+  justify-self: start;
+  margin-top: -3%;
 }
 
 .clasificaciones {
   align-self: start;
   justify-self: start;
-  margin-top: -22.9%;
+  margin-top: 5%;
   margin-right: 5% ;
 }
 
 .ratinglabel {
   font-weight: bold;
-  margin-right: 10px;
+  margin-right: 5%;
 }
 
 .ratingvalue {
@@ -32,7 +33,7 @@
 }
 
 .ratingcount {
-  margin-right: 10px;
+  margin-right: 5%;
 }
 
 .ratingstars {
@@ -40,4 +41,22 @@
   font-size: 20px;
 }
 
-  
+@media only screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    padding: 3%;
+    max-width: 100%;
+  }
+  .resumen {
+    margin-top: 0;
+  }
+  .clasificaciones {
+    margin-top: 3%;
+    margin-right: 0;
+  }
+  .ratinglabel {
+    margin-right: 3%;
+  }
+}
+

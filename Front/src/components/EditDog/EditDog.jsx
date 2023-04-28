@@ -24,6 +24,20 @@ export default function EditDog() {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleEdit = () => {
+    navigate(`/dogs/${id}`);
+  };
+
+  const handleEd = (e) => {
+    e.preventDefault();
+    let response = confirm("¿Está seguro que quiere dejar de editar?");
+    if (response === true) {
+      handleEdit()
+    }
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -175,13 +189,8 @@ export default function EditDog() {
         </label>
 
         <div className={styles.containerButton}>
-          <button
-            className={styles.button}
-            onClick={() => {
-              navigate("/admin/dogs");
-            }}
-          >
-            Volver
+          <button className={styles.button} type="button" onClick={handleEd}>
+            Cancelar
           </button>
           <button className={styles.button} type="submit">
             APLICAR CAMBIOS

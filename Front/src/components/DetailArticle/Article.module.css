@@ -1,29 +1,24 @@
 .detailsArticle {
   display: flex;
+  flex-direction: column;
   margin: 20px auto;
   padding: 20px;
-  max-width: 50%;
+  max-width: 100%;
+  box-sizing: border-box;
   border: 1px solid #ccc;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.detailsLeft {
-  width: 50%;
 }
 
 .img {
-  width: 70%;
-  margin-left: 15%;
+  width: 100%;
+}
+
+.detailsLeft {
+  width: 100%;
 }
 
 .detailsRight {
-  width: 50%;
-  padding-left: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0;
 }
 
 .price {
@@ -53,4 +48,26 @@
 
 .button:hover {
   background-color: #d43535;
+}
+
+@media (min-width: 768px) {
+  .detailsArticle {
+    flex-direction: row;
+    max-width: 80%;
+  }
+
+  .detailsLeft {
+    width: 50%;
+    padding-right: 20px;
+  }
+
+  .img {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .detailsRight {
+    width: 50%;
+    padding-left: 20px;
+  }
 }
