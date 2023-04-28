@@ -12,3 +12,6 @@
 .userBan{
     background-color: #d43535;
 }
+.banned{
+    color: red;
+}
