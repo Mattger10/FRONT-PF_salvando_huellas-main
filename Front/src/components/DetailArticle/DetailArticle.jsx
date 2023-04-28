@@ -116,10 +116,10 @@ export default function DetailsArticle() {
   }, []);
 
   useEffect(() => {
-    const item = JSON.parse(window.localStorage.getItem("user"));
-    if (!item.nameU) {
+    const user = JSON.parse(window.localStorage.getItem("user"));
+    if (!user) {
       setIsLogged(false);
-    }
+    } else if (!user.nameU) setIsLogged(false);
   }, []);
 
   return (
