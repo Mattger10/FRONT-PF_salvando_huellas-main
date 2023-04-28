@@ -2,15 +2,34 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Account.module.css";
+// import {getAdoptions} from "../../redux/actions";
+// import { useDispatch, useSelector } from "react-redux";
+import Notif from "../Notif/Notif";
 
 const Account = () => {
+  const [clicks, setClicks] = useState(0);
+  const [message, setMessage] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
-  const userLocal = JSON.parse(window.localStorage.getItem('user')) || {}
+  const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
   const navigate = useNavigate();
+
   const toggleEditingProfile = () => {
     setEditingProfile(!editingProfile);
   };
+
+  const handleClick = () => {
+    toggleEditingProfile();
+    setClicks(clicks + 1);
+    if (clicks === 1) {
+      setMessage("Perfil editado");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    }
+  };
+  
+
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
@@ -49,8 +68,6 @@ const Account = () => {
     };
     input.click();
   };
-
-
 
   return (
     <div className={styles.container}>
@@ -120,32 +137,32 @@ const Account = () => {
             <li>Mis favoritos:</li>
           </ul>
         </div>
-        <button onClick={goAdminArticles} className={styles.button}>
-          Gestionar Artículos
-        </button>
-        <button onClick={goAdminDogs} className={styles.button}>
-          Gestionar Perritos
-        </button>
-        {/* <button className={styles.button} onClick={toggleEditingProfile}>
+        <div>
+          <button onClick={goAdminArticles} className={styles.button}>
+            Gestionar Artículos
+          </button>
+          <button onClick={goAdminDogs} className={styles.button}>
+            Gestionar Perritos
+          </button>
+        </div>
+
+        <button className={styles.button} onClick={handleClick}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
-        </button> */}
+        </button>
+        {message && <div className={styles.notification}>{message}</div>}
 
-        <button className={styles.button}
-
-        
-
+        <button
+          className={styles.button}
           onClick={() => {
             window.localStorage.setItem("carrito", JSON.stringify([]));
             window.localStorage.setItem("user", JSON.stringify({}));
             window.localStorage.removeItem("token");
             logout({ returnTo: "/" });
           }}
-
-          
-
-
         >
-          {isAuthenticated || userLocal.nameU ? "Cerrar sesión" : "Iniciar Sesion"}
+          {isAuthenticated || userLocal.nameU
+            ? "Cerrar sesión"
+            : "Iniciar Sesion"}
         </button>
       </div>
     </div>

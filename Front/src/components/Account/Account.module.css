@@ -137,3 +137,16 @@
     .button:hover {
       background-color: #d43535;
     }
+    
+    .notification {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      padding: 2rem;
+      font-size: 1.2rem;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-right: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }  
