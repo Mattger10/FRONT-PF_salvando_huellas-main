@@ -1,0 +1,14 @@
+.userContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    width: 300px;
+    margin: 10px;
+}
+.userButtons{
+    display: flex;
+   
+}
+.userBan{
+    background-color: #d43535;
+}
