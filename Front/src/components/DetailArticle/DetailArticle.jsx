@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { detailArticle, getOpinions } from "../../redux/actions";
 import Opinions from "../Opinions/Opinions";
 import { useAuth0 } from "@auth0/auth0-react";
+import Rating from "react-rating-stars-component";
+
 import axios from "axios";
 
 export default function DetailsArticle() {
@@ -82,19 +84,26 @@ export default function DetailsArticle() {
   const handleOpinionSubmit = (e) => {
     e.preventDefault();
     const userToken = window.localStorage.getItem("token");
-    const config = {headers: {authorization: userToken}}
+    const config = { headers: { authorization: userToken } };
     axios
       .post(
         "/opinions/register/" + id,
         {
           commentO: opinionInfo.text,
           qualificationO: Math.round(opinionInfo.stars / 20) || 1,
+          stars: opinionInfo.stars
         },
         config
       )
-      .then((res) => console.log(res.data))
-      .catch(error => console.log(error.message))
+      .then((res) => {
+        // actualizar la lista de opiniones con la nueva opinión
+        dispatch(getOpinions());
+        // limpiar el formulario
+        setOpinionInfo({ stars: 0, text: "" });
+      })
+      .catch((error) => console.log(error.message));
   };
+  
 
   const handleOpinionChange = (e) => {
     setOpinionInfo({
@@ -115,7 +124,7 @@ export default function DetailsArticle() {
   }, []);
 
   return (
-    <div className={styles.container} >
+    <div>
       <div className={styles.detailsArticle}>
         <div className={styles.detailsLeft}>
           <img
@@ -154,11 +163,14 @@ export default function DetailsArticle() {
           <form onSubmit={handleOpinionSubmit}>
             <label>
               Calificación:
-              <input
-                type="range"
-                onChange={handleOpinionChange}
-                value={opinionInfo.stars}
-                name="stars"
+              <Rating
+                count={5} // cantidad de estrellas
+                value={opinionInfo.stars} // valor inicial de las estrellas
+                onChange={(valor) =>
+                  setOpinionInfo({ ...opinionInfo, stars: valor })
+                } // función para actualizar el estado con el valor seleccionado
+                size={24} // tamaño de las estrellas
+                activeColor="#ffd700" // color de las estrellas activas
               />
             </label>
             <label>
@@ -170,7 +182,7 @@ export default function DetailsArticle() {
                 name="text"
               />
             </label>
-            <button type="submit">Enviar!</button>
+            <button type="submit">Enviar</button>
           </form>
         </div>
       ) : (
