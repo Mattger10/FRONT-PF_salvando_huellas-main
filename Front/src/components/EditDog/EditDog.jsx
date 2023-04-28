@@ -183,7 +183,7 @@ export default function EditDog() {
           ></input>
           <img
             className={styles.img}
-            src={file ? URL.createObjectURL(file) : ""}
+            src={file ? URL.createObjectURL(file) : dog.photoD}
           />
         </label>
 
