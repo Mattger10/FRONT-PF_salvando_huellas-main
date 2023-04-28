@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { detailArticle, getOpinions } from "../../redux/actions";
 import Opinions from "../Opinions/Opinions";
 import { useAuth0 } from "@auth0/auth0-react";
-import Rating from "react-rating-stars-component";
 
 import axios from "axios";
 
@@ -158,20 +157,18 @@ export default function DetailsArticle() {
         <Opinions />
       </div>
       {isLogged || isAuthenticated ? (
-        <div>
+        <div className={styles.containerOpinion}>
           <h3>Deja tu opinión sobre este artículo</h3>
           <form onSubmit={handleOpinionSubmit}>
             <label>
               Calificación:
-              <Rating
-                count={5} // cantidad de estrellas
-                value={opinionInfo.stars} // valor inicial de las estrellas
-                onChange={(valor) =>
-                  setOpinionInfo({ ...opinionInfo, stars: valor })
-                } // función para actualizar el estado con el valor seleccionado
-                size={24} // tamaño de las estrellas
-                activeColor="#ffd700" // color de las estrellas activas
+              <input
+                type="range"
+                onChange={handleOpinionChange}
+                value={opinionInfo.stars}
+                name="stars"
               />
+              
             </label>
             <label>
               Comentario
