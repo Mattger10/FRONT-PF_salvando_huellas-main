@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { detailArticle, getOpinions } from "../../redux/actions";
 import Opinions from "../Opinions/Opinions";
 import { useAuth0 } from "@auth0/auth0-react";
+
 import axios from "axios";
 
 export default function DetailsArticle() {
@@ -82,19 +83,26 @@ export default function DetailsArticle() {
   const handleOpinionSubmit = (e) => {
     e.preventDefault();
     const userToken = window.localStorage.getItem("token");
-    const config = {headers: {authorization: userToken}}
+    const config = { headers: { authorization: userToken } };
     axios
       .post(
         "/opinions/register/" + id,
         {
           commentO: opinionInfo.text,
           qualificationO: Math.round(opinionInfo.stars / 20) || 1,
+          stars: opinionInfo.stars
         },
         config
       )
-      .then((res) => console.log(res.data))
-      .catch(error => console.log(error.message))
+      .then((res) => {
+        // actualizar la lista de opiniones con la nueva opinión
+        dispatch(getOpinions());
+        // limpiar el formulario
+        setOpinionInfo({ stars: 0, text: "" });
+      })
+      .catch((error) => console.log(error.message));
   };
+  
 
   const handleOpinionChange = (e) => {
     setOpinionInfo({
@@ -149,7 +157,7 @@ export default function DetailsArticle() {
         <Opinions />
       </div>
       {isLogged || isAuthenticated ? (
-        <div>
+        <div className={styles.containerOpinion}>
           <h3>Deja tu opinión sobre este artículo</h3>
           <form onSubmit={handleOpinionSubmit}>
             <label>
@@ -160,6 +168,7 @@ export default function DetailsArticle() {
                 value={opinionInfo.stars}
                 name="stars"
               />
+              
             </label>
             <label>
               Comentario
@@ -170,7 +179,7 @@ export default function DetailsArticle() {
                 name="text"
               />
             </label>
-            <button type="submit">Enviar!</button>
+            <button type="submit">Enviar</button>
           </form>
         </div>
       ) : (

@@ -14,7 +14,7 @@ export default function Home() {
     //contiene ademas del titulo imagenes que se mostraran automaticamente y las redes sociales para ir
     <div className={styles.container}>
       <div className={styles.huella} />
-      <h1 className={styles.title}>SALVANDO HUELLAS!</h1>
+      <h1 style={{ fontFamily: 'Cat Paw' }} className={styles.title}>SALVANDO HUELLAS!</h1>
       <div className={styles.body}>
         <div className={styles.kodfunGaleri}>
           <div

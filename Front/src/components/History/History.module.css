@@ -1,4 +1,4 @@
-.fondo {
+/* .fondo {
   width: 99.9vw;
   height: 86.5vh;
   background-color: #fff29a;
@@ -85,5 +85,94 @@
     width: 100%;
     height: auto;
   }
+} */
+
+.fondo {
+ 
 }
+
+@font-face {
+  font-family: 'Cat Paw';
+  src: url('../../assets/Fuentes/Cat Paw.ttf') format('truetype');
+  /* Agrega más formatos de archivo si es necesario */
+  font-weight: normal;
+  font-style: normal;
+}
+ .container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5%;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+  width: 80%;
+  border-radius: 10px;
+  margin-left: 10%;
+ }
+
+.containerTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.containerImg {
+   float: left;
+  border-radius: 10px;
+  width: 50%;
+  margin-bottom: 16px;
+  margin-left: -5px;
+}
+
+.containerText {
+  flex: 1;
+  order: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img {
+  max-width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.title {
+  margin-top: 2%;
+  margin-bottom: -4%;
+  text-align: center;
+  font-size: 52px;
+}
+
+.text {
+  text-align: justify;
+  margin-top: -34%;
+  margin-right: 10%;
+  margin-left: -15%;
+  font-size: 24px;
+  font-family: 'Roboto' ;
+}
+
+
+.fotosContainer{
+  display: flex;
+  margin-left: 43%;
+  margin-top: -10.8%;
+}
+
+.imgN{
+  width: 14%;
+  height: auto;
+  margin: 0 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+
 

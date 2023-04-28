@@ -76,6 +76,13 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
     dispatch(getAllArticles());
   };
 
+  const handleDel = () => {
+    let response = confirm("¿Está seguro que desea eliminar el articulo?");
+    if (response === true) {
+      handleDelete(id)
+    }
+  };
+
 
   // ASÍ SE MUESTRAN EN ADMINISTRADOR
   if (location.pathname === "/admin/articles") {
@@ -92,9 +99,15 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
         <button className={styles.buttonEditar} onClick={handleEdit}>
           Editar
         </button>
-        <button className={styles.buttonEliminar} onClick={handleDelete}>
-          Eliminar
+        <button
+          className={styles.buttonEliminar}
+          onClick={() => {
+            handleDel()
+          }}
+        >
+          ELIMINAR
         </button>
+
       </div>
     );
   }
@@ -119,14 +132,14 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
           -
         </button>
         <span className={styles.span}>{cantidad}</span>
-        <button className={styles.buttonMas}onClick={handleStockSelect} value={cantidad + 1}>
+        <button className={styles.buttonMas} onClick={handleStockSelect} value={cantidad + 1}>
           +
         </button>
       </div>
-        <button className={styles.button} onClick={handleAdd}>
-          Agregar al carrito
-        </button>
-        {message.length ? <p>{message}</p> : ""}
+      <button className={styles.button} onClick={handleAdd}>
+        Agregar al carrito
+      </button>
+      {message.length ? <p>{message}</p> : ""}
     </div>
   );
 }
