@@ -18,6 +18,15 @@ export default function CardDogs({
 
   // --------------------------valentin-------------------------
   const location = useLocation(); // RENDERIZO DISTINTA LA CARD SI ESTAMOS EN ADMIN -- Valentin
+
+
+  const handleDel = () => {
+    let response = confirm("¿Está seguro que desea eliminar el perrito?");
+    if (response === true) {
+        handleDelete(id)
+    }
+  };
+
   if (location.pathname === "/admin/dogs") {
     return (
       <div className={styles.containerAll}>
@@ -46,7 +55,7 @@ export default function CardDogs({
                 <button
                   className={styles.button}
                   onClick={() => {
-                    handleDelete(id);
+                    handleDel()
                   }}
                 >
                   ELIMINAR
