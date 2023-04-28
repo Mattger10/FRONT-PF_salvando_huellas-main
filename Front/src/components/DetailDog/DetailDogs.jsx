@@ -70,9 +70,7 @@ export default function DetailDogs() {
                 <span className={styles.reference} >
                 Referencias:
                 <ul>
-                  {references.map((references) => (
-                    <li key={references.id}>{references.textR}</li>
-                  ))}
+                  {showReferences}
                 </ul>
               </span>
                 <Link className={styles.adoptame} to="/dogs">
