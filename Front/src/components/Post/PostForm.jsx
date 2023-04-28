@@ -58,7 +58,11 @@ const FormularioPost = () => {
       <div>
         <label className={styles.label} htmlFor="category">
           Categoría:
-          <input className={styles.input} type="text" name="category" onChange={handleInput} />
+          <select className={styles.input} type="text" name="category" onChange={handleInput} >
+            <option value="Tienda">Tienda</option>
+            <option value="Adopcioón">Adopción</option>
+            <option value="Donación">Donación</option>
+          </select>
         </label>
         <div>
           <label className={styles.label}>
@@ -68,9 +72,10 @@ const FormularioPost = () => {
               name="photoP"
               onChange={(e) => setFile(e.target.files[0])}
             />
-            <img className={styles.img}
-            src={file ? URL.createObjectURL(file) : ""}
-          />
+              {file ? (  <img className={styles.img}
+            src={file ? URL.createObjectURL(file) : ""}  
+          /> ) : null}
+
           </label>
         </div>
       </div>
