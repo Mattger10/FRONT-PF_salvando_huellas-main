@@ -115,7 +115,7 @@ export default function DetailsArticle() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container} >
       <div className={styles.detailsArticle}>
         <div className={styles.detailsLeft}>
           <img

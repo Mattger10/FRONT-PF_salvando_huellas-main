@@ -50,6 +50,18 @@ const Account = () => {
     input.click();
   };
 
+  const handleLogout = () => {
+    let response = confirm("¿Está seguro que desea salir de la sesión?");
+
+    if (response === true) {
+      window.localStorage.setItem("carrito", JSON.stringify([]));
+      window.localStorage.setItem("user", JSON.stringify({}));
+      window.localStorage.removeItem("token");
+      logout({ returnTo: "/" });
+    }
+  };
+
+
   return (
     <div className={styles.container}>
       <link
@@ -122,24 +134,19 @@ const Account = () => {
           <button onClick={goAdminArticles} className={styles.button}>
             Gestionar Artículos
           </button>
-        )} 
+        )}
         {userLocal.isAdminU && (
           <button onClick={goAdminDogs} className={styles.button}>
             Gestionar Perritos
           </button>
-         )} 
+        )}
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
 
         <button
           className={styles.button}
-          onClick={() => {
-            window.localStorage.setItem("carrito", JSON.stringify([]));
-            window.localStorage.setItem("user", JSON.stringify({}));
-            window.localStorage.removeItem("token");
-            logout({ returnTo: "/" });
-          }}
+          onClick={handleLogout}
         >
           {isAuthenticated || userLocal.nameU
             ? "Cerrar sesión"
