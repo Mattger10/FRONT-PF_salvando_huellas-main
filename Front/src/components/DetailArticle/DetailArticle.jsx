@@ -149,7 +149,7 @@ export default function DetailsArticle() {
             })}
           </select>
           <button className={styles.button} onClick={handleAdd}>
-            Agregar al carrito
+            Agregar al carrito!
           </button>
           {message.length ? <p>{message}</p> : ""}
         </div>
