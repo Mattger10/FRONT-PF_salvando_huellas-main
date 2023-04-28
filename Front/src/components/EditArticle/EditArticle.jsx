@@ -14,6 +14,20 @@ export default function EditArticle() {
   const [inputData, setInput] = useState({});
   const [message, setMessage] = useState("");
 
+
+  const handleEdit = () => {
+    navigate(`/admin/articles`);
+  };
+
+  const handleEd = (e) => {
+    e.preventDefault();
+    let response = confirm("¿Está seguro que quiere dejar de editar?");
+    if (response === true) {
+      handleEdit()
+    }
+  };
+
+
   const handleInput = (e) => {
     setInput({
       ...inputData,
@@ -106,14 +120,9 @@ export default function EditArticle() {
           src={inputData.photoA || detail.photoA}
         ></img>
         <div className={styles.containerButton}>
-          <button
-            className={styles.button}
-            onClick={() => {
-              navigate("/admin/articles");
-            }}
-          >
-            Volver
-          </button>
+          <button className={styles.button} type="button" onClick={handleEd}>
+          Cancelar
+        </button>
           <button className={styles.button} type="submit">
             APLICAR CAMBIOS
           </button>
