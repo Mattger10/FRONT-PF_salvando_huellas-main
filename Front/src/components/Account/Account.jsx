@@ -51,14 +51,17 @@ const Account = () => {
   };
 
   const handleLogout = () => {
+    
+    if(userLocal.nameU || isAuthenticated){
     let response = confirm("¿Está seguro que desea salir de la sesión?");
-
     if (response === true) {
       window.localStorage.setItem("carrito", JSON.stringify([]));
       window.localStorage.setItem("user", JSON.stringify({}));
       window.localStorage.removeItem("token");
       logout({ returnTo: "/" });
     }
+  }
+  else navigate("/")
   };
 
 
