@@ -25,6 +25,9 @@ const Account = () => {
   const goAdminDogs = () => {
     navigate("/admin/dogs");
   };
+  const goAdminUsers = () => {
+    navigate("/admin/users");
+  };
 
   const handleImageUpload = () => {
     const input = document.createElement("input");
@@ -142,7 +145,13 @@ const Account = () => {
           <button onClick={goAdminDogs} className={styles.button}>
             Gestionar Perritos
           </button>
-        )}
+         )} 
+        {userLocal.isAdminU && (
+          <button onClick={goAdminUsers} className={styles.button}>
+            Gestionar Usuarios
+          </button>
+         )} 
+
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}

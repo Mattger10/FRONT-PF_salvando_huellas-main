@@ -62,14 +62,13 @@ export default function CreateDog() {
     setSelectedRefs([...selectedRefs].filter((ref) => ref !== e.target.value));
   };
 
-  const userLocal = JSON.parse(window.localStorage.getItem("user"));
-  if (!userLocal.isAdminU) {
-    return (
-      <div>
-        <h2>ACCESS DENIED</h2>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal.isAdminU) {
+      navigate("/home");
+      
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>AÑADE UN PERRO AL REFUGIO</h2>

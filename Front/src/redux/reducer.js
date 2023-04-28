@@ -7,7 +7,8 @@ import {
   GET_ARTICLES,
   DETAIL_ARTICLE,
   EDIT_DOG,
-  UPLOAD_IMAGE
+  UPLOAD_IMAGE,
+  GET_USERS
 } from "./actions";
 
 const initialState = {
@@ -26,11 +27,8 @@ const initialState = {
   filteredArticles: [],
   editDog: {},
   references: [],
-  uploadImage: false
-  
-
-  // references: {},
-
+  uploadImage: false,
+  users: []
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -203,6 +201,12 @@ const rootReducer = (state = initialState, action) => {
     ...state,
     image: action.payload,
   };
+
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload
+      }
 
     default:
       return {

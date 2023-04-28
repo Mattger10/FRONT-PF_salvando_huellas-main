@@ -39,7 +39,13 @@ export default function CreateArticle() {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal.isAdminU) {
+      navigate("/home");
+      
+    }
+  }, []);
 
   const userLocal = JSON.parse(window.localStorage.getItem("user"));
   if (!userLocal.isAdminU) {

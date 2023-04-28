@@ -53,14 +53,12 @@ export default function EditArticle() {
     return setInput({});
   }, [id]);
 
-  const userLocal = JSON.parse(window.localStorage.getItem("user"));
-  if (!userLocal.isAdminU) {
-    return (
-      <div>
-        <h2>ACCESS DENIED</h2>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal.isAdminU) {
+      navigate("/home");
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>Editar Artículo</h2>
