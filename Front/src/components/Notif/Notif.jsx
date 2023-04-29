@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Notif.module.css";
-import Account from "../Account/Account";
 
 const Notif = (props) => {
   const [notif, setNotif] = useState({ message: "", show: false });
