@@ -11,6 +11,7 @@ export default function AdminUsers() {
   const allUsers = useSelector((state) => state.users);
   const navigate = useNavigate();
   const [searchName, setSearchName] = useState("")
+  const [searchingUsers, setSearchingUsers] = useState([])
 
   const banUser = (id)=>{
     axios.put('/users/ban/'+id)
@@ -19,10 +20,17 @@ export default function AdminUsers() {
   const unbanUser = (id)=>{
     axios.put('/users/unban/'+id)
     .then(res => dispatch(getUsers()))
+    .catch(error => console.log("ERROR: ",error.message))
   }
 
   const handleSearchName = (e)=>{
     setSearchName(e.target.value)
+    if (e.target.value.length){
+      axios.get('/users/?nameU='+e.target.value)
+      .then(res => res.data)
+      .then(foundUsers => setSearchingUsers(foundUsers))
+      .catch(error => console.log("ERROR: ",error.message))
+    }
   }
 
   useEffect(() => {
@@ -34,8 +42,30 @@ export default function AdminUsers() {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
   const showUsers = allUsers.length
     ? allUsers.map((user, index) => {
+        return (
+        <CardUser
+          key={index}
+          id={user.id_User}
+          name={user.nameU}
+          lastName={user.lastNameU}
+          dni={user.idNumbU}
+          email={user.emailU}
+          phone={user.phoneU}
+          address={user.addressU}
+          isBan={user.is_ban}
+          isAdmin={user.isAdminU}
+          reason={user.reasonU}
+          banUser={banUser}
+          unbanUser={unbanUser}
+        />
+      )})
+    : "";
+
+    const showSearchUsers = searchingUsers.length
+    ? searchingUsers.map((user, index) => {
         return (
         <CardUser
           key={index}
@@ -62,7 +92,8 @@ export default function AdminUsers() {
       </Link>
       <h2>Gestionar Usuarios</h2>
       <input type='search' onChange={handleSearchName} value={searchName} placeholder='Buscar por nombre...'></input>
-      <div>{showUsers}</div>
+      <div>{searchName.length ? showSearchUsers : showUsers}</div>
+      <span>{(searchName.length && !showSearchUsers.length) ? "No se encontró " + searchName : ""}</span>
     </div>
   );
 }
