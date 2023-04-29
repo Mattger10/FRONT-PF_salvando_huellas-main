@@ -98,6 +98,15 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../../assets/Fuentes/Roboto-Regular.ttf') format('truetype');
+  /* Agrega más formatos de archivo si es necesario */
+  font-weight: normal;
+  font-style: normal;
+}
+
  .container{
   display: flex;
   flex-direction: row;
