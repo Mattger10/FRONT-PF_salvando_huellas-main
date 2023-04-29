@@ -14,19 +14,11 @@ const Account = () => {
   const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
   const navigate = useNavigate();
 
-  const toggleEditingProfile = () => {
-    setEditingProfile(!editingProfile);
-  };
-
-  const handleClick = () => {
-    toggleEditingProfile();
-    setClicks(clicks + 1);
-    if (clicks === 1) {
-      setMessage("Perfil editado");
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
-    }
+   const handleClick = () => {
+    setMessage("El perfil ha sido modificado");
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
   };
   
 
@@ -151,20 +143,17 @@ const Account = () => {
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
-
+        <button className={styles.button} >Editar perfil</button>
+        <button className={styles.button} onClick={handleClick}>Cancelar edición</button>
+        {message && <div className={styles.notification}>{message}</div>}
         <button className={styles.button}
 
-        
-
-          onClick={() => {
+        onClick={() => {
             window.localStorage.setItem("carrito", JSON.stringify([]));
             window.localStorage.setItem("user", JSON.stringify({}));
             window.localStorage.removeItem("token");
             logout({ returnTo: "/" });
           }}
-
-          
-
 
         >
           {isAuthenticated || userLocal.nameU
