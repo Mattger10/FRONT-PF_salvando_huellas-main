@@ -1,11 +1,16 @@
+
+
 .filters {
   margin: 20px;
 }
 
 .formRow {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2%;
 }
+
 
 .label {
   display: flex;
@@ -25,9 +30,9 @@
 }
 
 .buttonFilter {
-  margin-top: 1.7%;
-  width: 3%;
-  height: 5%;
+  margin-top: 1%;
+  margin-left: 0.5%;
+  width: 6.2%;
   padding: 5px;
   background-color: #fe5535;
   color: #fff;
@@ -41,26 +46,13 @@
   background-color: #d43535;
 }
 
-.button {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #fe5535;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
-.button:hover {
-  background-color: #d43535;
-}
-
-@media (max-width: 1366px) { 
+ @media (max-width: 1366px) { 
   .buttonFilter {
-    margin-top: 2.9%;
-    width: 4%;
-    height: 5%;
-    padding: 4px;
+    margin-top: 1%;
+    margin-left: 0.6%;
+    width: 9%;
+    padding: 5px;
     background-color: #fe5535;
     color: #fff;
     border: none;
@@ -68,9 +60,16 @@
     cursor: pointer;
     
   }
+
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1%;
+  }
   
   .buttonFilter:hover {
     background-color: #d43535;
   }
-}
+} 
   

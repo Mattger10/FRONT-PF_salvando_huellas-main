@@ -50,14 +50,14 @@ export default function Trolley() {
       message: "Artículo eliminado",
       name: item.article.nameA,
     });
+    dispatch(deleteCarrito());
+    const aux = [...allArticleStorage].filter(
+      (art) => art.article.nameA !== item.article.nameA
+    );
+    window.localStorage.setItem("carrito", JSON.stringify(aux));
+    setAllArticleStorage(aux);
     setTimeout(() => {
       setArticleMessage({ message: "", name: "" });
-      dispatch(deleteCarrito());
-      const aux = [...allArticleStorage].filter(
-        (art) => art.article.nameA !== item.article.nameA
-      );
-      window.localStorage.setItem("carrito", JSON.stringify(aux));
-      setAllArticleStorage(aux);
     }, 1000);
   };
 
@@ -121,11 +121,13 @@ export default function Trolley() {
       <div className={styles.containerCarritoLleno}>
         {allArticleStorage.map((item, index) => (
           <div className={styles.carritoLleno} key={index}>
+           <Link to={`/shop/DetailArticle/${item.article.id}`} >
             <img
               className={styles.img}
               src={item.article.photoA}
               alt={"foto de " + item.article.nameA}
             />
+            </Link>
             <p>{item.article.nameA}</p>
             <p>$ {item.article.priceA}</p>
             <p>{item.article.stockA} disponibles </p>
@@ -157,14 +159,14 @@ export default function Trolley() {
             >
               Eliminar
             </button>
-            {articleMessage.message.length
-              ? articleMessage.name === item.article.nameA && (
-                  <span className={styles.span2}>Artículo eliminado</span>
-                )
-              : ""}
           </div>
         ))}
       </div>
+        {articleMessage.message.length
+          ?(
+              <div className={styles.span2}>{articleMessage.message}</div>
+            )
+          : ""}
 
       <div className={styles.Comprar}>
         {allArticleStorage.length !== 0 && (

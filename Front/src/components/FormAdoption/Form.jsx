@@ -99,27 +99,20 @@ function FormularioAdopcion() {
     setTieneNiños(e.target.value === "si");
   };
 
-  useEffect(() => {
-    const userLocal = JSON.parse(window.localStorage.getItem("user"));
-    if (!userLocal?.nameU && !isAuthenticated) {
-      setIsLogged(false);
-    }
-  }, []);
+useEffect(() => {
+const userLocal = JSON.parse(window.localStorage.getItem("user"));
+if (!userLocal?.nameU && !isAuthenticated) {
+setIsLogged(false);
+}
+}, [isAuthenticated]);
 
-  useEffect(() => {
-    axios
-      .get("/dogs")
-      .then((res) => {
-        const dogs = res.data;
-        const all = dogs.map((d, index) => (
-          <option key={index} value={d.nameD}>
-            {d.nameD}
-          </option>
-        ));
-        setAllDogs(all);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
+useEffect(()=>{
+  axios.get('/dogs').then(res => {
+  const dogs = res.data;
+  const all = dogs.map((d, index) => <option key={index} value={d.nameD}>{d.nameD}</option>)
+  setAllDogs(all)
+  }).catch(err => console.log(err.message))
+  }, [])
 
   return (
     <div className={styles.container}>

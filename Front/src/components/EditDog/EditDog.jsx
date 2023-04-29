@@ -14,7 +14,7 @@ export default function EditDog() {
   const dog = useSelector((state) => state.editDog);
   const [inputData, setInput] = useState({});
   const [message, setMessage] = useState("");
-  const [selectedRefs, setSelectedRefs] = useState([])
+  const [selectedRefs, setSelectedRefs] = useState([]);
   const [references, setReferences] = useState([]);
   const [file, setFile] = useState(null);
 
@@ -24,11 +24,29 @@ export default function EditDog() {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleEdit = () => {
+    navigate(`/dogs/${id}`);
+  };
+
+  const handleEd = (e) => {
+    e.preventDefault();
+    let response = confirm("¿Está seguro que quiere dejar de editar?");
+    if (response === true) {
+      handleEdit()
+    }
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const result = await uploadFile(file);
-      const response = await axios.put("/dogs/update/" + Number(id), {...inputData, photoD: result, references: selectedRefs});
+      const response = await axios.put("/dogs/update/" + Number(id), {
+        ...inputData,
+        photoD: result,
+        references: selectedRefs,
+      });
       setMessage(response.data);
     } catch (error) {
       console.error(error);
@@ -41,26 +59,33 @@ export default function EditDog() {
     return setInput({});
   }, [id]);
 
-  const getRefers = async ()=>{
-    const response = await axios.get('/references')
-    const {allReferences} = response.data
-    const result = allReferences.map(ref => ref.textR)
-    setReferences(result)
-  }
+  const getRefers = async () => {
+    const response = await axios.get("/references");
+    const { allReferences } = response.data;
+    const result = allReferences.map((ref) => ref.textR);
+    setReferences(result);
+  };
   useEffect(() => {
-    getRefers()
+    getRefers();
   }, []);
   const handleReferencesSelect = (e) => {
-    if(e.target.value !== ""){
-      setSelectedRefs([...selectedRefs, e.target.value])
-      setReferences(references.filter(ref => ref !== e.target.value))
+    if (e.target.value !== "") {
+      setSelectedRefs([...selectedRefs, e.target.value]);
+      setReferences(references.filter((ref) => ref !== e.target.value));
     }
-  }
-  const handleReferencesRemove = (e)=>{
-    setReferences([...references, e.target.value])
-    setSelectedRefs([...selectedRefs].filter(ref => ref !== e.target.value))
-  }
+  };
+  const handleReferencesRemove = (e) => {
+    setReferences([...references, e.target.value]);
+    setSelectedRefs([...selectedRefs].filter((ref) => ref !== e.target.value));
+  };
 
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal.isAdminU) {
+      navigate("/home");
+      
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>Editar Perros</h2>
@@ -114,13 +139,28 @@ export default function EditDog() {
             <option value={"Old"}>Viejito</option>
           </select>
         </label>
-        <label className={styles.label} >
+        <label className={styles.label}>
           Referencias:
-          <select className={styles.input} onChange={handleReferencesSelect} value={""}>
-          <option value=""  >Elegir</option>
-            {references.map((ref, index) => <option key={index}>{ref}</option>)}
+          <select
+            className={styles.input}
+            onChange={handleReferencesSelect}
+            value={""}
+          >
+            <option value="">Elegir</option>
+            {references.map((ref, index) => (
+              <option key={index}>{ref}</option>
+            ))}
           </select>
-          {selectedRefs.map((ref, index) => <button type="button" key={index} value={ref} onClick={handleReferencesRemove} >{ref}</button>)}
+          {selectedRefs.map((ref, index) => (
+            <button
+              type="button"
+              key={index}
+              value={ref}
+              onClick={handleReferencesRemove}
+            >
+              {ref}
+            </button>
+          ))}
         </label>
         <label className={styles.label}>
           Historia:
@@ -143,18 +183,13 @@ export default function EditDog() {
           ></input>
           <img
             className={styles.img}
-            src={file ? URL.createObjectURL(file) : ""}
+            src={file ? URL.createObjectURL(file) : dog.photoD}
           />
         </label>
-        
+
         <div className={styles.containerButton}>
-          <button
-            className={styles.button}
-            onClick={() => {
-              navigate("/admin/dogs");
-            }}
-          >
-            Volver
+          <button className={styles.button} type="button" onClick={handleEd}>
+            Cancelar
           </button>
           <button className={styles.button} type="submit">
             APLICAR CAMBIOS

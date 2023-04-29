@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../CardDogs/CardDogs.module.css";
 import { useLocation } from "react-router-dom";
+import translateData from "../../utils/translateData";
 //Acá traigo a todas las cards de los perros -iri-
 
 export default function CardDogs({
@@ -17,6 +18,15 @@ export default function CardDogs({
 
   // --------------------------valentin-------------------------
   const location = useLocation(); // RENDERIZO DISTINTA LA CARD SI ESTAMOS EN ADMIN -- Valentin
+
+
+  const handleDel = () => {
+    let response = confirm("¿Está seguro que desea eliminar el perrito?");
+    if (response === true) {
+        handleDelete(id)
+    }
+  };
+
   if (location.pathname === "/admin/dogs") {
     return (
       <div className={styles.containerAll}>
@@ -27,11 +37,11 @@ export default function CardDogs({
             <div className={styles.cardInfoAdmin}>
               <div className={styles.textBodyAdmin}>
                 <h4>Edad:</h4>
-                <p>{ageD}</p>
+                <p>{translateData(ageD)}</p>
                 <h4>Tamaño:</h4>
-                <p>{sizeD}</p>
+                <p>{translateData(sizeD)}</p>
                 <h4>Sex:</h4>
-                <p>{sexD}</p>
+                <p>{translateData(sexD)}</p>
               </div>
               <div>
                 <button
@@ -45,7 +55,7 @@ export default function CardDogs({
                 <button
                   className={styles.button}
                   onClick={() => {
-                    handleDelete(id);
+                    handleDel()
                   }}
                 >
                   ELIMINAR
@@ -145,11 +155,11 @@ export default function CardDogs({
             <h2 className={styles.h2}>{nameD}</h2>
           <div className={styles.containerData}>
             <h4 className={styles.h4}>Edad:</h4>
-            <p className={styles.p}>{ageD}</p>
+            <p className={styles.p}>{translateData(ageD)}</p>
             <h4 className={styles.h4}>Tamaño:</h4>
-            <p className={styles.p}>{sizeD}</p>
+            <p className={styles.p}>{translateData(sizeD)}</p>
             <h4 className={styles.h4} >Sexo:</h4>
-            <p className={styles.p}>{sexD}</p>
+            <p className={styles.p}>{translateData(sexD)}</p>
           </div>
         </div>
       </div>

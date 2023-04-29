@@ -14,30 +14,35 @@ export default function Post() {
   }, [dispatch]);
 
   return (
-    <div className={styles.containt}>
-      
+    <div className={styles.container}>
       {posts.map((post) => (
-        <div className={styles.posts}> 
-        <div key={post.id}>
-          <h1>{post.titleP}</h1>
-          <div>
-            <h4>Posteo:</h4>
+        <div className={styles.post} key={post.id}>
+          <div className={styles.containerImg}>
+            {post.photoP ? (
+              <img src={post.photoP} className={styles.imgPost} />
+            ) : null}
+          </div>
+          <h1 className={styles.title}>{post.titleP}</h1>
+          <p className={styles.comment}>{post.commentP}</p>
+          <div className={styles.postDetails}>
+            <h4>Posteo N°</h4>
             <p>{post.id_Post}</p>
           </div>
-          <p>{post.commentP}</p>
-          <img src={post.photoP} className={styles.imgPost}/>
-          <div>
-            <h4>Category:</h4>
+          <div className={styles.postDetails}>
+            <h4>Categoría:</h4>
             <p>{post.category}</p>
-          </div>
-          <div>
             <p>{post.userIdUser}</p>
           </div>
         </div>
-        </div>
       ))}
-      <button onClick={() => {
-             navigate("/posts/createpost") }} className={styles.button}>Crear Posteo</button>
+      <button
+        onClick={() => {
+          navigate("/posts/createpost");
+        }}
+        className={styles.button}
+      >
+        Crear Posteo
+      </button>
     </div>
   );
 }

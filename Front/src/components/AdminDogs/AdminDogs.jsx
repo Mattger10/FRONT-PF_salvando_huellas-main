@@ -41,6 +41,12 @@ export default function AdminDogs() {
   useEffect(() => {
     dispatch(getDogs());
   }, []);
+
+  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+  if (!userLocal.isAdminU) {
+    navigate('/home')
+    
+  }
   return (
     <div>
       <div className={styles.containerButtons}>

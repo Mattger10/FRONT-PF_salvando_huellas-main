@@ -10,6 +10,7 @@ export const GET_ARTICLES = "GET_ARTICLES";
 export const DETAIL_ARTICLE = "DETAIL_ARTICLE";
 export const EDIT_DOG = "EDIT_DOG";
 export const UPLOAD_IMAGE = "UPLOAD_IMAGE";
+export const GET_USERS = "GET_USERS";
 
 // Actions
 
@@ -239,6 +240,33 @@ export const uploadImage = (formData) => {
     }
   };
 };
+
+const createPost = async (titleP, commentP, category, userId) => {
+  try {
+    const response = await axios.post('/posts/register', {
+      titleP,
+      commentP,
+      category,
+      userId
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export default createPost;
+
+// Traer usuarios
+export function getUsers () {
+  return async (dispatch) => {
+    const response = await axios.get('/users')
+    dispatch({
+      type: GET_USERS,
+      payload: response.data
+    })
+  }
+}
 
 
 

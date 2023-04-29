@@ -1,7 +1,8 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: #fff29a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
 
   .h2 {
@@ -11,26 +12,37 @@
   }
 
   .form {
+    background-image: linear-gradient(to bottom right, #f8dc6de3, #e4a83a);
     display: flex;
     flex-direction: column;
-    width: 30%;
-    margin-top: 0.5rem;
-    padding: 2rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 3px solid #d4eb04;
+    border-radius: 0.5rem;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    width: 30vw;
   }
 
   .label {
     display: block;
     margin-top: 1rem;
+    font-weight: bold;
   }
 
   .input {
     width: 100%;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid #bb9715d8;
+    border-radius: 0.40rem;
+    font-size: 1rem;
+  }
+
+  .input:hover{
+    background-color: #e9e3bba9;
+    border: 1px solid;
   }
 
   .textarea {

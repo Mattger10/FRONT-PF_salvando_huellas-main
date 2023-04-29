@@ -44,6 +44,9 @@ const Account = () => {
   const goAdminDogs = () => {
     navigate("/admin/dogs");
   };
+  const goAdminUsers = () => {
+    navigate("/admin/users");
+  };
 
   const handleImageUpload = () => {
     const input = document.createElement("input");
@@ -68,6 +71,8 @@ const Account = () => {
     };
     input.click();
   };
+
+
 
   return (
     <div className={styles.container}>
@@ -137,31 +142,35 @@ const Account = () => {
             <li>Mis favoritos:</li>
           </ul>
         </div>
-        <div>
-          <button onClick={goAdminArticles} className={styles.button}>
-            Gestionar Artículos
-          </button>
-          <button onClick={goAdminDogs} className={styles.button}>
-            Gestionar Perritos
-          </button>
-        </div>
-
-        <button className={styles.button} onClick={handleClick}>
-          {editingProfile ? "Cancelar edición" : "Editar perfil"}
+        <button onClick={goAdminArticles} className={styles.button}>
+          Gestionar Artículos
         </button>
-        {message && <div className={styles.notification}>{message}</div>}
+        <button onClick={goAdminDogs} className={styles.button}>
+          Gestionar Perritos
+        </button>
+        {/* <button className={styles.button} onClick={toggleEditingProfile}>
+          {editingProfile ? "Cancelar edición" : "Editar perfil"}
+        </button> */}
 
-        <button
-          className={styles.button}
+        <button className={styles.button}
+
+        
+
           onClick={() => {
             window.localStorage.setItem("carrito", JSON.stringify([]));
             window.localStorage.setItem("user", JSON.stringify({}));
             window.localStorage.removeItem("token");
             logout({ returnTo: "/" });
           }}
+
+          
+
+
         >
           {isAuthenticated || userLocal.nameU
+           
             ? "Cerrar sesión"
+           
             : "Iniciar Sesion"}
         </button>
       </div>

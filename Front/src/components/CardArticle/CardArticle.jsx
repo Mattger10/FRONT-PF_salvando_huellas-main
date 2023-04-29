@@ -44,7 +44,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
           "carrito",
           JSON.stringify([
             ...JSON.parse(carritoStorage),
-            { article: { nameA, priceA, photoA, stockA }, cantidad },
+            { article: { nameA, priceA, photoA, stockA, id }, cantidad },
           ])
         );
         setMessage("Se añadió al carrito");
@@ -61,7 +61,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
       window.localStorage.setItem(
         "carrito",
         JSON.stringify([
-          { article: { nameA, priceA, photoA, stockA }, cantidad },
+          { article: { nameA, priceA, photoA, stockA, id }, cantidad },
         ])
       );
     }
@@ -74,6 +74,13 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
   const handleDelete = async () => {
     await axios.delete("/articles/delete/" + id);
     dispatch(getAllArticles());
+  };
+
+  const handleDel = () => {
+    let response = confirm("¿Está seguro que desea eliminar el articulo?");
+    if (response === true) {
+      handleDelete(id)
+    }
   };
 
 
@@ -92,9 +99,15 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
         <button className={styles.buttonEditar} onClick={handleEdit}>
           Editar
         </button>
-        <button className={styles.buttonEliminar} onClick={handleDelete}>
-          Eliminar
+        <button
+          className={styles.buttonEliminar}
+          onClick={() => {
+            handleDel()
+          }}
+        >
+          ELIMINAR
         </button>
+
       </div>
     );
   }
@@ -119,14 +132,14 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
           -
         </button>
         <span className={styles.span}>{cantidad}</span>
-        <button className={styles.buttonMas}onClick={handleStockSelect} value={cantidad + 1}>
+        <button className={styles.buttonMas} onClick={handleStockSelect} value={cantidad + 1}>
           +
         </button>
       </div>
-        <button className={styles.button} onClick={handleAdd}>
-          Agregar al carrito
-        </button>
-        {message.length ? <p>{message}</p> : ""}
+      <button className={styles.button} onClick={handleAdd}>
+        Agregar al carrito
+      </button>
+      {message.length ? <p>{message}</p> : ""}
     </div>
   );
 }

@@ -27,6 +27,12 @@ export default function AdminArticles() {
     dispatch(getAllArticles());
   }, []);
 
+  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+  if (!userLocal.isAdminU) {
+    navigate('/home')
+    
+  }
+
   return (
     <div className={styles.containerAll}>
       <div className={styles.containerButtons}>

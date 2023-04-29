@@ -65,6 +65,7 @@ const Dogs = () => {
           )}
         </div>
       </div>
+      <div className={styles.huella}></div>
       <div>
         <PaginationDogs
           currentPage={currentPage}

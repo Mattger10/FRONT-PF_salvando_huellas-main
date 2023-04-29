@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Cat Paw';
+  src: url('../../assets/Fuentes/Cat Paw.ttf') format('truetype');
+  /* Agrega más formatos de archivo si es necesario */
+  font-weight: normal;
+  font-style: normal;
+}
+
 .container {
   width: 99.9vw;
   height: 89vh;
