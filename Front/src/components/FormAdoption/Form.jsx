@@ -5,66 +5,107 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function FormularioAdopcion() {
-const [email, setEmail] = useState("");
-const [nombre, setNombre] = useState("");
-const [apellido, setApellido] = useState("");
-const [dni, setDni] = useState("");
-const [domicilio, setDomicilio] = useState("");
-const [telefono, setTelefono] = useState("");
-const [tieneNiños, setTieneNiños] = useState();
-const [razonAdopcion, setRazonAdopcion] = useState("");
-const [selectDog, setSelectDog] = useState("");
-const [isLogged, setIsLogged] = useState(true);
-const [allDogs, setAllDogs] = useState([])
+  const [email, setEmail] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [dni, setDni] = useState("");
+  const [domicilio, setDomicilio] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [tieneNiños, setTieneNiños] = useState();
+  const [razonAdopcion, setRazonAdopcion] = useState("");
+  const [selectDog, setSelectDog] = useState("");
+  const [isLogged, setIsLogged] = useState(true);
+  const [allDogs, setAllDogs] = useState([]);
+  let [formState, setFormState] = useState(1);
 
-const { isAuthenticated } = useAuth0();
-const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
-const handleSubmit = (e) => {
-e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!selectDog.length) {
+        return;
+      }
+      const userId = JSON.parse(window.localStorage.getItem("user")).id_User;
+      const dogId = await axios
+        .get("/dogs")
+        .then((res) => res.data)
+        .then((dogs) => dogs.filter((dog) => dog.nameD === selectDog)[0])
+        .then((dog) => dog.id_Dog);
+      if (formState === 1) {
+        await axios.post("/adoptions/register", {
+          adopted_homeA: "adopt",
+          id_Dog: dogId,
+          id_User: userId,
+        });
+        await axios.put("/users/" + userId, {
+          nameU: nombre,
+          lastNameU: apellido,
+          phoneU: telefono,
+          addressU: domicilio,
+          reasonU: razonAdopcion,
+          idNumbU: Number(dni),
+          emailU: email
+        });
+      }
+      if (formState === 2) {
+        await axios.post("/adoptions/register", {
+          adopted_homeA: "home",
+          id_Dog: dogId,
+          id_User: userId,
+        });
+        await axios.put("/users/" + userId, {
+          nameU: nombre,
+          lastNameU: apellido,
+          phoneU: telefono,
+          addressU: domicilio,
+          reasonU: razonAdopcion,
+          idNumbU: Number(dni),
+          emailU: email
+        });
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
 
-   // Acá se agrega la lógica para enviar los datos del formulario al servidor
-console.log({
-  email,
-  nombre,
-  apellido,
-  dni,
-  domicilio,
-  telefono,
-  tieneNiños,
-  razonAdopcion,
-});
+    // Acá se reinician los valores de los campos del formulario
+    setEmail("");
+    setNombre("");
+    setApellido("");
+    setDni("");
+    setDomicilio("");
+    setTelefono("");
+    setTieneNiños();
+    setRazonAdopcion("");
+    setSelectDog("");
+  };
 
-// Acá se reinician los valores de los campos del formulario
-setEmail("");
-setNombre("");
-setApellido("");
-setDni("");
-setDomicilio("");
-setTelefono("");
-setTieneNiños();
-setRazonAdopcion("");
-setSelectDog("")
-};
+  const handleTieneNiñosChange = (e) => {
+    setTieneNiños(e.target.value === "si");
+  };
 
-const handleTieneNiñosChange = (e) => {
-setTieneNiños(e.target.value === "si");
-};
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal?.nameU && !isAuthenticated) {
+      setIsLogged(false);
+    }
+  }, [isAuthenticated]);
 
-useEffect(() => {
-const userLocal = JSON.parse(window.localStorage.getItem("user"));
-if (!userLocal?.nameU && !isAuthenticated) {
-setIsLogged(false);
-}
-}, [isAuthenticated]);
-
-useEffect(()=>{
-axios.get('/dogs').then(res => {
-const dogs = res.data;
-const all = dogs.map((d, index) => <option key={index} value={d.nameD}>{d.nameD}</option>)
-setAllDogs(all)
-}).catch(err => console.log(err.message))
-}, [])
+  useEffect(() => {
+    axios
+      .get("/dogs")
+      .then((res) => {
+        const dogs = res.data;
+        const all = dogs.map((d, index) => (
+          <option key={index} value={d.nameD}>
+            {d.nameD}
+          </option>
+        ));
+        setAllDogs(all);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -172,36 +213,54 @@ setAllDogs(all)
             />
           </div>
           <label htmlFor="dogs">¿A quién deseas adoptar?</label>
-            <select
-              type="tel"
-              id="dogs"
-              value={selectDog}
-              onChange={(e) => setSelectDog(e.target.value)}
-              required
-            >
-              {allDogs}
-            </select>
-          <button type="submit" className={styles.button}>
+          <select
+            type="tel"
+            id="dogs"
+            value={selectDog}
+            onChange={(e) => setSelectDog(e.target.value)}
+            required
+          >
+            <option hidden value="">
+              Elegir
+            </option>
+            {allDogs}
+          </select>
+          <button
+            type="submit"
+            className={styles.button}
+            onClick={() => {
+              setFormState(1);
+            }}
+          >
             Adoptar
           </button>
-          <button type="submit" className={styles.button}>
+          <button
+            type="submit"
+            className={styles.button}
+            onClick={() => {
+              setFormState(2);
+            }}
+          >
             Hogar provisorio
           </button>
         </form>
       )}
       {/* CONSULTA SI ESTA LOGEADO SINO VUELVE AL LANDING */}
       {!isLogged && (
-         <div className={styles.containerObligatorio}>
-         <h2 className={styles.titleObligatorio}>Oops!</h2>
-         <h3 className={styles.subtitleObligatorio}>Necesitas iniciar sesión para solicitar una adopción</h3>
-         <button className={styles.buttonObligatorio}
-           onClick={() => {
-             navigate("/");
-           }}
-         >
-           Iniciar Sesión
-         </button>
-       </div>
+        <div className={styles.containerObligatorio}>
+          <h2 className={styles.titleObligatorio}>Oops!</h2>
+          <h3 className={styles.subtitleObligatorio}>
+            Necesitas iniciar sesión para solicitar una adopción
+          </h3>
+          <button
+            className={styles.buttonObligatorio}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Iniciar Sesión
+          </button>
+        </div>
       )}
     </div>
   );
