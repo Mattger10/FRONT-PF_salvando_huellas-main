@@ -23,6 +23,7 @@
     background-size: cover;
     backdrop-filter: blur(5px);
     width: 30vw;
+    margin-bottom: 2rem;
   }
 
   .label {
