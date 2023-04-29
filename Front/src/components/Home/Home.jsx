@@ -69,6 +69,29 @@ export default function Home() {
                   title="Síganos en Instagram"
                 />
               </a>
+
+              <a href="mailto:salvandohuellasjesusmaria@gmail.com">
+              <img
+                  loading="lazy"
+                  alt="contacto por correo"
+                  height="35"
+                  width="35"
+                  src="https://cdn.icon-icons.com/icons2/1826/PNG/512/4202011emailgmaillogomailsocialsocialmedia-115677_115624.png"
+                  title="contacto por correo"
+                />
+              </a>
+
+              <a href="https://api.whatsapp.com/send?phone=5493525418986" target="_blank" className={styles.whatsapp}>
+                <img
+                  loading="lazy"
+                  alt="Contacto por WhatsApp"
+                  height="35"
+                  width="35"
+                  src="https://cdn.icon-icons.com/icons2/41/PNG/96/whatsappmessage_conversation_whatsap_7149.png"
+                  title="Contacto por WhatsApp"
+                />
+              </a>
+
             </div>
           </div>
         </div>
