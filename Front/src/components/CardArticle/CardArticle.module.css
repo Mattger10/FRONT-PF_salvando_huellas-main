@@ -12,15 +12,23 @@
 
 .cardArticle {
   width: 120%;
-  height: 400px;
+  height: 460px;
   margin-top: 10%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  background: rgba(206, 201, 201, 0.144);
-  border-radius: 10px;
+  background-color: #fae243;
+  border-radius: 1rem;
+  border: #212121 0.1rem solid;
+  transition: all 0.4s ease-in;
+  box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
 }
+
+.cardArticle:hover {
+  border: #f2295bf0 0.1rem solid;
+  border-radius: 2.5rem 0 2.5rem 0;
+ }
 
 .cardArticle p {
     font-weight: bold;
