@@ -153,7 +153,7 @@ export default function DetailsArticle() {
           {message.length ? <p>{message}</p> : ""}
         </div>
       </div>
-      <div>
+      <div className={styles.opinions} >
         <Opinions />
       </div>
       {isLogged || isAuthenticated ? (

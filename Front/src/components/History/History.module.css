@@ -88,7 +88,10 @@
 } */
 
 .fondo {
- 
+  width: 99.9vw;
+  height: 86vh;
+  background-color: #fff29a;
+  overflow: hidden;
 }
 
 @font-face {
@@ -108,12 +111,12 @@
 }
 
  .container{
+  background-color: #f8e358;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 5%;
-  background-color: #f8f8f8;
   border: 1px solid #ccc;
   padding: 16px;
   margin-bottom: 16px;
@@ -160,7 +163,7 @@
 
 .text {
   text-align: justify;
-  margin-top: -34%;
+  margin-top: -23%;
   margin-right: 10%;
   margin-left: -15%;
   font-size: 24px;

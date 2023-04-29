@@ -116,7 +116,7 @@
 
 .header img {
   border-radius: 0.7%;
-  box-shadow: 0 0 0 8px #bd40374d;
+  box-shadow: 0 0 0 4px #bd40374d;
   margin: 20px 30px;
   transition: .2s;
 }
