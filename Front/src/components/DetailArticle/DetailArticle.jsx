@@ -55,11 +55,13 @@ export default function DetailsArticle() {
                 priceA: detail.priceA,
                 photoA: detail.photoA,
                 stockA: detail.stockA,
+                id_Article: detail.id_Article
               },
-              cantidad,
+              cantidad: Number(cantidad),
             },
           ])
         );
+        console.log(detail)
         setMessage("Se añadió al carrito");
         setTimeout(() => {
           setMessage("");
@@ -74,7 +76,7 @@ export default function DetailsArticle() {
       window.localStorage.setItem(
         "carrito",
         JSON.stringify([
-          { article: { nameA, priceA, photoA, stockA }, cantidad },
+          { article: { nameA, priceA, photoA, stockA }, cantidad: Number(cantidad) },
         ])
       );
     }
@@ -111,7 +113,7 @@ export default function DetailsArticle() {
     });
   };
   useEffect(() => {
-    dispatch(detailArticle(id));
+    dispatch(detailArticle((id)));
     dispatch(getOpinions());
   }, []);
 
@@ -183,7 +185,9 @@ export default function DetailsArticle() {
           </form>
         </div>
       ) : (
-        ""
+        <div>
+          <h4>Inicia sesión para opinar sobre este producto</h4>
+        </div>
       )}
     </div>
   );

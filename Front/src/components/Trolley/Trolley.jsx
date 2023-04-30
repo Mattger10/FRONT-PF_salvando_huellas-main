@@ -121,7 +121,7 @@ export default function Trolley() {
       <div className={styles.containerCarritoLleno}>
         {allArticleStorage.map((item, index) => (
           <div className={styles.carritoLleno} key={index}>
-           <Link to={`/shop/DetailArticle/${item.article.id}`} >
+           <Link to={`/shop/DetailArticle/${item.article.id_Article}`} >
             <img
               className={styles.img}
               src={item.article.photoA}
