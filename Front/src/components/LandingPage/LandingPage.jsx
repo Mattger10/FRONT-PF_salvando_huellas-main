@@ -4,6 +4,7 @@ import styles from "./LandingPage.module.css";
 import image from "../../assets/Fondolanding.webp";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import validate from "./validate";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -16,53 +17,73 @@ export default function LandingPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [registerMessage, setRegisterMessage] = useState("");
   const [loginForm, setLoginForm] = useState(false);
-
+  const [errorMessage, setErrorMessage] = useState("");
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!Object.keys(errors).length) {
+    console.log("ERRORS: ",errors)
+    if (!Object.keys(errors).length && !Object.keys(validate({name, email, password})).length) {
       // enviar formulario
       try {
-        const allUsers = await axios.get('/users')
-        if (allUsers){
-          allUsers.data.forEach(u => {
-            if (u.emailU.toLowerCase() === email.toLowerCase()){
-              throw new Error('Ya existe un usuario con ese email')
+        const allUsers = await axios.get("/users");
+        if (allUsers) {
+          allUsers.data.forEach((u) => {
+            if (u.emailU.toLowerCase() === email.toLowerCase()) {
+              throw new Error("Ya existe un usuario con ese email");
             }
-          })
+          });
         }
-        console.log({name: name.split(" ")[0],lastname: name.split(" ")[1], email, password})
+        console.log({
+          name: name.split(" ")[0],
+          lastname: name.split(" ")[1],
+          email,
+          password,
+        });
         await axios.post("/users/register", {
           nameU: name.split(" ")[0],
           lastNameU: name.split(" ")[1],
           passwordU: password,
           idNumbU: Math.round(Math.random() * 100000000), // DNI del usuario, por ahora random
           emailU: email,
-          phoneU: Math.round(Math.random() * 1000000).toString(),
-          addressU: "random street 1",
+          phoneU: "Sin teléfono",
+          addressU: "Sin dirección",
           reasonU: "Reason",
         });
-        
+
         setRegisterMessage("Usuario creado correctamente");
         setTimeout(() => {
           setRegisterMessage("");
         }, 2000);
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
         setErrors({ ...errors, axios: error.message });
-        setTimeout(() => {
-          setErrors({});
-        }, 2000);
-        setRegisterMessage("Error al crear usuario");
+        setRegisterMessage({
+          message: "Error al registrarse",
+          styles: {
+            position: "fixed",
+            top: "50%",
+            right: 0,
+            transform: "translateY(-50%)",
+            padding: "2rem",
+            fontSize: "1.2rem",
+            backgroundColor: "#fff",
+            border: "1px solid #ccc",
+            borderRight: "none",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+          }
+        });
         setTimeout(() => {
           setRegisterMessage("");
           setErrors({})
-        }, 2000);
+        }, 3000);
       }
     } else {
-      // mostrar mensaje de error
+      // mostrar errores validacion formulario
+
     }
   };
-  
+
+
   const handleLogin = async (event) => {
     event.preventDefault();
     if (!Object.keys(errors).length) {
@@ -71,19 +92,36 @@ export default function LandingPage() {
           emailU: email,
           passwordU: password,
         });
-        console.log(response.data)
-        window.localStorage.setItem('user', JSON.stringify(response.data.user))
-        window.localStorage.setItem('token', response.data.token)
+        console.log(response.data);
+        window.localStorage.setItem("user", JSON.stringify(response.data.user));
+        window.localStorage.setItem("token", response.data.token);
         navigate("/home");
+
       } catch (error) {
-        console.error(error)
+        console.error(error);
         setErrors({ ...errors, axios: error.message });
-        setRegisterMessage("Credenciales incorrectas");
+        setErrorMessage({
+          message: "Credenciales incorrectas",
+          styles: {
+            position: "fixed",
+            top: "50%",
+            right: 0,
+            transform: "translateY(-50%)",
+            padding: "2rem",
+            fontSize: "1.2rem",
+            backgroundColor: "#fff",
+            border: "1px solid #ccc",
+            borderRight: "none",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+          },
+        });
         setTimeout(() => {
-          setRegisterMessage("");
+          setErrorMessage("");
           setErrors({})
-        }, 2000);
+        }, 3000);
       }
+    } else {
+      // mostrar mensaje de error
     }
   };
 
@@ -92,13 +130,13 @@ export default function LandingPage() {
       <link
         href="https://fonts.googleapis.com/css?family=Roboto"
         rel="stylesheet"
-      ></link>
+      />
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossOrigin="anonymous"
-      ></link>
+      />
 
       <div className={styles.container}>
         <div className={styles.loginContainer}>
@@ -111,22 +149,37 @@ export default function LandingPage() {
                   placeholder="Nombre y Apellido"
                   className={styles.nombre}
                   value={name}
-                  onChange={(event) => setName(event.target.value)}
+                  onChange={(event) => {
+                    setName(event.target.value)
+                    setErrors(validate({name: event.target.value}))
+                  }}
+                  required
                 />
+                <p >{errors.name || ""}</p>
                 <input
                   type="text"
                   placeholder="Email"
                   className={styles.correo}
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(event) => {
+                    setEmail(event.target.value)
+                    setErrors(validate({email: event.target.value}))
+                  }}
+                  required
                 />
+                <p >{errors.email || ""}</p>
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
                   className={styles.password}
                   value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  onChange={(event) => {
+                    setPassword(event.target.value)
+                    setErrors(validate({password: event.target.value}))
+                  }}
+                  required
                 />
+                <p >{errors.password || ""}</p>
                 <button
                   className={styles.showPasswordButton}
                   onClick={() => setShowPassword(!showPassword)}
@@ -145,7 +198,15 @@ export default function LandingPage() {
                   value="REGISTRARME"
                 />
               </form>
-              {registerMessage.length ? <h4>{registerMessage}</h4> : ""}
+              {registerMessage && (
+                <div
+                  style={registerMessage.styles}
+                >
+                  {registerMessage.message}
+                </div>
+              )}
+              
+              
               <p
                 onClick={() => {
                   setLoginForm(true);
@@ -193,7 +254,22 @@ export default function LandingPage() {
                   value="ACCEDER"
                 />
               </form>
-              {registerMessage.length ? <h4>{registerMessage}</h4> : ""}
+              {errorMessage && (
+                <div
+                  style={errorMessage.styles}
+                >
+                  {errorMessage.message}
+                </div>
+              )}
+
+              <p
+                onClick={() => {
+                  navigate('/forgotpass')
+                }}
+                className={styles.changeForm}
+              >
+                ¿Olvidaste tu contraseña?
+              </p>
               <p
                 onClick={() => {
                   setLoginForm(false);
@@ -207,6 +283,7 @@ export default function LandingPage() {
 
           <div className={styles.login}>
             <h2>Iniciar Sesión</h2>
+
             <div className={styles.loginItems}>
               <button
                 onClick={() => loginWithRedirect()}

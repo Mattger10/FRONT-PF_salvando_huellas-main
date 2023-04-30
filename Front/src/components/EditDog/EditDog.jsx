@@ -79,14 +79,13 @@ export default function EditDog() {
     setSelectedRefs([...selectedRefs].filter((ref) => ref !== e.target.value));
   };
 
-  const userLocal = JSON.parse(window.localStorage.getItem("user"));
-  if (!userLocal.isAdminU) {
-    return (
-      <div>
-        <h2>ACCESS DENIED</h2>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal.isAdminU) {
+      navigate("/home");
+      
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <h2 className={styles.h2}>Editar Perros</h2>
@@ -184,7 +183,7 @@ export default function EditDog() {
           ></input>
           <img
             className={styles.img}
-            src={file ? URL.createObjectURL(file) : ""}
+            src={file ? URL.createObjectURL(file) : dog.photoD}
           />
         </label>
 

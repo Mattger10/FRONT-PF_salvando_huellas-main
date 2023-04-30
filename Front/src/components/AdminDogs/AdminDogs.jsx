@@ -44,11 +44,8 @@ export default function AdminDogs() {
 
   const userLocal = JSON.parse(window.localStorage.getItem("user"));
   if (!userLocal.isAdminU) {
-    return (
-      <div>
-        <h2>ACCESS DENIED</h2>
-      </div>
-    );
+    navigate('/home')
+    
   }
   return (
     <div>

@@ -16,6 +16,9 @@ export default function DetailsArticle() {
   const [message, setMessage] = useState("");
   const { isAuthenticated } = useAuth0();
   const [isLogged, setIsLogged] = useState(true);
+  const userIdLocal = JSON.parse(window.localStorage.getItem("user")).id_User;
+  const [userHasOpinion, setUserHasOpinion] = useState(false);
+  const allOpinions = useSelector((state) => state.opinions);
 
   // Opinion form info:
   const [opinionInfo, setOpinionInfo] = useState({
@@ -24,6 +27,18 @@ export default function DetailsArticle() {
   });
 
   const { id } = useParams();
+
+  useEffect(() => {
+    allOpinions.forEach((opinion) => {
+      console.log("OPINION: ", opinion);
+      console.log("USER ID LOCAL: ", userIdLocal);
+      if (opinion.userId === userIdLocal) {
+        if (opinion.articleId === Number(id)) {
+          setUserHasOpinion(true);
+        }
+      }
+    });
+  }, [allOpinions]);
 
   let stockOptions = [];
   for (let i = 0; i < detail.stockA; i++) {
@@ -55,11 +70,13 @@ export default function DetailsArticle() {
                 priceA: detail.priceA,
                 photoA: detail.photoA,
                 stockA: detail.stockA,
+                id_Article: detail.id_Article,
               },
-              cantidad,
+              cantidad: Number(cantidad),
             },
           ])
         );
+        console.log(detail);
         setMessage("Se añadió al carrito");
         setTimeout(() => {
           setMessage("");
@@ -74,7 +91,10 @@ export default function DetailsArticle() {
       window.localStorage.setItem(
         "carrito",
         JSON.stringify([
-          { article: { nameA, priceA, photoA, stockA }, cantidad },
+          {
+            article: { nameA, priceA, photoA, stockA },
+            cantidad: Number(cantidad),
+          },
         ])
       );
     }
@@ -90,7 +110,8 @@ export default function DetailsArticle() {
         {
           commentO: opinionInfo.text,
           qualificationO: Math.round(opinionInfo.stars / 20) || 1,
-          stars: opinionInfo.stars
+          stars: opinionInfo.stars,
+          userId: userIdLocal,
         },
         config
       )
@@ -102,7 +123,6 @@ export default function DetailsArticle() {
       })
       .catch((error) => console.log(error.message));
   };
-  
 
   const handleOpinionChange = (e) => {
     setOpinionInfo({
@@ -116,10 +136,10 @@ export default function DetailsArticle() {
   }, []);
 
   useEffect(() => {
-    const item = JSON.parse(window.localStorage.getItem("user"));
-    if (!item.nameU) {
+    const user = JSON.parse(window.localStorage.getItem("user"));
+    if (!user) {
       setIsLogged(false);
-    }
+    } else if (!user.nameU) setIsLogged(false);
   }, []);
 
   return (
@@ -153,37 +173,44 @@ export default function DetailsArticle() {
           {message.length ? <p>{message}</p> : ""}
         </div>
       </div>
-      <div>
+      <div className={styles.opinions}>
         <Opinions />
       </div>
       {isLogged || isAuthenticated ? (
-        <div className={styles.containerOpinion}>
-          <h3>Deja tu opinión sobre este artículo</h3>
-          <form onSubmit={handleOpinionSubmit}>
-            <label>
-              Calificación:
-              <input
-                type="range"
-                onChange={handleOpinionChange}
-                value={opinionInfo.stars}
-                name="stars"
-              />
-              
-            </label>
-            <label>
-              Comentario
-              <textarea
-                placeholder="Escribe tu opinión..."
-                onChange={handleOpinionChange}
-                value={opinionInfo.text}
-                name="text"
-              />
-            </label>
-            <button type="submit">Enviar</button>
-          </form>
-        </div>
+        !userHasOpinion ? (
+          <div className={styles.containerOpinion}>
+            <h3>Deja tu opinión sobre este artículo</h3>
+            <form onSubmit={handleOpinionSubmit}>
+              <label>
+                Calificación:
+                <input
+                  type="range"
+                  onChange={handleOpinionChange}
+                  value={opinionInfo.stars}
+                  name="stars"
+                />
+              </label>
+              <label>
+                Comentario
+                <textarea
+                  placeholder="Escribe tu opinión..."
+                  onChange={handleOpinionChange}
+                  value={opinionInfo.text}
+                  name="text"
+                />
+              </label>
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+        ) : (
+          <div>
+            <h3>Gracias por tu opinion!</h3>
+          </div>
+        )
       ) : (
-        ""
+        <div>
+          <h4>Inicia sesión para opinar sobre este producto</h4>
+        </div>
       )}
     </div>
   );

@@ -2,15 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Account.module.css";
+// import {getAdoptions} from "../../redux/actions";
+// import { useDispatch, useSelector } from "react-redux";
+import Notif from "../Notif/Notif";
 
 const Account = () => {
-  const [editingProfile, setEditingProfile] = useState(false);
+  // const [clicks, setClicks] = useState(0);
+  const [message, setMessage] = useState(false);
+  // const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
   const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
   const navigate = useNavigate();
-  const toggleEditingProfile = () => {
-    setEditingProfile(!editingProfile);
+
+   const handleClick = () => {
+    setMessage("El perfil ha sido modificado");
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
   };
+  
+
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
@@ -24,6 +35,9 @@ const Account = () => {
   };
   const goAdminDogs = () => {
     navigate("/admin/dogs");
+  };
+  const goAdminUsers = () => {
+    navigate("/admin/users");
   };
 
   const handleImageUpload = () => {
@@ -51,16 +65,18 @@ const Account = () => {
   };
 
   const handleLogout = () => {
-    let response = confirm("¿Está seguro que desea salir de la sesión?");
 
+    if(userLocal.nameU || isAuthenticated){
+    let response = confirm("¿Está seguro que desea salir de la sesión?");
     if (response === true) {
       window.localStorage.setItem("carrito", JSON.stringify([]));
       window.localStorage.setItem("user", JSON.stringify({}));
       window.localStorage.removeItem("token");
       logout({ returnTo: "/" });
     }
+  }
+  else navigate("/")
   };
-
 
   return (
     <div className={styles.container}>
@@ -77,7 +93,7 @@ const Account = () => {
       />
       <div className={styles.perfil}>
         <div className={styles.portada}>
-          {isAuthenticated && (
+          {isAuthenticated ? (
             <div className={styles.avatar}>
               <img className={styles.img} src={user.picture} alt={user.name} />
               <button
@@ -88,8 +104,8 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          )}
-          {userLocal.nameU ? (
+          ):(
+          userLocal.nameU ? (
             <div className={styles.avatar}>
               <img className={styles.img} src={""} alt={userLocal.nameU} />
               <button
@@ -100,9 +116,7 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          ) : (
-            ""
-          )}
+          ) : "")}
         </div>
       </div>
       <div className={styles.perfilBody}>
@@ -139,17 +153,25 @@ const Account = () => {
           <button onClick={goAdminDogs} className={styles.button}>
             Gestionar Perritos
           </button>
-        )}
+         )} 
+        {userLocal.isAdminU && (
+          <button onClick={goAdminUsers} className={styles.button}>
+            Gestionar Usuarios
+          </button>
+         )} 
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
-
+        {message && <div className={styles.notification}>{message}</div>}
         <button
           className={styles.button}
           onClick={handleLogout}
+
         >
           {isAuthenticated || userLocal.nameU
+           
             ? "Cerrar sesión"
+           
             : "Iniciar Sesion"}
         </button>
       </div>

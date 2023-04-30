@@ -13,7 +13,7 @@ export default function History() {
          
         </div>
         <div className={styles.containerText}>
-          <h5 className={styles.text}>
+          <h5 style={{ fontFamily: 'Roboto-Regular' }}className={styles.text}>
           Hace más de 20 años, un grupo de personas en nuestra ciudad y sus alrededores trabajaban individualmente por la misma causa: aliviar y ayudar a los animales necesitados en situación de calle y en barrios carenciados. A medida que las necesidades de los animales crecían, nos dimos cuenta de que debíamos unir fuerzas y recursos para ayudar aún más. Decidimos trabajar juntos para alcanzar una mayor audiencia, sensibilizar a toda la comunidad y presionar para lograr la participación y compromiso estatal.
           </h5>
         </div>

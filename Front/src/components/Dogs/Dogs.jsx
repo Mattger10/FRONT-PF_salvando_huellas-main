@@ -35,6 +35,7 @@ const Dogs = () => {
 
   return (
     <>
+    <div className={styles.container} >
       <div>
         <FilterDogs setCurrentPage={setCurrentPage} currentDog={currentDog} />
       </div>
@@ -65,13 +66,13 @@ const Dogs = () => {
           )}
         </div>
       </div>
-      <div className={styles.huella}></div>
       <div>
         <PaginationDogs
           currentPage={currentPage}
           paging={paging}
           totalPages={Math.ceil(allDog.length / DogPerPage)}
         />
+      </div>
       </div>
     </>
   );

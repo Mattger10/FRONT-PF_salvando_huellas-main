@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { deleteCarrito } from "../../redux/actions";
 import axios from "axios";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Trolley() {
   const dispatch = useDispatch();
@@ -17,6 +19,9 @@ export default function Trolley() {
     message: "",
     name: "",
   });
+  const userLocal = JSON.parse(window.localStorage.getItem("user"));
+  const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
   const handleOnReady = () => {
     setIsReady(true);
@@ -50,14 +55,14 @@ export default function Trolley() {
       message: "Artículo eliminado",
       name: item.article.nameA,
     });
+    dispatch(deleteCarrito());
+    const aux = [...allArticleStorage].filter(
+      (art) => art.article.nameA !== item.article.nameA
+    );
+    window.localStorage.setItem("carrito", JSON.stringify(aux));
+    setAllArticleStorage(aux);
     setTimeout(() => {
       setArticleMessage({ message: "", name: "" });
-      dispatch(deleteCarrito());
-      const aux = [...allArticleStorage].filter(
-        (art) => art.article.nameA !== item.article.nameA
-      );
-      window.localStorage.setItem("carrito", JSON.stringify(aux));
-      setAllArticleStorage(aux);
     }, 1000);
   };
 
@@ -121,12 +126,12 @@ export default function Trolley() {
       <div className={styles.containerCarritoLleno}>
         {allArticleStorage.map((item, index) => (
           <div className={styles.carritoLleno} key={index}>
-           <Link to={`/shop/DetailArticle/${item.article.id}`} >
-            <img
-              className={styles.img}
-              src={item.article.photoA}
-              alt={"foto de " + item.article.nameA}
-            />
+            <Link to={`/shop/DetailArticle/${item.article.id_Article}`}>
+              <img
+                className={styles.img}
+                src={item.article.photoA}
+                alt={"foto de " + item.article.nameA}
+              />
             </Link>
             <p>{item.article.nameA}</p>
             <p>$ {item.article.priceA}</p>
@@ -159,14 +164,14 @@ export default function Trolley() {
             >
               Eliminar
             </button>
-            {articleMessage.message.length
-              ? articleMessage.name === item.article.nameA && (
-                  <span className={styles.span2}>Artículo eliminado</span>
-                )
-              : ""}
           </div>
         ))}
       </div>
+      {articleMessage.message.length ? (
+        <div className={styles.span2}>{articleMessage.message}</div>
+      ) : (
+        ""
+      )}
 
       <div className={styles.Comprar}>
         {allArticleStorage.length !== 0 && (
@@ -189,7 +194,7 @@ export default function Trolley() {
 
       <div>
         <div className={showPay ? "" : styles.hide}>
-          {allArticleStorage.length ? (
+          {userLocal.nameU || isAuthenticated ? (
             <div className={styles.hide2}>
               <h3>Pagar con Mercado Pago</h3>
               {isReady && preferenceId ? (
@@ -211,7 +216,24 @@ export default function Trolley() {
               </button>
             </div>
           ) : (
-            ""
+            <div className={styles.hide2}>
+              <button
+                className={styles.buttonX}
+                onClick={() => {
+                  setShowPay(false);
+                }}
+              >
+                X
+              </button>
+              <h3>Inicia sesión para continuar con tu compra</h3>
+              <button
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Iniciar Sesión
+              </button>
+            </div>
           )}
         </div>
       </div>
