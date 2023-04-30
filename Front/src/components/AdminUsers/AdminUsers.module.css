@@ -1,0 +1,47 @@
+.container{
+    width: 98.7vw;
+    background-color: #fff29a;
+    overflow: hidden;
+}
+
+.button{
+    margin-left: 1rem;
+    padding: 0.50rem;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    background-color: #fe5535;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100px;
+}
+
+.input {
+    margin-left: 40rem;
+    width: 100%;
+    max-width: 220px;
+    height: 45px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid lightgrey;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 20px -18px;
+  }
+  
+  .input:hover {
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 20px -17px;
+  }
+  
+  .input:active {
+    transform: scale(0.95);
+  }
+  
+  .input:focus {
+    border: 2px solid grey;
+  }
+
+  .h2{
+    margin-left: 40rem;
+  }
