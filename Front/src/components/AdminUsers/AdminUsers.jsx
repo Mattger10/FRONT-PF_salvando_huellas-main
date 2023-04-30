@@ -13,20 +13,33 @@ export default function AdminUsers() {
   const [searchName, setSearchName] = useState("")
   const [searchingUsers, setSearchingUsers] = useState([])
 
-  const banUser = (id)=>{
-    axios.put('/users/ban/'+id)
-    .then(res => dispatch(getUsers()))
-  }
-  const unbanUser = (id)=>{
-    axios.put('/users/unban/'+id)
+  const banUser = async (id)=>{
+    await axios.put('/users/ban/'+id)
     .then(res => dispatch(getUsers()))
     .catch(error => console.log("ERROR: ",error.message))
+    if (searchName.length){
+      await axios.get('/users/?data='+searchName)
+      .then(res => res.data)
+      .then(foundUsers => setSearchingUsers(foundUsers))
+      .catch(error => console.log("ERROR: ",error.message))
+    }
+  }
+  const unbanUser = async (id)=>{
+    await axios.put('/users/unban/'+id)
+    .then(res => dispatch(getUsers()))
+    .catch(error => console.log("ERROR: ",error.message))
+    if (searchName.length){
+      await axios.get('/users/?data='+searchName)
+      .then(res => res.data)
+      .then(foundUsers => setSearchingUsers(foundUsers))
+      .catch(error => console.log("ERROR: ",error.message))
+    }
   }
 
   const handleSearchName = (e)=>{
     setSearchName(e.target.value)
     if (e.target.value.length){
-      axios.get('/users/?nameU='+e.target.value)
+      axios.get('/users/?data='+e.target.value)
       .then(res => res.data)
       .then(foundUsers => setSearchingUsers(foundUsers))
       .catch(error => console.log("ERROR: ",error.message))
@@ -91,7 +104,7 @@ export default function AdminUsers() {
         <button className={styles.button} type="button">Volver</button>
       </Link>
       <h2 className={styles.h2} >Gestionar Usuarios</h2>
-      <input className={styles.input} type='search' onChange={handleSearchName} value={searchName} placeholder='Buscar por nombre...'></input>
+      <input className={styles.input} type='search' onChange={handleSearchName} value={searchName} placeholder='Buscar nombre, apellido, email, DNI...'></input>
       <div>{searchName.length ? showSearchUsers : showUsers}</div>
       <span>{(searchName.length && !showSearchUsers.length) ? "No se encontró " + searchName : ""}</span>
     </div>
