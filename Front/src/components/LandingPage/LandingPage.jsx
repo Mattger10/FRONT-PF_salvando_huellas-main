@@ -72,6 +72,7 @@ export default function LandingPage() {
         });
         setTimeout(() => {
           setRegisterMessage("");
+          setErrors({})
         }, 3000);
       }
     } else {
@@ -117,6 +118,7 @@ export default function LandingPage() {
         });
         setTimeout(() => {
           setErrorMessage("");
+          setErrors({})
         }, 3000);
       }
     } else {
