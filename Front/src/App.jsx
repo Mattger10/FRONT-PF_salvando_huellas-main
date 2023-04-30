@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">
       {
-        (location.pathname !== "/" && location.pathname.includes("/forgotpass") && location.pathname.includes("/resetpass")) && (
+        (location.pathname !== "/" && !location.pathname.includes("forgotpass") && !location.pathname.includes("resetpass")) && (
           <NavBar />
         ) /* RENDERIZA NAVBAR EN TODO MENOS LANDINGPAGE, RESETPASS Y FORGOTPASS */
       }
