@@ -34,6 +34,7 @@ const FormularioPost = () => {
       setMessage(response.data);
     } catch (error) {
       console.error(error);
+      setMessage("Error al publicar el post")
     }
   };
 
@@ -46,21 +47,22 @@ const FormularioPost = () => {
       <div>
         <label className={styles.label} htmlFor="titleP">
           Título:
-          <input className={styles.input} type="text" name="titleP" onChange={handleInput} />
+          <input className={styles.input} type="text" name="titleP" onChange={handleInput} required/>
         </label>
       </div>
       <div>
         <label className={styles.label} htmlFor="commentP">
           Comentario:
-          <textarea className={styles.textarea} name="commentP" onChange={handleInput}></textarea>
+          <textarea className={styles.textarea} name="commentP" onChange={handleInput} required></textarea>
         </label>
       </div>
       <div>
         <label className={styles.label} htmlFor="category">
           Categoría:
-          <select className={styles.input} type="text" name="category" onChange={handleInput} >
+          <select className={styles.input} type="text" name="category" onChange={handleInput} required>
+            <option hidden value="">Elegir</option>
             <option value="Tienda">Tienda</option>
-            <option value="Adopcioón">Adopción</option>
+            <option value="Adopción">Adopción</option>
             <option value="Donación">Donación</option>
           </select>
         </label>
@@ -71,6 +73,7 @@ const FormularioPost = () => {
               type="file"
               name="photoP"
               onChange={(e) => setFile(e.target.files[0])}
+              required
             />
               {file ? (  <img className={styles.img}
             src={file ? URL.createObjectURL(file) : ""}  
