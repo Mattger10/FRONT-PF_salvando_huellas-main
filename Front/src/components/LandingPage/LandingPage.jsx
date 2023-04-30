@@ -4,6 +4,7 @@ import styles from "./LandingPage.module.css";
 import image from "../../assets/Fondolanding.webp";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import validate from "./validate";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -20,7 +21,8 @@ export default function LandingPage() {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!Object.keys(errors).length) {
+    console.log("ERRORS: ",errors)
+    if (!Object.keys(errors).length && !Object.keys(validate({name, email, password})).length) {
       // enviar formulario
       try {
         const allUsers = await axios.get("/users");
@@ -43,8 +45,8 @@ export default function LandingPage() {
           passwordU: password,
           idNumbU: Math.round(Math.random() * 100000000), // DNI del usuario, por ahora random
           emailU: email,
-          phoneU: Math.round(Math.random() * 1000000).toString(),
-          addressU: "random street 1",
+          phoneU: "Sin teléfono",
+          addressU: "Sin dirección",
           reasonU: "Reason",
         });
 
@@ -76,7 +78,8 @@ export default function LandingPage() {
         }, 3000);
       }
     } else {
-      // mostrar mensaje de error
+      // mostrar errores validacion formulario
+
     }
   };
 
@@ -94,10 +97,6 @@ export default function LandingPage() {
         window.localStorage.setItem("token", response.data.token);
         navigate("/home");
 
-        setMessage("Inicio de sesión exitoso");
-        setTimeout(() => {
-          setMessage("");
-        }, 3000);
       } catch (error) {
         console.error(error);
         setErrors({ ...errors, axios: error.message });
@@ -150,22 +149,37 @@ export default function LandingPage() {
                   placeholder="Nombre y Apellido"
                   className={styles.nombre}
                   value={name}
-                  onChange={(event) => setName(event.target.value)}
+                  onChange={(event) => {
+                    setName(event.target.value)
+                    setErrors(validate({name: event.target.value}))
+                  }}
+                  required
                 />
+                <p >{errors.name || ""}</p>
                 <input
                   type="text"
                   placeholder="Email"
                   className={styles.correo}
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(event) => {
+                    setEmail(event.target.value)
+                    setErrors(validate({email: event.target.value}))
+                  }}
+                  required
                 />
+                <p >{errors.email || ""}</p>
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
                   className={styles.password}
                   value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  onChange={(event) => {
+                    setPassword(event.target.value)
+                    setErrors(validate({password: event.target.value}))
+                  }}
+                  required
                 />
+                <p >{errors.password || ""}</p>
                 <button
                   className={styles.showPasswordButton}
                   onClick={() => setShowPassword(!showPassword)}
@@ -248,6 +262,14 @@ export default function LandingPage() {
                 </div>
               )}
 
+              <p
+                onClick={() => {
+                  navigate('/forgotpass')
+                }}
+                className={styles.changeForm}
+              >
+                ¿Olvidaste tu contraseña?
+              </p>
               <p
                 onClick={() => {
                   setLoginForm(false);

@@ -13,7 +13,7 @@ import History from "./components/History/History.jsx";
 import DetailsArticle from "./components/DetailArticle/DetailArticle.jsx";
 import DetailDogs from "./components/DetailDog/DetailDogs.jsx";
 import Post from "./components/Post/Post.jsx";
-import PostForm from "./components/Post/PostForm.jsx"
+import PostForm from "./components/Post/PostForm.jsx";
 import React from "react";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
@@ -26,10 +26,11 @@ import EditArticle from "./components/EditArticle/EditArticle.jsx";
 import "./App.css";
 import AdminDogs from "./components/AdminDogs/AdminDogs.jsx";
 import CreateDog from "./components/CreateDogForm/CreateDogForm.jsx";
-import CreateArticle from "./components/CreateArticleForm/CreateArticleForm.jsx"
+import CreateArticle from "./components/CreateArticleForm/CreateArticleForm.jsx";
 import EditDog from "./components/EditDog/EditDog.jsx";
 import AdminUsers from "./components/AdminUsers/AdminUsers.jsx";
-
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
+import ResetPassword from "./components/ResetPassword/ResetPassword.jsx";
 
 function App() {
   const location = useLocation();
@@ -37,9 +38,9 @@ function App() {
   return (
     <div className="App">
       {
-        location.pathname !== "/" && (
+        (location.pathname !== "/" && location.pathname.includes("/forgotpass") && location.pathname.includes("/resetpass")) && (
           <NavBar />
-        ) /* RENDERIZA NAVBAR EN TODO MENOS LANDINGPAGE */
+        ) /* RENDERIZA NAVBAR EN TODO MENOS LANDINGPAGE, RESETPASS Y FORGOTPASS */
       }
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -50,7 +51,7 @@ function App() {
         <Route path="/dogs/:id" element={<DetailDogs />} />
         <Route path="/donar" element={<Donation />} />
         <Route path="/carrito" element={<Trolley />} />
-        <Route path="/shop/DetailArticle/:id" element={<DetailsArticle/>} />
+        <Route path="/shop/DetailArticle/:id" element={<DetailsArticle />} />
         <Route path="/account" element={<Account />} />
         <Route path="/about" element={<History />} />
         <Route path="/admin/articles/:id" element={<EditArticle />} />
@@ -62,6 +63,8 @@ function App() {
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/posts" element={<Post />} />
         <Route path="/posts/createpost" element={<PostForm />} />
+        <Route path="/forgotpass" element={<ForgotPassword />} />
+        <Route path="/resetpass" element={<ResetPassword />} />
       </Routes>
     </div>
   );

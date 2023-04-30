@@ -93,7 +93,7 @@ const Account = () => {
       />
       <div className={styles.perfil}>
         <div className={styles.portada}>
-          {isAuthenticated && (
+          {isAuthenticated ? (
             <div className={styles.avatar}>
               <img className={styles.img} src={user.picture} alt={user.name} />
               <button
@@ -104,8 +104,8 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          )}
-          {userLocal.nameU ? (
+          ):(
+          userLocal.nameU ? (
             <div className={styles.avatar}>
               <img className={styles.img} src={""} alt={userLocal.nameU} />
               <button
@@ -116,9 +116,7 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          ) : (
-            ""
-          )}
+          ) : "")}
         </div>
       </div>
       <div className={styles.perfilBody}>
