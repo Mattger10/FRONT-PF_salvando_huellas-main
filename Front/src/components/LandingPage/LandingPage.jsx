@@ -264,6 +264,14 @@ export default function LandingPage() {
 
               <p
                 onClick={() => {
+                  navigate('/forgotpass')
+                }}
+                className={styles.changeForm}
+              >
+                ¿Olvidaste tu contraseña?
+              </p>
+              <p
+                onClick={() => {
                   setLoginForm(false);
                 }}
                 className={styles.changeForm}
