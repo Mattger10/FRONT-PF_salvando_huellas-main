@@ -1,12 +1,8 @@
 .containerGeneral {
   width: 100%;
   height: 100%;
-}
-
-.huella {
-  background: url('../../Assets/paw.svg');
-  background-repeat: no-repeat;
-  background-size: 20%;
+  background-color: #fff29a;
+  overflow: hidden;
 }
 
 .article {
@@ -32,8 +28,6 @@
   display: flex;
   justify-content: center;
 }
-
-
 
 /* Estilos para pantallas de 1366px o más */
 @media (min-width: 1366px) {
