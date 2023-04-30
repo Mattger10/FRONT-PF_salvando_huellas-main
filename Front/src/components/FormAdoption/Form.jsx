@@ -20,68 +20,91 @@ function FormularioAdopcion() {
   const [message, setMessage] = useState("");
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-
-  const handleAdopt = () => {
-    if (
-      email &&
-      nombre &&
-      apellido &&
-      dni &&
-      domicilio &&
-      telefono &&
-      tieneNiños !== null &&
-      razonAdopcion &&
-      selectDog !== "Luna"
-    ) {
-      setMessage("Solicitud de adopción enviada");
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
-    } else {
-      // Si no todos los campos están llenos, muestra un mensaje de error
-      alert(
-        "Por favor, complete todos los campos antes de enviar la solicitud de adopción."
-      );
-    }
+  let [formState, setFormState] = useState(1);
+  
+  
+  
+  const handleTieneNiñosChange = (e) => {
+    setTieneNiños(e.target.value === "si");
   };
 
-  const handleHome = () => {
-    if (
-      email &&
-      nombre &&
-      apellido &&
-      dni &&
-      domicilio &&
-      telefono &&
-      tieneNiños !== null &&
-      razonAdopcion &&
-      selectDog !== "Luna"
-    ) {
-      setMessage("Solicitud de hogar provisorio enviada");
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
-    } else {
-      // Si no todos los campos están llenos, muestra un mensaje de error
-      alert(
-        "Por favor, complete todos los campos antes de enviar la solicitud de hogar provisorio."
-      );
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal?.nameU && !isAuthenticated) {
+      setIsLogged(false);
     }
-  };
-  const handleSubmit = (e) => {
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    axios
+      .get("/dogs")
+      .then((res) => {
+        const dogs = res.data;
+        const all = dogs.map((d, index) => (
+          <option key={index} value={d.nameD}>
+            {d.nameD}
+          </option>
+        ));
+        setAllDogs(all);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Acá se agrega la lógica para enviar los datos del formulario al servidor
-    console.log({
-      email,
-      nombre,
-      apellido,
-      dni,
-      domicilio,
-      telefono,
-      tieneNiños,
-      razonAdopcion,
-    });
+    try {
+      if (!selectDog.length) {
+        return;
+      }
+      const userId = JSON.parse(window.localStorage.getItem("user")).id_User;
+      const dogId = await axios
+        .get("/dogs")
+        .then((res) => res.data)
+        .then((dogs) => dogs.filter((dog) => dog.nameD === selectDog)[0])
+        .then((dog) => dog.id_Dog);
+      if (formState === 1) {
+        await axios.post("/adoptions/register", {
+          adopted_homeA: "adopt",
+          id_Dog: dogId,
+          id_User: userId,
+        });
+        await axios.put("/users/" + userId, {
+          nameU: nombre,
+          lastNameU: apellido,
+          phoneU: telefono,
+          addressU: domicilio,
+          reasonU: razonAdopcion,
+          idNumbU: Number(dni),
+          emailU: email
+        });
+        setMessage("Solicitud de adopción enviada");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      }
+      if (formState === 2) {
+        await axios.post("/adoptions/register", {
+          adopted_homeA: "home",
+          id_Dog: dogId,
+          id_User: userId,
+        });
+        await axios.put("/users/" + userId, {
+          nameU: nombre,
+          lastNameU: apellido,
+          phoneU: telefono,
+          addressU: domicilio,
+          reasonU: razonAdopcion,
+          idNumbU: Number(dni),
+          emailU: email
+        });
+        setMessage("Solicitud de hogar provisorio enviada");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
 
     // Acá se reinician los valores de los campos del formulario
     setEmail("");
@@ -95,24 +118,6 @@ function FormularioAdopcion() {
     setSelectDog("");
   };
 
-  const handleTieneNiñosChange = (e) => {
-    setTieneNiños(e.target.value === "si");
-  };
-
-useEffect(() => {
-const userLocal = JSON.parse(window.localStorage.getItem("user"));
-if (!userLocal?.nameU && !isAuthenticated) {
-setIsLogged(false);
-}
-}, [isAuthenticated]);
-
-useEffect(()=>{
-  axios.get('/dogs').then(res => {
-  const dogs = res.data;
-  const all = dogs.map((d, index) => <option key={index} value={d.nameD}>{d.nameD}</option>)
-  setAllDogs(all)
-  }).catch(err => console.log(err.message))
-  }, [])
 
   return (
     <div className={styles.container}>
@@ -227,13 +232,28 @@ useEffect(()=>{
             onChange={(e) => setSelectDog(e.target.value)}
             required
           >
+
+            <option hidden value="">
+              Elegir
+            </option>
             {allDogs}
           </select>
-          <button onClick={handleAdopt} type="submit" className={styles.button}>
+          <button
+            type="submit"
+            className={styles.button}
+            onClick={() => {
+              setFormState(1);
+            }}
+          >
             Adoptar
           </button>
-
-          <button onClick={handleHome} type="submit" className={styles.button}>
+          <button
+            type="submit"
+            className={styles.button}
+            onClick={() => {
+              setFormState(2);
+            }}
+          >
             Hogar provisorio
           </button>
         </form>
