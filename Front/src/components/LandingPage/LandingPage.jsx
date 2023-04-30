@@ -41,7 +41,7 @@ export default function LandingPage() {
         });
         await axios.post("/users/register", {
           nameU: name.split(" ")[0],
-          lastNameU: name.split(" ")[1],
+          lastNameU: name.split(" ")[1] || " ",
           passwordU: password,
           idNumbU: Math.round(Math.random() * 100000000), // DNI del usuario, por ahora random
           emailU: email,

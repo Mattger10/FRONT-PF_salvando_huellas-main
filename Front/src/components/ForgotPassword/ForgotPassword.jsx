@@ -12,7 +12,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     // solicitud al back
     axios
-      .put("/users/forgotpass/", { emailU: email })
+      .put("/users/forgotpass/"+1, { emailU: email })
       .then((res) => res.data)
       .then(() => setMessage("Se envió un correo a tu dirección de email"))
       .catch((error) => {
