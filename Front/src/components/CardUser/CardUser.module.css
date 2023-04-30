@@ -1,17 +1,24 @@
 .userContainer{
     display: flex;
     flex-direction: column;
-    background-color: antiquewhite;
+    background-color: #fae876;
     width: 300px;
     margin: 10px;
 }
 .userButtons{
     display: flex;
-   
 }
-.userBan{
-    background-color: #d43535;
-}
+
+.red {
+    background-color: red;
+    border-radius: 3px;
+  }
+  
+  .green {
+    background-color: green;
+    border-radius: 3px;
+  }
+  
 .banned{
     color: red;
 }

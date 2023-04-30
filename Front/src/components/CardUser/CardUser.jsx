@@ -25,13 +25,14 @@ export default function CardUser({
       <span>{isAdmin ? "ADMIN" : ""}</span>
       <div className={styles.userButtons}>
         <button
-          className={styles.userBan}
+          className={`${styles.userBan} ${isBan ? styles.green : styles.red}`}
           onClick={() => {
             isBan ? unbanUser(id) : banUser(id);
           }}
         >
           {isBan ? "DESBANEAR USUARIO" : "BANEAR USUARIO"}
         </button>
+
       </div>
     </div>
   );

@@ -99,12 +99,12 @@ export default function AdminUsers() {
     : "";
 
   return (
-    <div>
+    <div className={styles.container} >
       <Link to={"/account"}>
-        <button type="button">Volver</button>
+        <button className={styles.button} type="button">Volver</button>
       </Link>
-      <h2>Gestionar Usuarios</h2>
-      <input type='search' onChange={handleSearchName} value={searchName} placeholder='Buscar nombre, apellido, email, DNI...'></input>
+      <h2 className={styles.h2} >Gestionar Usuarios</h2>
+      <input className={styles.input} type='search' onChange={handleSearchName} value={searchName} placeholder='Buscar nombre, apellido, email, DNI...'></input>
       <div>{searchName.length ? showSearchUsers : showUsers}</div>
       <span>{(searchName.length && !showSearchUsers.length) ? "No se encontró " + searchName : ""}</span>
     </div>
