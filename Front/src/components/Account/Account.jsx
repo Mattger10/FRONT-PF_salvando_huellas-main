@@ -2,15 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Account.module.css";
+// import {getAdoptions} from "../../redux/actions";
+// import { useDispatch, useSelector } from "react-redux";
+import Notif from "../Notif/Notif";
 
 const Account = () => {
+  const [clicks, setClicks] = useState(0);
+  const [message, setMessage] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
   const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
   const navigate = useNavigate();
-  const toggleEditingProfile = () => {
-    setEditingProfile(!editingProfile);
+
+   const handleClick = () => {
+    setMessage("El perfil ha sido modificado");
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
   };
+  
+
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
@@ -53,19 +64,6 @@ const Account = () => {
     input.click();
   };
 
-  const handleLogout = () => {
-    
-    if(userLocal.nameU || isAuthenticated){
-    let response = confirm("¿Está seguro que desea salir de la sesión?");
-    if (response === true) {
-      window.localStorage.setItem("carrito", JSON.stringify([]));
-      window.localStorage.setItem("user", JSON.stringify({}));
-      window.localStorage.removeItem("token");
-      logout({ returnTo: "/" });
-    }
-  }
-  else navigate("/")
-  };
 
 
   return (
@@ -136,32 +134,32 @@ const Account = () => {
             <li>Mis favoritos:</li>
           </ul>
         </div>
-        {userLocal.isAdminU && (
-          <button onClick={goAdminArticles} className={styles.button}>
-            Gestionar Artículos
-          </button>
-        )}
-        {userLocal.isAdminU && (
-          <button onClick={goAdminDogs} className={styles.button}>
-            Gestionar Perritos
-          </button>
-         )} 
-        {userLocal.isAdminU && (
-          <button onClick={goAdminUsers} className={styles.button}>
-            Gestionar Usuarios
-          </button>
-         )} 
-
+        <button onClick={goAdminArticles} className={styles.button}>
+          Gestionar Artículos
+        </button>
+        <button onClick={goAdminDogs} className={styles.button}>
+          Gestionar Perritos
+        </button>
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
+        <button className={styles.button} >Editar perfil</button>
+        <button className={styles.button} onClick={handleClick}>Cancelar edición</button>
+        {message && <div className={styles.notification}>{message}</div>}
+        <button className={styles.button}
 
-        <button
-          className={styles.button}
-          onClick={handleLogout}
+        onClick={() => {
+            window.localStorage.setItem("carrito", JSON.stringify([]));
+            window.localStorage.setItem("user", JSON.stringify({}));
+            window.localStorage.removeItem("token");
+            logout({ returnTo: "/" });
+          }}
+
         >
           {isAuthenticated || userLocal.nameU
+           
             ? "Cerrar sesión"
+           
             : "Iniciar Sesion"}
         </button>
       </div>

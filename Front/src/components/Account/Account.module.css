@@ -4,7 +4,40 @@
     flex-direction: column;
     align-items: center;
   }
+  .titleObligatorio {
+    color:  #fe5535;
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
   
+  .subtitleObligatorio {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .containerObligatorio {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 400px;
+  }
+  
+
+  .buttonObligatorio {
+    background-color: #fe5535;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .buttonObligatorio:hover {
+    background-color: #d43535;
+  }
   .perfil {
     width: 100%;
     display: flex;
@@ -137,38 +170,16 @@
     .button:hover {
       background-color: #d43535;
     }
-
-    .titleObligatorio {
-      color:  #fe5535;
-      font-size: 50px;
-      margin-bottom: 10px;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
     
-    .subtitleObligatorio {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .containerObligatorio {
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      margin: 20px auto;
-      max-width: 400px;
-    }
-    
-
-    .buttonObligatorio {
-      background-color: #fe5535;
-      color: #fff;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-    
-    .buttonObligatorio:hover {
-      background-color: #d43535;
-    }
+    .notification {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      padding: 2rem;
+      font-size: 1.2rem;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-right: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }  

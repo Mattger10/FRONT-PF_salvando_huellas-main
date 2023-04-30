@@ -3,6 +3,7 @@ import styles from "./Form.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Notif from "../Notif/Notif";
 
 function FormularioAdopcion() {
   const [email, setEmail] = useState("");
@@ -16,10 +17,38 @@ function FormularioAdopcion() {
   const [selectDog, setSelectDog] = useState("");
   const [isLogged, setIsLogged] = useState(true);
   const [allDogs, setAllDogs] = useState([]);
-  let [formState, setFormState] = useState(1);
-
+  const [message, setMessage] = useState("");
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
+  let [formState, setFormState] = useState(1);
+  
+  
+  
+  const handleTieneNiñosChange = (e) => {
+    setTieneNiños(e.target.value === "si");
+  };
+
+  useEffect(() => {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    if (!userLocal?.nameU && !isAuthenticated) {
+      setIsLogged(false);
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    axios
+      .get("/dogs")
+      .then((res) => {
+        const dogs = res.data;
+        const all = dogs.map((d, index) => (
+          <option key={index} value={d.nameD}>
+            {d.nameD}
+          </option>
+        ));
+        setAllDogs(all);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +77,10 @@ function FormularioAdopcion() {
           idNumbU: Number(dni),
           emailU: email
         });
+        setMessage("Solicitud de adopción enviada");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
       }
       if (formState === 2) {
         await axios.post("/adoptions/register", {
@@ -64,6 +97,10 @@ function FormularioAdopcion() {
           idNumbU: Number(dni),
           emailU: email
         });
+        setMessage("Solicitud de hogar provisorio enviada");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       }
     } catch (error) {
       console.log(error.message);
@@ -81,31 +118,6 @@ function FormularioAdopcion() {
     setSelectDog("");
   };
 
-  const handleTieneNiñosChange = (e) => {
-    setTieneNiños(e.target.value === "si");
-  };
-
-  useEffect(() => {
-    const userLocal = JSON.parse(window.localStorage.getItem("user"));
-    if (!userLocal?.nameU && !isAuthenticated) {
-      setIsLogged(false);
-    }
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    axios
-      .get("/dogs")
-      .then((res) => {
-        const dogs = res.data;
-        const all = dogs.map((d, index) => (
-          <option key={index} value={d.nameD}>
-            {d.nameD}
-          </option>
-        ));
-        setAllDogs(all);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -220,6 +232,7 @@ function FormularioAdopcion() {
             onChange={(e) => setSelectDog(e.target.value)}
             required
           >
+
             <option hidden value="">
               Elegir
             </option>
@@ -262,6 +275,7 @@ function FormularioAdopcion() {
           </button>
         </div>
       )}
+      <Notif message={message} />
     </div>
   );
 }
