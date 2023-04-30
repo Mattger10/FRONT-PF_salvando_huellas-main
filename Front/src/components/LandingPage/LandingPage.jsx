@@ -22,7 +22,7 @@ export default function LandingPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("ERRORS: ",errors)
-    if (!Object.keys(errors).length) {
+    if (!Object.keys(errors).length && !Object.keys(validate({name, email, password})).length) {
       // enviar formulario
       try {
         const allUsers = await axios.get("/users");
