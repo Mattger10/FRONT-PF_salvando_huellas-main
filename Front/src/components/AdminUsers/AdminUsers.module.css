@@ -6,6 +6,8 @@
 
 .button{
     margin-left: 1rem;
+    margin-top: 5.5rem;
+    position: absolute;
     padding: 0.50rem;
     border: 1px solid black;
     border-radius: 0.25rem;
@@ -44,4 +46,5 @@
 
   .h2{
     margin-left: 40rem;
+    margin-top: 3rem;
   }
