@@ -84,7 +84,7 @@ export default function Home() {
   return (
     //contiene ademas del titulo imagenes que se mostraran automaticamente y las redes sociales para ir
     <div className={styles.container}>
-      <div className={styles.huella} />
+      
       <h1 style={{ fontFamily: "Cat Paw" }} className={styles.title}>
         SALVANDO HUELLAS!
       </h1>
@@ -146,6 +146,7 @@ export default function Home() {
                 target="_blank"
               >
                 <img
+                  className={styles.img}
                   loading="lazy"
                   alt="Síganos en Facebook"
                   height="35"
@@ -159,6 +160,7 @@ export default function Home() {
                 target="_blank"
               >
                 <img
+                  className={styles.img}
                   loading="lazy"
                   alt="Síganos en Instagram"
                   height="35"
@@ -169,6 +171,7 @@ export default function Home() {
               </a>
               <a href="mailto:salvandohuellasjesusmaria@gmail.com">
                 <img
+                  className={styles.img}
                   loading="lazy"
                   alt="contacto por correo"
                   height="35"
@@ -183,6 +186,7 @@ export default function Home() {
                 className={styles.whatsapp}
               >
                 <img
+                  className={styles.img}
                   loading="lazy"
                   alt="Contacto por WhatsApp"
                   height="35"
