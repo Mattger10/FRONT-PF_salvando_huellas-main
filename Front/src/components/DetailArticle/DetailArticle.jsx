@@ -19,7 +19,7 @@ export default function DetailsArticle() {
   const userIdLocal = JSON.parse(window.localStorage.getItem("user")).id_User;
   const [userHasOpinion, setUserHasOpinion] = useState(false);
   const allOpinions = useSelector((state) => state.opinions);
-  const loader = <div className={styles.customloader}></div>
+  const loader = <div className={styles.customloader}></div>;
 
   // Opinion form info:
   const [opinionInfo, setOpinionInfo] = useState({
@@ -43,7 +43,7 @@ export default function DetailsArticle() {
 
   let stockOptions = [];
   for (let i = 0; i < detail.stockA; i++) {
-    stockOptions.push(i + 1);
+    stockOptions.push(i ++);
   }
 
   const handleStockSelect = (e) => {
@@ -143,37 +143,80 @@ export default function DetailsArticle() {
     } else if (!user.nameU) setIsLogged(false);
   }, []);
 
+  function StarRating({ rating, onRatingChange }) {
+    const MAX_RATING = 5;
+    const STAR_SIZE = 25;
+
+    const handleClick = (index) => {
+      onRatingChange(index + 1);
+    };
+
+    return (
+      <div>
+        {Array.from({ length: MAX_RATING }, (_, index) => (
+          <span
+            key={index}
+            style={{
+              fontSize: `${STAR_SIZE}px`,
+              cursor: "pointer",
+              color: index < rating ? "orange" : "gray",
+            }}
+            onClick={() => handleClick(index)}
+          >
+            &#9733;
+          </span>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div>
-      {detail.photoA ? <div className={styles.detailsArticle}>
-        <div className={styles.detailsLeft}>
-          <img
-            className={styles.img}
-            src={detail.photoA}
-            alt={"foto de " + detail.nameA}
-          />
-        </div>
+      {detail.photoA ? (
+        <div className={styles.detailsArticle}>
+          <div className={styles.detailsLeft}>
+            <img
+              className={styles.img}
+              src={detail.photoA}
+              alt={"foto de " + detail.nameA}
+            />
+          </div>
 
-        <div className={styles.detailsRight}>
-          <h3>{detail.nameA}</h3>
-          <p className={styles.price}>$ {detail.priceA}</p>
-          <p className={styles.description}>{detail.descriptionA}</p>
-          {detail.stockA > 1 ? (
-            <p>{detail.stockA} disponibles</p>
-          ) : (
-            <p>Último disponible!</p>
-          )}
-          <select onChange={handleStockSelect} className={styles.stockSelect}>
-            {stockOptions.map((num, ind) => {
-              return <option key={ind}>{num}</option>;
-            })}
-          </select>
-          <button className={styles.button} onClick={handleAdd}>
-            Agregar al carrito
-          </button>
-          {message.length ? <p>{message}</p> : ""}
+          <div className={styles.detailsRight}>
+            <h3>{detail.nameA}</h3>
+            <p className={styles.price}>$ {detail.priceA}</p>
+            <p className={styles.description}>{detail.descriptionA}</p>
+            {detail.stockA > 1 ? (
+              <p>{detail.stockA} disponibles</p>
+            ) : (
+              <p>Último disponible!</p>
+            )}
+            <div className={styles.containerButtonMasyMenos}>
+            <button
+              className={styles.buttonMenos}
+              onClick={handleStockSelect}
+              value={cantidad - 1}
+            >
+              -
+            </button>
+            <span className={styles.span}>{cantidad}</span>
+            <button
+              className={styles.buttonMas}
+              onClick={handleStockSelect}
+              value={cantidad + 1}
+            >
+              +
+            </button>
+            </div>
+            <button className={styles.button} onClick={handleAdd}>
+            <i className="fa fa-shopping-cart"></i> Agregar al carrito
+            </button>
+            {message.length ? <p>{message}</p> : ""}
+          </div>
         </div>
-      </div> : loader}
+      ) : (
+        loader
+      )}
       <div className={styles.opinions}>
         <Opinions />
       </div>
@@ -184,11 +227,11 @@ export default function DetailsArticle() {
             <form onSubmit={handleOpinionSubmit}>
               <label>
                 Calificación:
-                <input
-                  type="range"
-                  onChange={handleOpinionChange}
-                  value={opinionInfo.stars}
-                  name="stars"
+                <StarRating
+                  rating={Math.round(opinionInfo.stars / 20)}
+                  onRatingChange={(rating) =>
+                    setOpinionInfo({ ...opinionInfo, stars: rating * 20 })
+                  }
                 />
               </label>
               <label>

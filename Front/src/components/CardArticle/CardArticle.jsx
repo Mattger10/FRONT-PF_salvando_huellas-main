@@ -30,6 +30,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
       setCantidad(actualCant);
     }
   };
+  
   const handleAdd = (e) => {
     let repeated = false;
     const carritoStorage = window.localStorage.getItem("carrito");

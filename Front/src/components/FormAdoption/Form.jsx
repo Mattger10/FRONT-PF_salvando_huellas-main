@@ -120,6 +120,7 @@ function FormularioAdopcion() {
 
 
   return (
+  
     <div className={styles.container}>
       {isLogged && (
         <form className={styles.formulario} onSubmit={handleSubmit}>
@@ -277,6 +278,7 @@ function FormularioAdopcion() {
       )}
       <Notif message={message} />
     </div>
+
   );
 }
 
