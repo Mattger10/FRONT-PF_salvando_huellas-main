@@ -166,5 +166,17 @@
   color: #aaa;
 }
 
+.error_name{
+  color: red;
+  font-size: 14px;
+}
 
+.error_mail{
+  color: red;
+  font-size: 14px;
+}
 
+.error_pass{
+  color: red;
+  font-size: 14px;
+}
