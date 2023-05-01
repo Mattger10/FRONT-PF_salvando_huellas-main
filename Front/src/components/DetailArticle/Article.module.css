@@ -1,12 +1,12 @@
 .detailsArticle {
-  background-color: #f7e367;
+  
   display: flex;
   flex-direction: column;
   margin: 20px auto;
   padding: 20px;
   max-width: 100%;
   box-sizing: border-box;
-  border: 2px solid #ffbf5f;
+  border: 1px solid #ccc;
 }
 .customloader {
   width:50px;
@@ -29,7 +29,6 @@
 
 .detailsRight {
   border-radius: 0.5rem;
-  background-color: #eee7a777;
   width: 100%;
   padding: 20px 0;
 }
@@ -58,17 +57,17 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
 }
 
 .containerOpinion {
-  background-color: #f7e367;
   display: flex;
   flex-direction: column;
   margin: 20px auto;
   padding: 20px;
   max-width: 80%;
   box-sizing: border-box;
-  border: 1px solid #f8de47;
+  border: 1px solid #ccc;
 }
 
 .containerOpinion h3 {
@@ -110,6 +109,46 @@
 .button:hover {
   background-color: #d43535;
 }
+
+.containerButtonMasyMenos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  border: 1px solid #ccc;
+  margin-left: 1.2%;
+
+}
+
+.buttonMenos {
+  order: 0; /* cambia el orden del botón "-" */
+  background-color: #fe5735;
+  border: 1px solid #cccccc;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0;
+  padding: 5px 10px;
+
+}
+
+.span {
+  order: 1; /* cambia el orden del span */
+}
+
+.buttonMas {
+  order: 2; /* cambia el orden del botón "+" */
+  background-color: #fe5735;
+  border: 1px solid #cccccc;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0;
+  padding: 5px 10px;
+  
+}
+
+
 
 @media (min-width: 768px) {
   .detailsArticle {
