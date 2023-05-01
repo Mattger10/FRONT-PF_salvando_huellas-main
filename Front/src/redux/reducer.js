@@ -77,6 +77,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
       };
+    case "ARTICLES_ASC_SUCCESS":
+      return {
+        ...state,
+        allArticles: action.payload,
+        filteredArticles: action.payload,
+      };
+    case "ARTICLES_ASC_FAILURE":
+      return {
+        ...state,
+        error: action.error,
+      };
     case "ARTICLES_PRICE_ASC_SUCCESS":
       return {
         ...state,

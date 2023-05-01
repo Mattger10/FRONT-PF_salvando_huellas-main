@@ -162,6 +162,20 @@ export const fetchArticlesDesc = () => async (dispatch) => {
     });
   }
 };
+export const fetchArticlesAsc = () => async (dispatch) => {
+  try {
+    const response = await axios.get("/articles/asc");
+    dispatch({
+      type: "ARTICLES_ASC_SUCCESS",
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "ARTICLES_ASC_FAILURE",
+      error: error.message,
+    });
+  }
+};
 
 export const ArticlesPriceAsc = () => async (dispatch) => {
   try {
