@@ -7,8 +7,8 @@
 }
 
 .container {
-  width: 99.9vw;
-  height: 89vh;
+  width: 99.9%;
+  height: 50em;
   background-color: #fff29a;
   overflow: hidden;
   }
@@ -28,10 +28,10 @@
   
 
 .title {
-  margin-top: 4%;
-  margin-bottom: -2%;
+  margin-top: 2%;
+  margin-bottom: -3%;
   text-align: center;
-  font-size: 52px;
+  font-size: 5em;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .body {
-  max-width: 900px;
+  max-width: 70rem;
   margin: 1rem auto;
 }
 
@@ -88,6 +88,27 @@
   height: 20rem;
   gap: 1rem;
   }
+
+  .container {
+    width: 99.9%;
+    height: 40em;
+    background-color: #fff29a;
+    overflow: hidden;
+    }
+
+    .title {
+      margin-top: 2%;
+      margin-bottom: -2%;
+      text-align: center;
+      font-size: 5em;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .body {
+      max-width: 70rem;
+      margin: 1rem auto;
+    }
+
 }
 
 @media (max-width: 900px) {

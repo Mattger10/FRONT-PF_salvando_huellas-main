@@ -185,6 +185,29 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1366px) {
+  .text {
+    text-align: justify;
+    margin-top: -7em;
+    margin-right: 10%;
+    margin-left: -15%;
+    font-size: 20px;
+    font-family: 'Roboto' ;
+  }
+  .fotosContainer{
+    display: flex;
+    margin-left: 43%;
+    margin-top: -11%;
+  }
+  
+  .imgN{
+    width: 13%;
+    height: auto;
+    margin: 0 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
 
 
 

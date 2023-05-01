@@ -152,7 +152,7 @@ export default function CardDogs({
       <div className={styles.card}>
         <img className={styles.img} src={photoD} alt="img" />
         <div className={styles.card2}>
-            <h2 className={styles.h2}>{nameD}</h2>
+            <h2 style={{ fontFamily: 'Sunny Sunday' }} className={styles.h2}>{nameD}</h2>
           <div className={styles.containerData}>
             <h4 className={styles.h4}>Edad:</h4>
             <p className={styles.p}>{translateData(ageD)}</p>
