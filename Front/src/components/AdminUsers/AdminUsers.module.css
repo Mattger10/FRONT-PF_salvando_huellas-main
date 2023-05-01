@@ -6,6 +6,8 @@
 
 .button{
     margin-left: 1rem;
+    margin-top: 5.5rem;
+    position: absolute;
     padding: 0.50rem;
     border: 1px solid black;
     border-radius: 0.25rem;
@@ -18,8 +20,7 @@
 
 .input {
     margin-left: 40rem;
-    width: 100%;
-    max-width: 220px;
+    width: 20%;
     height: 45px;
     padding: 12px;
     border-radius: 12px;
@@ -44,4 +45,5 @@
 
   .h2{
     margin-left: 40rem;
+    margin-top: 3rem;
   }

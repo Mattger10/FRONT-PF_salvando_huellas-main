@@ -10,7 +10,7 @@ export default function Home() {
     const userLocal = JSON.parse(window.localStorage.getItem("user"));
     if (!userLocal || !userLocal.nameU) {
       if (isAuthenticated && !isLoading) {
-        console.log("USER TERCEROS ",user)
+        console.log("USER TERCEROS ", user);
         let exist = false;
         axios
           .get("/users")
@@ -19,14 +19,25 @@ export default function Home() {
             users.forEach((userL) => {
               if (userL.emailU === user.email) {
                 exist = true;
-                window.localStorage.setItem(
-                  "user",
-                  JSON.stringify({ ...userL })
-                );
+                axios
+                  .post("/users/login", {
+                    emailU: user.email,
+                    passwordU: "huellas",
+                  })
+                  .then((res) => res.data)
+                  .then((data) => {
+                    window.localStorage.setItem(
+                      "user",
+                      JSON.stringify({ ...userL })
+                    );
+                    window.localStorage.setItem("token", data.token);
+                  })
+                  .catch((error) => console.error(error.message));
               }
             });
           })
-          .catch((error) => console.log(error.message));
+          .catch((error) => console.error(error.message));
+
         if (!exist) {
           axios
             .post("/users/register", {
@@ -41,13 +52,26 @@ export default function Home() {
             })
             .then((res) => res.data)
             .then((newUser) =>
-              window.localStorage.setItem("user", JSON.stringify(newUser))
+              axios
+                .post("/users/login", {
+                  emailU: newUser.emailU,
+                  passwordU: "huellas",
+                })
+                .then((res) => res.data)
+                .then((data) => {
+                  window.localStorage.setItem(
+                    "user",
+                    JSON.stringify(data.user)
+                  );
+                  window.localStorage.setItem("token", data.token);
+                })
+                .catch((error) => console.error(error.message))
             )
-            .catch((error) => console.log(error.message));
+            .catch((error) => console.error(error.message));
         }
       }
     }
-  }, [isLoading]);
+  }, [isLoading, isAuthenticated]);
 
   useEffect(() => {
     //creo carrito vacío en localStorage, si aun no existe

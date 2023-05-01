@@ -13,6 +13,7 @@ const Account = () => {
   const [auth, setAuth] = useState(null);
   const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
   const navigate = useNavigate();
+  const loader = <div className={styles.customloader}></div>
 
    const handleClick = () => {
     setMessage("El perfil ha sido modificado");
@@ -26,7 +27,7 @@ const Account = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
     if (isLoading) {
-      return <div>Cargando...</div>;
+      return loader
     }
   }
   // Ir a funciones de administrador

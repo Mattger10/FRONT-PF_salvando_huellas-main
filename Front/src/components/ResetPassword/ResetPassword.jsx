@@ -25,21 +25,25 @@ export default function ResetPassword() {
   };
 
   return (
-    <div>
-      <div>
+    <div className={styles.container} >
+      <div className={styles.container2} >
+        <form className={styles.form} onSubmit={handleSubmit}>
         <h2>Reestablecer contraseña</h2>
-        <form onSubmit={handleSubmit}>
           <input
+            className={styles.input}
             placeholder="Nueva contraseña"
             value={newPass}
             onChange={(e) => setNewPass(e.target.value)}
           ></input>
           <input
+            className={styles.input2}
             placeholder="Confirmar contraseña"
             value={confirmNewPass}
             onChange={(e) => setConfirmNewPass(e.target.value)}
           ></input>
-          <button type="submit">Confirmar</button>
+          <button 
+            className={styles.button}
+            type="submit">Confirmar</button>
         </form>
       </div>
     </div>

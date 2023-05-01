@@ -16,6 +16,8 @@ export default function CreateArticle() {
   });
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
 
   const handleInput = (e) => {
     setInput({
@@ -27,14 +29,18 @@ export default function CreateArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const result = await uploadFile(file);
       const response = await axios.post("/articles/register/", {
         ...inputData,
         activeA: true,
         photoA: result,
       });
-      setMessage(response.data);
+      setMessage("Artículo "+inputData.nameA+" creado correctamente!");
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
+      setMessage("Error al crear el artículo")
       console.error(error);
     }
   };
@@ -134,6 +140,11 @@ export default function CreateArticle() {
           </button>
         </div>
       </form>
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
       {message.length ? (
         <div className={styles.containerMessage}>
           <div className={styles.message}>

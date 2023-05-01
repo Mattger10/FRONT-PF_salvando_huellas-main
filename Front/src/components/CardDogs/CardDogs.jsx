@@ -15,10 +15,10 @@ export default function CardDogs({
   id,
 }) {
   //Funciones handle vienen de AdminDogs
+  const loader = <div className={styles.customloader}></div>
 
   // --------------------------valentin-------------------------
   const location = useLocation(); // RENDERIZO DISTINTA LA CARD SI ESTAMOS EN ADMIN -- Valentin
-
 
   const handleDel = () => {
     let response = confirm("¿Está seguro que desea eliminar el perrito?");
@@ -149,7 +149,7 @@ export default function CardDogs({
 
     <div className={styles.cardContainer}>
       <div className={styles.huella} />
-      <div className={styles.card}>
+      {photoD ? <div className={styles.card}>
         <img className={styles.img} src={photoD} alt="img" />
         <div className={styles.card2}>
             <h2 style={{ fontFamily: 'Sunny Sunday' }} className={styles.h2}>{nameD}</h2>
@@ -163,6 +163,7 @@ export default function CardDogs({
           </div>
         </div>
       </div>
+      : loader}
     </div>
   );
 }

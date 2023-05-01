@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: #fae876;
     width: 300px;
-    margin: 10px;
+    margin: 10px;    
 }
 .userButtons{
     display: flex;

@@ -19,6 +19,7 @@ export default function DetailsArticle() {
   const userIdLocal = JSON.parse(window.localStorage.getItem("user")).id_User;
   const [userHasOpinion, setUserHasOpinion] = useState(false);
   const allOpinions = useSelector((state) => state.opinions);
+  const loader = <div className={styles.customloader}></div>
 
   // Opinion form info:
   const [opinionInfo, setOpinionInfo] = useState({
@@ -144,7 +145,7 @@ export default function DetailsArticle() {
 
   return (
     <div>
-      <div className={styles.detailsArticle}>
+      {detail.photoA ? <div className={styles.detailsArticle}>
         <div className={styles.detailsLeft}>
           <img
             className={styles.img}
@@ -172,7 +173,7 @@ export default function DetailsArticle() {
           </button>
           {message.length ? <p>{message}</p> : ""}
         </div>
-      </div>
+      </div> : loader}
       <div className={styles.opinions}>
         <Opinions />
       </div>
