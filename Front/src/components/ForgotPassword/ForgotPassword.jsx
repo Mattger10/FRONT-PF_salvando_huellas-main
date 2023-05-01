@@ -21,20 +21,22 @@ export default function ForgotPassword() {
     });
   };
   return (
-    <div>
-        <button type="button" onClick={()=> navigate('/')}>Volver</button>
-      <div>
+    <div className={styles.container} >
+      <div className={styles.container2} >
+        <button className={styles.button} type="button" onClick={()=> navigate('/')}>Volver</button>
         <h2>Solicitar cambio de contraseña</h2>
-        <form onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <h3>Se enviará un correo a tu dirección de email</h3>
           <input
+          className={styles.input}
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           ></input>
-          <button type="submit">Enviar</button>
+          <button className={styles.submitButt} type="submit">Enviar</button>
         </form>
+
       </div>
       {message.length ?
         (<div >
