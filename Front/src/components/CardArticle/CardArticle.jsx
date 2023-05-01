@@ -14,6 +14,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [message, setMessage] = useState("");
+  const loader = <div className={styles.customloader}></div>
 
   const detail = () => {
     dispatch(detailArticle(nameA));
@@ -114,7 +115,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
 
   // ASI SE MUESTRAN EN SHOP
   return (
-    <div className={styles.cardArticle}>
+    photoA ? <div className={styles.cardArticle}>
       <Link to={`/shop/DetailArticle/${id}`}>
         <div onClick={detail}>
           <img
@@ -140,6 +141,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
         Agregar al carrito
       </button>
       {message.length ? <p>{message}</p> : ""}
-    </div>
+    </div> 
+    : loader
   );
 }

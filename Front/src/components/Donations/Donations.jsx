@@ -9,6 +9,7 @@ export default function Donation() {
   const [preferenceId, setPreferenceId] = useState(null);
   const [price, setPrice] = useState(100);
   const [showPay, setShowPay] = useState(false);
+  const loader = <div className={styles.customloader}></div>
 
   const handlePrice = (e) => {
     let newPrice = Number(e.target.value);
@@ -77,7 +78,7 @@ export default function Donation() {
               onReady={handleOnReady}
             />
             ) : (
-              <span>Cargando...</span>
+              loader
             )}
             <button className={styles.buttonX}
               onClick={() => {

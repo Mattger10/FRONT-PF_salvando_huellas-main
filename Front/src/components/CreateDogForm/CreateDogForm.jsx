@@ -19,6 +19,8 @@ export default function CreateDog() {
   const [references, setReferences] = useState([]);
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
 
   const handleInput = (e) => {
     setInput({
@@ -29,14 +31,18 @@ export default function CreateDog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const result = await uploadFile(file);
       const response = await axios.post("/dogs/register", {
         ...inputData,
         photoD: result,
         references: selectedRefs,
       });
-      setMessage(response.data);
+      setLoading(false)
+      setMessage("Perro "+inputData.nameD+" añadido correctamente!");
     } catch (error) {
+      setLoading(false)
+      setMessage("Error al añadir el perro")
       console.error(error);
     }
   };
@@ -190,7 +196,11 @@ export default function CreateDog() {
           </button>
         </div>
       </form>
-
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
       {message.length ? (
         <div className={styles.containerMessage}>
           <div className={styles.message}>

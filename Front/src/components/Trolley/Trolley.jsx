@@ -22,6 +22,7 @@ export default function Trolley() {
   const userLocal = JSON.parse(window.localStorage.getItem("user"));
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
+  const loader = <div className={styles.customloader}></div>
 
   const handleOnReady = () => {
     setIsReady(true);
@@ -203,7 +204,7 @@ export default function Trolley() {
                   onReady={handleOnReady}
                 />
               ) : (
-                <span>Cargando...</span>
+                loader
               )}
 
               <button
