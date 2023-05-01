@@ -13,6 +13,8 @@ export default function EditArticle() {
   const detail = useSelector((state) => state.detailArticle);
   const [inputData, setInput] = useState({});
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
 
 
   const handleEdit = () => {
@@ -37,12 +39,16 @@ export default function EditArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const response = await axios.put("/articles/update/" + Number(id), {
         ...inputData,
         activeA: true,
       });
-      setMessage(response.data);
+      setLoading(false)
+      setMessage("Artículo "+(inputData.nameA || detail.nameA)+" actualizado!");
     } catch (error) {
+      setLoading(false)
+      setMessage("Error al actualizar artículo")
       console.error(error);
     }
   };
@@ -126,7 +132,11 @@ export default function EditArticle() {
           </button>
         </div>
       </form>
-
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
       {message.length ? (
         <div className={styles.containerMessage}>
           <div className={styles.message}>

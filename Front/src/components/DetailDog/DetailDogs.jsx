@@ -12,6 +12,7 @@ export default function DetailDogs() {
   const [references, setReferences] = useState([]);
   const [dogsRefsRelation, setDogsRefsRelation] = useState([]);
   const { id } = useParams();
+  const loader = <div className={styles.customloader}></div>
 
   const bringReferences = async () => {
     const resp = await axios.get("/references");
@@ -23,6 +24,8 @@ export default function DetailDogs() {
   useEffect(() => {
     dispatch(getDetail(id));
     bringReferences();
+    
+    return async ()=>dispatch(getDetail(null))
   }, [dispatch, id]);
 
   const showReferences = dogsRefsRelation.map((relation, index) => {
@@ -83,10 +86,7 @@ export default function DetailDogs() {
 
             </div>
           ) : (
-            <div>
-              {/* va a ir un logo/gif de carga y quizas se cambie el "Cargando" */}
-              <p>Cargando</p>
-            </div>
+            loader
           )}
         </div>
 
