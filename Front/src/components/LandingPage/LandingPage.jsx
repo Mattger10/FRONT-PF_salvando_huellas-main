@@ -155,7 +155,7 @@ export default function LandingPage() {
                   }}
                   required
                 />
-                <p >{errors.name || ""}</p>
+                <p className={styles.error_name} >{errors.name || ""}</p>
                 <input
                   type="text"
                   placeholder="Email"
@@ -167,7 +167,7 @@ export default function LandingPage() {
                   }}
                   required
                 />
-                <p >{errors.email || ""}</p>
+                <p className={styles.error_mail} >{errors.email || ""}</p>
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
@@ -179,7 +179,7 @@ export default function LandingPage() {
                   }}
                   required
                 />
-                <p >{errors.password || ""}</p>
+                <p className={styles.error_pass} >{errors.password || ""}</p>
                 <button
                   className={styles.showPasswordButton}
                   onClick={() => setShowPassword(!showPassword)}
