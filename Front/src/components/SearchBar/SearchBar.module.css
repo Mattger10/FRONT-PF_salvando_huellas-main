@@ -1,5 +1,6 @@
 .searchBar {
-    margin-top: -13%;
+    margin-top: -9%;
+    margin-bottom: 2%;
     display: flex;
     justify-content: center;
   }
@@ -21,8 +22,8 @@
     border: 2px solid transparent;
     border-radius: 8px;
     outline: none;
-    background-color: #f3f3f4;
-    color: #0d0c22;
+    background-color: #fff;
+    color: #220c0c;
     transition: .3s ease;
    }
    

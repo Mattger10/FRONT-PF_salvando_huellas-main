@@ -1,6 +1,8 @@
+/*Estilos para Administrador*/
+
 .cardArticle2 {
   width: 90%;
-  height: 390px;
+  height: 430px;
   margin-top: -4%;
   align-items: center;
   justify-content: center;
@@ -10,154 +12,175 @@
   border-radius: 10px;
 }
 
-.cardArticle {
-  width: 120%;
-  height: 460px;
-  margin-top: 10%;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  background-color: #fae243;
-  border-radius: 1rem;
-  border: #212121 0.1rem solid;
-  transition: all 0.4s ease-in;
-  box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
-}
-
-.cardArticle:hover {
-  border: #f2295bf0 0.1rem solid;
-  border-radius: 2.5rem 0 2.5rem 0;
- }
-
-.cardArticle p {
-    font-weight: bold;
-  margin: 5px 0;
-}
-
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-
-.price {
-  color: var(--primary-color);
-  font-weight: bold;
-}
-
 .artImage {
-  width: 200px;
+  width: 14em;
   cursor: pointer;
   padding: 15px;
   margin: 0 auto;
-  transition: all .3s;
+  transition: all 0.3s;
   float: center;
 }
 
-.artImage:hover {
-    transform: scale(1.1);
-  }
-
-.button {
+.buttonEditar {
   margin-top: 2%;
-    padding: 0.50rem;
-    border: 1px solid #cccccc;
-    border-radius: 0.25rem;
-    background-color: #fe5535;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    width: 200px;
-  }
+  padding: 0.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  background-color: #fe5535;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100px;
+  margin-right: 5%;
+}
 
-  .button:hover {
-    background-color: #d43535;
-  }
+.buttonEditar:hover {
+  background-color: #d43535;
+}
 
-  .select {
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 200px;
-    
-  }
+.buttonEliminar {
+  margin-top: 2%;
+  padding: 0.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  background-color: #fe5535;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100px;
+}
 
-  .buttonEditar {
-    margin-top: 2%;
-      padding: 0.50rem;
-      border: 1px solid #cccccc;
-      border-radius: 0.25rem;
-      background-color: #fe5535;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      width: 100px;
-      margin-right: 5%;
-    }
-  
-    .buttonEditar:hover {
-      background-color: #d43535;
-    }
+.buttonEliminar:hover {
+  background-color: #d43535;
+}
 
-    .buttonEliminar {
-      margin-top: 2%;
-        padding: 0.50rem;
-        border: 1px solid #cccccc;
-        border-radius: 0.25rem;
-        background-color: #fe5535;
-        color: #fff;
-        font-size: 1rem;
-        cursor: pointer;
-        width: 100px;
-      }
-    
-      .buttonEliminar:hover {
-        background-color: #d43535;
-      }
 
-      .containerButtonsmasymenos {
-        display: flex;
-        align-items: center;
-      }
+/*Estilos para tienda*/
 
-  .buttonMenos,
-  .buttonMas {
-    display: inline-block;
-    background-color: #fe5735;
-    border: 1px solid #cccccc;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    margin-left: 13%;
-  }
-  
-  .buttonMenos:hover,
-  .buttonMas:hover {
-    background-color: #d43535;
-  }
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: start;
+  width: 240px;
+  height: 390px;
+  padding: .8em;
+  background: #f5f5f5;
+  position: relative;
+  overflow: visible;
+  border-radius: 2%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: .3s ease;
+ }
+ 
+ .cardImg {
+  height: 140px;
+  width: 100%;
+  border-radius: .5rem;
+  transition: .3s ease;
+ }
+ 
+ .cardInfo {
+  padding-top: 10%;
+ }
+ 
+ svg {
+  width: 20px;
+  height: 20px;
+ }
 
-  .span {
-  margin: 0 10px;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 21%;
-  }
-  .customloader {
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:conic-gradient(#0000 10%,#827700);
-    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
-    mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
-    animation:s3 0.5s infinite linear;
-  }
-  @keyframes s3 {to{transform: rotate(1turn)}}
-  
+ 
+ .cardFooter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+ }
+ 
+ /*Text*/
+ .textTitle {
+  font-weight: 900;
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-top: 1%;
+ }
+ 
+ .textBody {
+  font-size: .9em;
+  padding-bottom: 10px;
+  margin-bottom: -5%;
+ }
+ 
+ /*Button*/
+ .cardButton {
+  border: 1px solid #252525;
+  display: flex;
+  padding: .3em;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: .3s ease-in-out;
+ }
+ 
+ /*Hover*/
+ .card:hover {
+  transform: translateY(-2%);
+  box-shadow: #ccc 0px 13px 37px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+ }
+ 
+ .cardButton:hover {
+  border: 1px solid #ffcaa6;
+  background-color: #cb2c2c;
+ }
+
+ .containerButtonsmasymenos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 2%;
+  padding: 1px;
+}
+
+.buttonMenos {
+  order: 0; /* cambia el orden del botón "-" */
+  background-color: #cb2c2c;
+  border: 1px solid #cccccc;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0;
+  padding: 5px 15px;
+}
+
+.span {
+  order: 1; /* cambia el orden del span */
+}
+
+.buttonMas {
+  order: 2; /* cambia el orden del botón "+" */
+  background-color: #cb2c2c;
+  border: 1px solid #cccccc;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0;
+  padding: 5px 15px;
+}
+
+.buttonMenos:hover,
+.buttonMas:hover {
+  background-color: #d43535;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #d43535;
+}
