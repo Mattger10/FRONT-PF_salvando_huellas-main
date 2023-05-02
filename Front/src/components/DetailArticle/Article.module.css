@@ -1,10 +1,9 @@
 .detailsArticle {
-  
   display: flex;
   flex-direction: column;
   margin: 20px auto;
   padding: 20px;
-  max-width: 100%;
+  width: 60%;
   box-sizing: border-box;
   border: 1px solid #ccc;
 }
@@ -19,8 +18,7 @@
 }
 @keyframes s3 {to{transform: rotate(1turn)}}
 .img {
-  width: 100%;
-  border-radius: 0.5rem;
+  width: 70%;
 }
 
 .detailsLeft {
@@ -28,9 +26,9 @@
 }
 
 .detailsRight {
-  border-radius: 0.5rem;
   width: 100%;
   padding: 20px 0;
+  border-left: 2px solid #ccc;
 }
 
 .price {
@@ -49,10 +47,9 @@
 }
 
 .button {
-  margin-top: 10px;
   margin-left: 8px;
   padding: 10px;
-  background-color: #fe5535;
+  background-color: #cb2c2c;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -65,7 +62,7 @@
   flex-direction: column;
   margin: 20px auto;
   padding: 20px;
-  max-width: 80%;
+  max-width: 60%;
   box-sizing: border-box;
   border: 1px solid #ccc;
 }
@@ -93,12 +90,13 @@
 
 .containerOpinion button {
   padding: 10px 20px;
-  background-color: #fe5535;
+  background-color: #cb2c2c;
   color: #fff;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  margin-left: 93%;
 }
 
 .containerOpinion button:hover {
@@ -107,28 +105,29 @@
 
 
 .button:hover {
-  background-color: #d43535;
+  background-color: #fe5535;
 }
 
 .containerButtonMasyMenos {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 20%;
-  border: 1px solid #ccc;
+  width: 25%;
+  border: 1px solid #cb2c2c;
   margin-left: 1.2%;
-
+  margin-top: 20%;
+  margin-bottom: 2%;
 }
 
 .buttonMenos {
   order: 0; /* cambia el orden del botón "-" */
-  background-color: #fe5735;
+  background-color: #cb2c2c;
   border: 1px solid #cccccc;
   color: #ffffff;
   cursor: pointer;
   font-size: 16px;
   margin: 0;
-  padding: 5px 10px;
+  padding: 5px 15px;
 
 }
 
@@ -138,14 +137,32 @@
 
 .buttonMas {
   order: 2; /* cambia el orden del botón "+" */
-  background-color: #fe5735;
+  background-color: #cb2c2c;
   border: 1px solid #cccccc;
   color: #ffffff;
   cursor: pointer;
   font-size: 16px;
   margin: 0;
-  padding: 5px 10px;
+  padding: 5px 15px;
   
+}
+
+.buttonMenos:hover  {
+  background-color: #fe5535;
+}
+
+.buttonMas:hover  {
+  background-color: #fe5535;
+}
+
+.pStock{
+  margin-left: 1.5%;
+}
+
+.containerH3{
+display: flex;
+justify-content: center;
+margin-bottom: 5%;
 }
 
 
@@ -161,10 +178,6 @@
     padding-right: 20px;
   }
 
-  .img {
-    width: 70%;
-    margin: 0 auto;
-  }
 
   .detailsRight {
     width: 50%;

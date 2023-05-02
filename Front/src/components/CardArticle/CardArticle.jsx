@@ -126,7 +126,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
           />
         </div>
       </Link>
-      <p className={styles.title}>{nameA}</p>
+      <p className={styles.title}>{nameA?.substring(0,20) + '...'}</p>
       <p>$ {priceA}</p>
       {stockA > 1 ? <p>{stockA} disponibles</p> : <p>Último disponible!</p>}
       <div className={styles.containerButtonsmasymenos}>

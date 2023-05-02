@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOpinions } from "../../redux/actions";
 import styles from "../Opinions/Opinions.module.css";
 import { useParams } from "react-router-dom";
+import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 
 const Opinions = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const Opinions = () => {
               {starsCount[5] > 0
                 ? Array(starsCount[5])
                     .fill()
-                    .map((_, i) => <span key={i}>&#9608;</span>)
+                    .map((_, i) => <span key={i}><CheckCircleSharpIcon fontSize="small"/></span>)
                 : null}
             </span>
           </li>
