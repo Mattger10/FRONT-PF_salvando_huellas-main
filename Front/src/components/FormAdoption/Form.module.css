@@ -1,4 +1,8 @@
-
+.fondo {
+  width: 99.1vw;
+  height: 99vh;
+background-color: #cccccc42;
+}
 
 .container {
   max-width: 100vw;
@@ -43,7 +47,7 @@
 .formulario input[type="tel"],
 .formulario input[type="email"],
 .formulario textarea {
-  width: 96%;
+  width: 100%;
   padding: 0.5rem;
   border: 1px solid #bb9715d8;
   border-radius: 0.40rem;
@@ -55,7 +59,7 @@
 }
 
 .formulario select {
-  width: 96%;
+  width: 100%;
   padding: 0.5rem;
   border: 1px solid #bb9715;
   border-radius: 0.40rem;

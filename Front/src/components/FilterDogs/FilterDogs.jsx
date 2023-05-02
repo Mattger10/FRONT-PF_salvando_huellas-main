@@ -27,7 +27,7 @@ const FilterDogs = ({ setCurrentPage }) => {
           <label className={styles.label}>
             Edad:
             <select className={styles.select} name="age" value={filters.age} onChange={handleChange}>
-              <option value="">Cualquiera</option>
+              <option value="">Todos</option>
               <option value="Puppy">Cachorro</option>
               <option value="Adult">Adulto</option>
               <option value="Old">Viejito</option>
@@ -36,7 +36,7 @@ const FilterDogs = ({ setCurrentPage }) => {
           <label className={styles.label}>
             Tamaño:
             <select className={styles.select} name="size" value={filters.size} onChange={handleChange}>
-              <option value="">Cualquiera</option>
+              <option value="">Todos</option>
               <option value="Small">Pequeño</option>
               <option value="Medium">Mediano</option>
               <option value="Large">Grande</option>
@@ -45,7 +45,7 @@ const FilterDogs = ({ setCurrentPage }) => {
           <label className={styles.label}>
             Sexo:
             <select className={styles.select} name="sex" value={filters.sex} onChange={handleChange}>
-              <option value="">Cualquiera</option>
+              <option value="">Todos</option>
               <option value="male">Macho</option>
               <option value="female">Hembra</option>
             </select>

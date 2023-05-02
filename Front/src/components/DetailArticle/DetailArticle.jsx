@@ -43,12 +43,12 @@ export default function DetailsArticle() {
   }, [allOpinions]);
 
   let stockOptions = [];
-  for (let i = 0; i < detail.stockA; i++) {
-    stockOptions.push(i ++);
+  for (let i = 1; i < detail.stockA; i++) {
+    stockOptions.push(i);
   }
 
   const handleStockSelect = (e) => {
-    if (e.target.value > 0) {
+    if (e.target.value > 0 && e.target.value <= detail.stockA) {
       setCantidad(e.target.value);
     }
   };

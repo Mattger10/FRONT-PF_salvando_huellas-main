@@ -103,6 +103,12 @@
   font-style: normal;
 }
 
+.fondo {
+  width: 99.1vw;
+  height: 90vh;
+background-color: #cccccc42;
+}
+
  .container{
   display: flex;
   flex-direction: row;
