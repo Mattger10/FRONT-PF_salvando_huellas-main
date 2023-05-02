@@ -170,7 +170,7 @@
 .showPasswordButton {
   position: absolute;
   top: 54%;
-  right: 3rem;
+  right: 1rem;
   transform: translateY(-50%);
   background-color: transparent;
   border: none;
