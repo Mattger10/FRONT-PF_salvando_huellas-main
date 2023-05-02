@@ -2,7 +2,7 @@
   display: grid;
   margin: 1% auto;
   padding: 5%;
-  max-width: 80%;
+  max-width: 60%;
   border: 1px solid #ccc;
   align-items: center;
   justify-content: center;
@@ -14,6 +14,9 @@
   align-self: start;
   justify-self: start;
   margin-top: -3%;
+  width: 100%;
+  border-bottom: 2px solid #ccc;
+  
 }
 
 .clasificaciones {

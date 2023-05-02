@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { changeCantidad } from "../../redux/actions";
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 // La NavBar se puede convertir en un menú desplegable desde el costado, por ahora está fija arriba
 
@@ -101,16 +103,18 @@ export default function NavBar() {
         </Link>
         <Link to="/carrito">
           <div className={styles.cartIcon}>
-            <i className="fa fa-shopping-cart"></i>
+          <ShoppingCartIcon fontSize="large" /> 
             <span className={styles.itemCount}>{carrito}</span>
           </div>
         </Link>
         <Link to="/account">
           <div className={styles.userIcon}>
-            <i className="fa fa-user"></i>
+          <AccountCircleSharpIcon fontSize="large"/>
           </div>
         </Link>
       </div>
     </div>
   );
 }
+
+

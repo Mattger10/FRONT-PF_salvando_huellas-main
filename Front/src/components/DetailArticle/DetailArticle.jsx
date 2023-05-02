@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { detailArticle, getOpinions } from "../../redux/actions";
 import Opinions from "../Opinions/Opinions";
 import { useAuth0 } from "@auth0/auth0-react";
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 
 import axios from "axios";
 
@@ -186,16 +187,12 @@ export default function DetailsArticle() {
             <h3>{detail.nameA}</h3>
             <p className={styles.price}>$ {detail.priceA}</p>
             <p className={styles.description}>{detail.descriptionA}</p>
-            {detail.stockA > 1 ? (
-              <p>{detail.stockA} disponibles</p>
-            ) : (
-              <p>Último disponible!</p>
-            )}
+           
             <div className={styles.containerButtonMasyMenos}>
             <button
               className={styles.buttonMenos}
               onClick={handleStockSelect}
-              value={cantidad - 1}
+              value={Number(cantidad) - 1}
             >
               -
             </button>
@@ -203,13 +200,18 @@ export default function DetailsArticle() {
             <button
               className={styles.buttonMas}
               onClick={handleStockSelect}
-              value={cantidad + 1}
+              value={Number(cantidad) + 1}
             >
               +
             </button>
             </div>
+            {detail.stockA > 1 ? (
+              <p className={styles.pStock}>{detail.stockA} disponibles</p>
+            ) : (
+              <p>Último disponible!</p>
+            )}
             <button className={styles.button} onClick={handleAdd}>
-            <i className="fa fa-shopping-cart"></i> Agregar al carrito
+            <ShoppingCartTwoToneIcon fontSize="medium"/> Agregar al carrito
             </button>
             {message.length ? <p>{message}</p> : ""}
           </div>
@@ -247,8 +249,8 @@ export default function DetailsArticle() {
             </form>
           </div>
         ) : (
-          <div>
-            <h3>Gracias por tu opinion!</h3>
+          <div className={styles.containerH3}>
+            <h3>¡Gracias por tu opinion!</h3>
           </div>
         )
       ) : (
