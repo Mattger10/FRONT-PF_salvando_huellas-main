@@ -1,34 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Account.module.css";
-// import {getAdoptions} from "../../redux/actions";
-// import { useDispatch, useSelector } from "react-redux";
-import Notif from "../Notif/Notif";
+import { getAdoptions, getCarts } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Account = () => {
-  // const [clicks, setClicks] = useState(0);
-  const [message, setMessage] = useState(false);
-  // const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
-  const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
+  const [message, setMessage] = useState(false);
   const navigate = useNavigate();
+<<<<<<< Updated upstream
   const loader = <div className={styles.customloader}></div>
   const defaultProfilePic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+=======
+>>>>>>> Stashed changes
 
-   const handleClick = () => {
-    setMessage("El perfil ha sido modificado");
-    setTimeout(() => {
-      setMessage("");
-    }, 3000);
+  const loader = <div className={styles.customloader}></div>;
+  // -----------traigo adopciones por usuario-----
+  const dispatch = useDispatch();
+  const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
+ 
+  const adoptions = useSelector((state) => state.adoptions);
+  console.log(adoptions)
+  // ----------tarigo compras por usuario----------
+  const { id } = useParams();
+  const { loading, error, carts } = useSelector((state) => state.carts);
+
+  // useEffect(() => {
+  //   dispatch(getCarts(id));
+  // }, [dispatch, id]);
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+  // ---------------------
+  useEffect(() => {
+    dispatch(getAdoptions());
+  }, [dispatch]);
+
+  const filterAdoptionsByUser = (adoptions, userId) => {
+    console.log(adoptions, userId)
+    return adoptions.filter((adoption) => adoption.userId === userId);
   };
-  
 
+  const filteredAdoptions = filterAdoptionsByUser(adoptions, userLocal.id_User);
+  console.log(filteredAdoptions)
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
     if (isLoading) {
-      return loader
+      return loader;
     }
   }
   // Ir a funciones de administrador
@@ -67,17 +92,15 @@ const Account = () => {
   };
 
   const handleLogout = () => {
-
-    if(userLocal.nameU || isAuthenticated){
-    let response = confirm("¿Está seguro que desea salir de la sesión?");
-    if (response === true) {
-      window.localStorage.setItem("carrito", JSON.stringify([]));
-      window.localStorage.setItem("user", JSON.stringify({}));
-      window.localStorage.removeItem("token");
-      logout({ returnTo: "/" });
-    }
-  }
-  else navigate("/")
+    if (userLocal.nameU || isAuthenticated) {
+      let response = confirm("¿Está seguro que desea salir de la sesión?");
+      if (response === true) {
+        window.localStorage.setItem("carrito", JSON.stringify([]));
+        window.localStorage.setItem("user", JSON.stringify({}));
+        window.localStorage.removeItem("token");
+        logout({ returnTo: "/" });
+      }
+    } else navigate("/");
   };
 
   return (
@@ -106,8 +129,7 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          ):(
-          userLocal.nameU ? (
+          ) : userLocal.nameU ? (
             <div className={styles.avatar}>
               <img className={styles.img} src={userLocal.photoU || defaultProfilePic} alt={userLocal.nameU} />
               <button
@@ -118,7 +140,9 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          ) : "")}
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className={styles.perfilBody}>
@@ -145,6 +169,24 @@ const Account = () => {
           <ul className={styles.listaDatos}>
             <li>Mis favoritos:</li>
           </ul>
+          <ul>
+            Mis adopciones:
+            {filteredAdoptions.map((id_Adoption) => (
+              <li key={id_Adoption}>
+              Adopción o hogar provisorio:{id_Adoption.adopted_homeA} Status:{id_Adoption.statusA} Perro:{id_Adoption.dogId}
+              </li>
+            ))}
+          </ul>
+
+          {/* <ul>Mis compras:
+        {carts.map((cart) => (
+          <li key={cart.id}>
+            <p>Artículo: {cart.articulo}</p>
+            <p>Usuario: {cart.userId}</p>
+            <p>Status: {cart.statusA}</p>
+          </li>
+        ))}
+      </ul> */}
         </div>
         {userLocal.isAdminU && (
           <button onClick={goAdminArticles} className={styles.button}>
@@ -155,25 +197,19 @@ const Account = () => {
           <button onClick={goAdminDogs} className={styles.button}>
             Gestionar Perritos
           </button>
-         )} 
+        )}
         {userLocal.isAdminU && (
           <button onClick={goAdminUsers} className={styles.button}>
             Gestionar Usuarios
           </button>
-         )} 
+        )}
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
         {message && <div className={styles.notification}>{message}</div>}
-        <button
-          className={styles.button}
-          onClick={handleLogout}
-
-        >
+        <button className={styles.button} onClick={handleLogout}>
           {isAuthenticated || userLocal.nameU
-           
             ? "Cerrar sesión"
-           
             : "Iniciar Sesion"}
         </button>
       </div>

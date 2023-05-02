@@ -8,7 +8,7 @@ import {
   DETAIL_ARTICLE,
   EDIT_DOG,
   UPLOAD_IMAGE,
-  GET_USERS
+  GET_USERS,
 } from "./actions";
 
 const initialState = {
@@ -28,7 +28,10 @@ const initialState = {
   editDog: {},
   references: [],
   uploadImage: false,
-  users: []
+  users: [],
+  adoptions: [],
+  carts: [],
+  // userAdoptions: [],
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -65,6 +68,25 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
+    case "GET_CARTS":
+      return {
+        ...state,
+        carts: action.payload,
+      };
+
+    case "GET_ADOPTIONS":
+      console.log(action.payload);
+      return {
+        ...state,
+        adoptions: action.payload,
+      };
+
+    // case "GET_USER_ADOPTIONS":
+    //   console.log(action.payload)
+    //   return {
+    //     ...state,
+    //     userAdoptions: action.payload,
+    //   };
     //traigo a los articulos filtrados
     case "ARTICLES_DESC_SUCCESS":
       return {
@@ -207,17 +229,17 @@ const rootReducer = (state = initialState, action) => {
         editDog: action.payload,
       };
 
-      case UPLOAD_IMAGE:
-  return {
-    ...state,
-    image: action.payload,
-  };
+    case UPLOAD_IMAGE:
+      return {
+        ...state,
+        image: action.payload,
+      };
 
     case GET_USERS:
       return {
         ...state,
-        users: action.payload
-      }
+        users: action.payload,
+      };
 
     default:
       return {
