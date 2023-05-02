@@ -21,9 +21,10 @@ align-items: center;
 }
 
 .imagen{
+ --size:380px;
+ width: var(--size);
+ height: var(--size);
  border-radius: 50%;
- max-width: 30%;
- max-height: 30%;
  margin-top: 4rem;
  margin-left: 6rem;
  border:  6px solid rgb(245, 150, 150);
@@ -42,7 +43,7 @@ align-items: center;
   justify-content: start;
   flex-direction: column;
   margin-left: 40rem;
-  margin-top: -22rem;
+  margin-top: -23rem;
   background-color: #f3df5d;
   border: solid 2px #f1d72c;
 }
