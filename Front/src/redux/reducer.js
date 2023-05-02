@@ -31,7 +31,6 @@ const initialState = {
   users: [],
   adoptions: [],
   carts: [],
-  // userAdoptions: [],
 };
 /* ESTRUCTURA DEL CARRITO
  Array que contiene objetos: 
@@ -69,24 +68,18 @@ const rootReducer = (state = initialState, action) => {
         posts: action.payload,
       };
     case "GET_CARTS":
+      console.log(action.payload);
       return {
         ...state,
         carts: action.payload,
       };
 
     case "GET_ADOPTIONS":
-      console.log(action.payload);
+      
       return {
         ...state,
         adoptions: action.payload,
       };
-
-    // case "GET_USER_ADOPTIONS":
-    //   console.log(action.payload)
-    //   return {
-    //     ...state,
-    //     userAdoptions: action.payload,
-    //   };
     //traigo a los articulos filtrados
     case "ARTICLES_DESC_SUCCESS":
       return {

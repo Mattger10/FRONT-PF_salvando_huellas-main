@@ -293,7 +293,7 @@ export function getUsers () {
 export function getAdoptions() {
   return async (dispatch) => {
     const response = await axios.get('/adoptions')
-    console.log(response.data)
+   
     dispatch({
       type: 'GET_ADOPTIONS',
       payload: response.data
@@ -304,24 +304,12 @@ export function getAdoptions() {
 //traigo a las compras por usuario
 export function getCarts(id) {
   return async (dispatch) => {
-    const response = await axios.get(`carts/${id}`)
+    const response = await axios.get(`/carts/${id}`)
+    console.log(response.data)
     dispatch({
       type: 'GET_CARTS',
       payload: response.data
     })
   }
 }
-//traigo adopciones por usuario
-// export const getUserAdoptions = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`/adoptions?userId=${userId}`)
-//       dispatch({
-//         type: 'GET_USER_ADOPTIONS',
-//         payload: response.data
-//       })
-//     } catch (error) {
-//       console.log(error.message)
-//     }
-//   }
-// }
+

@@ -2,53 +2,58 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Account.module.css";
-import { getAdoptions, getCarts } from "../../redux/actions";
+import { getAdoptions, getCarts, getDogs } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const Account = () => {
   const [auth, setAuth] = useState(null);
   const [message, setMessage] = useState(false);
   const navigate = useNavigate();
-<<<<<<< Updated upstream
-  const loader = <div className={styles.customloader}></div>
-  const defaultProfilePic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-=======
->>>>>>> Stashed changes
 
   const loader = <div className={styles.customloader}></div>;
+  const defaultProfilePic =
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+
   // -----------traigo adopciones por usuario-----
   const dispatch = useDispatch();
   const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
- 
+  const [dogs, setDogs] = useState([]);
   const adoptions = useSelector((state) => state.adoptions);
-  console.log(adoptions)
+
   // ----------tarigo compras por usuario----------
-  const { id } = useParams();
-  const { loading, error, carts } = useSelector((state) => state.carts);
+  const carts = useSelector((state) => state.carts);
 
-  // useEffect(() => {
-  //   dispatch(getCarts(id));
-  // }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(getCarts(userLocal.id_User));
+  }, [dispatch, userLocal.id_User]);
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   return <div>{error}</div>;
-  // }
   // ---------------------
   useEffect(() => {
     dispatch(getAdoptions());
-  }, [dispatch]);
+    axios
+      .get("/dogs")
+      .then((response) => {
+        setDogs(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const filterAdoptionsByUser = (adoptions, userId) => {
-    console.log(adoptions, userId)
     return adoptions.filter((adoption) => adoption.userId === userId);
   };
 
   const filteredAdoptions = filterAdoptionsByUser(adoptions, userLocal.id_User);
-  console.log(filteredAdoptions)
+  const updatedAdoptions = filteredAdoptions.map((adoption) => {
+    const dog = dogs.find((dog) => dog.id_Dog === adoption.dogId);
+    return {
+      ...adoption,
+      dogName: dog ? dog.nameD : "Desconocido",
+    };
+  });
+
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
@@ -120,7 +125,7 @@ const Account = () => {
         <div className={styles.portada}>
           {isAuthenticated ? (
             <div className={styles.avatar}>
-              <img className={styles.img} src={user.picture || defaultProfilePic} alt={user.name} />
+              <img className={styles.img} src={user.picture} alt={user.name} />
               <button
                 className={styles.botonAvatar}
                 type="button"
@@ -131,7 +136,7 @@ const Account = () => {
             </div>
           ) : userLocal.nameU ? (
             <div className={styles.avatar}>
-              <img className={styles.img} src={userLocal.photoU || defaultProfilePic} alt={userLocal.nameU} />
+              <img className={styles.img} src={""} alt={userLocal.nameU} />
               <button
                 className={styles.botonAvatar}
                 type="button"
@@ -170,23 +175,32 @@ const Account = () => {
             <li>Mis favoritos:</li>
           </ul>
           <ul>
-            Mis adopciones:
-            {filteredAdoptions.map((id_Adoption) => (
-              <li key={id_Adoption}>
-              Adopción o hogar provisorio:{id_Adoption.adopted_homeA} Status:{id_Adoption.statusA} Perro:{id_Adoption.dogId}
+            Mis compras:
+            {carts.map((cart) => (
+              <li key={cart.id}>
+                <p>Artículo: {cart.articulo}</p>
+                <p>
+                  Estado de adopción:{" "}
+                  {cart.statusA ? "Aceptada" : "En revisión"}
+                </p>
               </li>
             ))}
           </ul>
-
-          {/* <ul>Mis compras:
-        {carts.map((cart) => (
-          <li key={cart.id}>
-            <p>Artículo: {cart.articulo}</p>
-            <p>Usuario: {cart.userId}</p>
-            <p>Status: {cart.statusA}</p>
-          </li>
-        ))}
-      </ul> */}
+          <ul>
+            Mis adopciones:
+            {updatedAdoptions.map((id_Adoption) => (
+              <ul>
+                {" "}
+                <li key={id_Adoption}>
+                  Adopción o hogar provisorio: {id_Adoption.adopted_homeA}
+                </li>
+                <li key={`${id_Adoption}-status`}>
+                  Status: {id_Adoption.statusA ? "Aceptada" : "En revisión"}
+                </li>
+                <li key={`${id_Adoption}-dog`}>Perro: {id_Adoption.dogName}</li>
+              </ul>
+            ))}
+          </ul>
         </div>
         {userLocal.isAdminU && (
           <button onClick={goAdminArticles} className={styles.button}>
