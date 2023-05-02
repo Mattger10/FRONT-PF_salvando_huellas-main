@@ -13,6 +13,8 @@ const Account = () => {
   const [auth, setAuth] = useState(null);
   const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
   const navigate = useNavigate();
+  const loader = <div className={styles.customloader}></div>
+  const defaultProfilePic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
 
    const handleClick = () => {
     setMessage("El perfil ha sido modificado");
@@ -26,7 +28,7 @@ const Account = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
     if (isLoading) {
-      return <div>Cargando...</div>;
+      return loader
     }
   }
   // Ir a funciones de administrador
@@ -95,7 +97,7 @@ const Account = () => {
         <div className={styles.portada}>
           {isAuthenticated ? (
             <div className={styles.avatar}>
-              <img className={styles.img} src={user.picture} alt={user.name} />
+              <img className={styles.img} src={user.picture || defaultProfilePic} alt={user.name} />
               <button
                 className={styles.botonAvatar}
                 type="button"
@@ -107,7 +109,7 @@ const Account = () => {
           ):(
           userLocal.nameU ? (
             <div className={styles.avatar}>
-              <img className={styles.img} src={""} alt={userLocal.nameU} />
+              <img className={styles.img} src={userLocal.photoU || defaultProfilePic} alt={userLocal.nameU} />
               <button
                 className={styles.botonAvatar}
                 type="button"

@@ -14,6 +14,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [message, setMessage] = useState("");
+  const loader = <div className={styles.customloader}></div>
 
   const detail = () => {
     dispatch(detailArticle(nameA));
@@ -29,6 +30,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
       setCantidad(actualCant);
     }
   };
+  
   const handleAdd = (e) => {
     let repeated = false;
     const carritoStorage = window.localStorage.getItem("carrito");
@@ -114,7 +116,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
 
   // ASI SE MUESTRAN EN SHOP
   return (
-    <div className={styles.cardArticle}>
+    photoA ? <div className={styles.cardArticle}>
       <Link to={`/shop/DetailArticle/${id}`}>
         <div onClick={detail}>
           <img
@@ -124,7 +126,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
           />
         </div>
       </Link>
-      <p className={styles.title}>{nameA}</p>
+      <p className={styles.title}>{nameA?.substring(0,20) + '...'}</p>
       <p>$ {priceA}</p>
       {stockA > 1 ? <p>{stockA} disponibles</p> : <p>Último disponible!</p>}
       <div className={styles.containerButtonsmasymenos}>
@@ -140,6 +142,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
         Agregar al carrito
       </button>
       {message.length ? <p>{message}</p> : ""}
-    </div>
+    </div> 
+    : loader
   );
 }

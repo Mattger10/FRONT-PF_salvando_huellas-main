@@ -13,6 +13,31 @@
   justify-content: center;
   align-items: center;
 }
+.customloader {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:conic-gradient(#0000 10%,#827700);
+  -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation:s3 0.5s infinite linear;
+}
+@keyframes s3 {to{transform: rotate(1turn)}}
+.message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #fae243ed;
+  color: #212529;
+  border: 1px solid #ffc107;
+  border-radius: 5px;
+}
  
 .loginContainer{
   z-index: 1;
@@ -23,7 +48,7 @@
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
   border-radius: 0.5rem;
 }
- 
+
 .register, .login{
   flex: 1;
 }
@@ -166,5 +191,17 @@
   color: #aaa;
 }
 
+.error_name{
+  color: red;
+  font-size: 14px;
+}
 
+.error_mail{
+  color: red;
+  font-size: 14px;
+}
 
+.error_pass{
+  color: red;
+  font-size: 14px;
+}

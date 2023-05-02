@@ -87,13 +87,6 @@
   }
 } */
 
-.fondo {
-  width: 99.9vw;
-  height: 86vh;
-  background-color: #fff29a;
-  overflow: hidden;
-}
-
 @font-face {
   font-family: 'Cat Paw';
   src: url('../../assets/Fuentes/Cat Paw.ttf') format('truetype');
@@ -111,7 +104,6 @@
 }
 
  .container{
-  background-color: #f8e358;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -120,7 +112,7 @@
   border: 1px solid #ccc;
   padding: 16px;
   margin-bottom: 16px;
-  width: 80%;
+  max-width: 80%;
   border-radius: 10px;
   margin-left: 10%;
  }
@@ -133,7 +125,7 @@
 }
 
 .containerImg {
-   float: left;
+  width: 100%;
   border-radius: 10px;
   width: 50%;
   margin-bottom: 16px;
@@ -155,6 +147,7 @@
 }
 
 .title {
+  color: black;
   margin-top: 2%;
   margin-bottom: -4%;
   text-align: center;
@@ -185,6 +178,104 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1366px) {
+  .text {
+    text-align: justify;
+    margin-top: -7em;
+    margin-right: 10%;
+    margin-left: -15%;
+    font-size: 20px;
+    font-family: 'Roboto' ;
+  }
+  .fotosContainer{
+    display: flex;
+    margin-left: 43%;
+    margin-top: -11%;
+  }
+  
+  .imgN{
+    width: 13%;
+    height: auto;
+    margin: 0 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1430px) {
+  .text {
+    font-size: 18px;
+  
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .text {
+    font-size: 18px;
+   
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .text {
+    font-size: 15px;
+   
+  }
+}
 
 
+@media screen and (max-width: 1570px) {
+  .text {
+    font-size: 22px;
+  }
+}
 
+@media screen and (max-width: 1400px) {
+  .text {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1290px) {
+  .text {
+    font-size: 19px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .text {
+    font-size: 19px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .text {
+    font-size: 18px;
+   
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .text {
+    margin-top: -7em;
+    font-size: 20px;
+  }
+
+    .container{
+      height: 60%;
+     }
+
+     .fotosContainer{
+      display: flex;
+      margin-left: 9%;
+      margin-top: -16%;
+    }
+    
+    .imgN{
+      width: 14%;
+      height: auto;
+      margin: 0 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+}

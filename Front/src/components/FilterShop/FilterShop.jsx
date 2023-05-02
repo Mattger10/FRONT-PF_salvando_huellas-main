@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchArticlesDesc, ArticlesPriceAsc, ArticlesPriceDesc, getAllArticles } from '../../redux/actions';
+import { fetchArticlesDesc, ArticlesPriceAsc, ArticlesPriceDesc, getAllArticles, fetchArticlesAsc } from '../../redux/actions';
 import styles from "./FilterShop.module.css";
 
 const FilterShop = ({ setCurrentPage }) => {
     const dispatch = useDispatch();
     const [sortOption, setSortOption] = useState('');
-    const [sortOption2, setSortOption2] = useState('');
   
     const handleChange = (event) => {
       event.preventDefault();
@@ -15,13 +14,16 @@ const FilterShop = ({ setCurrentPage }) => {
       if (sortOption === 'name-desc') {
         dispatch(fetchArticlesDesc());
       }
-    
-      if (sortOption2 === 'price-asc') {
+      if(sortOption === 'name-asc'){
+        dispatch(fetchArticlesAsc())
+      }
+      if (sortOption === 'price-asc') {
         dispatch(ArticlesPriceAsc());
-      } else if (sortOption2 === 'price-desc') {
+      } 
+      if (sortOption === 'price-desc') {
         dispatch(ArticlesPriceDesc());
       }
-      if (sortOption === '' && sortOption2 === '') {
+      if (sortOption === '') {
         dispatch(getAllArticles());
       }
 
@@ -30,22 +32,19 @@ const FilterShop = ({ setCurrentPage }) => {
     return (
       <div className={styles.filters}>
         <form className={styles.formRow} onSubmit={handleChange}>
-          <label className={styles.label} htmlFor="filter-select">Ordenar por:</label>
+          <label className={styles.label} >Ordenar por:</label>
           <select className={styles.select} id="filter-select" value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
-            <option value="default" disabled>
-              Elige una opción
+            <option hidden value="">Elegir</option>
+            <option disabled>
+              Orden alfabético
             </option>
-            <option value="">Todos</option>
-            <option value="name-desc">Nombre (Descendente)</option>
-          </select>
-          <label className={styles.label} htmlFor="filter-select2">Ordenar por precio:</label>
-          <select className={styles.select} id="filter-select2" value={sortOption2} onChange={(event) => setSortOption2(event.target.value)}>
-            <option value="default" disabled>
-              Elige una opción
+            <option value="name-asc">A a la Z</option>
+            <option value="name-desc">Z a la A</option>
+            <option disabled>
+              Precio
             </option>
-            <option value=''>Todos</option>
-            <option value="price-asc">Precio (Ascendente)</option>
-            <option value="price-desc">Precio (Descendente)</option>
+            <option value="price-asc">Ascendente</option>
+            <option value="price-desc">Descendente</option>
           </select>
           <button className={styles.buttonFilter} type="submit">Ordenar</button>
         </form>

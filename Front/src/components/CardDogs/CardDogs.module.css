@@ -1,41 +1,10 @@
-/* .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1rem;
+@font-face {
+  font-family: 'Sunny Sunday';
+  src: url('../../assets/Fuentes/Sunny Sunday.ttf') format('truetype');
+  /* Agrega más formatos de archivo si es necesario */
+  font-weight: normal;
+  font-style: normal;
 }
-
-.cards {
-  width: 80%;
-  height: 100%;
-  background: #fae243;
-  border-radius: 5px;
-  transition: all .3s;
-  margin-left: 8rem;
-  border: 3px solid #bb9715;
-}
-
-.cards:hover {
-    transform: scale(1.1);
-}
-
-.img {
-  width: 250px;
-  border-radius: 100%;
-  cursor: pointer;
-  padding: 15px;
-  margin: 0 auto;
-  transition: all .3s;
-}
-
-.h3 {
-  font-size: 35px;
-  margin: 5px 0;
-} */
-
-
-
 
 .cardContainer {
   display: flex;
@@ -198,7 +167,7 @@
   justify-content: center;
   font-size: 25px;
   font-weight: bold;
-  border-radius: 15px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -291,7 +260,16 @@
   -webkit-text-stroke: 1px rgb(0, 0, 0);
   margin-top: -50%;
   font-weight: bold;
-  font-size: 35px;
-  color: #fe5535;
+  font-size: 40px;
+  color: #ffffff;
 }
-
+.customloader {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:conic-gradient(#0000 10%,#827700);
+  -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation:s3 0.5s infinite linear;
+}
+@keyframes s3 {to{transform: rotate(1turn)}}

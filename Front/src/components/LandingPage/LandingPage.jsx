@@ -15,50 +15,64 @@ export default function LandingPage() {
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const [registerMessage, setRegisterMessage] = useState("");
+  const [registerMessage, setRegisterMessage] = useState({message: ""});
   const [loginForm, setLoginForm] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState({message: ""});
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("ERRORS: ",errors)
     if (!Object.keys(errors).length && !Object.keys(validate({name, email, password})).length) {
       // enviar formulario
+      let repeated = false
+      setLoading(true)
       try {
         const allUsers = await axios.get("/users");
         if (allUsers) {
           allUsers.data.forEach((u) => {
             if (u.emailU.toLowerCase() === email.toLowerCase()) {
+              repeated = true
+              setLoading(false)
               throw new Error("Ya existe un usuario con ese email");
             }
           });
         }
-        console.log({
-          name: name.split(" ")[0],
-          lastname: name.split(" ")[1],
-          email,
-          password,
-        });
-        await axios.post("/users/register", {
-          nameU: name.split(" ")[0],
-          lastNameU: name.split(" ")[1],
-          passwordU: password,
-          idNumbU: Math.round(Math.random() * 100000000), // DNI del usuario, por ahora random
-          emailU: email,
-          phoneU: "Sin teléfono",
-          addressU: "Sin dirección",
-          reasonU: "Reason",
-        });
+        if(!repeated){
+          await axios.post("/users/register", {
+            nameU: name.split(" ")[0],
+            lastNameU: name.split(" ")[1] || " ",
+            passwordU: password,
+            idNumbU: Math.round(Math.random() * 100000000), // DNI del usuario, por ahora random
+            emailU: email,
+            phoneU: "Sin teléfono",
+            addressU: "Sin dirección",
+            reasonU: "Reason",
+          });
+          setLoading(false)
+          setRegisterMessage({message: "Usuario creado correctamente", styles: {
+            position: "fixed",
+            top: "50%",
+            right: 0,
+            transform: "translateY(-50%)",
+            padding: "2rem",
+            fontSize: "1.2rem",
+            backgroundColor: "#fff",
+            border: "1px solid #ccc",
+            borderRight: "none",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+          }});
+          setTimeout(() => {
+            setRegisterMessage({message:""});
+          }, 2000);
+        }
 
-        setRegisterMessage("Usuario creado correctamente");
-        setTimeout(() => {
-          setRegisterMessage("");
-        }, 2000);
       } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
+        setLoading(false)
         setErrors({ ...errors, axios: error.message });
         setRegisterMessage({
-          message: "Error al registrarse",
+          message: (repeated ? "Error: Ya existe un usuario con ese email" :"Error al registrarse"),
           styles: {
             position: "fixed",
             top: "50%",
@@ -86,6 +100,7 @@ export default function LandingPage() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setLoading(true)
     if (!Object.keys(errors).length) {
       try {
         const response = await axios.post("/users/login", {
@@ -95,10 +110,12 @@ export default function LandingPage() {
         console.log(response.data);
         window.localStorage.setItem("user", JSON.stringify(response.data.user));
         window.localStorage.setItem("token", response.data.token);
+        setLoading(false)
         navigate("/home");
 
       } catch (error) {
         console.error(error);
+        setLoading(false)
         setErrors({ ...errors, axios: error.message });
         setErrorMessage({
           message: "Credenciales incorrectas",
@@ -155,7 +172,7 @@ export default function LandingPage() {
                   }}
                   required
                 />
-                <p >{errors.name || ""}</p>
+                <p className={styles.error_name} >{errors.name || ""}</p>
                 <input
                   type="text"
                   placeholder="Email"
@@ -167,7 +184,7 @@ export default function LandingPage() {
                   }}
                   required
                 />
-                <p >{errors.email || ""}</p>
+                <p className={styles.error_mail} >{errors.email || ""}</p>
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
@@ -179,7 +196,7 @@ export default function LandingPage() {
                   }}
                   required
                 />
-                <p >{errors.password || ""}</p>
+                <p className={styles.error_pass} >{errors.password || ""}</p>
                 <button
                   className={styles.showPasswordButton}
                   onClick={() => setShowPassword(!showPassword)}
@@ -305,6 +322,11 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
     </div>
   );
 }

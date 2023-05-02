@@ -17,6 +17,8 @@ export default function EditDog() {
   const [selectedRefs, setSelectedRefs] = useState([]);
   const [references, setReferences] = useState([]);
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
 
   const handleInput = (e) => {
     setInput({
@@ -41,14 +43,18 @@ export default function EditDog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const result = await uploadFile(file);
       const response = await axios.put("/dogs/update/" + Number(id), {
         ...inputData,
         photoD: result,
         references: selectedRefs,
       });
-      setMessage(response.data);
+      setLoading(false)
+      setMessage("Datos de "+(inputData.nameD || dog.nameD)+" actualizados!");
     } catch (error) {
+      setLoading(false)
+      setMessage("Error al actualizar datos")
       console.error(error);
     }
   };
@@ -196,7 +202,11 @@ export default function EditDog() {
           </button>
         </div>
       </form>
-
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
       {message.length ? (
         <div className={styles.containerMessage}>
           <div className={styles.message}>

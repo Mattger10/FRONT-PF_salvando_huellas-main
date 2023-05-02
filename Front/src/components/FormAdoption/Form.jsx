@@ -21,6 +21,9 @@ function FormularioAdopcion() {
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   let [formState, setFormState] = useState(1);
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
+
   
   
   
@@ -52,8 +55,10 @@ function FormularioAdopcion() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       if (!selectDog.length) {
+        setLoading(false)
         return;
       }
       const userId = JSON.parse(window.localStorage.getItem("user")).id_User;
@@ -77,6 +82,7 @@ function FormularioAdopcion() {
           idNumbU: Number(dni),
           emailU: email
         });
+        setLoading(false)
         setMessage("Solicitud de adopción enviada");
       setTimeout(() => {
         setMessage("");
@@ -97,6 +103,7 @@ function FormularioAdopcion() {
           idNumbU: Number(dni),
           emailU: email
         });
+        setLoading(false)
         setMessage("Solicitud de hogar provisorio enviada");
         setTimeout(() => {
           setMessage("");
@@ -104,6 +111,11 @@ function FormularioAdopcion() {
       }
     } catch (error) {
       console.log(error.message);
+      setLoading(false)
+      setMessage("Error al enviar solicitud de adopción");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
     }
 
     // Acá se reinician los valores de los campos del formulario
@@ -120,6 +132,7 @@ function FormularioAdopcion() {
 
 
   return (
+  
     <div className={styles.container}>
       {isLogged && (
         <form className={styles.formulario} onSubmit={handleSubmit}>
@@ -275,8 +288,14 @@ function FormularioAdopcion() {
           </button>
         </div>
       )}
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
       <Notif message={message} />
     </div>
+
   );
 }
 
