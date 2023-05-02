@@ -8,7 +8,7 @@ import Opinions from "../Opinions/Opinions";
 import { useAuth0 } from "@auth0/auth0-react";
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 
-import axios from "axios";
+import axios from "axios"; 
 
 export default function DetailsArticle() {
   const detail = useSelector((state) => state.detailArticle);
@@ -48,8 +48,11 @@ export default function DetailsArticle() {
   }
 
   const handleStockSelect = (e) => {
-    setCantidad(e.target.value);
+    if (e.target.value > 0) {
+      setCantidad(e.target.value);
+    }
   };
+  
 
   const handleAdd = (e) => {
     let repeated = false;
