@@ -24,8 +24,8 @@ export default function DetailDogs() {
   useEffect(() => {
     dispatch(getDetail(id));
     bringReferences();
-    
-    return async ()=>dispatch(getDetail(null))
+
+    return async () => dispatch(getDetail(null))
   }, [dispatch, id]);
 
   const showReferences = dogsRefsRelation.map((relation, index) => {
@@ -41,7 +41,6 @@ export default function DetailDogs() {
   });
   return (
     <div className={styles.containerAll}>
-      <div className={styles.huella} />
       <div className={styles.container}>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
@@ -53,16 +52,12 @@ export default function DetailDogs() {
           {Object.keys(DogDeits).length > 0 ? (
             <div>
               <div className={styles.header}>
-                <Link className={styles.adoptame} to="/adopt">
-                  <a href="">
-                    <img
-                      className={styles.imagen}
-                      src={DogDeits.photoD}
-                      alt={DogDeits.nameD}
-                    />
-                  </a>
-                </Link>
-                <h2>{DogDeits.nameD}</h2>
+                <img
+                  className={styles.imagen}
+                  src={DogDeits.photoD}
+                  alt={DogDeits.nameD}
+                />
+                <h2 className={styles.name} >{DogDeits.nameD}</h2>
               </div>
 
               <div className={styles.description}>
@@ -71,19 +66,20 @@ export default function DetailDogs() {
                 <span>Tamaño: {translateData(DogDeits.sizeD)}</span>
                 <span >Historia: {DogDeits.historyD}</span>
                 <span className={styles.reference} >
-                Referencias:
-                <ul>
-                  {showReferences}
-                </ul>
-              </span>
-                <Link className={styles.adoptame} to="/dogs">
-                  <button className={styles.button}>Atrás</button>
-                </Link>
-                <Link className={styles.adoptame} to="/adopt">
-                  <button className={styles.button}>Adóptame!</button>
-                </Link>
+                  Referencias:
+                  <ul>
+                    {showReferences}
+                  </ul>
+                </span>
               </div>
-
+                <div className={styles.adoptame}>
+                  <Link to="/dogs">
+                    <button className={styles.button}>Atrás</button>
+                  </Link>
+                  <Link to="/adopt">
+                    <button className={styles.button}>Adóptame!</button>
+                  </Link>
+                </div>
             </div>
           ) : (
             loader
