@@ -7,16 +7,22 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // solicitud al back
+    setLoading(true)
     axios
       .put("/users/forgotpass/"+1, { emailU: email })
       .then((res) => res.data)
-      .then(() => setMessage("Se envió un correo a tu dirección de email"))
+      .then(() => {
+        setLoading(false)
+        setMessage("Se envió un correo a tu dirección de email")})
       .catch((error) => {
         console.log(error.message)
+        setLoading(false)
         setMessage("Error al enviar solicitud")
     });
   };
@@ -38,12 +44,26 @@ export default function ForgotPassword() {
         </form>
 
       </div>
-      {message.length ?
-        (<div >
-        <h4>{message}</h4>
-        <button onClick={()=>setMessage("")}>Aceptar</button>
-        </div>) : ""
-      }
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
+      {message.length ? (
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("")
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
