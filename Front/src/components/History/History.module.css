@@ -110,6 +110,7 @@ background-color: #cccccc42;
 }
 
  .container{
+  background-color: #fff29a;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -139,6 +140,7 @@ background-color: #cccccc42;
 }
 
 .containerText {
+  
   flex: 1;
   order: 1;
   display: flex;
