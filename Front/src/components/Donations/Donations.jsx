@@ -37,9 +37,15 @@ export default function Donation() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>¡Salvando huellas!</h1>
+      <h1 className={styles.title}>¡Tu AYUDA CUENTA!</h1>
       <div className={styles.containerh5}>
         <h5 className={styles.h5}>
+      <div className={styles.containerImg}>
+          <img className={styles.img} src="/img/Home-dogs11.png" alt="Image 11" />
+          <img className={styles.img} src="/img/Home-dogs12.png" alt="Image 12" />
+          <img className={styles.img} src="/img/home-dogs13.png" alt="Image 13" />
+          <img className={styles.img} src="/img/Home-dogs14.png" alt="Image 14" />  
+        </div>
           Donar dinero o insumos de alimentos para perritos en adopción puede
           marcar una gran diferencia en la vida de estos animales necesitados.
           Muchas organizaciones sin fines de lucro dependen de la generosidad de
@@ -90,7 +96,6 @@ export default function Donation() {
             </div>
           </div>
         </div>
-      
     </div>
   );
 }
