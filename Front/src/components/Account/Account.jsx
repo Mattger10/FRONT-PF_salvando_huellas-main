@@ -142,9 +142,6 @@ const Account = () => {
           <ul className={styles.listaDatos}>
             <li> Mis donaciones:</li>
           </ul>
-          <ul className={styles.listaDatos}>
-            <li>Mis favoritos:</li>
-          </ul>
         </div>
         {userLocal.isAdminU && (
           <button onClick={goAdminArticles} className={styles.button}>
