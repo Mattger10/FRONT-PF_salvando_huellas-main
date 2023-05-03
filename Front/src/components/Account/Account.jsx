@@ -1,34 +1,64 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Account.module.css";
-// import {getAdoptions} from "../../redux/actions";
-// import { useDispatch, useSelector } from "react-redux";
-import Notif from "../Notif/Notif";
+import { getAdoptions, getCarts, getDogs } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const Account = () => {
-  // const [clicks, setClicks] = useState(0);
-  const [message, setMessage] = useState(false);
-  // const [editingProfile, setEditingProfile] = useState(false);
   const [auth, setAuth] = useState(null);
-  const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
+  const [message, setMessage] = useState(false);
   const navigate = useNavigate();
-  const loader = <div className={styles.customloader}></div>
-  const defaultProfilePic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
 
-   const handleClick = () => {
-    setMessage("El perfil ha sido modificado");
-    setTimeout(() => {
-      setMessage("");
-    }, 3000);
+  const loader = <div className={styles.customloader}></div>;
+  const defaultProfilePic =
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+
+  // -----------traigo adopciones por usuario-----
+  const dispatch = useDispatch();
+  const userLocal = JSON.parse(window.localStorage.getItem("user")) || {};
+  const [dogs, setDogs] = useState([]);
+  const adoptions = useSelector((state) => state.adoptions);
+
+  // ----------tarigo compras por usuario----------
+  const carts = useSelector((state) => state.carts);
+
+  useEffect(() => {
+    dispatch(getCarts(userLocal.id_User));
+  }, [dispatch, userLocal.id_User]);
+
+  // ---------------------
+  useEffect(() => {
+    dispatch(getAdoptions());
+    axios
+      .get("/dogs")
+      .then((response) => {
+        setDogs(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const filterAdoptionsByUser = (adoptions, userId) => {
+    return adoptions.filter((adoption) => adoption.userId === userId);
   };
-  
+
+  const filteredAdoptions = filterAdoptionsByUser(adoptions, userLocal.id_User);
+  const updatedAdoptions = filteredAdoptions.map((adoption) => {
+    const dog = dogs.find((dog) => dog.id_Dog === adoption.dogId);
+    return {
+      ...adoption,
+      dogName: dog ? dog.nameD : "Desconocido",
+    };
+  });
 
   const { logout } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   {
     if (isLoading) {
-      return loader
+      return loader;
     }
   }
   // Ir a funciones de administrador
@@ -67,17 +97,15 @@ const Account = () => {
   };
 
   const handleLogout = () => {
-
-    if(userLocal.nameU || isAuthenticated){
-    let response = confirm("¿Está seguro que desea salir de la sesión?");
-    if (response === true) {
-      window.localStorage.setItem("carrito", JSON.stringify([]));
-      window.localStorage.setItem("user", JSON.stringify({}));
-      window.localStorage.removeItem("token");
-      logout({ returnTo: "/" });
-    }
-  }
-  else navigate("/")
+    if (userLocal.nameU || isAuthenticated) {
+      let response = confirm("¿Está seguro que desea salir de la sesión?");
+      if (response === true) {
+        window.localStorage.setItem("carrito", JSON.stringify([]));
+        window.localStorage.setItem("user", JSON.stringify({}));
+        window.localStorage.removeItem("token");
+        logout({ returnTo: "/" });
+      }
+    } else navigate("/");
   };
 
   return (
@@ -97,7 +125,7 @@ const Account = () => {
         <div className={styles.portada}>
           {isAuthenticated ? (
             <div className={styles.avatar}>
-              <img className={styles.img} src={user.picture || defaultProfilePic} alt={user.name} />
+              <img className={styles.img} src={user.picture} alt={user.name} />
               <button
                 className={styles.botonAvatar}
                 type="button"
@@ -106,10 +134,9 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          ):(
-          userLocal.nameU ? (
+          ) : userLocal.nameU ? (
             <div className={styles.avatar}>
-              <img className={styles.img} src={userLocal.photoU || defaultProfilePic} alt={userLocal.nameU} />
+              <img className={styles.img} src={""} alt={userLocal.nameU} />
               <button
                 className={styles.botonAvatar}
                 type="button"
@@ -118,7 +145,9 @@ const Account = () => {
                 <i className="far fa-image"></i>
               </button>
             </div>
-          ) : "")}
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className={styles.perfilBody}>
@@ -142,6 +171,36 @@ const Account = () => {
           <ul className={styles.listaDatos}>
             <li> Mis donaciones:</li>
           </ul>
+          <ul className={styles.listaDatos}>
+            <li>Mis favoritos:</li>
+          </ul>
+          <ul>
+            Mis compras:
+            {carts.map((cart) => (
+              <li key={cart.id}>
+                <p>Artículo: {cart.articulo}</p>
+                <p>
+                  Estado de adopción:{" "}
+                  {cart.statusA ? "Aceptada" : "En revisión"}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <ul>
+            Mis adopciones:
+            {updatedAdoptions.map((id_Adoption) => (
+              <ul>
+                {" "}
+                <li key={id_Adoption}>
+                  Adopción o hogar provisorio: {id_Adoption.adopted_homeA}
+                </li>
+                <li key={`${id_Adoption}-status`}>
+                  Status: {id_Adoption.statusA ? "Aceptada" : "En revisión"}
+                </li>
+                <li key={`${id_Adoption}-dog`}>Perro: {id_Adoption.dogName}</li>
+              </ul>
+            ))}
+          </ul>
         </div>
         {userLocal.isAdminU && (
           <button onClick={goAdminArticles} className={styles.button}>
@@ -152,25 +211,19 @@ const Account = () => {
           <button onClick={goAdminDogs} className={styles.button}>
             Gestionar Perritos
           </button>
-         )} 
+        )}
         {userLocal.isAdminU && (
           <button onClick={goAdminUsers} className={styles.button}>
             Gestionar Usuarios
           </button>
-         )} 
+        )}
         {/* <button className={styles.button} onClick={toggleEditingProfile}>
           {editingProfile ? "Cancelar edición" : "Editar perfil"}
         </button> */}
         {message && <div className={styles.notification}>{message}</div>}
-        <button
-          className={styles.button}
-          onClick={handleLogout}
-
-        >
+        <button className={styles.button} onClick={handleLogout}>
           {isAuthenticated || userLocal.nameU
-           
             ? "Cerrar sesión"
-           
             : "Iniciar Sesion"}
         </button>
       </div>

@@ -289,5 +289,27 @@ export function getUsers () {
   }
 }
 
+//traigo a las adopciones
+export function getAdoptions() {
+  return async (dispatch) => {
+    const response = await axios.get('/adoptions')
+   
+    dispatch({
+      type: 'GET_ADOPTIONS',
+      payload: response.data
+    })
+  }
+}
 
+//traigo a las compras por usuario
+export function getCarts(id) {
+  return async (dispatch) => {
+    const response = await axios.get(`/carts/${id}`)
+    console.log(response.data)
+    dispatch({
+      type: 'GET_CARTS',
+      payload: response.data
+    })
+  }
+}
 
