@@ -77,7 +77,7 @@ export default function CreateDog() {
   }, []);
   return (
     <div className={styles.container}>
-      <h2 className={styles.h2}>AÑADE UN PERRO AL REFUGIO</h2>
+      <h2 style={{ fontFamily: "Lemon Days" }}  className={styles.h2}>AÑADE UN PERRO AL REFUGIO</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
           Nombre:
@@ -176,10 +176,9 @@ export default function CreateDog() {
             id=""
             onChange={(e) => setFile(e.target.files[0])}
           ></input>
-          <img
-            className={styles.img}
-            src={file ? URL.createObjectURL(file) : ""}
-          />
+          {file ? (  <img className={styles.img}
+            src={file ? URL.createObjectURL(file) : ""}  
+          /> ) : null}
         </label>
 
         <div className={styles.containerButton}>

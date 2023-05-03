@@ -205,3 +205,32 @@
   color: red;
   font-size: 14px;
 }
+
+.errorMessage{
+            position: fixed;
+            top: 50%;
+            right: 0;
+            padding: 2rem;
+            font-size: 1.2rem;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-right: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            animation: slide 5s;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  25% {
+    transform: translateX(0%);
+  }
+  
+  75% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

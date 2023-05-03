@@ -23,6 +23,7 @@
   padding: 5px;
   border-radius: 0.25rem;
   cursor: pointer;
+  width: 7em;
 }
 
 .select:hover{

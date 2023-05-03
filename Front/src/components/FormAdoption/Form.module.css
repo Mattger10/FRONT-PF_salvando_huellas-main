@@ -13,7 +13,7 @@ background-color: #cccccc42;
   align-items: center;
 }
 
-.customloader {
+/* .customloader {
   width:50px;
   height:50px;
   border-radius:50%;
@@ -22,19 +22,18 @@ background-color: #cccccc42;
   mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
   animation:s3 0.5s infinite linear;
 }
-@keyframes s3 {to{transform: rotate(1turn)}}
+@keyframes s3 {to{transform: rotate(1turn)}} */ /*????*/
 
 .formulario {
-  background-image: linear-gradient(to bottom right, #f8dc6de3, #e4a83a);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
-  border: 3px solid #e4a83a;
+  border: 2px solid #ccc;
   border-radius: 0.5rem;
   background-size: cover;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(50px);
   width: 40vw;
 }
 
@@ -49,21 +48,29 @@ background-color: #cccccc42;
 .formulario textarea {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #bb9715d8;
+  border: 1px solid #ccc;
   border-radius: 0.40rem;
   font-size: 1rem;
 }
 .formulario input:hover{
-  background-color: #e9e3bba9;
+  background-color: #fae2439f;
   border: 1px solid;
+}
+
+.formulario textarea:hover {
+  background-color: #fae2439f;
 }
 
 .formulario select {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #bb9715;
+  border: 1px solid #ccc;
   border-radius: 0.40rem;
   font-size: 1rem;
+}
+
+.formulario select:hover {
+  background-color: #fae2439f;
 }
 
  .check {
@@ -75,8 +82,8 @@ input[type="checkbox"] {
   position: relative;
   width: 15px;
   height: 15px;
-  margin-right: 10px; /* Agregar margen derecho para separar los checkboxes */
-
+  margin-right: 10px; 
+  margin-left: 30px;
   -webkit-appearance: none;
   appearance: none;
   outline: none;
@@ -100,7 +107,7 @@ input:checked[type="checkbox"]:before {
   border-left: none;
   border-top: none;
   width: 10px;
-  border-color: rgb(24, 196, 24);
+  border-color: #d43535;
   transform: translate(-50%, -50%) rotate(45deg); /* Centrar y rotar */
 }
 
@@ -108,14 +115,14 @@ input:checked[type="checkbox"]:before {
   padding: 0.50rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #BB9715;
+  background-color: #cb2c2c;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #8b6f08;
+  background-color: #d43535;
 }
 
 /* INICIO DE SESIÓN OBLIGATORIO */ 
