@@ -10,6 +10,9 @@ export default function Donation() {
   const [price, setPrice] = useState(100);
   const [showPay, setShowPay] = useState(false);
   const loader = <div className={styles.customloader}></div>
+  const userLocal = JSON.parse(window.localStorage.getItem("user"))
+  const [message, setMessage] = useState("");
+
 
   const handlePrice = (e) => {
     let newPrice = Number(e.target.value);
@@ -25,6 +28,7 @@ export default function Donation() {
   const fetchPreferenceId = async () => {
     const response = await axios.post("/payment/donations", {
       unit_price: price,
+      userId: userLocal.id_User ? userLocal.id_User : undefined
     });
     setPreferenceId(response.data.preferenceId);
   };
@@ -35,6 +39,13 @@ export default function Donation() {
     }
   }, [price, showPay]);
 
+  useEffect(()=>{
+    const querys = new URLSearchParams(location.search);
+    const status = querys.get("status");
+    if(status === "success"){
+      setMessage("¡Gracias por tu donación!")
+    }
+  },[])
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>¡Tu AYUDA CUENTA!</h1>
@@ -96,6 +107,21 @@ export default function Donation() {
             </div>
           </div>
         </div>
+        {message.length ? (
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("");
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

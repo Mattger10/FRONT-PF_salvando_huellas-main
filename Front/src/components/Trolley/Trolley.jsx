@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./Trolley.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteCarrito } from "../../redux/actions";
+import { deleteCarrito, changeCantidad } from "../../redux/actions";
 import axios from "axios";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Trolley() {
   const dispatch = useDispatch();
@@ -22,7 +22,9 @@ export default function Trolley() {
   const userLocal = JSON.parse(window.localStorage.getItem("user"));
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const loader = <div className={styles.customloader}></div>
+  const location = useLocation();
+  const loader = <div className={styles.customloader}></div>;
+  const [message, setMessage] = useState("");
 
   const handleOnReady = () => {
     setIsReady(true);
@@ -40,6 +42,7 @@ export default function Trolley() {
   const fetchPreferenceId = async () => {
     const response = await axios.post("/payment/purchases", {
       articles: article,
+      userId: userLocal.id_User,
     });
     setPreferenceId(response.data.preferenceId);
   };
@@ -104,6 +107,35 @@ export default function Trolley() {
     window.localStorage.setItem("carrito", JSON.stringify(carritoStorage));
     setAllArticleStorage(carritoStorage);
   };
+  const updateStockBack = async () => {
+    const querys = new URLSearchParams(location.search);
+    const status = querys.get("status");
+    const aux = JSON.parse(window.localStorage.getItem("carrito"));
+    if (status === "success") {
+      dispatch(changeCantidad(0))
+      for (let i = 0; i < aux.length; i++) {
+        await axios
+          .put("/articles/update/" + aux[i].article.id_Article, {
+            ...aux[i].article,
+            stockA: aux[i].article.stockA - aux[i].cantidad,
+          })
+          .then((res) => {
+            window.localStorage.setItem("carrito", JSON.stringify([]));
+            setAllArticleStorage([]);
+            setMessage(
+              "Se ha enviado un mail con los datos de tu compra a " +
+                userLocal.emailU
+            );
+            return res.data;
+          })
+          .catch((error) => console.error(error.message));
+      }
+    }
+  };
+  useEffect(() => {
+    updateStockBack();
+    
+  }, []);
   return (
     <div className={styles.container}>
       {allArticleStorage.length === 0 && (
@@ -238,6 +270,21 @@ export default function Trolley() {
           )}
         </div>
       </div>
+      {message.length ? (
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("");
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
