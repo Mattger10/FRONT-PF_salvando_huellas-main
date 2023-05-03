@@ -23,7 +23,7 @@ export default function CardAdoption({ adoption, changeStatus }) {
       setUser({});
       setDog({});
     };
-  });
+  },[]);
   return (
     <div className={styles.userContainer}>
       <h4>{"Solicitud #" + adoption.id_Adoption}</h4>
@@ -50,10 +50,10 @@ export default function CardAdoption({ adoption, changeStatus }) {
         </span>
       </div>
       <div className={styles.userButtons}>
-        <button onClick={() => changeStatus("accepted")}>
+        <button onClick={() => changeStatus("accepted", adoption.id_Adoption)}>
           Aceptar Solicitud
         </button>
-        <button onClick={() => changeStatus("rejected")}>
+        <button onClick={() => changeStatus("rejected", adoption.id_Adoption)}>
           Rechazar Solicitud
         </button>
       </div>

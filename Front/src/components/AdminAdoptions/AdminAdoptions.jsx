@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./AdminAdoptions.module.css";
 import { getAdoptions } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
