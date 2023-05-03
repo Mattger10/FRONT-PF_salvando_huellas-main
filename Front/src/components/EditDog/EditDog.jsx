@@ -47,7 +47,7 @@ export default function EditDog() {
       const result = await uploadFile(file);
       const response = await axios.put("/dogs/update/" + Number(id), {
         ...inputData,
-        photoD: result,
+        photoD: file || dog.photoD,
         references: selectedRefs,
       });
       setLoading(false)
@@ -183,7 +183,7 @@ export default function EditDog() {
           <input
             className={styles.input}
             type="file"
-            name=""
+            name="photoD"
             id=""
             onChange={(e) => setFile(e.target.files[0])}
           ></input>
