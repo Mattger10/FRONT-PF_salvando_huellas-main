@@ -32,6 +32,7 @@ import AdminUsers from "./components/AdminUsers/AdminUsers.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
 import ResetPassword from "./components/ResetPassword/ResetPassword.jsx";
 import AdminAdoptions from "./components/AdminAdoptions/AdminAdoptions.jsx";
+import EditUser from "./components/EditUser/EditUser.jsx";
 
 function App() {
   const location = useLocation();
@@ -67,6 +68,7 @@ function App() {
         <Route path="/posts/createpost" element={<PostForm />} />
         <Route path="/forgotpass" element={<ForgotPassword />} />
         <Route path="/resetpass" element={<ResetPassword />} />
+        <Route path="/editUserData" element={<EditUser />} />
       </Routes>
     </div>
   );

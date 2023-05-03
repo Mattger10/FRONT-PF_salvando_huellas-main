@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'Lemon Days';
+    src: url('../../assets/Fuentes/Lemon Days.ttf') format('truetype');
+    /* Agrega más formatos de archivo si es necesario */
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .container {
+    background-color: #cccccc42;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .customloader {
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:conic-gradient(#0000 10%,#827700);
+    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation:s3 0.5s infinite linear;
+  }
+  @keyframes s3 {to{transform: rotate(1turn)}}
+  
+    .h2 {
+      margin-top: 2%;
+      font-size: 40px;
+    }
+  
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      background-size: cover;
+      backdrop-filter: blur(5px);
+      width: 40vw;
+      margin-bottom: 2rem;
+    }
+  
+    .label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  
+    .input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.40rem;
+      font-size: 1rem;
+    }
+  
+    .input:hover{
+      background-color: #fae2439f;
+    border: 1px solid #ccc;
+    }
+  
+    .textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+  
+    .containerButton{
+      display: flex;
+      align-items: center;
+    }
+  
+    .button {
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
+      background-color: #fe5535;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 40%;
+      margin-right: 5%;
+      margin-left: 4%;
+    }
+    
+    .button:hover {
+      background-color: #d43535;
+    }
+   
+    .message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+      padding: 2rem;
+      background-color: #fae243ed;
+      color: #212529;
+      border: 1px solid #ffc107;
+      border-radius: 5px;
+    }
+    
+    
+    .hide {
+      display: none;
+    }
+  
+    .img {
+      width: 30%;
+      height: 30%;
+    }
+    
+    .buttonAceptar {
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
+      background-color: #fe5535;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-right: 5%;
+      margin-left: 4%;
+    }
+    
+    .button:hover {
+      background-color: #d43535;
+    }
