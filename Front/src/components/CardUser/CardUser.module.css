@@ -1,24 +1,44 @@
-.userContainer{
-    display: flex;
-    flex-direction: column;
-    background-color: #fae876;
-    width: 300px;
-    margin: 10px;    
+.container {
+  margin: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* opcional: distribuye el espacio entre las tarjetas */
+  align-items: flex-start; /* opcional: alinea las tarjetas en la parte superior del contenedor */
 }
-.userButtons{
-    display: flex;
+
+.userContainer {
+  margin-right: 20px;
+  margin-left: 1rem;
+  margin-top: 2rem;
+  display: inline-block;
+  width: 20%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fff29a;
+  vertical-align: top; /* alinea las tarjetas en la parte superior del contenedor */
+}
+
+.info {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.userButtons {
+  display: flex;
 }
 
 .red {
-    background-color: red;
-    border-radius: 3px;
-  }
-  
-  .green {
-    background-color: green;
-    border-radius: 3px;
-  }
-  
-.banned{
-    color: red;
+  background-color: red;
+  border-radius: 3px;
+}
+
+.green {
+  background-color: green;
+  border-radius: 3px;
+}
+
+.banned {
+  color: red;
 }

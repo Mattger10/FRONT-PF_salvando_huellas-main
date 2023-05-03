@@ -58,6 +58,7 @@
 /*Estilos para tienda*/
 
 .card {
+  background-color: #c6f0096c;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -66,7 +67,6 @@
   width: 240px;
   height: 390px;
   padding: .8em;
-  background: #f5f5f5;
   position: relative;
   overflow: visible;
   border-radius: 2%;
