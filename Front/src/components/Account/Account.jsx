@@ -5,10 +5,10 @@ import styles from "./Account.module.css";
 import { getAdoptions, getCarts, getDogs } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import PetsIcon from '@mui/icons-material/Pets';
-import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
-import ProductionQuantityLimitsTwoToneIcon from '@mui/icons-material/ProductionQuantityLimitsTwoTone';
-import GroupSharpIcon from '@mui/icons-material/GroupSharp';
+import PetsIcon from "@mui/icons-material/Pets";
+import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
+import ProductionQuantityLimitsTwoToneIcon from "@mui/icons-material/ProductionQuantityLimitsTwoTone";
+import GroupSharpIcon from "@mui/icons-material/GroupSharp";
 
 const Account = () => {
   const [auth, setAuth] = useState(null);
@@ -103,27 +103,27 @@ const Account = () => {
     <div className={styles.container}>
       <div>
         <div>
-          {isAuthenticated ? (
-            <div>
-              
-            </div>
-          ) : userLocal.nameU ? (
-            <div></div>
-          ) : (
-            ""
-          )}
+          {isAuthenticated ? <div></div> : userLocal.nameU ? <div></div> : ""}
         </div>
       </div>
       <div>
         {isAuthenticated && (
           <div className={styles.perfilBio}>
-            <h3 style={{ fontFamily: "JosefinSans-Italic" }} className={styles.titulo}>{user.name}</h3>
-            <p  className={styles.texto}>Email: {user.email}</p>
+            <h3
+              style={{ fontFamily: "JosefinSans-Italic" }}
+              className={styles.titulo}
+            >
+              {user.name}
+            </h3>
+            <p className={styles.texto}>Email: {user.email}</p>
           </div>
         )}
         {userLocal.nameU && !isAuthenticated ? (
           <div className={styles.perfilBio}>
-            <h3 style={{ fontFamily: "JosefinSans-Italic" }}  className={styles.titulo}>
+            <h3
+              style={{ fontFamily: "JosefinSans-Italic" }}
+              className={styles.titulo}
+            >
               {userLocal.nameU + " " + userLocal.lastNameU}
             </h3>
             <p className={styles.texto}>Email: {userLocal.emailU}</p>
@@ -137,7 +137,7 @@ const Account = () => {
               onClick={() => setShowCart(!showCart)}
               className={styles.h3}
             >
-               <ShoppingCartTwoToneIcon/>  Mis compras
+              <ShoppingCartTwoToneIcon /> Mis compras
             </button>
             {showCart && (
               <div>
@@ -159,7 +159,9 @@ const Account = () => {
                         );
                       })}
                     </p>
-                    <p className={styles.p}>Total: ${sumTotal(cart.articles)}</p>
+                    <p className={styles.p}>
+                      Total: ${sumTotal(cart.articles)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -172,22 +174,22 @@ const Account = () => {
               className={styles.adopth3}
               onClick={() => setShowAdoptions(!showAdoptions)}
             >
-              <PetsIcon/> Mis adopciones 
+              <PetsIcon /> Mis adopciones
             </button>
             {showAdoptions && (
               <div className={styles.adopcionesContainer}>
-                {updatedAdoptions.map((id_Adoption) => (
-                  <div>
-                    {" "}
-                    <p key={id_Adoption}>
-                      Adopción u hogar provisorio: {id_Adoption.adopted_homeA}{" "}
+                {updatedAdoptions.map((id_Adoption, index) => (
+                  <div key={index}>
+                    <p>Tipo de solicitud: {id_Adoption.adopted_homeA === "adopt" ? "Adopción" : "Hogar Provisorio"} </p>
+                    <p>
+                      Estado:
+                      {id_Adoption.statusA === "accepted"
+                        ? "Aceptada"
+                        : id_Adoption.statusA === "rejected"
+                        ? "Rechazada"
+                        : "En revisión"}
                     </p>
-                    <p key={`${id_Adoption}-status`}>
-                      Estado: {id_Adoption.statusA ? "Aceptada" : "En revisión"}
-                    </p>
-                    <p className={styles.p} key={`${id_Adoption}-dog`}>
-                      Perro: {id_Adoption.dogName}
-                    </p>
+                    <p className={styles.p}>Perro: {id_Adoption.dogName}</p>
                   </div>
                 ))}
               </div>
@@ -197,17 +199,17 @@ const Account = () => {
         <div className={styles.containerButton}>
           {userLocal.isAdminU && (
             <button onClick={goAdminArticles} className={styles.button}>
-              Gestionar Artículos <ProductionQuantityLimitsTwoToneIcon/>
+              Gestionar Artículos <ProductionQuantityLimitsTwoToneIcon />
             </button>
           )}
           {userLocal.isAdminU && (
             <button onClick={goAdminDogs} className={styles.button}>
-              Gestionar Perritos 
+              Gestionar Perritos
             </button>
           )}
           {userLocal.isAdminU && (
             <button onClick={goAdminUsers} className={styles.button}>
-              Gestionar Usuarios <GroupSharpIcon/>
+              Gestionar Usuarios <GroupSharpIcon />
             </button>
           )}
           {userLocal.isAdminU && (
@@ -215,11 +217,11 @@ const Account = () => {
               Gestionar Adopciones
             </button>
           )}
-          
+
           {message && <div className={styles.notification}>{message}</div>}
           <button className={styles.button} onClick={handleLogout}>
             {isAuthenticated || userLocal.nameU
-              ? "Cerrar sesión " 
+              ? "Cerrar sesión "
               : "Iniciar Sesion"}
           </button>
         </div>
