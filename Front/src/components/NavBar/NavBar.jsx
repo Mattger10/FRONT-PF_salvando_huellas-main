@@ -44,8 +44,8 @@ export default function NavBar() {
         <Link to="/about">
           <button
             className={`${location.pathname === "/about"
-                ? styles.selectedButton
-                : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+              ? styles.selectedButton
+              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
             }
           >
             CONOCENOS
@@ -54,8 +54,8 @@ export default function NavBar() {
 
         <button
           className={`${location.pathname === "/adopt"
-              ? styles.selectedButton
-              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+            ? styles.selectedButton
+            : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
           }
           onClick={() => {
             navigate("/adopt");
@@ -67,8 +67,8 @@ export default function NavBar() {
         <Link to="/dogs">
           <button
             className={`${location.pathname === "/dogs"
-                ? styles.selectedButton
-                : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+              ? styles.selectedButton
+              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
             }
           >
             PERROS
@@ -77,8 +77,8 @@ export default function NavBar() {
         <Link to="/posts">
           <button
             className={`${location.pathname === "/posts"
-                ? styles.selectedButton
-                : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+              ? styles.selectedButton
+              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
             }
           >
             POSTEOS
@@ -87,8 +87,8 @@ export default function NavBar() {
         <Link to="/shop">
           <button
             className={`${location.pathname === "/shop"
-                ? styles.selectedButton
-                : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+              ? styles.selectedButton
+              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
             }
           >
             TIENDA
@@ -97,8 +97,8 @@ export default function NavBar() {
         <Link to="/donar">
           <button
             className={`${location.pathname === "/donar"
-                ? styles.selectedButton
-                : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+              ? styles.selectedButton
+              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
             }
           >
             DONACIONES!
@@ -106,13 +106,13 @@ export default function NavBar() {
         </Link>
         <Link to="/carrito">
           <div className={`${styles.cartIcon} ${darkMode ? style.whiteIcon : ''}`}>
-            <ShoppingCartIcon fontSize="large" />
+            <ShoppingCartIcon fontSize="large" className={darkMode ? style.whiteicon : ''} />
             <span className={styles.itemCount}>{carrito}</span>
           </div>
         </Link>
         <Link to="/account">
           <div className={`${styles.userIcon} ${darkMode ? style.whiteIcon : ''}`}>
-            <AccountCircleSharpIcon fontSize="large" />
+            <AccountCircleSharpIcon fontSize="large" className={darkMode ? style.whiteicon : ''} />
           </div>
         </Link>
 
