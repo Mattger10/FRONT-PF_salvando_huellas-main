@@ -15,13 +15,13 @@ export default function NavBar() {
   const location = useLocation();
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  useEffect(()=>{
     const carritoStorage = JSON.parse(window.localStorage.getItem('carrito'))
-    if (carritoStorage) {
+    if(carritoStorage){
       dispatch(changeCantidad(carritoStorage.length))
     }
+  },[])
   }, []);
-
   return (
     <div className={styles.container}>
       <div className={styles.nav}>
@@ -35,6 +35,8 @@ export default function NavBar() {
         </Link>
         <Link to="/about">
           <button
+            className={
+              location.pathname === "/about"
             className={location.pathname === "/about"
                 ? styles.selectedButton
                 : styles.normalButton
@@ -45,6 +47,8 @@ export default function NavBar() {
         </Link>
 
         <button
+          className={
+            location.pathname === "/adopt"
           className={location.pathname === "/adopt"
               ? styles.selectedButton
               : styles.normalButton
@@ -58,6 +62,8 @@ export default function NavBar() {
 
         <Link to="/dogs">
           <button
+            className={
+              location.pathname === "/dogs"
             className={location.pathname === "/dogs"
                 ? styles.selectedButton
                 : styles.normalButton
@@ -68,6 +74,8 @@ export default function NavBar() {
         </Link>
         <Link to="/posts">
           <button
+            className={
+              location.pathname === "/posts"
             className={location.pathname === "/posts"
                 ? styles.selectedButton
                 : styles.normalButton
@@ -78,6 +86,8 @@ export default function NavBar() {
         </Link>
         <Link to="/shop">
           <button
+            className={
+              location.pathname === "/shop"
             className={location.pathname === "/shop"
                 ? styles.selectedButton
                 : styles.normalButton
@@ -88,6 +98,8 @@ export default function NavBar() {
         </Link>
         <Link to="/donar">
           <button
+            className={
+              location.pathname === "/donar"
             className={location.pathname === "/donar"
                 ? styles.selectedButton
                 : styles.normalButton
@@ -98,12 +110,14 @@ export default function NavBar() {
         </Link>
         <Link to="/carrito">
           <div className={styles.cartIcon}>
+          <ShoppingCartIcon fontSize="large" /> 
             <ShoppingCartIcon fontSize="large" />
             <span className={styles.itemCount}>{carrito}</span>
           </div>
-        </Link>
+        </Link> 
         <Link to="/account">
           <div className={styles.userIcon}>
+          <AccountCircleSharpIcon fontSize="large"/>
             <AccountCircleSharpIcon fontSize="large" />
           </div>
         </Link>
@@ -111,5 +125,3 @@ export default function NavBar() {
     </div>
   );
 }
-
-
