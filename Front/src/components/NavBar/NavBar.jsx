@@ -21,7 +21,6 @@ export default function NavBar() {
       dispatch(changeCantidad(carritoStorage.length))
     }
   },[])
-  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.nav}>
@@ -37,7 +36,6 @@ export default function NavBar() {
           <button
             className={
               location.pathname === "/about"
-            className={location.pathname === "/about"
                 ? styles.selectedButton
                 : styles.normalButton
             }
@@ -49,7 +47,6 @@ export default function NavBar() {
         <button
           className={
             location.pathname === "/adopt"
-          className={location.pathname === "/adopt"
               ? styles.selectedButton
               : styles.normalButton
           }
@@ -64,7 +61,6 @@ export default function NavBar() {
           <button
             className={
               location.pathname === "/dogs"
-            className={location.pathname === "/dogs"
                 ? styles.selectedButton
                 : styles.normalButton
             }
@@ -76,7 +72,6 @@ export default function NavBar() {
           <button
             className={
               location.pathname === "/posts"
-            className={location.pathname === "/posts"
                 ? styles.selectedButton
                 : styles.normalButton
             }
@@ -88,7 +83,6 @@ export default function NavBar() {
           <button
             className={
               location.pathname === "/shop"
-            className={location.pathname === "/shop"
                 ? styles.selectedButton
                 : styles.normalButton
             }
@@ -100,7 +94,6 @@ export default function NavBar() {
           <button
             className={
               location.pathname === "/donar"
-            className={location.pathname === "/donar"
                 ? styles.selectedButton
                 : styles.normalButton
             }
@@ -111,14 +104,12 @@ export default function NavBar() {
         <Link to="/carrito">
           <div className={styles.cartIcon}>
           <ShoppingCartIcon fontSize="large" /> 
-            <ShoppingCartIcon fontSize="large" />
             <span className={styles.itemCount}>{carrito}</span>
           </div>
         </Link>
         <Link to="/account">
           <div className={styles.userIcon}>
           <AccountCircleSharpIcon fontSize="large"/>
-            <AccountCircleSharpIcon fontSize="large" />
           </div>
         </Link>
       </div>
