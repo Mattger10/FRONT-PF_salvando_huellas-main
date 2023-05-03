@@ -227,7 +227,7 @@ export default function Trolley() {
 
       <div>
         <div className={showPay ? "" : styles.hide}>
-          {userLocal.nameU || isAuthenticated ? (
+          {userLocal.nameU ? (
             <div className={styles.hide2}>
               <h3>Pagar con Mercado Pago</h3>
               {isReady && preferenceId ? (
