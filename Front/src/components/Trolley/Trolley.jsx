@@ -40,11 +40,13 @@ export default function Trolley() {
   });
 
   const fetchPreferenceId = async () => {
-    const response = await axios.post("/payment/purchases", {
-      articles: article,
-      userId: userLocal.id_User,
-    });
-    setPreferenceId(response.data.preferenceId);
+    if(userLocal.id_User){
+      const response = await axios.post("/payment/purchases", {
+        articles: article,
+        userId: userLocal.id_User,
+      });
+      setPreferenceId(response.data.preferenceId);
+    }
   };
 
   useEffect(() => {
