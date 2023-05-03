@@ -46,24 +46,23 @@
 
 /* NUEVOS ESTILOS */ 
 
-
+ 
 .packContainer {
   position: relative;
-  
-  max-width: 350px;
+  max-width: 320px;
   border-radius: 12px;
-  background-color: #212121;
-  border: 1px solid #fff;
+  background-color: #797979;
+  border: 1px solid #000000;
   padding: 1.6rem;
-  color: #fff;
+  color: #ffffff;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  margin-right: 20px;
-  margin-left: 1rem;
+  margin-left: 8.5rem;
   margin-top: 2rem;
   display: inline-block;
-  width: 20%;
+  width: 16%;
   padding: 10px;
   vertical-align: top;
+  
 }
 
 .header {
@@ -84,7 +83,7 @@
   font-size: 0.875rem;
   line-height: 1.25rem;
   text-transform: uppercase;
-  color: #fff
+  color: #ffffff
 }
 
 .priceContainer {
@@ -126,13 +125,13 @@ gap: 10px;
 .span {
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.24);
-  background-color: rgba(255, 255, 255, 0.185);
+  background-color: rgb(137, 137, 137);
   height: 30px;
   width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 1%;
+  margin-left: -10%;
   margin-top: -6%;
 }
 

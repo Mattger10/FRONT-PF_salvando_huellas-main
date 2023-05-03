@@ -1,7 +1,15 @@
+@font-face {
+  font-family: 'Cat Paw';
+  src: url('../../assets/Fuentes/Cat Paw.ttf') format('truetype');
+  /* Agrega más formatos de archivo si es necesario */
+  font-weight: normal;
+  font-style: normal;
+}
+
 .containerAll {
   padding: 0;
   box-sizing: border-box;
-  background-color: #fff29a;
+  background-color: #cccccc42;
   height: 87vh;
 }
 
@@ -16,18 +24,20 @@ align-items: center;
 }
 
 .name{
-  margin-left: 15rem;
+  font-size: 60px;
+  margin-left: 23.5rem;
   margin-top: 1rem;
 }
 
 .imagen{
+  position: relative;
  --size:380px;
  width: var(--size);
  height: var(--size);
  border-radius: 50%;
- margin-top: 4rem;
- margin-left: 6rem;
- border:  6px solid rgb(245, 150, 150);
+ margin-top: 8rem;
+ margin-left: 15rem;
+ border:  2px solid #d43535;
 }
 
 .imagen:hover{
@@ -35,25 +45,29 @@ align-items: center;
 }
 
 .description{
-  border-radius: 1rem;
-  width: 45%;
+  position: absolute;
+  border-radius: 0.5rem;
+  width: 50%;
+  height: 20rem;
   display: flex;
   align-items: start;
   padding: 1rem;
   justify-content: start;
   flex-direction: column;
   margin-left: 40rem;
-  margin-top: -23rem;
+  margin-top: -26rem;
   background-color: #f3df5d;
   border: solid 2px #f1d72c;
 }
 
 .adoptame {
+  position: absolute;
 display:inline-block;
 justify-content: center;
 width: 45%;
 margin: 5px;
 margin-left: 41rem;
+margin-top: -8%;
 }
 
 .button{

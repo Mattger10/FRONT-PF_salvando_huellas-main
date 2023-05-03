@@ -40,7 +40,7 @@ export default function CardUser({
 
     <div className={styles.packContainer}>
       <div className={styles.header}>
-        <p className={styles.title}>Starter</p>
+        <p className={styles.title}>Información</p>
         <div className={styles.priceContainer}>
           <span>{name + " " + lastName}</span>
         </div>

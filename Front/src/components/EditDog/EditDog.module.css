@@ -7,7 +7,7 @@
 }
 
 .container {
-  background-color: #fff29a;
+  background-color: #cccccc42;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,20 +22,19 @@
   animation:s3 0.5s infinite linear;
 }
 @keyframes s3 {to{transform: rotate(1turn)}}
+
   .h2 {
     margin-top: 2%;
     font-size: 40px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
   .form {
-    background-image: url('https://firebasestorage.googleapis.com/v0/b/salvandohuellas.appspot.com/o/salvandohuellas%2Fparafondoform.png?alt=media&token=88d9e94c-d666-4b01-8a2e-2a1e749e04e3');
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
-    border: 1px solid #5b5b5b;
+    border: 1px solid #ccc;
     border-radius: 0.5rem;
     background-size: cover;
     backdrop-filter: blur(5px);
@@ -53,14 +52,14 @@
     width: 100%;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    border: 1px solid #bb9715d8;
+    border: 1px solid #ccc;
     border-radius: 0.40rem;
     font-size: 1rem;
   }
 
   .input:hover{
-    background-color: #fe5735ac;
-    border: 1px solid;
+    background-color: #fae2439f;
+  border: 1px solid #ccc;
   }
 
   .textarea {

@@ -86,7 +86,7 @@ function FormularioAdopcion() {
         setMessage("Solicitud de adopción enviada");
       setTimeout(() => {
         setMessage("");
-      }, 3000);
+      }, 5000);
       }
       if (formState === 2) {
         await axios.post("/adoptions/register", {
@@ -107,7 +107,7 @@ function FormularioAdopcion() {
         setMessage("Solicitud de hogar provisorio enviada");
         setTimeout(() => {
           setMessage("");
-        }, 3000);
+        }, 5000);
       }
     } catch (error) {
       console.log(error.message);
@@ -115,7 +115,7 @@ function FormularioAdopcion() {
       setMessage("Error al enviar solicitud de adopción");
         setTimeout(() => {
           setMessage("");
-        }, 3000);
+        }, 5000);
     }
 
     // Acá se reinician los valores de los campos del formulario
