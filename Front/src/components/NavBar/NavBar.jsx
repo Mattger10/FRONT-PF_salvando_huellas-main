@@ -1,5 +1,4 @@
 import styles from "./NavBar.module.css";
-import style from "./Darckmode.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
@@ -15,24 +14,16 @@ export default function NavBar() {
   const carrito = useSelector((state) => state.carrito);
   const location = useLocation();
   const dispatch = useDispatch()
-  const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
+  useEffect(()=>{
     const carritoStorage = JSON.parse(window.localStorage.getItem('carrito'))
-    if (carritoStorage) {
+    if(carritoStorage){
       dispatch(changeCantidad(carritoStorage.length))
     }
-
-    if (darkMode) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }, [darkMode]);
-
+  },[])
   return (
     <div className={styles.container}>
-      <div className={`${styles.nav} ${darkMode ? style.DarckMode : ''}`}>
+      <div className={styles.nav}>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -43,9 +34,10 @@ export default function NavBar() {
         </Link>
         <Link to="/about">
           <button
-            className={`${location.pathname === "/about"
-              ? styles.selectedButton
-              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+            className={
+              location.pathname === "/about"
+                ? styles.selectedButton
+                : styles.normalButton
             }
           >
             CONOCENOS
@@ -53,9 +45,10 @@ export default function NavBar() {
         </Link>
 
         <button
-          className={`${location.pathname === "/adopt"
-            ? styles.selectedButton
-            : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+          className={
+            location.pathname === "/adopt"
+              ? styles.selectedButton
+              : styles.normalButton
           }
           onClick={() => {
             navigate("/adopt");
@@ -66,9 +59,10 @@ export default function NavBar() {
 
         <Link to="/dogs">
           <button
-            className={`${location.pathname === "/dogs"
-              ? styles.selectedButton
-              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+            className={
+              location.pathname === "/dogs"
+                ? styles.selectedButton
+                : styles.normalButton
             }
           >
             PERROS
@@ -76,9 +70,10 @@ export default function NavBar() {
         </Link>
         <Link to="/posts">
           <button
-            className={`${location.pathname === "/posts"
-              ? styles.selectedButton
-              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+            className={
+              location.pathname === "/posts"
+                ? styles.selectedButton
+                : styles.normalButton
             }
           >
             POSTEOS
@@ -86,9 +81,10 @@ export default function NavBar() {
         </Link>
         <Link to="/shop">
           <button
-            className={`${location.pathname === "/shop"
-              ? styles.selectedButton
-              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+            className={
+              location.pathname === "/shop"
+                ? styles.selectedButton
+                : styles.normalButton
             }
           >
             TIENDA
@@ -96,33 +92,26 @@ export default function NavBar() {
         </Link>
         <Link to="/donar">
           <button
-            className={`${location.pathname === "/donar"
-              ? styles.selectedButton
-              : styles.normalButton} && ${darkMode ? style.DarckMode : ''}`
+            className={
+              location.pathname === "/donar"
+                ? styles.selectedButton
+                : styles.normalButton
             }
           >
             DONACIONES!
           </button>
         </Link>
         <Link to="/carrito">
-          <div className={`${styles.cartIcon} ${darkMode ? style.whiteIcon : ''}`}>
-            <ShoppingCartIcon fontSize="large" className={darkMode ? style.whiteicon : ''} />
+          <div className={styles.cartIcon}>
+          <ShoppingCartIcon fontSize="large" /> 
             <span className={styles.itemCount}>{carrito}</span>
           </div>
         </Link>
         <Link to="/account">
-          <div className={`${styles.userIcon} ${darkMode ? style.whiteIcon : ''}`}>
-            <AccountCircleSharpIcon fontSize="large" className={darkMode ? style.whiteicon : ''} />
+          <div className={styles.userIcon}>
+          <AccountCircleSharpIcon fontSize="large"/>
           </div>
         </Link>
-
-        <button
-          className={styles.normalButton}
-          onClick={() => setDarkMode(!darkMode)}
-        >
-          {darkMode ? "Modo Claro" : "Modo Oscuro"}
-        </button>
-
       </div>
     </div>
   );
