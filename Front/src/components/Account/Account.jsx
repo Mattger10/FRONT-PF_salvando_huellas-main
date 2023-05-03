@@ -180,11 +180,13 @@ const Account = () => {
           <ul className={styles.listaDatos}>
             <li>Mis favoritos:</li>
           </ul>
-          <ul>
+          <div>
+            <h4>
             Mis compras:
+            </h4>
             {carts.map((cart) => (
               <div key={cart.id_Article} className={styles.compra}>
-                <p>{"Compra #"+cart.id_Cart}</p>
+                <p>{"Compra ID #"+cart.id_Cart}</p>
                 <p>{cart.createdAt.slice(0, 10)}</p>
                 <p>Productos: {cart.articles.map((art, index)=>{
                     return <p key={index}>{art.quantity+" "+art.title+" $"+art.unit_price * art.quantity}</p>
@@ -192,22 +194,24 @@ const Account = () => {
                   <p>Total: ${sumTotal(cart.articles)}</p>
               </div>
             ))}
-          </ul>
-          <ul>
+          </div>
+          <div>
+            <h4>
             Mis adopciones:
-            {updatedAdoptions.map((id_Adoption) => (
-              <ul>
+            </h4>
+            {updatedAdoptions.map((id_Adoption, index) => (
+              <ul key={index}>
                 {" "}
-                <li key={id_Adoption}>
-                  Adopción o hogar provisorio: {id_Adoption.adopted_homeA}
+                <li >
+                  Tipo de solicitud: {id_Adoption.adopted_homeA === "adopt" ? "Adopción" : "Hogar Provisorio"}
                 </li>
-                <li key={`${id_Adoption}-status`}>
-                  Status: {id_Adoption.statusA ? "Aceptada" : "En revisión"}
+                <li >
+                  Estado: {id_Adoption.statusA ? "Aceptada" : "En revisión"}
                 </li>
-                <li key={`${id_Adoption}-dog`}>Perro: {id_Adoption.dogName}</li>
+                <li >Perro: {id_Adoption.dogName}</li>
               </ul>
             ))}
-          </ul>
+          </div>
         </div>
         {userLocal.isAdminU && (
           <button onClick={goAdminArticles} className={styles.button}>
