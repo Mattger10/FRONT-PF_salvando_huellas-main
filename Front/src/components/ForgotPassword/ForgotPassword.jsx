@@ -28,8 +28,10 @@ export default function ForgotPassword() {
   };
   return (
     <div className={styles.container} >
-      <div className={styles.container2} >
+        <div className={styles.containerButton} >
         <button className={styles.button} type="button" onClick={()=> navigate('/')}>Volver</button>
+        </div>
+      <div className={styles.container2} >
         <h2>Solicitar cambio de contraseña</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <h3>Se enviará un correo a tu dirección de email</h3>
@@ -40,7 +42,9 @@ export default function ForgotPassword() {
             onChange={(e) => setEmail(e.target.value)}
             required
           ></input>
+          <div className= {styles.containerEnviar}>
           <button className={styles.submitButt} type="submit">Enviar</button>
+          </div>
         </form>
 
       </div>

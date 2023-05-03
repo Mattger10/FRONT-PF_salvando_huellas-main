@@ -17,12 +17,14 @@ export default function CardUser({
   return (
     <div className={styles.userContainer}>
       <h4>{name + " " + lastName}</h4>
+      <div className={styles.info} >
       <span>{email}</span>
       <span>{phone}</span>
       <span>{address}</span>
       <span>{reason ? reason : ""}</span>
       <span className={styles.banned}>{isBan ? "BANNED" : ""}</span>
       <span>{isAdmin ? "ADMIN" : ""}</span>
+      </div>
       <div className={styles.userButtons}>
         <button
           className={`${styles.userBan} ${isBan ? styles.green : styles.red}`}
