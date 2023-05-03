@@ -108,6 +108,12 @@ const Account = () => {
     } else navigate("/");
   };
 
+  const sumTotal = (articles)=>{
+    let total = 0
+    articles.forEach(art => total += (art.quantity * art.unit_price))
+    return total
+  }
+
   return (
     <div className={styles.container}>
       <link
@@ -177,13 +183,14 @@ const Account = () => {
           <ul>
             Mis compras:
             {carts.map((cart) => (
-              <li key={cart.id}>
-                <p>Artículo: {cart.articulo}</p>
-                <p>
-                  Estado de adopción:{" "}
-                  {cart.statusA ? "Aceptada" : "En revisión"}
-                </p>
-              </li>
+              <div key={cart.id_Article} className={styles.compra}>
+                <p>{"Compra #"+cart.id_Cart}</p>
+                <p>{cart.createdAt.slice(0, 10)}</p>
+                <p>Productos: {cart.articles.map((art, index)=>{
+                    return <p key={index}>{art.quantity+" "+art.title+" $"+art.unit_price * art.quantity}</p>
+                  })}</p>
+                  <p>Total: ${sumTotal(cart.articles)}</p>
+              </div>
             ))}
           </ul>
           <ul>
