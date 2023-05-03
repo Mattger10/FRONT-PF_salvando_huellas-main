@@ -142,7 +142,7 @@ const Account = () => {
             </div>
           ) : userLocal.nameU ? (
             <div className={styles.avatar}>
-              <img className={styles.img} src={""} alt={userLocal.nameU} />
+              <img className={styles.img} src={defaultProfilePic} alt={userLocal.nameU} />
               <button
                 className={styles.botonAvatar}
                 type="button"
