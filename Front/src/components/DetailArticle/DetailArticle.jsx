@@ -154,8 +154,11 @@ export default function DetailsArticle() {
     });
   };
   useEffect(() => {
-    dispatch(detailArticle(id));
+    dispatch(detailArticle(Number(id)));
     dispatch(getOpinions());
+    return ()=>{
+      dispatch(detailArticle(0))
+    }
   }, []);
 
   useEffect(() => {

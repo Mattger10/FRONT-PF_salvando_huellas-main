@@ -101,11 +101,18 @@ export function changeCantidad(num) {
 
 export function detailArticle(id) {
   return async function (dispatch) {
-    let getArticles = await axios.get(`/articles/${id}`);
-    dispatch({
-      type: DETAIL_ARTICLE,
-      payload: getArticles.data,
-    });
+    if (!id){
+      dispatch({
+        type: DETAIL_ARTICLE,
+        payload: {},
+      });
+    } else {
+      let getArticles = await axios.get(`/articles/${id}`);
+      dispatch({
+        type: DETAIL_ARTICLE,
+        payload: getArticles.data,
+      });
+    }
   };
 }
 
