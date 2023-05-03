@@ -1,4 +1,9 @@
-.DarckMode{
-    background-color: black;
-    color: white !important;
-}
+.DarckMode {
+    background-color: #222;
+    color: white;
+  }
+  
+.white-icon {
+    color: white;
+  }
+  
