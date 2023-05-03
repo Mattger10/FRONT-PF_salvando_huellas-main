@@ -1,5 +1,5 @@
 .container {
-  background-color: #fff29a;
+  background-color: #cccccc42;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,13 +22,13 @@
   }
 
   .form {
-    background-image: linear-gradient(to bottom right, #f8dc6de3, #e4a83a);
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/salvandohuellas.appspot.com/o/salvandohuellas%2Fparafondoform.png?alt=media&token=88d9e94c-d666-4b01-8a2e-2a1e749e04e3');
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
-    border: 3px solid #d4eb04;
+    border: 1px solid #5b5b5b;
     border-radius: 0.5rem;
     background-size: cover;
     backdrop-filter: blur(5px);
@@ -110,5 +110,22 @@
   .img {
     width: 30%;
     height: 30%;
+  }
+
+  .buttonAceptar {
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: #fe5535;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-right: 5%;
+    margin-left: 4%;
+  }
+  
+  .button:hover {
+    background-color: #d43535;
   }
   

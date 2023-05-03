@@ -51,16 +51,7 @@ export default function LandingPage() {
           });
           setLoading(false)
           setRegisterMessage({message: "Usuario creado correctamente", styles: {
-            position: "fixed",
-            top: "50%",
-            right: 0,
-            transform: "translateY(-50%)",
-            padding: "2rem",
-            fontSize: "1.2rem",
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            borderRight: "none",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+           
           }});
           setTimeout(() => {
             setRegisterMessage({message:""});
@@ -120,22 +111,13 @@ export default function LandingPage() {
         setErrorMessage({
           message: "Credenciales incorrectas",
           styles: {
-            position: "fixed",
-            top: "50%",
-            right: 0,
-            transform: "translateY(-50%)",
-            padding: "2rem",
-            fontSize: "1.2rem",
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            borderRight: "none",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+            
           },
         });
         setTimeout(() => {
           setErrorMessage("");
           setErrors({})
-        }, 3000);
+        }, 5000);
       }
     } else {
       // mostrar mensaje de error
@@ -217,7 +199,7 @@ export default function LandingPage() {
               </form>
               {registerMessage && (
                 <div
-                  style={registerMessage.styles}
+                  className={styles.messageError}
                 >
                   {registerMessage.message}
                 </div>
@@ -273,7 +255,7 @@ export default function LandingPage() {
               </form>
               {errorMessage && (
                 <div
-                  style={errorMessage.styles}
+                  className={styles.errorMessage}
                 >
                   {errorMessage.message}
                 </div>

@@ -1,10 +1,11 @@
 import styles from "./EditArticle.module.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { detailArticle } from "../../redux/actions";
 import axios from "axios";
 import React from "react";
+import { uploadFile } from "../../firebase/config";
 
 export default function EditArticle() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function EditArticle() {
   const [inputData, setInput] = useState({});
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false)
+  const [file, setFile] = useState(null);
   const loader = <div className={styles.customloader}></div>
 
 
@@ -40,8 +42,10 @@ export default function EditArticle() {
     e.preventDefault();
     try {
       setLoading(true)
+      const result = await uploadFile(file);
       const response = await axios.put("/articles/update/" + Number(id), {
         ...inputData,
+        photoA: result,
         activeA: true,
       });
       setLoading(false)
@@ -110,26 +114,28 @@ export default function EditArticle() {
           ></input>
         </label>
         <label className={styles.label}>
-          Imagen URL:
+          Subir imagen
           <input
             className={styles.input}
-            type="url"
-            value={inputData.photoA || detail.photoA}
-            name="photoA"
-            onChange={handleInput}
+            type="file"
+            name=""
+            id=""
+            onChange={(e) => setFile(e.target.files[0])}
           ></input>
+          <img
+            className={styles.img}
+            src={file ? URL.createObjectURL(file) : detail.photoA}
+          />
         </label>
-        <img
-          className={styles.img}
-          src={inputData.photoA || detail.photoA}
-        ></img>
         <div className={styles.containerButton}>
           <button className={styles.button} type="button" onClick={handleEd}>
           Cancelar
         </button>
+       
           <button className={styles.button} type="submit">
             APLICAR CAMBIOS
           </button>
+         
         </div>
       </form>
       {loading ? <div className={styles.containerMessage}>
@@ -141,14 +147,16 @@ export default function EditArticle() {
         <div className={styles.containerMessage}>
           <div className={styles.message}>
             <h3>{message}</h3>
+            <Link to="/admin/articles">
             <button
-              className={styles.button}
+              className={styles.buttonAceptar}
               onClick={() => {
                 setMessage("");
               }}
             >
               Aceptar
             </button>
+            </Link>
           </div>
         </div>
       ) : null}

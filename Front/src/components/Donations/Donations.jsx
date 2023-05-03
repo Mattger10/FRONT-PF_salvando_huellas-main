@@ -48,7 +48,7 @@ export default function Donation() {
   },[])
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>¡Tu AYUDA CUENTA!</h1>
+      <h1 className={styles.title}>¡TU AYUDA CUENTA!</h1>
       <div className={styles.containerh5}>
         <h5 className={styles.h5}>
       <div className={styles.containerImg}>
