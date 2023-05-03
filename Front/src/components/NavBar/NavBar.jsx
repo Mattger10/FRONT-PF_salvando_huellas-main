@@ -106,7 +106,7 @@ export default function NavBar() {
           <ShoppingCartIcon fontSize="large" /> 
             <span className={styles.itemCount}>{carrito}</span>
           </div>
-        </Link> 
+        </Link>
         <Link to="/account">
           <div className={styles.userIcon}>
           <AccountCircleSharpIcon fontSize="large"/>
@@ -116,5 +116,3 @@ export default function NavBar() {
     </div>
   );
 }
-
-
