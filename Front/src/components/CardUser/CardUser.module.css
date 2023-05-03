@@ -1,12 +1,12 @@
-/* .container {
+ /* .container {
   margin: 0 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; 
   align-items: flex-start; 
-} */
+} 
 
-/* .userContainer {
+ .userContainer {
   margin-right: 20px;
   margin-left: 1rem;
   margin-top: 2rem;
@@ -23,40 +23,47 @@
   align-items: start;
   justify-content: start;
   flex-direction: column;
-} */
+} 
 
-/* .userButtons {
+ .userButtons {
   display: flex;
-} */
+} 
 
-/* .red {
+ .red {
   background-color: red;
   border-radius: 3px;
-} */
+} 
 
-/* .green {
+ .green {
   background-color: green;
-  border-radius: 3px; }*/
+  border-radius: 3px; }
 
 
-/* .banned {
+ .banned {
   color: red;
-} */
+}  */
 
 
 /* NUEVOS ESTILOS */ 
 
+
 .packContainer {
   position: relative;
-  display: flex;
+  
   max-width: 350px;
-  flex-direction: column;
   border-radius: 12px;
   background-color: #212121;
   border: 1px solid #fff;
   padding: 1.6rem;
   color: #fff;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  margin-right: 20px;
+  margin-left: 1rem;
+  margin-top: 2rem;
+  display: inline-block;
+  width: 20%;
+  padding: 10px;
+  vertical-align: top;
 }
 
 .header {
@@ -111,8 +118,9 @@
 
 .list {
   display: flex;
-  align-items: center;
-  gap: 10px;
+align-items: center;
+gap: 10px;
+
 }
 
 .span {
@@ -155,4 +163,5 @@
   border: 0;
   border-radius: 10px;
 }
+
 
