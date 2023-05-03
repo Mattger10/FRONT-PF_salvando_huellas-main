@@ -70,13 +70,12 @@ export default function AdminUsers() {
             id={user.id_User}
             name={user.nameU}
             lastName={user.lastNameU}
-            dni={user.idNumbU}
+            idNumbU={user.idNumbU}
             email={user.emailU}
             phone={user.phoneU}
             address={user.addressU}
             isBan={user.is_ban}
             isAdmin={user.isAdminU}
-            reason={user.reasonU}
             banUser={banUser}
             unbanUser={unbanUser}
           />
@@ -94,13 +93,12 @@ export default function AdminUsers() {
             id={user.id_User}
             name={user.nameU}
             lastName={user.lastNameU}
-            dni={user.idNumbU}
+            idNumbU={user.idNumbU}
             email={user.emailU}
             phone={user.phoneU}
             address={user.addressU}
             isBan={user.is_ban}
             isAdmin={user.isAdminU}
-            reason={user.reasonU}
             banUser={banUser}
             unbanUser={unbanUser}
           />

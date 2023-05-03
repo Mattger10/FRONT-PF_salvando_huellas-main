@@ -10,7 +10,7 @@ export default function CardUser({
   address,
   isBan,
   isAdmin,
-  reason,
+  idNumbU,
   banUser,
   unbanUser,
 }) {
@@ -85,7 +85,7 @@ export default function CardUser({
                 ></path>
               </svg>
             </span>
-            <p className={styles.p}>{phone}</p>
+            <p className={styles.p}>Tel. {phone}</p>
           </li>
           <li className={styles.list}>
             <span className={styles.span}>
@@ -125,7 +125,7 @@ export default function CardUser({
                 ></path>
               </svg>
             </span>
-            <p className={styles.p}>{reason ? reason : ""}</p>
+            <p className={styles.p}>DNI {idNumbU}</p>
           </li>
           <li className={styles.list}>
             <span className={styles.span}>
