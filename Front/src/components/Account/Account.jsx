@@ -116,6 +116,7 @@ const Account = () => {
               {user.name}
             </h3>
             <p className={styles.texto}>Email: {user.email}</p>
+            <button className={styles.buttonEditProfile} onClick={()=>navigate("/editUserData")}>Mis datos personales</button>
           </div>
         )}
         {userLocal.nameU && !isAuthenticated ? (
@@ -127,6 +128,7 @@ const Account = () => {
               {userLocal.nameU + " " + userLocal.lastNameU}
             </h3>
             <p className={styles.texto}>Email: {userLocal.emailU}</p>
+            <button className={styles.buttonEditProfile} onClick={()=>navigate("/editUserData")}>Mis datos personales</button>
           </div>
         ) : (
           ""
