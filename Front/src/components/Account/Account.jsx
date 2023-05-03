@@ -5,11 +5,17 @@ import styles from "./Account.module.css";
 import { getAdoptions, getCarts, getDogs } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import PetsIcon from '@mui/icons-material/Pets';
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+import ProductionQuantityLimitsTwoToneIcon from '@mui/icons-material/ProductionQuantityLimitsTwoTone';
+import GroupSharpIcon from '@mui/icons-material/GroupSharp';
 
 const Account = () => {
   const [auth, setAuth] = useState(null);
   const [message, setMessage] = useState(false);
   const navigate = useNavigate();
+  const [showCart, setShowCart] = useState(false);
+  const [showAdoptions, setShowAdoptions] = useState(false);
 
   const loader = <div className={styles.customloader}></div>;
   const defaultProfilePic =
@@ -72,30 +78,6 @@ const Account = () => {
     navigate("/admin/users");
   };
 
-  const handleImageUpload = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.onchange = async (event) => {
-      const file = event.target.files[0];
-      const formData = new FormData();
-      formData.append("avatar", file);
-      const response = await fetch("/api/upload-avatar", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: `Bearer ${auth}`,
-        },
-      });
-      if (response.ok) {
-        // actualiza la imagen del avatar
-      } else {
-        console.error("Error al cargar la imagen del avatar");
-      }
-    };
-    input.click();
-  };
-
   const handleLogout = () => {
     if (userLocal.nameU || isAuthenticated) {
       let response = confirm("¿Está seguro que desea salir de la sesión?");
@@ -108,64 +90,37 @@ const Account = () => {
     } else navigate("/");
   };
 
-  const sumTotal = (articles)=>{
-    let total = 0
-    articles.forEach(art => total += (art.quantity * art.unit_price))
-    return total
-  }
+  const sumTotal = (articles) => {
+    let total = 0;
+    articles.forEach((art) => (total += art.quantity * art.unit_price));
+    return total;
+  };
 
   return (
     <div className={styles.container}>
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
-      />
-      <link
-        rel="stylesheet"
-        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-        crossOrigin="anonymous"
-      />
-      <div className={styles.perfil}>
-        <div className={styles.portada}>
+      <div>
+        <div>
           {isAuthenticated ? (
-            <div className={styles.avatar}>
-              <img className={styles.img} src={user.picture} alt={user.name} />
-              <button
-                className={styles.botonAvatar}
-                type="button"
-                onClick={handleImageUpload}
-              >
-                <i className="far fa-image"></i>
-              </button>
+            <div>
+              
             </div>
           ) : userLocal.nameU ? (
-            <div className={styles.avatar}>
-              <img className={styles.img} src={defaultProfilePic} alt={userLocal.nameU} />
-              <button
-                className={styles.botonAvatar}
-                type="button"
-                onClick={handleImageUpload}
-              >
-                <i className="far fa-image"></i>
-              </button>
-            </div>
+            <div></div>
           ) : (
             ""
           )}
         </div>
       </div>
-      <div className={styles.perfilBody}>
+      <div>
         {isAuthenticated && (
           <div className={styles.perfilBio}>
-            <h3 className={styles.titulo}>{user.name}</h3>
-            <p className={styles.texto}>Email: {user.email}</p>
+            <h3 style={{ fontFamily: "JosefinSans-Italic" }} className={styles.titulo}>{user.name}</h3>
+            <p  className={styles.texto}>Email: {user.email}</p>
           </div>
         )}
         {userLocal.nameU && !isAuthenticated ? (
           <div className={styles.perfilBio}>
-            <h3 className={styles.titulo}>
+            <h3 style={{ fontFamily: "JosefinSans-Italic" }}  className={styles.titulo}>
               {userLocal.nameU + " " + userLocal.lastNameU}
             </h3>
             <p className={styles.texto}>Email: {userLocal.emailU}</p>
@@ -174,69 +129,92 @@ const Account = () => {
           ""
         )}
         <div className={styles.perfilUsuarioFooter}>
-          <ul className={styles.listaDatos}>
-            <li> Mis donaciones:</li>
-          </ul>
-          <ul className={styles.listaDatos}>
-            <li>Mis favoritos:</li>
-          </ul>
-          <div>
-            <h4>
-            Mis compras:
-            </h4>
-            {carts.map((cart) => (
-              <div key={cart.id_Article} className={styles.compra}>
-                <p>{"Compra ID #"+cart.id_Cart}</p>
-                <p>{cart.createdAt.slice(0, 10)}</p>
-                <p>Productos: {cart.articles.map((art, index)=>{
-                    return <p key={index}>{art.quantity+" "+art.title+" $"+art.unit_price * art.quantity}</p>
-                  })}</p>
-                  <p>Total: ${sumTotal(cart.articles)}</p>
+          <ul>
+            <button
+              onClick={() => setShowCart(!showCart)}
+              className={styles.h3}
+            >
+               <ShoppingCartTwoToneIcon/>  Mis compras
+            </button>
+            {showCart && (
+              <div>
+                {carts.map((cart) => (
+                  <div key={cart.id_Article}>
+                    <p>{"Compra #" + cart.id_Cart}</p>
+                    <p>{cart.createdAt.slice(0, 10)}</p>
+                    <p>
+                      Productos:{" "}
+                      {cart.articles.map((art, index) => {
+                        return (
+                          <p key={index}>
+                            {art.quantity +
+                              " " +
+                              art.title +
+                              " $" +
+                              art.unit_price * art.quantity}
+                          </p>
+                        );
+                      })}
+                    </p>
+                    <p className={styles.p}>Total: ${sumTotal(cart.articles)}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div>
-            <h4>
-            Mis adopciones:
-            </h4>
-            {updatedAdoptions.map((id_Adoption, index) => (
-              <ul key={index}>
-                {" "}
-                <li >
-                  Tipo de solicitud: {id_Adoption.adopted_homeA === "adopt" ? "Adopción" : "Hogar Provisorio"}
-                </li>
-                <li >
-                  Estado: {id_Adoption.statusA ? "Aceptada" : "En revisión"}
-                </li>
-                <li >Perro: {id_Adoption.dogName}</li>
-              </ul>
-            ))}
-          </div>
+            )}
+          </ul>
         </div>
-        {userLocal.isAdminU && (
-          <button onClick={goAdminArticles} className={styles.button}>
-            Gestionar Artículos
+        <div className={styles.perfilUsuarioFooter2}>
+          <ul>
+            <button
+              className={styles.adopth3}
+              onClick={() => setShowAdoptions(!showAdoptions)}
+            >
+              <PetsIcon/> Mis adopciones 
+            </button>
+            {showAdoptions && (
+              <div className={styles.adopcionesContainer}>
+                {updatedAdoptions.map((id_Adoption) => (
+                  <div>
+                    {" "}
+                    <p key={id_Adoption}>
+                      Adopción u hogar provisorio: {id_Adoption.adopted_homeA}{" "}
+                    </p>
+                    <p key={`${id_Adoption}-status`}>
+                      Estado: {id_Adoption.statusA ? "Aceptada" : "En revisión"}
+                    </p>
+                    <p className={styles.p} key={`${id_Adoption}-dog`}>
+                      Perro: {id_Adoption.dogName}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ul>
+        </div>
+        <div className={styles.containerButton}>
+          {userLocal.isAdminU && (
+            <button onClick={goAdminArticles} className={styles.button}>
+              Gestionar Artículos <ProductionQuantityLimitsTwoToneIcon/>
+            </button>
+          )}
+          {userLocal.isAdminU && (
+            <button onClick={goAdminDogs} className={styles.button}>
+              Gestionar Perritos 
+            </button>
+          )}
+          {userLocal.isAdminU && (
+            <button onClick={goAdminUsers} className={styles.button}>
+              Gestionar Usuarios <GroupSharpIcon/>
+            </button>
+          )}
+          
+          {message && <div className={styles.notification}>{message}</div>}
+          <button className={styles.button} onClick={handleLogout}>
+            {isAuthenticated || userLocal.nameU
+              ? "Cerrar sesión " 
+              : "Iniciar Sesion"}
           </button>
-        )}
-        {userLocal.isAdminU && (
-          <button onClick={goAdminDogs} className={styles.button}>
-            Gestionar Perritos
-          </button>
-        )}
-        {userLocal.isAdminU && (
-          <button onClick={goAdminUsers} className={styles.button}>
-            Gestionar Usuarios
-          </button>
-        )}
-        {/* <button className={styles.button} onClick={toggleEditingProfile}>
-          {editingProfile ? "Cancelar edición" : "Editar perfil"}
-        </button> */}
-        {message && <div className={styles.notification}>{message}</div>}
-        <button className={styles.button} onClick={handleLogout}>
-          {isAuthenticated || userLocal.nameU
-            ? "Cerrar sesión"
-            : "Iniciar Sesion"}
-        </button>
+        </div>
       </div>
     </div>
   );

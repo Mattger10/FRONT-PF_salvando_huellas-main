@@ -50,12 +50,10 @@ export default function LandingPage() {
             reasonU: "Reason",
           });
           setLoading(false)
-          setRegisterMessage({message: "Usuario creado correctamente", styles: {
-           
-          }});
+          setRegisterMessage({message: "Usuario creado correctamente"});
           setTimeout(() => {
             setRegisterMessage({message:""});
-          }, 2000);
+          }, 5000);
         }
 
       } catch (error) {
@@ -64,23 +62,12 @@ export default function LandingPage() {
         setErrors({ ...errors, axios: error.message });
         setRegisterMessage({
           message: (repeated ? "Error: Ya existe un usuario con ese email" :"Error al registrarse"),
-          styles: {
-            position: "fixed",
-            top: "50%",
-            right: 0,
-            transform: "translateY(-50%)",
-            padding: "2rem",
-            fontSize: "1.2rem",
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            borderRight: "none",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-          }
+         
         });
         setTimeout(() => {
-          setRegisterMessage("");
+          setRegisterMessage({message: ""});
           setErrors({})
-        }, 3000);
+        }, 5000);
       }
     } else {
       // mostrar errores validacion formulario
@@ -110,12 +97,9 @@ export default function LandingPage() {
         setErrors({ ...errors, axios: error.message });
         setErrorMessage({
           message: "Credenciales incorrectas",
-          styles: {
-            
-          },
         });
         setTimeout(() => {
-          setErrorMessage("");
+          setErrorMessage({message: ""});
           setErrors({})
         }, 5000);
       }
@@ -197,13 +181,13 @@ export default function LandingPage() {
                   value="REGISTRARME"
                 />
               </form>
-              {registerMessage && (
+              {registerMessage.message.length ? (
                 <div
-                  className={styles.messageError}
+                  className={styles.errorMessage}
                 >
                   {registerMessage.message}
                 </div>
-              )}
+              ) : "" }
               
               
               <p
@@ -253,13 +237,13 @@ export default function LandingPage() {
                   value="ACCEDER"
                 />
               </form>
-              {errorMessage && (
+              {errorMessage.message.length ? (
                 <div
                   className={styles.errorMessage}
                 >
                   {errorMessage.message}
                 </div>
-              )}
+              ) : "" }
 
               <p
                 onClick={() => {

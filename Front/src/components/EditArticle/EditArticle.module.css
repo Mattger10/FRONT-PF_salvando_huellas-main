@@ -22,7 +22,6 @@
   }
 
   .form {
-    background-image: url('https://firebasestorage.googleapis.com/v0/b/salvandohuellas.appspot.com/o/salvandohuellas%2Fparafondoform.png?alt=media&token=88d9e94c-d666-4b01-8a2e-2a1e749e04e3');
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,14 +45,14 @@
     width: 100%;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    border: 1px solid #bb9715d8;
-    border-radius: 0.40rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
     font-size: 1rem;
   }
 
   .input:hover{
-    background-color: #e9e3bba9;
-    border: 1px solid;
+    background-color: #fae2439f;
+  border: 1px solid #ccc;
   }
 
   .textarea {
@@ -61,7 +60,12 @@
     padding: 0.5rem;
     margin-top: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 2px;
+  }
+
+  .textarea:hover {
+    background-color: #fae2439f;
+  border: 1px solid #ccc;
   }
 
   .containerButton{
