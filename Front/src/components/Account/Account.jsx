@@ -77,6 +77,9 @@ const Account = () => {
   const goAdminUsers = () => {
     navigate("/admin/users");
   };
+  const goAdminAdoptions = () => {
+    navigate("/admin/adoptions");
+  };
 
   const handleLogout = () => {
     if (userLocal.nameU || isAuthenticated) {
@@ -205,6 +208,11 @@ const Account = () => {
           {userLocal.isAdminU && (
             <button onClick={goAdminUsers} className={styles.button}>
               Gestionar Usuarios <GroupSharpIcon/>
+            </button>
+          )}
+          {userLocal.isAdminU && (
+            <button onClick={goAdminAdoptions} className={styles.button}>
+              Gestionar Adopciones
             </button>
           )}
           
