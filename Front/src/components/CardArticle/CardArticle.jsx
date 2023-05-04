@@ -173,7 +173,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
       </div>
 
       <div className={styles.cardInfo}>
-        <p className={styles.textTitle}>{nameA?.substring(0, 20) + "..."} </p>
+        <p className={styles.textTitle}>{nameA?.substring(0, 30) + "..."} </p>
         {stockA > 1 ? (
           <p className={styles.textBody}>{stockA} disponibles</p>
         ) : stockA === 1 ? (
