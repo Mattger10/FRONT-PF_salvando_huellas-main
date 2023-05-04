@@ -163,7 +163,17 @@ export default function LandingPage() {
                   required
                 />
                 <p className={styles.error_password}>{errors.password || ""}</p>
-                
+
+                <button
+                  className={styles.showPasswordButton}
+                  onClick={() => setShowPassword(!showPassword)}
+                  type="button"
+                >
+                  <i
+                    className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"
+                      }`}
+                  ></i>
+                </button>
 
                 <button
                   type="submit"
@@ -185,7 +195,7 @@ export default function LandingPage() {
                 }}
                 className={styles.changeForm}
               >
-                ¿Ya tienes una cuenta? Iniciar sesión
+                ¿Ya tienes una cuenta? : Iniciar sesión
               </p>
             </div>
           )}
@@ -201,6 +211,18 @@ export default function LandingPage() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
+
+                <button
+                  className={styles.showPasswordButton}
+                  onClick={() => setShowPassword(!showPassword)}
+                  type="button"
+                >
+                  <i
+                    className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"
+                      }`}
+                  ></i>
+                </button>
+
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
@@ -208,7 +230,7 @@ export default function LandingPage() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
-               
+
 
                 <button
                   type="submit"
@@ -244,7 +266,7 @@ export default function LandingPage() {
           )}
 
           <div className={styles.register2}>
-           
+
 
             <div className={styles.loginItems}>
               <button
@@ -252,17 +274,12 @@ export default function LandingPage() {
                 className={styles.button}
               >
                 {" "}
-                Ingresar con cuenta
+                inicie con: Google / Facebock
               </button>
 
               <Link to="/home">
                 <button className={styles.button}> Ingresar como invitado</button>
               </Link>
-
-              {/* <button className={styles.correo}>
-                {" "}
-                <i className="fas fa-envelope"></i> Ingresar con correo
-              </button> */}
             </div>
           </div>
         </div>

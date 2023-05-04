@@ -145,3 +145,11 @@ transform: translateX(100%);
 .changeForm {
   cursor: pointer;
 }
+
+.showPasswordButton{
+  margin-bottom: 0.5rem;
+  border: none;
+  background: none;
+}
+
+
