@@ -18,8 +18,7 @@ const FormularioPost = () => {
   const [loading, setLoading] = useState(false)
   const loader = <div className={styles.customloader}></div>
   const [isLogged, setIsLogged] = useState(true);
-
-
+  const [anonimo, setAnonimo] = useState(false)
   
   const handleInput = (e) => {
     setInput({
@@ -36,7 +35,7 @@ const FormularioPost = () => {
       const response = await axios.post("/posts/register", {
         ...inputData,
         photoP: result,
-        userId: userLocal.id_User
+        userId: (!anonimo ? userLocal.id_User : null)
       });
       setLoading(false)
       setMessage("Post creado con éxito!");
@@ -52,6 +51,10 @@ const FormularioPost = () => {
       setIsLogged(false)
     }
   }, []);
+
+  const handleAnonimo = (e)=>{
+    setAnonimo(e.target.checked)
+  }
 
   return (
     (isLogged ? <div className={styles.container}>
@@ -91,7 +94,10 @@ const FormularioPost = () => {
               {file ? (  <img className={styles.img}
             src={file ? URL.createObjectURL(file) : ""}  
           /> ) : null}
-
+          </label>
+          <label className={styles.anonimo}>
+            Publicación anónima
+            <input type="checkbox" onChange={handleAnonimo}/>
           </label>
         </div>
       </div>
