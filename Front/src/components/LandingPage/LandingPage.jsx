@@ -195,7 +195,7 @@ export default function LandingPage() {
                 }}
                 className={styles.changeForm}
               >
-                ¿Ya tienes una cuenta? Iniciar sesión
+                ¿Ya tienes una cuenta? : Iniciar sesión
               </p>
             </div>
           )}
