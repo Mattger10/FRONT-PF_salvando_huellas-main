@@ -2,7 +2,7 @@
 
 .container {
   height: 100vh;
-  background-image: url("../../assets/Fondolanding.webp");
+  background-color: rgb(28, 28, 28);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -15,17 +15,27 @@
   width: 80%;
   max-width: 400px;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 1rem;
+  background-image: linear-gradient(
+		-20deg, #fae243 0%,
+    #bb9715 100%);
+  border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 5px solid rgb(146, 146, 146);
 }
 
 .register h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.register2 h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
   color: #333;
 }
@@ -38,27 +48,39 @@
 }
 
 .register input {
-  width: 100%;
-  padding: 1rem;
+  width: 130%;
+  padding: 0.4rem;
   margin-bottom: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   border: none;
   background-color: #eee;
   font-size: 1.2rem;
   color: #333;
 }
 
+.submit {
+  width: 130%;
+  padding: 0.4rem;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: #fe5535;
+  font-size: 1.2rem;
+  color: #fff6f6;
+}
+
 .register input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #0077ff;
+  box-shadow: 0 0 0 2px #000000;
 }
 
 .error_name,
 .error_email,
 .error_password {
   margin: 0;
-  font-size: 1.2rem;
-  color: #ff0044;
+  font-size: 1rem;
+  color: #ff0000;
+  margin-bottom: 5%;
 }
 
 .customloader {
@@ -77,4 +99,49 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+
+.errorMessage{
+  position: fixed;
+  top: 50%;
+  right: 0;
+  padding: 2rem;
+  font-size: 1.2rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-right: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: slide 5s;
+}
+
+@keyframes slide {
+0% {
+transform: translateX(100%);
+}
+25% {
+transform: translateX(0%);
+}
+
+75% {
+transform: translateX(0%);
+}
+100% {
+transform: translateX(100%);
+}
+}
+
+.button {
+  width: 100%;
+  padding: 0.4rem;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: #fe5535;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.changeForm {
+  cursor: pointer;
 }
