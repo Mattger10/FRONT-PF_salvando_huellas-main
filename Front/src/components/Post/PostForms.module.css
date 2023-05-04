@@ -151,3 +151,7 @@
     animation:s3 0.5s infinite linear;
   }
   @keyframes s3 {to{transform: rotate(1turn)}}
+
+  .anonimo{
+    margin-top: 15px;
+  }
