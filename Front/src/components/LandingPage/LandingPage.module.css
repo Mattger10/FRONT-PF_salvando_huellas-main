@@ -147,8 +147,11 @@ transform: translateX(100%);
 }
 
 .showPasswordButton{
-  padding: 0.1rem;
   margin-bottom: 0.5rem;
   border: none;
   background: none;
 }
+
+
+
+
