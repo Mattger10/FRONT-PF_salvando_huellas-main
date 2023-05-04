@@ -168,7 +168,7 @@ export default function Trolley() {
                 alt={"foto de " + item.article.nameA}
               />
             </Link>
-            <p>{item.article.nameA}</p>
+            <p className={styles.textTitle}> {item.article.nameA?.substring(0, 15) + "..."}</p> 
             <p>$ {item.article.priceA}</p>
             <p>{item.article.stockA} disponibles </p>
             <p>Total: ${item.article.priceA * item.cantidad}</p>
@@ -203,7 +203,7 @@ export default function Trolley() {
         ))}
       </div>
       {articleMessage.message.length ? (
-        <div className={styles.span2}>{articleMessage.message}</div>
+        <div className={styles.artDelete}>{articleMessage.message}</div>
       ) : (
         ""
       )}

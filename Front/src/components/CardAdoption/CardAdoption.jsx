@@ -23,39 +23,45 @@ export default function CardAdoption({ adoption, changeStatus }) {
       setUser({});
       setDog({});
     };
-  },[]);
+  }, []);
   return (
-    <div className={styles.userContainer}>
-      <h4>{"Solicitud #" + adoption.id_Adoption}</h4>
-      <div className={styles.info}>
-        <span>{"Usuario: " + user.nameU + " " + user.lastNameU}</span>
-        <span>{"Tel. " + user.phoneU}</span>
-        <span>{"DNI: " + user.idNumbU}</span>
-        <span>{user.emailU}</span>
-        <span>{"Perro: " + dog.nameD}</span>
-        <span>{"Razón: " + user.reasonU}</span>
-        <span>
-          {"Tipo de solicitud: " +
-            (adoption.adopted_homeA === "adopt"
-              ? "Adopción"
-              : "Hogar provisorio")}
-        </span>
-        <span>
-          {"Estado: " +
-            (adoption.statusA === "accepted"
-              ? "Aceptada"
-              : adoption.statusA === "rejected"
-              ? "Rechazada"
-              : "En Revisión")}
-        </span>
-      </div>
-      <div className={styles.userButtons}>
-        <button onClick={() => changeStatus("accepted", adoption.id_Adoption)}>
-          Aceptar Solicitud
-        </button>
-        <button onClick={() => changeStatus("rejected", adoption.id_Adoption)}>
-          Rechazar Solicitud
-        </button>
+    <div className={styles.containerCard}>
+      <div className={styles.userContainer}>
+        <h4>{"Solicitud #" + adoption.id_Adoption}</h4>
+        <div className={styles.info}>
+          <span>{"Usuario: " + user.nameU + " " + user.lastNameU}</span>
+          <span>{"Tel. " + user.phoneU}</span>
+          <span>{"DNI: " + user.idNumbU}</span>
+          <span>{user.emailU}</span>
+          <span>{"Perro: " + dog.nameD}</span>
+          <span>{"Razón: " + user.reasonU}</span>
+          <span>
+            {"Tipo de solicitud: " +
+              (adoption.adopted_homeA === "adopt"
+                ? "Adopción"
+                : "Hogar provisorio")}
+          </span>
+          <span>
+            {"Estado: " +
+              (adoption.statusA === "accepted"
+                ? "Aceptada"
+                : adoption.statusA === "rejected"
+                ? "Rechazada"
+                : "En Revisión")}
+          </span>
+        </div>
+        <div className={styles.userButtons}>
+          <button className={styles.button}
+            onClick={() => changeStatus("accepted", adoption.id_Adoption)}
+          >
+            Aceptar Solicitud
+          </button>
+          <button className={styles.button}
+            onClick={() => changeStatus("rejected", adoption.id_Adoption)}
+          >
+            Rechazar Solicitud
+          </button>
+        </div>
       </div>
     </div>
   );

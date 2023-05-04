@@ -1,21 +1,25 @@
-.container {
-  margin: 0 20px;
+.containerCard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; 
   align-items: flex-start; 
+  display: inline-block;
+  margin-left: 5%;
 } 
 
  .userContainer {
-  margin-right: 20px;
-  margin-left: 1rem;
+  margin-right: 2rem;
   margin-top: 2rem;
   display: inline-block;
-  width: 20%;
+  width: 20rem;
+  height: 21rem;
   padding: 10px;
   box-sizing: border-box;
   background-color: #fff29a;
-  vertical-align: top; }  
+  vertical-align: top; 
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}  
 
 
 .info {
@@ -25,22 +29,34 @@
   flex-direction: column;
 } 
 
- .userButtons {
+.userButtons {
   display: flex;
-} 
+  justify-content: space-between;
+}
 
- .red {
-  background-color: red;
-  border-radius: 3px;
-} 
+.button {
+  background-color: #fe5535;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 15%;
+}
 
- .green {
-  background-color: green;
-  border-radius: 3px; }
+.button:hover {
+  background-color: #d13d1f;
+}
 
-
- .banned {
-  color: red;
-}  
+.h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
 
   

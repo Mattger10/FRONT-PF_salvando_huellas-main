@@ -33,7 +33,7 @@ export default function DetailDogs() {
       let result;
       references.forEach((reference) => {
         if (reference.id_Reference === relation.referenceIdReference) {
-          result = <li key={index}>{reference.textR}</li>;
+          result = <p className={styles.p} key={index}>{reference.textR}</p>;
         }
       });
       return result;

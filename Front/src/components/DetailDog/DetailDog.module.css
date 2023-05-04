@@ -10,7 +10,7 @@
   padding: 0;
   box-sizing: border-box;
   background-color: #cccccc42;
-  height: 87vh;
+  height: 90vh;
 }
 
 .container {
@@ -83,4 +83,8 @@ margin-top: -8%;
 
 .button:hover{
   background-color: #d13d1f;
+}
+
+.p{
+  margin-left: -19%;
 }
