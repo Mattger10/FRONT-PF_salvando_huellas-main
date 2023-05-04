@@ -3,7 +3,6 @@
   height: 85vh;;
   justify-content: center;
   align-items: center;
-  background-color: #fff29a;
 }
 .customloader {
   width:50px;
@@ -15,6 +14,33 @@
   animation:s3 0.5s infinite linear;
 }
 @keyframes s3 {to{transform: rotate(1turn)}}
+.button {
+  /* width: 14%; */
+  padding: 8px;
+  background-color: #fe5535;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #fae243ed;
+  color: #212529;
+  border: 1px solid #ffc107;
+  border-radius: 5px;
+  width: 800px;
+}
 .huella {
   z-index: 1;
   background: url('../../Assets/paw.svg');
@@ -25,27 +51,16 @@
     justify-content: center;
     align-items: center; 
     width: 110%;
-    margin-top: 5%;
+    margin-top: -10%;
     margin-left: 30%;
-  }
-
-  .huella {
-    position: fixed;
-    top: 35%;
-    left: 64%;
-    z-index: 1;
-    width: 30%;
-    height: 50%;
-    background: url('../../assets/huellasperro.svg');
-    background-repeat: no-repeat;
-    background-size: 10%;
-    pointer-events: none;
+    
   }
   
   .carritoVacio {
     border: 1px solid #ccc;
     padding: 100px;
     border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
 
 .containerCarritoLleno {
@@ -60,39 +75,34 @@
 }
 
 .carritoLleno{
-    width: 120%;
-    height: 460px;
-    margin-top: 10%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    background-color: #fae243;
-    border-radius: 1rem;
-    border: #212121 0.1rem solid;
-    transition: all 0.4s ease-in;
-    box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
+  position: relative;
+  background-color: #f0e40928;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: start;
+  width: 240px;
+  height: 420px;
+  padding: .8em;
+  position: relative;
+  overflow: visible;
+  border-radius: 2%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: .3s ease;
 }
 
 .carritoLleno:hover {
-
-  border: #f2295bf0 0.1rem solid;
-  border-radius: 2.5rem 0 2.5rem 0;
+  transform: translateY(-2%);
+  box-shadow: #ccc 0px 13px 37px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
  }
 
 .img{
-    border-radius: 1.5rem;
-    width: 200px;
-    cursor: pointer;
-    padding: 15px;
-    margin: 0 auto;
-    transition: all .3s;
-    float: center;
+  height: 140px;
+  width: 100%;
+  border-radius: .5rem;
+  transition: .3s ease;
 }
-
-.img:hover {
-    transform: scale(1.1);
-  }
 
 .containerButton1 {
     display: flex;
@@ -103,53 +113,67 @@
     margin-left: 2rem;
     padding: 0.50rem;
     border: none;
-    border-radius: 1rem;
+    border-radius: 5%;
     background-color: #fe5535;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
 }
 
-.buttonEliminar {
-    margin-top: 2%;
-    padding: 0.50rem;
-    border: 1px solid #fe5535;
-    border-radius: 0.5rem;
-    background-color: #fe5535;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    width: 198px;
-  }
+.buttonElegir:hover {
+  background-color: #d43535;
+}
 
-  .buttonEliminar:hover {
-    background-color: #d43535;
-  }
+.buttonEliminar {
+  margin-top: 2%;
+  padding: 2px;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #fe5535;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttonEliminar:hover {
+  background-color: #d43535;
+}
 
 .h4 {
     font-size: 30px;
 }
 
 .containerButtonsmasymenos {
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 2%;
+  padding: 1px;
   }
   
-  .buttonMenos,
-  .buttonMas {
-    border-radius: 0.2rem;
-    display: inline-block;
-    background-color: #fe5735;
-    border: 1px solid #fe5535;
+  .buttonMenos {
+    order: 0; /* cambia el orden del botón "-" */
+    background-color: #cb2c2c;
+    border: 1px solid #cccccc;
     color: #ffffff;
     cursor: pointer;
     font-size: 16px;
     margin: 0;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    margin-left: 12.8%;
+    padding: 5px 15px;
+  }
+
+  .buttonMas {
+    order: 2; /* cambia el orden del botón "+" */
+  background-color: #cb2c2c;
+  border: 1px solid #cccccc;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0;
+  padding: 5px 15px;
   }
   
   .buttonMenos:hover,
@@ -158,10 +182,7 @@
   }
   
   .span {
-    margin: 0 10px;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 25%;
+    order: 1; 
     
   }
 
@@ -254,3 +275,15 @@
     width: 6%;
     height: 12%;
 }
+
+.textTitle {
+  font-weight: 500;
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-top: 1%;
+ }
+
+ .artDelete {
+position: absolute;
+margin-top: -30%;
+ }

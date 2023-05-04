@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { detailArticle, getOpinions } from "../../redux/actions";
 import Opinions from "../Opinions/Opinions";
 import { useAuth0 } from "@auth0/auth0-react";
-import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 
 import axios from "axios";
 
@@ -21,6 +21,7 @@ export default function DetailsArticle() {
   const [userHasOpinion, setUserHasOpinion] = useState(false);
   const allOpinions = useSelector((state) => state.opinions);
   const loader = <div className={styles.customloader}></div>;
+  const [userHasPurchased, setUserHasPurchased] = useState(false);
 
   // Opinion form info:
   const [opinionInfo, setOpinionInfo] = useState({
@@ -32,8 +33,6 @@ export default function DetailsArticle() {
 
   useEffect(() => {
     allOpinions.forEach((opinion) => {
-      console.log("OPINION: ", opinion);
-      console.log("USER ID LOCAL: ", userIdLocal);
       if (opinion.userId === userIdLocal) {
         if (opinion.articleId === Number(id)) {
           setUserHasOpinion(true);
@@ -42,13 +41,35 @@ export default function DetailsArticle() {
     });
   }, [allOpinions]);
 
+  useEffect(() => {
+    console.log("DETAIL", detail)
+    if(detail.id_Article){
+      axios
+        .get("/carts/" + userIdLocal)
+        .then((res) => res.data)
+        .then((carts) => {
+          carts.forEach((cart) => {
+            cart.articles.forEach((art) => {
+              console.log("holaaa", art)
+              if (art.title === detail.nameA) {
+                setUserHasPurchased(true);
+              }
+            });
+          });
+        })
+        .catch((error) => console.error("ERROR: ", error.message));
+    }
+  }, [detail]);
+
   let stockOptions = [];
-  for (let i = 0; i < detail.stockA; i++) {
-    stockOptions.push(i ++);
+  for (let i = 1; i < detail.stockA; i++) {
+    stockOptions.push(i);
   }
 
   const handleStockSelect = (e) => {
-    setCantidad(e.target.value);
+    if (e.target.value > 0 && e.target.value <= detail.stockA) {
+      setCantidad(e.target.value);
+    }
   };
 
   const handleAdd = (e) => {
@@ -133,8 +154,11 @@ export default function DetailsArticle() {
     });
   };
   useEffect(() => {
-    dispatch(detailArticle(id));
+    dispatch(detailArticle(Number(id)));
     dispatch(getOpinions());
+    return ()=>{
+      dispatch(detailArticle(0))
+    }
   }, []);
 
   useEffect(() => {
@@ -187,32 +211,33 @@ export default function DetailsArticle() {
             <h3>{detail.nameA}</h3>
             <p className={styles.price}>$ {detail.priceA}</p>
             <p className={styles.description}>{detail.descriptionA}</p>
-           
-            <div className={styles.containerButtonMasyMenos}>
-            <button
-              className={styles.buttonMenos}
-              onClick={handleStockSelect}
-              value={Number(cantidad) - 1}
-            >
-              -
-            </button>
-            <span className={styles.span}>{cantidad}</span>
-            <button
-              className={styles.buttonMas}
-              onClick={handleStockSelect}
-              value={Number(cantidad) + 1}
-            >
-              +
-            </button>
-            </div>
+
+            {detail.stockA > 0 ? <div className={styles.containerButtonMasyMenos}>
+              <button
+                className={styles.buttonMenos}
+                onClick={handleStockSelect}
+                value={Number(cantidad) - 1}
+              >
+                -
+              </button>
+              <span className={styles.span}>{cantidad}</span>
+              <button
+                className={styles.buttonMas}
+                onClick={handleStockSelect}
+                value={Number(cantidad) + 1}
+              >
+                +
+              </button>
+            </div> : ""}
             {detail.stockA > 1 ? (
               <p className={styles.pStock}>{detail.stockA} disponibles</p>
-            ) : (
-              <p>Último disponible!</p>
+            ) : ( detail.stockA === 1 ?
+              <p className={styles.pStock}>Último disponible!</p>
+              : <p className={styles.sinStock}>SIN STOCK</p>
             )}
-            <button className={styles.button} onClick={handleAdd}>
-            <ShoppingCartTwoToneIcon fontSize="medium"/> Agregar al carrito
-            </button>
+            {detail.stockA > 0 ? <button className={styles.button} onClick={handleAdd}>
+              <ShoppingCartTwoToneIcon fontSize="medium" /> Agregar al carrito
+            </button>: ""}
             {message.length ? <p>{message}</p> : ""}
           </div>
         </div>
@@ -224,30 +249,36 @@ export default function DetailsArticle() {
       </div>
       {isLogged || isAuthenticated ? (
         !userHasOpinion ? (
-          <div className={styles.containerOpinion}>
-            <h3>Deja tu opinión sobre este artículo</h3>
-            <form onSubmit={handleOpinionSubmit}>
-              <label>
-                Calificación:
-                <StarRating
-                  rating={Math.round(opinionInfo.stars / 20)}
-                  onRatingChange={(rating) =>
-                    setOpinionInfo({ ...opinionInfo, stars: rating * 20 })
-                  }
-                />
-              </label>
-              <label>
-                Comentario
-                <textarea
-                  placeholder="Escribe tu opinión..."
-                  onChange={handleOpinionChange}
-                  value={opinionInfo.text}
-                  name="text"
-                />
-              </label>
-              <button type="submit">Enviar</button>
-            </form>
-          </div>
+          userHasPurchased ? (
+            <div className={styles.containerOpinion}>
+              <h3>Deja tu opinión sobre este artículo</h3>
+              <form onSubmit={handleOpinionSubmit}>
+                <label>
+                  Calificación:
+                  <StarRating
+                    rating={Math.round(opinionInfo.stars / 20)}
+                    onRatingChange={(rating) =>
+                      setOpinionInfo({ ...opinionInfo, stars: rating * 20 })
+                    }
+                  />
+                </label>
+                <label>
+                  Comentario
+                  <textarea
+                    placeholder="Escribe tu opinión..."
+                    onChange={handleOpinionChange}
+                    value={opinionInfo.text}
+                    name="text"
+                  />
+                </label>
+                <button type="submit">Enviar</button>
+              </form>
+            </div>
+          ) : (
+            <div className={styles.containerH3}>
+              <h4>Debes comprar este artículo para dejar una reseña</h4>
+            </div>
+          )
         ) : (
           <div className={styles.containerH3}>
             <h3>¡Gracias por tu opinion!</h3>
@@ -255,7 +286,7 @@ export default function DetailsArticle() {
         )
       ) : (
         <div>
-          <h4>Inicia sesión para opinar sobre este producto</h4>
+          <h4 className={styles.containerH3}>Inicia sesión para opinar sobre este producto</h4>
         </div>
       )}
     </div>

@@ -7,12 +7,14 @@
 
 .button {
     margin-top: 20px;
-    padding: 10px;
+    padding: 5px 5px;
     background-color: #fe5535;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 2%;
+    height: 2%;
   }
   
   .button:hover {
@@ -21,6 +23,6 @@
 
   .span {
     margin-top: 20px;
-    padding: 10px;
+    padding: 4px;
     font-size: 20px;
   }

@@ -6,7 +6,7 @@
   font-style: normal;
 }
 
-.cardContainer {
+/* .cardContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -49,7 +49,7 @@
   width: 230px;
   height: 300px;
   object-fit: contain;
-}
+} */
 
 /*-----------------------------------*/
 /* ESTILOS PARA GESTIÓN DE PERROS */
@@ -61,21 +61,20 @@
 }
 
 .containerAdmin {
-  max-width: 1200px; /* Establecer un ancho máximo para el contenedor */
-  margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
 
 .cardAdmin {
   width: 300px;
-  max-width: 100%; /* Establecer el ancho máximo de la tarjeta */
-  height: 450px;
+  max-width: 100%; 
   background: #f5f5f5;
   overflow: visible;
   box-shadow: 0 5px 20px 2px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%; /* Agregar un margen para crear espacio entre las cartas */
+  margin-top: 10%; 
 }
 
 .cardInfoAdmin {
@@ -141,22 +140,17 @@
   font-size: 1rem;
   cursor: pointer;
   width: 100px;
-  margin-right: 10px; /* Agrega un espacio de 10px a la derecha de cada botón */
+  margin-right: 10px; 
 }
 
 .button:last-child {
-  margin-right: 0; /* Elimina el espacio del último botón */
+  margin-right: 0;
 }
 
 
 
 
-
-
-
-
-
-
+/* CARDS DE DOGSS EN "PERROS" */
 
 .card {
   position: relative;

@@ -63,7 +63,7 @@ export default function CreateArticle() {
   }
   return (
     <div className={styles.container}>
-      <h2 className={styles.h2}>CREAR ARTÍCULO EN LA TIENDA</h2>
+      <h2 style={{ fontFamily: "Lemon Days" }} className={styles.h2}>CREAR ARTÍCULO EN LA TIENDA</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
           Nombre:
@@ -121,10 +121,9 @@ export default function CreateArticle() {
             id=""
             onChange={(e) => setFile(e.target.files[0])}
           ></input>
-          <img
-            className={styles.img}
-            src={file ? URL.createObjectURL(file) : ""}
-          />
+          {file ? (  <img className={styles.img}
+            src={file ? URL.createObjectURL(file) : ""}  
+          /> ) : null}
         </label>
         <div className={styles.containerButton}>
           <button

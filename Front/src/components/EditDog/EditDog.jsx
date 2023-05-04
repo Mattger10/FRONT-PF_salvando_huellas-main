@@ -1,5 +1,5 @@
 import styles from "./EditDog.module.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { editDog } from "../../redux/actions";
@@ -47,7 +47,7 @@ export default function EditDog() {
       const result = await uploadFile(file);
       const response = await axios.put("/dogs/update/" + Number(id), {
         ...inputData,
-        photoD: result,
+        photoD: file || dog.photoD,
         references: selectedRefs,
       });
       setLoading(false)
@@ -94,7 +94,7 @@ export default function EditDog() {
   }, []);
   return (
     <div className={styles.container}>
-      <h2 className={styles.h2}>Editar Perros</h2>
+      <h2 style={{ fontFamily: "Lemon Days" }} className={styles.h2}>Editar Perros</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
           Nombre:
@@ -183,7 +183,7 @@ export default function EditDog() {
           <input
             className={styles.input}
             type="file"
-            name=""
+            name="photoD"
             id=""
             onChange={(e) => setFile(e.target.files[0])}
           ></input>
@@ -211,14 +211,16 @@ export default function EditDog() {
         <div className={styles.containerMessage}>
           <div className={styles.message}>
             <h3>{message}</h3>
+            <Link to="/admin/dogs">
             <button
-              className={styles.button}
+              className={styles.buttonAceptar}
               onClick={() => {
                 setMessage("");
               }}
             >
               Aceptar
             </button>
+            </Link>
           </div>
         </div>
       ) : null}

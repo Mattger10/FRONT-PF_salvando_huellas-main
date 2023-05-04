@@ -10,6 +10,9 @@ export default function Donation() {
   const [price, setPrice] = useState(100);
   const [showPay, setShowPay] = useState(false);
   const loader = <div className={styles.customloader}></div>
+  const userLocal = JSON.parse(window.localStorage.getItem("user"))
+  const [message, setMessage] = useState("");
+
 
   const handlePrice = (e) => {
     let newPrice = Number(e.target.value);
@@ -25,6 +28,7 @@ export default function Donation() {
   const fetchPreferenceId = async () => {
     const response = await axios.post("/payment/donations", {
       unit_price: price,
+      userId: userLocal.id_User ? userLocal.id_User : undefined
     });
     setPreferenceId(response.data.preferenceId);
   };
@@ -35,11 +39,24 @@ export default function Donation() {
     }
   }, [price, showPay]);
 
+  useEffect(()=>{
+    const querys = new URLSearchParams(location.search);
+    const status = querys.get("status");
+    if(status === "success"){
+      setMessage("¡Gracias por tu donación!")
+    }
+  },[])
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>¡Salvando huellas!</h1>
+      <h1 className={styles.title}>¡TU AYUDA CUENTA!</h1>
       <div className={styles.containerh5}>
         <h5 className={styles.h5}>
+      <div className={styles.containerImg}>
+          <img className={styles.img} src="/img/Home-dogs11.png" alt="Image 11" />
+          <img className={styles.img} src="/img/Home-dogs12.png" alt="Image 12" />
+          <img className={styles.img} src="/img/home-dogs13.png" alt="Image 13" />
+          <img className={styles.img} src="/img/Home-dogs14.png" alt="Image 14" />  
+        </div>
           Donar dinero o insumos de alimentos para perritos en adopción puede
           marcar una gran diferencia en la vida de estos animales necesitados.
           Muchas organizaciones sin fines de lucro dependen de la generosidad de
@@ -90,7 +107,21 @@ export default function Donation() {
             </div>
           </div>
         </div>
-      
+        {message.length ? (
+        <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            <h3>{message}</h3>
+            <button
+              className={styles.button}
+              onClick={() => {
+                setMessage("");
+              }}
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -33,7 +33,7 @@ export default function DetailDogs() {
       let result;
       references.forEach((reference) => {
         if (reference.id_Reference === relation.referenceIdReference) {
-          result = <li key={index}>{reference.textR}</li>;
+          result = <p className={styles.p} key={index}>{reference.textR}</p>;
         }
       });
       return result;
@@ -57,7 +57,7 @@ export default function DetailDogs() {
                   src={DogDeits.photoD}
                   alt={DogDeits.nameD}
                 />
-                <h2 className={styles.name} >{DogDeits.nameD}</h2>
+                <h2 style={{ fontFamily: "Cat Paw" }} className={styles.name} >{DogDeits.nameD}</h2>
               </div>
 
               <div className={styles.description}>
@@ -65,6 +65,7 @@ export default function DetailDogs() {
                 <span>Sexo: {translateData(DogDeits.sexD)}</span>
                 <span>Tamaño: {translateData(DogDeits.sizeD)}</span>
                 <span >Historia: {DogDeits.historyD}</span>
+                <br />
                 <span className={styles.reference} >
                   Referencias:
                   <ul>

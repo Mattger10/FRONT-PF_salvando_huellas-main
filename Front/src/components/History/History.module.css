@@ -103,7 +103,14 @@
   font-style: normal;
 }
 
+.fondo {
+  width: 99.1vw;
+  height: 90vh;
+background-color: #cccccc42;
+}
+
  .container{
+  background-color: #fff29a;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -133,6 +140,7 @@
 }
 
 .containerText {
+  
   flex: 1;
   order: 1;
   display: flex;

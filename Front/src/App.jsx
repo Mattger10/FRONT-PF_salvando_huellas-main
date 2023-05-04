@@ -31,6 +31,8 @@ import EditDog from "./components/EditDog/EditDog.jsx";
 import AdminUsers from "./components/AdminUsers/AdminUsers.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
 import ResetPassword from "./components/ResetPassword/ResetPassword.jsx";
+import AdminAdoptions from "./components/AdminAdoptions/AdminAdoptions.jsx";
+import EditUser from "./components/EditUser/EditUser.jsx";
 
 function App() {
   const location = useLocation();
@@ -61,10 +63,12 @@ function App() {
         <Route path="/admin/dogs/create" element={<CreateDog />} />
         <Route path="/admin/dogs" element={<AdminDogs />} />
         <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/adoptions" element={<AdminAdoptions />} />
         <Route path="/posts" element={<Post />} />
         <Route path="/posts/createpost" element={<PostForm />} />
         <Route path="/forgotpass" element={<ForgotPassword />} />
         <Route path="/resetpass" element={<ResetPassword />} />
+        <Route path="/editUserData" element={<EditUser />} />
       </Routes>
     </div>
   );

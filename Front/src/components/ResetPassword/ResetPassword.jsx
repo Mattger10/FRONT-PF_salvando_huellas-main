@@ -26,9 +26,10 @@ export default function ResetPassword() {
     // solicitud al back
     setLoading(true)
     if (newPass === confirmNewPass) {
-      axios.put('/users/resetpass/1?token='+passToken, {passwordU: newPass}).then(()=> {
+      axios.put('/users/resetpass/1?token=' + passToken, { passwordU: newPass }).then(() => {
         setLoading(false)
-        setMessage("Contraseña actualizada!")})
+        setMessage("Contraseña actualizada!")
+      })
         .catch(error => {
           setLoading(false)
           setMessage("Error al actualizar contraseña")
@@ -43,9 +44,9 @@ export default function ResetPassword() {
     <div className={styles.container} >
       <div className={styles.container2} >
         <form className={styles.form} onSubmit={handleSubmit}>
-        <h2>Reestablecer contraseña</h2>
+          <h2>Reestablecer contraseña</h2>
           <input
-          type="password"
+            type="password"
             className={styles.input}
             placeholder="Nueva contraseña"
             value={newPass}
@@ -53,23 +54,26 @@ export default function ResetPassword() {
             required
           ></input>
           <input
-          type="password"
+            type="password"
             className={styles.input2}
             placeholder="Confirmar contraseña"
             value={confirmNewPass}
             onChange={(e) => setConfirmNewPass(e.target.value)}
             required
           ></input>
-          <button 
+          <div className={styles.containerButton} >
+          <button
             className={styles.button}
-            type="submit">Confirmar</button>
+            type="submit">Confirmar
+          </button>
+          </div>
         </form>
       </div>
       {loading ? <div className={styles.containerMessage}>
-          <div className={styles.message}>
-            {loader}
-          </div>
-        </div> : ""}
+        <div className={styles.message}>
+          {loader}
+        </div>
+      </div> : ""}
       {message.length ? (
         <div className={styles.containerMessage}>
           <div className={styles.message}>
@@ -77,7 +81,7 @@ export default function ResetPassword() {
             <button
               className={styles.button}
               onClick={() => {
-                if (message === "Contraseña actualizada!"){
+                if (message === "Contraseña actualizada!") {
                   setMessage("")
                   navigate("/")
                 } else setMessage("")

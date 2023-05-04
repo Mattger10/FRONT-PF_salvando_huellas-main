@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getPosts } from "../../redux/actions";
+import { getPosts, getUsers } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../Post/Post.module.css";
 import { useNavigate } from "react-router-dom";
@@ -8,15 +8,21 @@ export default function Post() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const navigate = useNavigate();
+  const users = useSelector(state => state.users)
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getUsers());
   }, [dispatch]);
 
+  const getUserName = (post)=>{
+    const filt = (users.filter(user => user.id_User === post.userId))
+    return (filt[0] ? filt[0].nameU : "Anónimo")
+  }
   return (
     <div className={styles.container}>
-      {posts.map((post) => (
-        <div className={styles.post} key={post.id}>
+      {posts.map((post, index) => (
+        <div className={styles.post} key={index}>
           <div className={styles.containerImg}>
             {post.photoP ? (
               <img src={post.photoP} className={styles.imgPost} />
@@ -31,8 +37,8 @@ export default function Post() {
           <div className={styles.postDetails}>
             <h4>Categoría:</h4>
             <p>{post.category}</p>
-            <p>{post.userIdUser}</p>
           </div>
+            <p className={styles.userName}>{users.length ? getUserName(post) : ""}</p>
         </div>
       ))}
       <button
