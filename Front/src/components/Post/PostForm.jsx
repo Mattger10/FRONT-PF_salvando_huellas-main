@@ -42,7 +42,7 @@ const FormularioPost = () => {
 
   return (
     <div className={styles.container}>
-      <h2 style={{ fontFamily: "Lemon Days" }} className={styles.h2}>CREA TU PUBLICACIÓN</h2>
+      <h2 style={{ fontFamily: "Lemon Days" }} className={styles.h2}>¡CREA TU PUBLICACIÓN!</h2>
     <form className={styles.form} onSubmit={handleSubmit}>
       <div>
         <label className={styles.label} htmlFor="titleP">
