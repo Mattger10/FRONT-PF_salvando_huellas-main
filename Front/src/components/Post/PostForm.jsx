@@ -14,7 +14,7 @@ const FormularioPost = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const userLocal = JSON.parse(window.localStorage.getItem("user"))
+  const [userId, setUserId] = useState(0)
   const [loading, setLoading] = useState(false)
   const loader = <div className={styles.customloader}></div>
   const [isLogged, setIsLogged] = useState(true);
@@ -26,7 +26,15 @@ const FormularioPost = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  useEffect(()=>{
+    const userLocal = JSON.parse(window.localStorage.getItem("user"))
+    if (!userLocal.nameU){
+      setIsLogged(false)
+    }
+    if(userLocal){
+      setUserId(userLocal.id_User)
+    }
+  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true)
@@ -35,7 +43,7 @@ const FormularioPost = () => {
       const response = await axios.post("/posts/register", {
         ...inputData,
         photoP: result,
-        userId: (!anonimo ? userLocal.id_User : null)
+        userId: (!anonimo ? userId : null)
       });
       setLoading(false)
       setMessage("Post creado con éxito!");
@@ -46,11 +54,6 @@ const FormularioPost = () => {
     }
   };
 
-  useEffect(() => {
-    if (!userLocal.nameU){
-      setIsLogged(false)
-    }
-  }, []);
 
   const handleAnonimo = (e)=>{
     setAnonimo(e.target.checked)
