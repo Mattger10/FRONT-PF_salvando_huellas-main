@@ -14,7 +14,13 @@ const FormularioPost = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const userLocal = JSON.parse(window.localStorage.getItem("user"))
+  const [loading, setLoading] = useState(false)
+  const loader = <div className={styles.customloader}></div>
+  const [isLogged, setIsLogged] = useState(true);
 
+
+  
   const handleInput = (e) => {
     setInput({
       ...inputData,
@@ -24,24 +30,31 @@ const FormularioPost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
       const result = await uploadFile(file);
       const response = await axios.post("/posts/register", {
         ...inputData,
         photoP: result,
+        userId: userLocal.id_User
       });
-      setMessage(response.data);
+      setLoading(false)
+      setMessage("Post creado con éxito!");
     } catch (error) {
       console.error(error);
+      setLoading(false)
       setMessage("Error al publicar el post")
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!userLocal.nameU){
+      setIsLogged(false)
+    }
+  }, []);
 
   return (
-    <div className={styles.container}>
+    (isLogged ? <div className={styles.container}>
       <h2 style={{ fontFamily: "Lemon Days" }} className={styles.h2}>CREA TU PUBLICACIÓN</h2>
     <form className={styles.form} onSubmit={handleSubmit}>
       <div>
@@ -99,9 +112,31 @@ const FormularioPost = () => {
               Aceptar
             </button>
           </div>
+          
         </div>
       ) : null}
-    </div>
+      {loading ? <div className={styles.containerMessage}>
+          <div className={styles.message}>
+            {loader}
+          </div>
+        </div> : ""}
+    </div> : (
+      <div className={styles.containerObligatorio}>
+        <h2 className={styles.titleObligatorio}>Oops!</h2>
+        <h3 className={styles.subtitleObligatorio}>
+          Necesitas iniciar sesión para crear una publicación
+        </h3>
+        <button
+          className={styles.buttonObligatorio}
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Iniciar Sesión
+        </button>
+      </div>
+    ))
+    
     
   );
 };
