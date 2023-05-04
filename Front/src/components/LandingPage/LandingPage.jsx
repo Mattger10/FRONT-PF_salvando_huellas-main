@@ -165,7 +165,7 @@ export default function LandingPage() {
                 <p className={styles.error_password}>{errors.password || ""}</p>
 
                 <button
-                  className={styles.showPasswordButton}
+                  className={styles.showPasswordButton1}
                   onClick={() => setShowPassword(!showPassword)}
                   type="button"
                 >
