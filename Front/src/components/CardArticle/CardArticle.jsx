@@ -102,7 +102,7 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
         />
         <p>{nameA}</p>
         <p>$ {priceA}</p>
-        {stockA > 1 ? <p>{stockA} disponibles</p> : <p>Último disponible!</p>}
+        {stockA > 1 ? <p>{stockA} disponibles</p> : (stockA === 1 ? <p>Último disponible!</p> : <p>SIN STOCK</p>)}
         <button className={styles.buttonEditar} onClick={handleEdit}>
           Editar
         </button>
@@ -163,8 +163,12 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
   return photoA ? (
     <div className={styles.card}>
       <div onClick={detail}>
-      <Link to={`/shop/DetailArticle/${id}`}>
-        <img src={photoA} alt={"foto de " + nameA} className={styles.cardImg} />
+        <Link to={`/shop/DetailArticle/${id}`}>
+          <img
+            src={photoA}
+            alt={"foto de " + nameA}
+            className={styles.cardImg}
+          />
         </Link>
       </div>
 
@@ -172,11 +176,13 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
         <p className={styles.textTitle}>{nameA?.substring(0, 20) + "..."} </p>
         {stockA > 1 ? (
           <p className={styles.textBody}>{stockA} disponibles</p>
-        ) : (
+        ) : stockA === 1 ? (
           <p className={styles.textBody}>Último disponible!</p>
+        ) : (
+          <p className={styles.sinStock}>SIN STOCK</p>
         )}
       </div>
-      <div className={styles.containerButtonsmasymenos}>
+      {stockA > 0 ? <div className={styles.containerButtonsmasymenos}>
         <button
           className={styles.buttonMenos}
           onClick={handleStockSelect}
@@ -192,9 +198,9 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
         >
           +
         </button>
-      </div>
+      </div> : ""}
 
-      <div className={styles.cardFooter}>
+      {stockA > 0 ? <div className={styles.cardFooter}>
         <span className={styles.textTitle}>${priceA}</span>
         <div className={styles.cardButton} onClick={handleAdd}>
           <svg className={styles.svgIcon} viewBox="0 0 20 20">
@@ -203,8 +209,8 @@ export default function CardArticle({ nameA, priceA, photoA, stockA, id }) {
             <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
           </svg>
         </div>
-      </div>
-        {message.length ? <p className={styles.message}>{message}</p> : ""}
+      </div> : ""}
+      {message.length ? <p className={styles.message}>{message}</p> : ""}
     </div>
   ) : (
     loader
