@@ -108,3 +108,50 @@
     height: 30%;
   }
   
+  .containerObligatorio {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 400px;
+  }
+  
+  .titleObligatorio {
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .subtitleObligatorio {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .buttonObligatorio {
+    background-color: #fe5535;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .buttonObligatorio:hover {
+    background-color: #d43535;
+  }
+
+  .customloader {
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:conic-gradient(#0000 10%,#827700);
+    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation:s3 0.5s infinite linear;
+  }
+  @keyframes s3 {to{transform: rotate(1turn)}}
+
+  .anonimo{
+    margin-top: 15px;
+  }

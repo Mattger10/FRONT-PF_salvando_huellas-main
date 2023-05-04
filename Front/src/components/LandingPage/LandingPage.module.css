@@ -68,6 +68,9 @@
   font-size: 1.2rem;
   color: #fff6f6;
 }
+.submit:hover{
+  background-color: #c14127;
+}
 
 .register input:focus {
   outline: none;
@@ -141,9 +144,15 @@ transform: translateX(100%);
   font-size: 1.2rem;
   color: #ffffff;
 }
+.button:hover{
+  background-color: #c14127;
+}
 
 .changeForm {
   cursor: pointer;
+}
+.changeForm:hover{
+  color:#686868cb
 }
 
 .showPasswordButton.showPasswordButton{
@@ -156,6 +165,7 @@ transform: translateX(100%);
   margin-left: 17.5rem;
 }
 
+
 .showPasswordButton1 {
   color: #686868cb;
   position: absolute;
@@ -165,3 +175,4 @@ transform: translateX(100%);
   margin-top: 7.8%;
   margin-left: 17.5rem;
 }
+

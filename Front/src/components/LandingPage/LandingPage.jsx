@@ -195,7 +195,7 @@ export default function LandingPage() {
                 }}
                 className={styles.changeForm}
               >
-                ¿Ya tienes una cuenta? : Iniciar sesión
+                ¿Ya tienes una cuenta? Iniciar Sesión
               </p>
             </div>
           )}
@@ -274,7 +274,7 @@ export default function LandingPage() {
                 className={styles.button}
               >
                 {" "}
-                inicie con: Google / Facebock
+                Google/Facebook
               </button>
 
               <Link to="/home">
