@@ -48,9 +48,9 @@ const Opinions = () => {
     1: 0,
   };
 
-  const averageRating =
+  const averageRating =(
     Object.values(ratings).reduce((a, b) => a + b.sum, 0) /
-    Object.values(ratings).reduce((a, b) => a + b.count, 0);
+    Object.values(ratings).reduce((a, b) => a + b.count, 0)) || 0;
 
   Object.keys(ratings).forEach((key) => {
     const rating = ratings[key];

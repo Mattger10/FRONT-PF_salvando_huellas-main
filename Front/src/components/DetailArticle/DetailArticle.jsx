@@ -212,7 +212,7 @@ export default function DetailsArticle() {
             <p className={styles.price}>$ {detail.priceA}</p>
             <p className={styles.description}>{detail.descriptionA}</p>
 
-            <div className={styles.containerButtonMasyMenos}>
+            {detail.stockA > 0 ? <div className={styles.containerButtonMasyMenos}>
               <button
                 className={styles.buttonMenos}
                 onClick={handleStockSelect}
@@ -228,15 +228,16 @@ export default function DetailsArticle() {
               >
                 +
               </button>
-            </div>
+            </div> : ""}
             {detail.stockA > 1 ? (
               <p className={styles.pStock}>{detail.stockA} disponibles</p>
-            ) : (
-              <p>Último disponible!</p>
+            ) : ( detail.stockA === 1 ?
+              <p className={styles.pStock}>Último disponible!</p>
+              : <p className={styles.sinStock}>SIN STOCK</p>
             )}
-            <button className={styles.button} onClick={handleAdd}>
+            {detail.stockA > 0 ? <button className={styles.button} onClick={handleAdd}>
               <ShoppingCartTwoToneIcon fontSize="medium" /> Agregar al carrito
-            </button>
+            </button>: ""}
             {message.length ? <p>{message}</p> : ""}
           </div>
         </div>
