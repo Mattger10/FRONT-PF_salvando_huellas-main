@@ -88,7 +88,7 @@ const Account = () => {
         window.localStorage.setItem("carrito", JSON.stringify([]));
         window.localStorage.setItem("user", JSON.stringify({}));
         window.localStorage.removeItem("token");
-        logout({ returnTo: "https://front-pf-salvando-huellas-main.vercel.app/" });
+        logout({ returnTo: "/" });
       }
     } else navigate("/");
   };
