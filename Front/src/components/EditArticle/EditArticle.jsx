@@ -45,7 +45,7 @@ export default function EditArticle() {
       const result = await uploadFile(file);
       const response = await axios.put("/articles/update/" + Number(id), {
         ...inputData,
-        photoA: file || detail.photoA,
+        photoA: file ? URL.createObjectURL(file) : detail.photoA,
         activeA: true,
       });
       setLoading(false)
