@@ -47,7 +47,7 @@ export default function EditDog() {
       const result = await uploadFile(file);
       const response = await axios.put("/dogs/update/" + Number(id), {
         ...inputData,
-        photoD:  file ? URL.createObjectURL(file) : dog.photoD,
+        photoD:  file ? result : dog.photoD,
         references: selectedRefs,
       });
       setLoading(false)
